@@ -1,0 +1,34 @@
+version: "0.2"
+language: en_US
+dictionaries:
+  - chef
+  - docs
+  - habitat-docs
+dictionaryDefinitions:
+  - name: chef
+    path: https: //raw.githubusercontent.com/chef/chef_dictionary/main/chef.txt
+    description: Custom Chef Dictionary
+  - name: docs
+    path: https: //raw.githubusercontent.com/chef/chef_dictionary/main/docs.txt
+    description: Custom Docs Dictionary
+  - name: habitat-docs
+    path: https: //raw.githubusercontent.com/chef/chef_dictionary/refs/heads/main/hab-docs.txt
+    description: Custom Habitat Docs Dictionary
+flagWords:
+  - hte
+ignorePaths:
+  - "**/*.yml"
+  - "**/*.toml"
+  - "**/*.svg"
+  - archetypes /*.md
+  - _vendor/**/*
+  - cspell.json
+  - public/**
+  - chef-web-docs
+  - resources/**
+ignoreRegExpList:
+  - /'s\b/
+  - /'d\b/
+  - /^\s*```[\s\S]*?^\s*```/gm
+  - "{{(.+)(?=}})"
+words: []
