@@ -1,0 +1,17 @@
+---
+project:
+  alias: "habitat"
+
+github:
+  delete_branch_on_merge: true
+
+release_branches:
+  - main
+
+pipelines:
+  - verify:
+      description: Pull Request validation tests
+      public: true
+
+slack:
+  notify_channel: docs-notify

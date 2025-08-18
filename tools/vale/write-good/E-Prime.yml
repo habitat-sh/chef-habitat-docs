@@ -1,0 +1,20 @@
+extends: existence
+message: "Try to avoid using '%s'."
+ignorecase: true
+level: suggestion
+tokens:
+  - am
+  - are
+  - be
+  - been
+  - being
+  - he's
+  - here's
+  - i'm
+  - is
+  - she's
+  - there's
+  - they're
+  - was
+  - were
+  - who's
