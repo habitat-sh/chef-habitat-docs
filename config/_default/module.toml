@@ -1,0 +1,89 @@
+## See Hugo's docs on module mounts: https://gohugo.io/hugo-modules/configuration/
+
+noProxy = 'none'
+noVendor = ''
+private = '*.*'
+proxy = 'direct'
+#replacements = ''
+vendorClosest = false
+workspace = ''
+
+###
+# Mount local directories
+###
+
+[[mounts]]
+    source = 'content'
+    target = 'content'
+[[mounts]]
+    source = 'static'
+    target = 'assets'
+[[mounts]]
+    source = 'layouts'
+    target = 'layouts'
+[[mounts]]
+    source = 'data'
+    target = 'data'
+[[mounts]]
+    source = 'assets'
+    target = 'assets'
+[[mounts]]
+    source = 'i18n'
+    target = 'i18n'
+[[mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+
+###
+# Mount Hugo theme
+###
+
+[[imports]]
+  disable = false
+  ignoreConfig = false
+  ignoreImports = false
+  path = "github.com/chef/chef-docs-theme"
+
+[[imports.mounts]]
+  source = "static"
+  target = "static"
+
+[[imports.mounts]]
+  source = "layouts"
+  target = "layouts"
+
+[[imports.mounts]]
+  source = "data"
+  target = "data"
+
+[[imports.mounts]]
+  source = "assets"
+  target = "assets"
+
+[[mounts]]
+  source = 'archetypes'
+  target = 'archetypes'
+
+###
+# NPM packages imported with package.hugo.json from chef-docs-theme
+###
+
+[[mounts]]
+  source = "node_modules/redoc/bundles/redoc.standalone.js"
+  target = "assets/redoc/bundles/redoc.standalone.js"
+
+[[mounts]]
+  source = "node_modules/foundation-sites/dist/js/foundation.min.js"
+  target = "assets/js/vendor/foundation-sites/dist/js/foundation.min.js"
+
+[[mounts]]
+  source = "node_modules/jquery/dist/jquery.min.js"
+  target = "assets/js/vendor/jquery/dist/jquery.min.js"
+
+###
+# SCSS files imported with package.hugo.json from chef-docs-theme
+###
+
+[[mounts]]
+  source = "node_modules/foundation-sites"
+  target = "assets/sass/foundation-sites"

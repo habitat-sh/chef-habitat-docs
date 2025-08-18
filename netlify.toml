@@ -1,0 +1,40 @@
+[build]
+  publish = "public"
+
+[build.environment]
+  HUGO_ENABLEGITINFO = "true"
+  NODE_VERSION = "19"
+
+[build.processing]
+  skip_processing = true
+
+[dev]
+  # local development with the Netlify CLI
+  command = "bash ./scripts/local-server.sh"
+  targetPort = 1313
+  port = 8000
+
+[context.production]
+  command = "bash ./scripts/netlify-deploy-production.sh"
+  [context.production.environment]
+    HUGO_ENV = "production"
+
+[context.deploy-preview]
+  command = "bash ./scripts/netlify-deploy-preview.sh"
+  [context.deploy-preview.environment]
+    HUGO_ENV = "staging"
+
+[context.branch-deploy]
+  command = "bash ./scripts/netlify-branch-deploy.sh"
+  [context.branch-deploy.environment]
+    HUGO_ENV = "branch-deploy"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "X-XSS-Protection: 1"
+    Referrer-Policy = "no-referrer-when-downgrade"
+    Strict-Transport-Security = "max-age=2592000"
+    Permissions-Policy = "vibrate=(), geolocation=(), midi=(), notifications=(), push=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(), payment=()"

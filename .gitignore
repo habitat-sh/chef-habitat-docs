@@ -1,0 +1,24 @@
+.DS_Store
+
+# Hugo/Go workspace files
+*.work
+*.work.sum
+
+# Hugo build directories
+public/
+/resources/
+
+# temp file created by hugo
+.hugo_build.lock
+
+# NPM
+node_modules
+
+# local testing with dart-sass
+/dart-sass
+
+/.vscode
+
+# Local Netlify folder
+# https://docs.netlify.com/cli/get-started/#link-and-unlink-sites
+.netlify

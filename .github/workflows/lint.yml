@@ -1,0 +1,61 @@
+# This is a basic workflow to help you get started with Actions
+
+name: lint
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events
+  pull_request:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  cspell-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: streetsidesoftware/cspell-action@v2.1.1
+        with:
+          files: '**/*.md'
+          root: '.'
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          incremental_files_only: true
+          inline: error
+          strict: true
+          # Path to CSpell config file
+          config: 'cspell.yaml'
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: carlosperate/download-file-action@v1.1.2
+        id: download-mdl-config
+        with:
+          file-url: 'https://raw.githubusercontent.com/chef/chef-web-docs/main/.markdownlint.yaml'
+          file-name: 'markdownlint.yaml'
+      - uses: DavidAnson/markdownlint-cli2-action@v5
+        with:
+          globs: |
+            *.md
+            content/**/*.md
+            !_vendor/
+            !content/drafts/**/*
+
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: errata-ai/vale-action@reviewdog
+        with:
+          files: '["archetypes", "content", "layouts"]'
+          vale_flags: "--config=tools/vale/.vale-github-action.ini"
+          filter_mode: diff_context
+          fail_on_error: true
