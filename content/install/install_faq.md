@@ -25,7 +25,7 @@ A: We publish compiled packages for OSX, Linux, and Windows. `hab` has a require
 
 A: We've got you covered! The script we provide for doing curl-bash installations will allow you to specify a `-v` flag to pull down a specific version of Chef Habitat, eg:
 
-```
+```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
     | sudo bash -s -- -v 0.56.0
 ```

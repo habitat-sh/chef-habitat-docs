@@ -20,14 +20,14 @@ The Chef Habitat Supervisor uses a defined TCP protocol for all interactions; th
 
 Previously, in order to run `core/redis` on a Supervisor running on (say), `hab1.mycompany.com`, you would have to have direct access to the machine (as well as root privileges) in order to load the service, which might look like this:
 
-```
+```sh
 ssh hab1.mycompany.com
 sudo hab svc load core/redis
 ```
 
 Now, using the remote control capabilities of the Supervisor, this could be accomplished from a workstation or bastion host with an invocation that could be as simple as this:
 
-```
+```sh
 hab svc load core/redis --remote-sup=hab1.mycompany.com:9632
 ```
 
@@ -49,7 +49,7 @@ First, when a Supervisor starts up, will create a new secret in `/hab/sup/defaul
 
 Second, and most recommended, users can generate a new secret using `hab sup secret generate`:
 
-```
+```sh
 hab sup secret generate
 VKca6ezRD0lfuwvhgeQLPSD0RMwE/ZYX5nYfGi2x0R1mXNh4QZSpa50H2deB85HoV/Ik48orF4p0/7MuVNPwNA==
 ```
@@ -64,13 +64,13 @@ If you are using a raw container-based deployment (i.e., not a managed platform 
 
 Once you have a secret, you can add it to your local `hab` configuration file, preferably by running `hab cli setup` and following the interactive prompts. Alternatively, you can export it into your environment:
 
-```
+```sh
 export HAB_CTL_SECRET="VKca6ezRD0lfuwvhgeQLPSD0RMwE/ZYX5nYfGi2x0R1mXNh4QZSpa50H2deB85HoV/Ik48orF4p0/7MuVNPwNA=="
 ```
 
 Note that your `hab` configuration file only keeps a single "secret" entry, and exporting a single secret into your environment does effectively the same thing. An assumption of this arrangement is that all Supervisors you wish to interact with have the same shared secret; if you wish to control a set of Supervisors that do not all use the same shared secret, you will need to manage the mapping of secret-to-supervisor yourself, which might look something like this:
 
-```
+```sh
 HAB_CTL_SECRET=${secret_for_supervisor_1} hab svc load ... --remote-sup=${address_of_supervisor_1}
 HAB_CTL_SECRET=${secret_for_supervisor_2} hab svc load ... --remote-sup=${address_of_supervisor_2}
 # etc.
@@ -82,7 +82,7 @@ As stated earlier, the Supervisor reads its secret from its `/hab/sup/default/CT
 
 By default, the Supervisor's "control gateway" listens on the `127.0.0.1` interface for incoming commands. This means that it can only receive commands from the same machine, and not from remote clients. If you wish to control a Supervisor remotely, you'll have to start the Supervisor setting its `--listen-ctl` option to an appropriate interface and port (9632 is the default control gateway port):
 
-```
+```sh
 hab sup run --listen-ctl=0.0.0.0:9632
 ```
 

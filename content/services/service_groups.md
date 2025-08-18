@@ -49,7 +49,7 @@ hab-sup(MR): Starting http-gateway on 0.0.0.0:9631
 
 Now, run the following on each Supervisor to load `core/redis` in the "prod" group:
 
-```
+```sh
 hab svc load core/redis --group=prod
 ```
 

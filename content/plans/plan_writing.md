@@ -112,7 +112,7 @@ You may want to create a plan for an application that can run on multiple platfo
 
 For example, an application targeting linux, Linux kernel 2, and Windows may have the following structure:
 
-```
+```plain
 app_root/
 ├── x86_64-linux/
 |   |   plan.sh
@@ -139,7 +139,7 @@ If it finds a plan both inside as well as outside of a target folder, the target
 
 Of course if your plan does not include hooks or configuration templates and just requires a plan file, you may choose this simpler structure:
 
-```
+```plain
 app_root/
 └── habitat/
         plan.sh

@@ -41,7 +41,7 @@ hab file upload myapp.prod 1 /tmp/yourfile.txt --remote-sup=hab1.mycompany.com
 
 Your output would look something like this:
 
-```
+```sh
 » Uploading file yourfile.txt to 1 incarnation myapp.prod
 Ω Creating service file
 ↑ Applying via peer 172.0.0.3:9632
@@ -50,7 +50,7 @@ Your output would look something like this:
 
 The services in the `myapp.prod` service group will receive the file, restarting if necessary:
 
-```
+```sh
 hab-sup(MR): Receiving new version 1 of file secret.txt for myapp.prod
 ...
 myapp.prod(SR): Service file updated, yourfile.txt
