@@ -21,10 +21,10 @@ A "Bastion Ring" is a pattern for preventing rumor loss and a split brain in a n
 More resources on schedulers:
 
 - [Chef Habitat Container Orchestration]({{< relref "container_orchestration" >}})
-- Kubernetes `kube-scheduler`: https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler
-- Docker Swarm mode: https://docs.docker.com/engine/swarm
-- Mesos DC/OS Marathon or Chronos: https://mesosphere.github.io/marathon/
-- Cloud Foundry: https://www.habitat.sh/get-started/cloudfoundry
+- Kubernetes `kube-scheduler`: <https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler>
+- Docker Swarm mode: <https://docs.docker.com/engine/swarm>
+- Mesos DC/OS Marathon or Chronos: <https://mesosphere.github.io/marathon/>
+- Cloud Foundry: <https://www.habitat.sh/get-started/cloudfoundry>
 
 ## Initial Peer(s)
 

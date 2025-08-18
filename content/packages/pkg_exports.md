@@ -213,4 +213,3 @@ The helper methods are designed to extract information from the standard Cloud F
     ```
 
    Your application will start after it has been successfully uploaded and deployed.
-

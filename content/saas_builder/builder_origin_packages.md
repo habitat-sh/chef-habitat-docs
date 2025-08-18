@@ -67,7 +67,7 @@ As long as you are already a member of the Habitat origin, once Builder possesse
 By default, newly uploaded packages are placed in the `unstable` channel. However, the default package that is downloaded is the latest `stable` version of a package, unless overridden in commands such as `hab sup run`, `hab svc load`, and `hab pkg install`. If you want to promote your package to the `stable` channel, run the `hab pkg promote` command as follows:
 
 ```bash
-$ hab pkg promote -z <TOKEN> origin/package/version/release stable
+hab pkg promote -z <TOKEN> origin/package/version/release stable
 ```
 
 {{< note >}}
@@ -89,8 +89,8 @@ When running private packages from Builder, it's necessary to add your [Chef Hab
 You can instruct the Supervisor to download and run packages from Builder by using the `hab sup` and `hab svc` commands, for example:
 
 ```bash
-$ hab sup run
-$ hab svc load core/postgresql
+hab sup run
+hab svc load core/postgresql
 ```
 
 If the Supervisor does not have the `core/postgresql` package in its local cache, it will contact Builder, retrieve the latest version and the public key for the `core` origin, verify the cryptographic integrity of the package, and then start it.
@@ -98,7 +98,7 @@ If the Supervisor does not have the `core/postgresql` package in its local cache
 You may also supply a `--channel` argument to instruct the Supervisor to use a different channel for the purposes of continuous deployment:
 
 ```bash
-$ hab svc load core/postgresql --channel unstable
+hab svc load core/postgresql --channel unstable
 ```
 
 ### Running Packages from Exported Tarballs
@@ -108,13 +108,13 @@ An exported tarball package contains the Chef Habitat client/binary as well as d
 After deploying the tarball to your target server, extract the contents to the root filesystem (`/`):
 
 ```bash
-$ tar zxf core-nginx-1.11.10-20170616000025.tar.gz --directory /
+tar zxf core-nginx-1.11.10-20170616000025.tar.gz --directory /
 ```
 
 You can instruct the Supervisor to run packages from an exported tarball:
 
 ```bash
-$ /hab/bin/hab svc start core/nginx
+/hab/bin/hab svc start core/nginx
 ```
 
 Note: On a clean server, this will download additional packages to satisfy the Supervisor dependencies. You will also require a `hab` group and `hab` user on the system for most services.
@@ -135,7 +135,7 @@ To enable this functionality, do the following:
 
     The `.bldr.toml` file is in TOML format, so create a TOML table specifying the `$pkg_name` value for that plan and then add a `plan_path` field specifying the path to your `plan.sh` file (you do not need to include plan.sh explicitly in the path). If all the files related to the plan are under the plan path, then you are done. Otherwise, you will need an additional 'paths' field specifying Unix-style path globs to files that are associated with the plan you specified in the 'plan_path'. File or directory changes made in these path locations determine which packages will be rebuilt. Basically, when a file is committed, Builder will check to see whether it falls underneath the `plan_path` hierarchy, or matches one of the globs in the `paths` field if it was specified - if the answer is yes, then Builder will issue a build for that commit.
 
-    It's important to note that the entries for `plan_path` and `paths` do not behave the same. If you have something like `plan_path = "habitat"`, that behaves as if you had written `plan_path = "habitat/*"` - that is, it will automatically check every file under the `habitat` directory. However, if you have something like `paths = [ "src" ]`, that is _not_ automatically expanded to `src/*`. That line will only watch for changes to a file called `src`. If you're wanting to watch for changes to any file inside the `src` directory, then you must explicitly specify the glob, like so: `paths = [ "src/*" ]`.
+    It's important to note that the entries for `plan_path` and `paths` do not behave the same. If you have something like `plan_path = "habitat"`, that behaves as if you had written `plan_path = "habitat/*"` - that is, it will automatically check every file under the `habitat` directory. However, if you have something like `paths = [ "src" ]`, that is *not* automatically expanded to `src/*`. That line will only watch for changes to a file called `src`. If you're wanting to watch for changes to any file inside the `src` directory, then you must explicitly specify the glob, like so: `paths = [ "src/*" ]`.
 
     For example, in the Chef Habitat repository itself, this TOML states that the `hab-launcher`, `hab-studio`, and `hab-sup` packages will be rebuilt if there are any changes in any of the specified `components` sub-directories. Note that `hab-studio` does not need to specify a `path` because all of it's files are within the `plan_path` hierarchy, but that is not the case for the other projects.
 
@@ -196,11 +196,11 @@ By connecting a plan file in <a href="https://bldr.habitat.sh/#/sign-in" class="
 
 To connect a plan to Builder, view one of your origins (while signed in), click the **Connect a plan file** button, and complete the following steps:
 
-  - Install the Builder GitHub App
-  - Choose the GitHub organization and repository containing your Chef Habitat plan
-  - Choose a privacy setting for the package
-  - Specify container-registry publishing settings (optional)
-  - Specify auto-build option (default is off)
+* Install the Builder GitHub App
+* Choose the GitHub organization and repository containing your Chef Habitat plan
+* Choose a privacy setting for the package
+* Specify container-registry publishing settings (optional)
+* Specify auto-build option (default is off)
 
 ### Auto-build Option
 

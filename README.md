@@ -1,6 +1,6 @@
 # Habitat Documentation
 
-The Habitat Documentation is deployed on https://docs.chef.io/habitat/.
+The Habitat Documentation is deployed on <https://docs.chef.io/habitat/>.
 
 ## The Fastest Way to Contribute
 
@@ -82,7 +82,7 @@ That copy will be configured to build the Habitat documentation from `components
 and live reload if any changes are made while the Hugo server is running.
 
 - Run `make serve`
-- go to http://localhost:1313
+- go to <http://localhost:1313>
 
 #### Clean your local environment
 
@@ -114,7 +114,7 @@ We love getting feedback, questions, or comments.
 
 **Email**
 
-Send an email to Chef-Docs@progress.com for documentation bugs,
+Send an email to <Chef-Docs@progress.com> for documentation bugs,
 ideas, thoughts, and suggestions. This email address is not a
 support email address. If you need support, contact [Chef Support](https://www.chef.io/support/).
 

@@ -128,6 +128,7 @@ project to determine the version in the `before` phase:
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+
   ```bash
   pkg_version() {
   cat "$SRC_PATH/version.txt"
@@ -138,9 +139,11 @@ project to determine the version in the `before` phase:
   update_pkg_version
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+
   ```powershell
   function pkg_version {
   Get-Content "$SRC_PATH/version.txt"
@@ -151,6 +154,7 @@ project to determine the version in the `before` phase:
   Set-PkgVersion
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -164,6 +168,7 @@ As the downloaded file is required before running the version logic, this helper
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+
   ```bash
   pkg_version() {
   local build_date
@@ -181,9 +186,11 @@ As the downloaded file is required before running the version logic, this helper
   update_pkg_version
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+
   ```powershell
   function pkg_version {
     # Extract the build date of the certificates file
@@ -202,6 +209,7 @@ As the downloaded file is required before running the version logic, this helper
     Set-PkgVersion
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 

@@ -54,8 +54,8 @@ of that election will never become the update leader, so all followers within a 
 topology will update first.
 
 It's important to note that because we must perform a leader election to determine
-an update leader, *you must have at least 3 Supervisors running a service group
-to take advantage of the rolling update strategy*.
+an update leader, _you must have at least 3 Supervisors running a service group
+to take advantage of the rolling update strategy_.
 
 ### At-Once Strategy
 

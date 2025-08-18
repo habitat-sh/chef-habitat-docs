@@ -41,4 +41,3 @@ All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. T
 4. Now that you have stubbed out your plan file in your plan context, open it and begin modifying it to suit your needs.
 
 When writing a plan, it's important to understand that you are defining both how the package is built and the actions Chef Habitat will take when the Supervisor starts and manages the child processes in the package. The following sections explain what you need to do for each phase.
-

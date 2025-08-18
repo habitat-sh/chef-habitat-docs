@@ -37,9 +37,9 @@ $pkg_exports=@{
 
 This will export the runtime values of its `network.port` and `network.ssl.port` configuration entries publicly as `port` and `ssl-port`, respectively. All configuration entries in `pkg_exports` must have a default value in `default.toml`, but the actual exported values will change at runtime to reflect the producer's current configuration. When values change (for example, by `hab config apply`), the consumer service will be notified that its producer service configuration has changed. We'll see how to use this on the consumer in the sections below.
 
-Producer services export only the *subset* of their configuration that is defined through `pkg_exports` and not the entire thing. Consumer services see only what the producer service exports, and nothing more. This is important, because it means that configuration that must remain secret--such as passwords--are not shared _unless_ they are explicitly defined in `pkg_exports`.
+Producer services export only the *subset* of their configuration that is defined through `pkg_exports` and not the entire thing. Consumer services see only what the producer service exports, and nothing more. This is important, because it means that configuration that must remain secret--such as passwords--are not shared *unless* they are explicitly defined in `pkg_exports`.
 
-Additionally, the internal structure of the producer's configuration is independent of the exported interface it presents. In our example, `ssl-port` originally comes from a deeply-nested `network.ssl.port` value. However, the exported interface is _flat_, effectively a non-nested set of key-value pairs.
+Additionally, the internal structure of the producer's configuration is independent of the exported interface it presents. In our example, `ssl-port` originally comes from a deeply-nested `network.ssl.port` value. However, the exported interface is *flat*, effectively a non-nested set of key-value pairs.
 
 ### Defining the Consumer Contract
 
@@ -59,9 +59,9 @@ A bound service group may export additional values, but they cannot export less 
 
 Chef Habitat only matches services up at the syntactic, not semantic, level of this contract. If you bind to a service that exports a "port", Chef Habitat only knows that the service exports something called "port"; it could be the port for a PostgreSQL database, or it could be the port of an application server. You will need to ensure that you connect the correct services together; Chef Habitat's binds provide the means by which you express these relationships. You are, however, free to create bind names and export names that are meaningful for you.
 
-#### The Difference Between _pkg\_binds_ and _pkg\_binds\_optional_
+#### The Difference Between *pkg\_binds* and *pkg\_binds\_optional*
 
-In addition to the `pkg_binds` array, Plan authors may also specify `pkg_binds_optional`. It has exactly the same structure as `pkg_binds`, but, as the name implies, these bindings are _optional_; however, it is worth examining exactly what is meant by "optional" in this case.
+In addition to the `pkg_binds` array, Plan authors may also specify `pkg_binds_optional`. It has exactly the same structure as `pkg_binds`, but, as the name implies, these bindings are *optional*; however, it is worth examining exactly what is meant by "optional" in this case.
 
 In order to load a service into the Supervisor, each bind defined in `pkg_binds` *must* be mapped to a service group; if any of these binds are not mapped, then the Supervisor will refuse to load the service.
 
@@ -69,11 +69,11 @@ Binds defined in `pkg_binds_optional`, on the other hand, *may* be mapped when l
 
 There are several scenarios where optional binds may be useful:
 
- * A service may have some default functionality which may be overridden at load-time by mapping an optional binding. Perhaps you have some kind of artifact repository service that, in the absence of a "remote-store" bind stores data on the local filesystem. However, if `remote-store` is bound to an appropriate S3 API-compatible service, such as [Minio](https://www.minio.io), it could modify its behavior to store data remotely.
+* A service may have some default functionality which may be overridden at load-time by mapping an optional binding. Perhaps you have some kind of artifact repository service that, in the absence of a "remote-store" bind stores data on the local filesystem. However, if `remote-store` is bound to an appropriate S3 API-compatible service, such as [Minio](https://www.minio.io), it could modify its behavior to store data remotely.
 
- * A service can be optionally bind to a service to unlock additional features. For example, say you have an application that may run with or without a caching layer. You can model this using an optional bind named (say), "cache". If you wish to run without the caching functionality enabled, you can start the service without specifying a service group mapping for the "cache" bind. Since the bind is optional, it is not needed for Chef Habitat to run your service. However, if you do wish to run with the caching enabled, you can specify a service group mapping, e.g. `hab svc load acme/my-app --bind=cache:redis.prod`. In this scenario, your service's configuration can pull configuration values from the `redis.prod` service group, enabling it to use Redis as a caching layer.
+* A service can be optionally bind to a service to unlock additional features. For example, say you have an application that may run with or without a caching layer. You can model this using an optional bind named (say), "cache". If you wish to run without the caching functionality enabled, you can start the service without specifying a service group mapping for the "cache" bind. Since the bind is optional, it is not needed for Chef Habitat to run your service. However, if you do wish to run with the caching enabled, you can specify a service group mapping, e.g. `hab svc load acme/my-app --bind=cache:redis.prod`. In this scenario, your service's configuration can pull configuration values from the `redis.prod` service group, enabling it to use Redis as a caching layer.
 
-* A service may can optionally bind one of several services; if bind "X" is mapped, operate _this_ way; if "Y" is mapped, operate _that_ way. An application that could use either a Redis backend or a PostgreSQL backend, depending on the deployment scenario, could declare optional "redis" and "postgresql" bindings, and pick which one to map at service load-time. If this is your use case, Chef Habitat does not have a way to encode the fact that "one and only one of these optional bindings should be mapped", so you will have to manage that on your own.
+* A service may can optionally bind one of several services; if bind "X" is mapped, operate *this* way; if "Y" is mapped, operate *that* way. An application that could use either a Redis backend or a PostgreSQL backend, depending on the deployment scenario, could declare optional "redis" and "postgresql" bindings, and pick which one to map at service load-time. If this is your use case, Chef Habitat does not have a way to encode the fact that "one and only one of these optional bindings should be mapped", so you will have to manage that on your own.
 
 ### Service Start-up Behavior
 
@@ -100,7 +100,7 @@ Once you've defined both ends of the contract, you can leverage the bind in any 
 
 Here, `bind.<BINDING_NAME>` will be "truthy" (and can thus be used in boolean expressions) only if the bind has been satisfied, and `bind.<BINDING_NAME>.members` will be an array of only active members.
 
-(Prior to Chef Habitat 0.56.0, `bind.<BINDING_NAME>` was always present, and `bind.<BINDING_NAME>.members` had _all_ members, even ones that had left the Supervisor network long ago. This necessitated using the `eachAlive` helper function, instead of just `each`.)
+(Prior to Chef Habitat 0.56.0, `bind.<BINDING_NAME>` was always present, and `bind.<BINDING_NAME>.members` had *all* members, even ones that had left the Supervisor network long ago. This necessitated using the `eachAlive` helper function, instead of just `each`.)
 
 ### Starting a Consumer Service
 
@@ -115,4 +115,3 @@ would create a bind aliasing `database` to the `amnesia` service in the `default
 The service group passed to `--bind database:{service}.{group}` doesn't *need* to be the service `amnesia`. This bind can be any service as long as they export a configuration key for `port` and `ssl-port`.
 
 You can declare bindings to multiple service groups in your templates by using the `--bind` option multiple times on the command line. Your service will not start if your package has declared a required bind and a value for it was not specified by `--bind`.
-

@@ -29,13 +29,13 @@ You can create native Mesos containers from Chef Habitat packages by following t
 2. Install or [build]({{< relref "pkg_build" >}}) the Chef Habitat package from which you want to create a Marathon application, for example:
 
     ```bash
-    $ hab pkg install yourorigin/yourpackage
+    hab pkg install yourorigin/yourpackage
     ```
 
 3. Run the Mesos exporter on the package.
 
     ```bash
-    $ hab pkg export mesos yourorigin/yourpackage
+    hab pkg export mesos yourorigin/yourpackage
     ```
 
 4. This will create a Mesos container-format tarball in the results directory, and also print the JSON needed to load the application into Marathon. Note that the tarball needs to be uploaded to a download location and the `"uris"` in the JSON need to be updated manually. This is an example of the output:
@@ -79,9 +79,9 @@ You can get to the output from the running application by clicking on the "Marat
 
 This is a basic integration, there are many improvements yet to be made. Here are a few examples:
 
- * Marathon environment variables are not passed into the Chef Habitat package "cmd" yet.
- * Networking ports exposed by Chef Habitat need to be added to the JSON.
- * The Chef Habitat gossip protocol needs to be included as a default exposed port.
- * If Marathon is running the [artifact store](https://mesosphere.github.io/marathon/docs/), support uploading the tarball directly into it.
- * Upload applications directly to the [Marathon application API](https://mesosphere.github.io/marathon/docs/application-basics.html).
- * Marathon supports unpacking several archive formats. Native `.hart` support could be added directly to Marathon.
+* Marathon environment variables are not passed into the Chef Habitat package "cmd" yet.
+* Networking ports exposed by Chef Habitat need to be added to the JSON.
+* The Chef Habitat gossip protocol needs to be included as a default exposed port.
+* If Marathon is running the [artifact store](https://mesosphere.github.io/marathon/docs/), support uploading the tarball directly into it.
+* Upload applications directly to the [Marathon application API](https://mesosphere.github.io/marathon/docs/application-basics.html).
+* Marathon supports unpacking several archive formats. Native `.hart` support could be added directly to Marathon.

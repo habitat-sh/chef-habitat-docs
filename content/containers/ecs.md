@@ -18,14 +18,14 @@ Amazon Web Services provides a container management service called [EC2 Containe
 [EC2 Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with ```hab pkg export docker``` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building ```core/mongodb``` containers you would use the following command:
 
 ```bash
-$ aws ecr create-repository --repository-name core/mongodb
+aws ecr create-repository --repository-name core/mongodb
 ```
 
 To tag and push the images to the ECR you will use your Repository URI (substituting your **aws_account_id** and availability zone).
 
 ```bash
-$ docker tag core/mongodb:latest aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
-$ docker push aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
+docker tag core/mongodb:latest aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
+docker push aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
 ```
 
 ## EC2 Compute Service

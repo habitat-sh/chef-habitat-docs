@@ -22,7 +22,7 @@ By default, every new package is placed in the `unstable` channel by Builder. Pa
 To promote your package to a channel, you must either use Builder to build your package or upload it to Builder yourself, and then use the `hab pkg promote` subcommand to promote the package to the intended channel. To combine operations, the `hab` CLI allows you to do both in one command by using the `--channel` option when uploading your package. The following shows how to upload and promote a package to a custom channel named `test`.
 
 ```bash
-$ hab pkg upload -z <TOKEN> results/<hart file> --channel test
+hab pkg upload -z <TOKEN> results/<hart file> --channel test
 ```
 
 In the example above, if you look up your package in the Builder UI, or using the `hab pkg channels` subcommand, you can see that your package is tagged for both the `test` and `unstable` channels.
@@ -36,7 +36,7 @@ Custom channels like `test` are scoped to each package. Builder does not create 
 If you have already uploaded your package to a channel and wish to promote it to a different channel, use the `hab pkg promote` subcommand as shown below.
 
 ```bash
-$ hab pkg promote -z <TOKEN> <origin>/<package>/<version>/<release> stable
+hab pkg promote -z <TOKEN> <origin>/<package>/<version>/<release> stable
 ```
 
 ### Combining an Update Strategy with Channels
@@ -56,7 +56,7 @@ Configuring a Supervisor's update strategy to point to a channel ensures that ne
 
 To start a service with an update strategy and pointing to a channel, specify them as options when loading the service.
 
-    $ hab svc load <origin>/<package> --strategy rolling --channel test
+    hab svc load <origin>/<package> --strategy rolling --channel test
 
 While that service is running, update your package, rebuild it, and then promote it to the same channel that the previous release of that service is currently running in (e.g. `test`). Those running instances should now update according to their update strategy.
 
@@ -65,7 +65,7 @@ While that service is running, update your package, rebuild it, and then promote
 If you need to un-associate a channel from a specific package release, you can do so using the `hab pkg demote` subcommand. Packages can be demoted from all channels except `unstable`.
 
 ```bash
-$ hab pkg demote -z <TOKEN> <origin>/<package>/<version>/<release> test
+hab pkg demote -z <TOKEN> <origin>/<package>/<version>/<release> test
 ```
 
 The Builder UI for that package release and `hab pkg channels` will both reflect the removal of that channel.

@@ -80,7 +80,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
-### Installing Habitat for Windows using the dowloaded Chef Habitat package.
+### Installing Habitat for Windows using the dowloaded Chef Habitat package
 
 Downloaded the `hab` CLI, unzip it onto your machine. We suggest unzipping to `C:\habitat`, so that the full path to Chef Habitat is similar to `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`. If you've downloaded a more recent version of Chef Habitat, you'll see a different set of numbers following `hab-`. Replace the package name used in these examples with the filename you see on your computer. Next, add that folder to your `PATH` variable so your computer will know where to find it. Here's how to do that with Powershell:
 

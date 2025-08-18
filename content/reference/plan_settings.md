@@ -43,15 +43,19 @@ pkg_name
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel" >}}
+
   ```bash
   pkg_name=zlib
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel" >}}
+
   ```powershell
   $pkg_name="zlib"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -65,15 +69,19 @@ pkg_origin
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+
   ```bash
   pkg_origin=Habitat
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+
   ```powershell
   $pkg_origin="Habitat"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -87,15 +95,19 @@ pkg_version
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+
   ```bash
   pkg_version=1.2.8
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+
   ```powershell
   $pkg_version="1.2.8"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -113,15 +125,19 @@ pkg_maintainer
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel3" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
+
   ```bash
   pkg_maintainer="Your Name <someone@example.com>"
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
+
   ```powershell
   $pkg_maintainer="Your Name <someone@example.com>"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -135,15 +151,19 @@ pkg_license
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel4" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel4" >}}
+
   ```bash
   pkg_license=('Apache-2.0')
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel4" >}}
+
   ```powershell
   $pkg_license=("'Apache-2.0'")
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -161,15 +181,19 @@ pkg_source
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel5" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel5" >}}
+
   ```bash
   pkg_source=http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel5" >}}
+
   ```powershell
   $pkg_source="http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -183,15 +207,19 @@ pkg_filename
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel6" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel6" >}}
+
   ```bash
   pkg_filename=${pkg_name}-${pkg_version}.tar.gz
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel6" >}}
+
   ```powershell
   $pkg_filename="${pkg_name}-${pkg_version}.tar.gz"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -205,15 +233,19 @@ pkg_shasum
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel7" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel7" >}}
+
   ```bash
   pkg_shasum=36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel7" >}}
+
   ```powershell
   $pkg_shasum="36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -227,15 +259,19 @@ pkg_deps
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel8" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel8" >}}
+
   ```bash
   pkg_deps=(core/glibc core/pcre core/openssl core/zlib)
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel8" >}}
+
   ```powershell
   $pkg_deps="(core/glibc core/pcre core/openssl core/zlib)"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -249,15 +285,19 @@ pkg_build_deps
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel9" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel9" >}}
+
   ```bash
   pkg_build_deps=(core/gcc core/linux-headers)
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel9" >}}
+
   ```powershell
   $pkg_build_deps="(core/gcc core/linux-headers)"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -330,7 +370,7 @@ In addition to specifying the keys you defined in `pkg_exports`, you must have a
 {{< /note >}}
 
 pkg_binds
-: An associative array (or `hashtable` in Powershell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds *must* be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind does not contain the expected keys, the service will not start successfully. _Optional_.
+: An associative array (or `hashtable` in Powershell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds _must_ be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind does not contain the expected keys, the service will not start successfully. _Optional_.
 
 ```bash
 pkg_binds=(

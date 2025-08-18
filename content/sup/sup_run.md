@@ -63,14 +63,14 @@ If your host machine is running Linux, do the following to run your packages for
 * Add the `hab` user and group.
 
     ```bash
-    $ sudo adduser --group hab
-    $ sudo useradd -g hab hab
+    sudo adduser --group hab
+    sudo useradd -g hab hab
     ```
 
 * Run the `hab` Supervisor as root.
 
     ```bash
-    $ sudo hab sup run yourorigin/yourname
+    sudo hab sup run yourorigin/yourname
     ```
 
 You may use the same `hab run` command on Windows but omit the `sudo` command. However, you should be inside of an elevated shell. Also, note that the `hab` user is not necessary on Windows. If it is absent, services will run under the identity of the current user. If a `hab` user is present, you will need to provide its password via the`--password` argument:
@@ -89,13 +89,13 @@ For more structured ways of running the Chef Habitat Supervisor on servers, plea
 To load a service into a Supervisor, you use the `hab svc load` subcommand. As an example, to load `yourorigin/yourname` in a Leader topology, with a Rolling update strategy, and a Group of "acme", run the following:
 
 ```bash
-$ hab svc load yourorigin/yourname --topology leader --strategy rolling --group acme
+hab svc load yourorigin/yourname --topology leader --strategy rolling --group acme
 ```
 
 Running the `hab svc load` subcommand multiple times with different package identifiers will result in multiple services running on the same Supervisor. Let's add `core/redis` to the Supervisor for some fun:
 
 ```bash
-$ hab svc load core/redis
+hab svc load core/redis
 ```
 
 ## Unloading a Service
@@ -103,7 +103,7 @@ $ hab svc load core/redis
 To remove a service from a Supervisor, you use the `hab svc unload` subcommand. If the service is was running, then it will be stopped first, then removed. This means that the next time the Supervisor is started (or restarted), it will not run this unloaded service. For example, to remove the `yourorigin/yourname` service:
 
 ```bash
-$ hab svc unload yourorigin/yourname
+hab svc unload yourorigin/yourname
 ```
 
 ## Stopping a Running Service
@@ -111,7 +111,7 @@ $ hab svc unload yourorigin/yourname
 Sometimes you need to stop a running service for a period of time, for example during a maintenance outage. Rather than completely removing a service from supervision, you can use the `hab svc stop` subcommand which will shut down the running service and leave it in this state until you start it again with the `hab svc start` subcommand, explained next. This means that all service-related options such as service topology, update strategy, etc. are preserved until the service is started again. For example, to stop the running `core/redis` service:
 
 ```bash
-$ hab svc stop core/redis
+hab svc stop core/redis
 ```
 
 ## Restarting a Stopped Service
@@ -119,7 +119,7 @@ $ hab svc stop core/redis
 To resume running a service which has been loaded but stopped (via the `hab svc stop` subcommand explained above), you use the `hab svc start` subcommand. Let's resume our `core/redis` service with:
 
 ```bash
-$ hab svc start core/redis
+hab svc start core/redis
 ```
 
 {{< note >}}
@@ -135,7 +135,7 @@ You can query all services currently loaded or running under the local Superviso
 To retrieve status for an individual service, you can pass the service identifier:
 
 ```bash
-$ hab svc status core/mysql
+hab svc status core/mysql
 ```
 
 The following exit codes are emitted by the `status` command:
@@ -144,4 +144,3 @@ The following exit codes are emitted by the `status` command:
 * `1` - A generic error has occurred calling the `hab` cli
 * `2` - A service identifier was passed to `hab svc status` and that service is not loaded by the Supervisor
 * `3` - There is no local running Supervisor
-

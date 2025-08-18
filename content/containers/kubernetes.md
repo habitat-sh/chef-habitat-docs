@@ -47,6 +47,7 @@ spec:
 ```
 
 This service definition creates a virtual IP (VIP), opening access to the Chef Habitat service that runs on the pod.
+
 - The habitat gossip port (9638/UDP) listener
 - The habitat http-gateway (9631/TCP) listener
 - makes service name available in DNS (as `hab-bastion` or `hab-bastion.namespace-name`, etc) and discoverable by any pod
@@ -186,13 +187,13 @@ spec:
 If your packages don't require communication with the Chef Habitat Supervisor ring, such as binds, secrets, etc., then you can execute your packages directly on the cluster. You can deploy Chef Habitat packages exported as containers to Kubernetes with the [`kubectl` command](http://kubernetes.io/docs/user-guide/pods/single-container/). Using the [Docker exporter]({{< relref "pkg_exports#exporting-to-docker" >}}) to create a containerized application, you can launch the container like this example:
 
 ```shell
-$ kubectl run mytutorial --image=myorigin/mytutorial --port=8080
+kubectl run mytutorial --image=myorigin/mytutorial --port=8080
 ```
 
 Assuming you're using the Docker image pulled from `myorigin/mytutorial`, port 8080 on the container should be accessible. Pass networking ports exposed by Chef Habitat with `kubectl run` as `--port` options. In this example, the `kubectl get` command is:
 
 ```shell
-$ kubectl get pods -l run=mytutorial
+kubectl get pods -l run=mytutorial
 ```
 
 ## Docker and ACI
@@ -205,5 +206,5 @@ Kubernetes supports passing [environment variables](https://kubernetes.io/docs/u
 
 ## Related Reading
 
-* [Export a Chef Habitat package]({{< relref "pkg_exports" >}})
-* [Chef Habitat CLI]({{< relref "habitat_cli" >}})
+- [Export a Chef Habitat package]({{< relref "pkg_exports" >}})
+- [Chef Habitat CLI]({{< relref "habitat_cli" >}})

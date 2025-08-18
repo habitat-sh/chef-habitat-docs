@@ -57,17 +57,21 @@ To add or modify your environment variables, there are special functions to call
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+
   ```bash
   set_runtime_env [-f] VARIABLE_NAME VALUE
   set_buildtime_env [-f] VARIABLE_NAME VALUE
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+
   ```powershell
   Set-RuntimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
   Set-BuildtimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -85,7 +89,7 @@ Set-RuntimeEnv SSL_CERT_FILE "$(Get-HabPackagePath cacerts)/ssl/cert.pem" -IsPat
 
 This will hint to the packaging system that this path should be properly rooted inside of the Chef Habitat filesystem of the current running environment.
 
-These functions allow you to _set_ an environment variable's value. If one of your dependencies has already declared a value for this, it will result in a build failure, protecting you from inadvertently breaking anything. If you really do want to replace the value, you can supply the `-f` or `-force` flag.
+These functions allow you to *set* an environment variable's value. If one of your dependencies has already declared a value for this, it will result in a build failure, protecting you from inadvertently breaking anything. If you really do want to replace the value, you can supply the `-f` or `-force` flag.
 
 For pushing new values onto a multi-valued environment variable (like `PATH`), use the following functions:
 
@@ -96,17 +100,21 @@ For pushing new values onto a multi-valued environment variable (like `PATH`), u
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+
   ```bash
   push_runtime_env VARIABLE_NAME VALUE
   push_buildtime_env VARIABLE_NAME VALUE
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+
   ```powershell
   Push-RuntimeEnv VARIABLE_NAME VALUE [-IsPath]
   Push-BuildtimeEnv VARIABLE_NAME VALUE [-IsPath]
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -121,15 +129,19 @@ By default, Chef Habitat treats all variables as "primitive" variables. If you a
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel3" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
+
   ```bash
   export HAB_ENV_FOO_TYPE=aggregate
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
+
   ```powershell
   $env:HAB_ENV_FOO_TYPE="aggregate"
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 

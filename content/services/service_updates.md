@@ -22,7 +22,7 @@ You can supply a `user.toml` containing any configuration data that you want to 
 
 ### Using an Environment Variable
 
-Override default configuration data through the use of an environment variable with the following format: 
+Override default configuration data through the use of an environment variable with the following format:
 
 ```bash
 HAB_PACKAGENAME='{"keyname1":"newvalue1", "tablename1":{"keyname2":"newvalue2"}}'
@@ -76,7 +76,7 @@ file that is referenced in [`hab config apply`]({{< relref "habitat_cli#hab-conf
 
 {{< note >}}
 
-Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. *If the version number is less than or equal to the current version number, the change(s) will not be applied.*
+Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the change(s) will not be applied._
 
 {{< /note >}}
 

@@ -4,4 +4,4 @@ The data folder is where you can store additional data for Hugo to use when gene
 
 These files must be YAML, JSON, XML, or TOML files (using the .yml, .yaml, .json, .xml, or .toml extension). The data will be accessible as a map in the .Site.Data variable.
 
-https://gohugo.io/templates/data-templates/#the-data-folder
+<https://gohugo.io/templates/data-templates/#the-data-folder>
