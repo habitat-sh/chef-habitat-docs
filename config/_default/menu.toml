@@ -51,3 +51,50 @@ weight = 60
 ## End Main Menu ##
 ####
 
+[[install]]
+title = "Install"
+identifier = "install"
+
+[[saas]]
+title = "SaaS Builder"
+identifier = "saas_builder"
+
+[[origins]]
+title = "Origins"
+identifier = "origins"
+
+[[packages]]
+title = "Packages"
+identifier = "packages"
+
+[[plans]]
+title = "Plans"
+identifier = "plans"
+
+[[services]]
+title = "Services"
+identifier = "services"
+
+[[sup]]
+title = "Supervisors"
+identifier = "supervisors"
+
+[[reference]]
+title = "Reference"
+identifier = "reference"
+
+    [[reference]]
+    title = "APIs"
+    identifier  = "reference/api"
+    parent = "reference"
+    weight = "20"
+
+[[containers]]
+title = "Containers"
+identifier = "containers"
+
+[[release_notes]]
+title = "Release notes"
+identifier = "release_notes"
+
+

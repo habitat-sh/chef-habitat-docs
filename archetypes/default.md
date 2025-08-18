@@ -2,7 +2,7 @@
 title = "{{ .Name | humanize | title }}"
 date = {{ .Date }}
 draft = false
-gh_repo = "habitat"
+
 
 [menu]
   [menu.habitat]
