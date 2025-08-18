@@ -35,6 +35,7 @@ Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/g
 - `log`
 
 {{< note >}}
+
 Per [Handlebars Paths](http://handlebarsjs.com/#paths), when using `each` in a block expression, you must reference the parent context of that block to use any user-defined configuration values referenced _within_ the block, such as those that start with `cfg`. For example, if your block looked like the following, you must reference `cfg.port` from the parent context of the block:
 
 ```handlebars
@@ -61,7 +62,9 @@ Here's an example that will only write out configuration for the unixsocket tuna
 ```
 
 {{< note >}}
+
 The `~` indicates that whitespace should be omitted when rendering.
+
 {{< /note >}}
 
 TOML allows you to create sections (called [TOML tables](https://github.com/toml-lang/toml#table)) to better organize your configuration variables. For example, your `default.toml` or user defined TOML could have a `[repl]` section for variables controlling replication behavior. Here's what that looks like:
@@ -127,7 +130,9 @@ And for both each and unless, you can use `@first` and `@last` to specify which 
     }
 
 {{< note >}}
+
 The `@first` and `@last` variables also work with the Chef Habitat helper `eachAlive`, and in the example above, it would be preferable to the built-in `each` helper because it checks whether the service is available before trying to retrieve any values.
+
 {{< /note >}}
 
 unless

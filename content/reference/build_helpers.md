@@ -13,7 +13,9 @@ description = "Define package buildtime actions with helper functions."
 The following helper functions can be useful in your plan to help you build your package correctly. `Attach()` specifically is to help with debugging - the other helper functions are to help you in building your package.
 
 {{< note >}}
+
 Most of the following helper functions are not available in Powershell plans (`plan.ps1`). However in most cases, the standard Powershell cmdlets provide the same functionality. For example: use `Resolve-Path` instead of `abspath` or `Get-Command` instead of `exists`.
+
 {{< /note >}}
 
 attach()
@@ -22,7 +24,9 @@ attach()
   To use attach, add `attach` to any callback or part of your plan.sh file and the debugging session with start up when hab-plan-build comes to that part in the file.
 
 {{< note >}}
+
 Use the native Powershell cmdlet `Set-PSBreakpoint` for debugging plan.ps1 functions. You can set its `-Command` parameter to any build phase function.
+
 {{< /note >}}
 
 download_file()

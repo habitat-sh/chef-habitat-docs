@@ -13,7 +13,11 @@ description = "Running Chef Habitat Packages"
 
 Use Chef Habitat packages to start services under the Chef Habitat Supervisor. At runtime, you can join services together in a service group running the same topology, send configuration updates to that group, and more. You can also export the Supervisor together with the package to an external immutable format, such as a Docker container or a virtual machine.
 
-> Note Linux-based packages can run on Linux distributions running kernel 2.6.32 or later. Windows-based packages can run on Windows Server 2012 or later and Windows 8 64-bit or later.
+{{< note >}}
+
+Linux-based packages can run on Linux distributions running kernel 2.6.32 or later. Windows-based packages can run on Windows Server 2012 or later and Windows 8 64-bit or later.
+
+{{< /note >}}
 
 Information about [installing Chef Habitat]({{< relref "/install/" >}}) and configuring your workstation can be found in the previous section.
 
@@ -118,7 +122,11 @@ To resume running a service which has been loaded but stopped (via the `hab svc 
 $ hab svc start core/redis
 ```
 
-> Note: in Chef Habitat versions prior to 0.56.0, `hab svc start` could also be used to load up a service if it wasn't already loaded. In 0.56.0 and later, however, this has changed; `hab svc start` can only operate on services that have previously been loaded.
+{{< note >}}
+
+In Chef Habitat versions prior to 0.56.0, `hab svc start` could also be used to load up a service if it wasn't already loaded. In 0.56.0 and later, however, this has changed; `hab svc start` can only operate on services that have previously been loaded.
+
+{{< /note >}}
 
 ## Querying the Supervisor for Service Status
 

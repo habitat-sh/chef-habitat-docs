@@ -18,7 +18,11 @@ Setup asks you to create a new origin and a set of origin keys.
 
 Optionally, you can also provide a Chef Habitat personal access token to upload packages to the public depot and share them with the Chef Habitat community. See the [access token documentation]({{< relref "builder_profile#create-a-personal-access-token" >}}) for details on generating and using your access token.
 
-> For more information about using Chef Habitat Builder, see the section on [Using Builder]({{< relref "/saas_builder/" >}}).
+{{< note >}}
+
+For more information about using Chef Habitat Builder, see the section on [Using Builder]({{< relref "/saas_builder/" >}}).
+
+{{< /note >}}
 
 You will also be asked if you want to register Supervisor control gateway secret (see [Remote Command-and-Control of Supervisors]({{< relref "sup_remote_control" >}}) for further details).
 

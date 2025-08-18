@@ -94,7 +94,11 @@ Depending on the platform of your host and your Docker configuration, the behavi
 * **Mac** - A Docker container based Linux Studio
 * **Windows** - A local Windows studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you wish to enter.
 
-> Note: For more details related to Windows containers see [Running Chef Habitat Windows Containers]({{< relref "running_habitat_windows_containers" >}}).
+{{< note >}}
+
+For more details related to Windows containers see [Running Chef Habitat Windows Containers]({{< relref "running_habitat_windows_containers" >}}).
+
+{{< /note >}}
 
 #### Building Dependent Plans in the Studio
 

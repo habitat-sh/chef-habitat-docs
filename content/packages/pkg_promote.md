@@ -27,7 +27,11 @@ $ hab pkg upload -z <TOKEN> results/<hart file> --channel test
 
 In the example above, if you look up your package in the Builder UI, or using the `hab pkg channels` subcommand, you can see that your package is tagged for both the `test` and `unstable` channels.
 
-> **Note** Custom channels like `test` are scoped to each package. Builder does not create channels scoped to an origin, so if you want to use custom channels for future releases of a package, you must promote to those channels for each release.
+{{< note >}}
+
+Custom channels like `test` are scoped to each package. Builder does not create channels scoped to an origin, so if you want to use custom channels for future releases of a package, you must promote to those channels for each release.
+
+{{< /note >}}
 
 If you have already uploaded your package to a channel and wish to promote it to a different channel, use the `hab pkg promote` subcommand as shown below.
 
@@ -68,6 +72,10 @@ The Builder UI for that package release and `hab pkg channels` will both reflect
 
 If you are running a package in a specific channel and demote
 
-> **Note** If you demote a package from the `stable` channel, then any other packages that depend on the stable version of that package will either fail to load or build depending on how that demoted packaged was used.
+{{< note >}}
 
-> Also, downgrading to another release for a specific channel is not available at this time. This means if you run the latest release of a package from a specific channel, and demote the channel for that release, the package will not downgrade to the next most recent release from that channel.
+If you demote a package from the `stable` channel, then any other packages that depend on the stable version of that package will either fail to load or build depending on how that demoted packaged was used.
+
+Also, downgrading to another release for a specific channel is not available at this time. This means if you run the latest release of a package from a specific channel, and demote the channel for that release, the package will not downgrade to the next most recent release from that channel.
+
+{{< /note >}}

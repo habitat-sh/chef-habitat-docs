@@ -23,12 +23,14 @@ to submit a file to a service group. Specify a peer in the ring to connect to,
 the version number of the file, and the new path to the file itself.
 
 {{< note >}}
+
 File updates for service groups must be versioned. The version number must be an
 integer that starts at one and must be incremented with every subsequent update
 to the same service group.
 
 If the version number is less than or equal to
 the current version number, the change(s) will not be applied.
+
 {{< /note >}}
 
 The following example shows how to upload a file to the ring:

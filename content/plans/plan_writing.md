@@ -40,11 +40,19 @@ pkg_include_dirs=(include)
 pkg_bin_dirs=(bin)
 ```
 
-> Note: On Windows we would create a plan.ps1 file instead. All the variable names are the same but we use Powershell syntax so, for example, `pkg_deps=(core/glibc core/readline)` becomes `$pkg_deps=@("core/glibc", "core/readline")`.
+{{< note >}}
+
+On Windows we would create a `plan.ps1` file instead. All the variable names are the same but we use Powershell syntax so, for example, `pkg_deps=(core/glibc core/readline)` becomes `$pkg_deps=@("core/glibc", "core/readline")`.
+
+{{< /note >}}
 
 It has the name of the software, the version, where to download it, a checksum to verify the contents are what we expect, run dependencies on `core/glibc` and `core/readline`, build dependencies on `core/coreutils`, `core/make`, `core/gcc`, libraries files in `lib`, header files in `include`, and a binary file in `bin`. Also, because it's a core plan, it has a description and upstream URL for the source project included.
 
-> Note: The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin]({{< relref "builder_origins" >}})
+{{< note >}}
+
+The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin]({{< relref "builder_origins" >}})
+
+{{< /note >}}
 
 When you have finished creating your plan and call `build` in Chef Habitat studio, the following occurs:
 
@@ -58,7 +66,11 @@ When you have finished creating your plan and call `build` in Chef Habitat studi
 
 After the build script completes, you can then upload your package to Chef Habitat Builder, or install and start your package locally.
 
-> Note: The plan.sh or plan.ps1 file is the only required file to create a package. Configuration files, runtime hooks, and other source files are optional.
+{{< note >}}
+
+The plan.sh or plan.ps1 file is the only required file to create a package. Configuration files, runtime hooks, and other source files are optional.
+
+{{< /note >}}
 
 ## Write Your First Plan
 
@@ -134,7 +146,11 @@ app_root/
         plan.ps1
 ```
 
-> Note: It is recommended to place all plan files inside of a `habitat` parent folder in order to allow for clean separation between your application source code and habitat specific files. However, if you maintain a separate repository solely for the purpose of storing habitat plans, then the use of a `habitat` folder may not be necessary.
+{{< note >}}
+
+It is recommended to place all plan files inside of a `habitat` parent folder in order to allow for clean separation between your application source code and habitat specific files. However, if you maintain a separate repository solely for the purpose of storing habitat plans, then the use of a `habitat` folder may not be necessary.
+
+{{< /note >}}
 
 On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux kernel 2. So if your application requires different plans for Linux and Linux Kernel 2, even without hooks and configuration templates, you will need to use target folders for each platform.
 
@@ -166,7 +182,11 @@ You should enter your contact information in your plan.
 
 Most importantly, you should update the `pkg_license` value to indicate the type of license (or licenses) that your source files are licensed under. Valid license types can be found at [https://spdx.org/licenses/](https://spdx.org/licenses/). You can include multiple licenses as an array.
 
-> Note: Because all arrays in the pkg_* settings are shell arrays, they are whitespace delimited.
+{{< note >}}
+
+Because all arrays in the pkg_* settings are shell arrays, they are whitespace delimited.
+
+{{< /note >}}
 
 #### Download and Unpack Your Source Files
 
@@ -203,7 +223,11 @@ Function Invoke-Download {
 
 After you have either specified your source in `pkg_source`, or overridden the **do_download()** or **Invoke-Download** callback, create a sha256 checksum for your source archive and enter it as the `pkg_shasum` value. The build script will verify this after it has downloaded the archive.
 
-> Note: If your computed value does not match the value calculated by the `hab-plan-build` script, an error with the expected value will be returned when you execute your plan.
+{{< note >}}
+
+If your computed value does not match the value calculated by the `hab-plan-build` script, an error with the expected value will be returned when you execute your plan.
+
+{{< /note >}}
 
 If your package does not download any application or service source files, then you will need to override the **do_download()**, **do_verify()**, and **do_unpack()** callbacks. See [Callbacks]({{< relref "build_phase_callbacks" >}}) for more details.
 
@@ -272,7 +296,11 @@ function Invoke-Build {
 
 Here the plan is building an application written in Rust. So it overrides `Invoke-Build` and uses the `cargo` utility included in its buildtime dependency on `core/rust`.
 
-> Note: Powershell plan function names differ from their Bash counterparts in that they use the `Invoke` `verb` instead of the `do_` prefix.
+{{< note >}}
+
+Powershell plan function names differ from their Bash counterparts in that they use the `Invoke` `verb` instead of the `do_` prefix.
+
+{{< /note >}}
 
 When overriding any callbacks, you may use any of the [variables]({{< relref "plan_variables" >}}), [settings]({{< relref "plan_settings" >}}), or [functions]({{< relref "build_helpers" >}}), except for the [runtime template data]({{< relref "service_templates" >}}). Those can only be used in Application Lifecycle hooks once a Chef Habitat service is running.
 

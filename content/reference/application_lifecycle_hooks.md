@@ -25,7 +25,9 @@ You cannot block the thread in a hook unless it is in the `run` hook. Never call
 [Chef Habitat's runtime configuration settings]({{< relref "service_templates" >}}) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
 
 {{< note >}}
+
 In Chef Habitat 0.68.0 and less, some hooks used `_` in their names. This is now deprecated; if you used them, please use `-` instead.
+
 {{< /note >}}
 
 ### file-updated
@@ -73,10 +75,12 @@ exit $rc
 
 ### init
 
-File location: `<plan>/hooks/init`. This hook is run when a Chef Habitat topology starts. 
+File location: `<plan>/hooks/init`. This hook is run when a Chef Habitat topology starts.
 
 {{< note >}}
+
 If the init hook fails with a non-zero exit code, the service will be restarted with the [configured service backoff]({{< relref "service_restarts" >}}).
+
 {{< /note >}}
 
 ### install
@@ -139,8 +143,10 @@ exec my_command --option {{cfg.option}} --option2 {{cfg.option2}}
 ```
 
 {{< note >}}
+
 If the run hook exits it will be considered as a run failure. The service will be restarted with the [configured service backoff]({{< relref "service_restarts" >}}) regardless of the exit code that
-was returned by the hook. 
+was returned by the hook.
+
 {{< /note >}}
 
 ### post-run

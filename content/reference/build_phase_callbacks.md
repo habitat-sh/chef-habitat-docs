@@ -14,7 +14,9 @@ When defining your plan, you can override the default behavior of Chef Habitat i
 These callbacks are listed in the order that they executed by the package build script.
 
 {{< note >}}
+
 Bash callbacks are prefixed with `do_` and use an underscore convention. Powershell plans prefix callbacks with `Invoke-` and use a PascalCase convention.
+
 {{< /note >}}
 
 You can also use [plan variables]({{< relref "plan_variables" >}}) in your plans to place binaries, libraries, and files into their correct locations during package compilation or when running as a service.
@@ -31,7 +33,9 @@ do_setup_environment()/Invoke-SetupEnvironment
 : Use this to declare buildtime and runtime environment variables that overwrite or are in addition to the default environment variables created by Chef Habitat during the build process. Examples of common environment variables you might wish to add or modify are those such as `JAVA_HOME` or `GEM_PATH`.
 
 {{< note >}}
+
 You do not have to override this callback if you do not wish to modify your environment variables. The build system will always set up your environment according to your dependencies. For example, it will ensure that dependency binaries are always present on your `PATH` variable, and so on.
+
 {{< /note >}}
 
 Runtime environments of dependencies are layered together in the order they are declared in your `pkg_deps` array, followed by modifications made in this callback. In turn, these computed values will be made available to packages that use the current package as a dependency, and so on.
@@ -134,7 +138,9 @@ Similarly, Chef Habitat defaults to using the colon (`:`) as a separator for agg
 In all cases, when Chef Habitat is assuming a default strategy, it will emit log messages to notify you of that along with instructions on how to change the behavior.
 
 {{< note >}}
+
 If you discover common environment variables that Chef Habitat doesn't currently treat appropriately, feel free to request an addition to the codebase, or even to submit a pull request yourself.
+
 {{< /note >}}
 
 do_before()/Invoke-Before

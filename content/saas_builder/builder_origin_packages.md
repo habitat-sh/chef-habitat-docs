@@ -12,7 +12,11 @@ description = "Upload and Promote packages on Chef Habitat Builder enables autom
 
 While you can build and run Chef Habitat packages without sharing them on [Chef Habitat Builder](https://bldr.habitat.sh), uploading them there enables greater collaboration and automated package rebuilds as underlying dependencies or your connected GitHub repository are updated.
 
-> Note: Chef Habitat Builder can only build Linux based plans (`plan.sh`) at this time.
+{{< note >}}
+
+Chef Habitat Builder can only build Linux based plans (`plan.sh`) at this time.
+
+{{< /note >}}
 
 Setting up Chef Habitat Builder is easily done on the website: these steps take you through connecting your local Studio development experience with Builder.
 
@@ -66,13 +70,21 @@ By default, newly uploaded packages are placed in the `unstable` channel. Howeve
 $ hab pkg promote -z <TOKEN> origin/package/version/release stable
 ```
 
-> **Note** You can also promote packages to the `stable` channel using the *promote to stable* button in the web app.
+{{< note >}}
+
+You can also promote packages to the `stable` channel using the *promote to stable* button in the web app.
+
+{{< /note >}}
 
 For more information on how to use channels, see [Continuous Deployment Using Channels]({{< relref "pkg_promote" >}}).
 
 ### Running Packages from Builder
 
-> **Note:** When running private packages from Builder, it's necessary to add your [Chef Habitat access token]({{< relref "builder_profile#create-a-personal-access-token" >}}) to the machine where you intend to deploy the package, via `export HAB_AUTH_TOKEN=<token>`.
+{{< note >}}
+
+When running private packages from Builder, it's necessary to add your [Chef Habitat access token]({{< relref "builder_profile#create-a-personal-access-token" >}}) to the machine where you intend to deploy the package, via `export HAB_AUTH_TOKEN=<token>`.
+
+{{< /note >}}
 
 You can instruct the Supervisor to download and run packages from Builder by using the `hab sup` and `hab svc` commands, for example:
 

@@ -33,11 +33,15 @@ HAB_MYTUTORIALAPP='{"message":"Chef Habitat rocks!"}' hab run <origin>/<packagen
 ```
 
 {{< note >}}
+
 The syntax used for applying configuration through environment variables can be either JSON or TOML, but TOML is preferred. The package name in the environment variable must be uppercase, any dashes must be replaced with underscores.
+
 {{< /note >}}
 
 {{< note >}}
+
 Variables must be set when the Supervisor process starts, not when the service is loaded, which may require a bit of planning on the part of the Chef Habitat user.
+
 {{< /note >}}
 
 For multiline environment variables, such as those in a TOML table or nested key value pairs, it can be easier to place your changes in a file and pass the file in. For example:
@@ -71,7 +75,9 @@ Configuration updates can be either TOML passed into stdin, or passed in a TOML
 file that is referenced in [`hab config apply`]({{< relref "habitat_cli#hab-config-apply" >}}).
 
 {{< note >}}
+
 Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. *If the version number is less than or equal to the current version number, the change(s) will not be applied.*
+
 {{< /note >}}
 
 Here are some examples of how to apply configuration changes through both the shell and through a TOML file.
@@ -108,7 +114,9 @@ myapp.prod(SV): Starting
 ```
 
 {{< note >}}
+
 As with all Supervisor interaction commands, if you do not specify `--remote-sup`, `hab config apply` will attempt to connect to a Supervisor running on the same host.
+
 {{< /note >}}
 
 ### Encryption
