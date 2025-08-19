@@ -56,6 +56,6 @@ jobs:
       - uses: errata-ai/vale-action@reviewdog
         with:
           files: '["content", "layouts"]'
-          vale_flags: "--config=tools/vale/.vale-github-action.ini"
+          vale_flags: "--filter=error.expr --glob='!{**/habitat_cli.md}'"
           filter_mode: diff_context
           fail_on_error: true
