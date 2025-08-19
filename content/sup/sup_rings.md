@@ -26,6 +26,6 @@ More resources on schedulers:
 - Mesos DC/OS Marathon or Chronos: <https://mesosphere.github.io/marathon/>
 - Cloud Foundry: <https://www.habitat.sh/get-started/cloudfoundry>
 
-## Initial Peer(s)
+## Initial Peers
 
-The initial peer(s) is a requirement of any distributed system. In Chef Habitat, a new Supervisor that's starting up looks for an initial peer(s) to join to begin sharing information about the health and status of peers and other services, to increase the health of the overall Ring.
+The initial peers is a requirement of any distributed system. In Chef Habitat, a new Supervisor that's starting up looks for an initial peers to join to begin sharing information about the health and status of peers and other services, to increase the health of the overall Ring.

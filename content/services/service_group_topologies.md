@@ -49,7 +49,7 @@ hab svc load <ORIGIN>/<NAME>
 {{< note >}}
 
 The `--peer` service doesn't need a peer that's in the same service group;
-it merely needs to be in the same ring with the other member(s).
+it merely needs to be in the same ring with the other members.
 
 {{< /note >}}
 

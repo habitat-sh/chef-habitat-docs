@@ -81,7 +81,7 @@ _perl_path="$(pkg_path_for core/perl)/bin/perl"
 ```
 
 fix_interpreter()
-: `plan.sh` only. Edits the `#!` shebang of the target file in-place. This is useful for changing hard-coded paths defined by your source files to the equivalent path in a Chef Habitat package. You must include the required package that provides the expected path for the shebang in pkg_deps. This function performs a greedy match against the specified interpreter in the target file(s).
+: `plan.sh` only. Edits the `#!` shebang of the target file in-place. This is useful for changing hard-coded paths defined by your source files to the equivalent path in a Chef Habitat package. You must include the required package that provides the expected path for the shebang in pkg_deps. This function performs a greedy match against the specified interpreter in the target files.
 
 To use this function in your plan, you must specify the following arguments:
 

@@ -54,7 +54,7 @@ hab sup secret generate
 VKca6ezRD0lfuwvhgeQLPSD0RMwE/ZYX5nYfGi2x0R1mXNh4QZSpa50H2deB85HoV/Ik48orF4p0/7MuVNPwNA==
 ```
 
-This generates a new secret, printing it to standard output. Using the provisioner or configuration management tool of your choice, you can then use this value to create your own `/hab/sup/default/CTL_SECRET` file, ensuring that your Supervisor(s) are using a pre-determined key, instead of each making their own.
+This generates a new secret, printing it to standard output. Using the provisioner or configuration management tool of your choice, you can then use this value to create your own `/hab/sup/default/CTL_SECRET` file, ensuring that your Supervisors are using a pre-determined key, instead of each making their own.
 
 If you have a pre-existing fleet of Supervisors which have already been started up with their own individually-generated secrets, you will likely want to overwrite their existing `CTL_SECRET` files with one that has a key of your own creation.
 

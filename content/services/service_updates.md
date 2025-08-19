@@ -75,7 +75,7 @@ Configuration updates can be either TOML passed into stdin, or passed in a TOML 
 
 {{< note >}}
 
-Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the change(s) won't be applied._
+Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the changes won't be applied._
 
 {{< /note >}}
 

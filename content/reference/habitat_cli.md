@@ -1242,7 +1242,7 @@ hab origin key <SUBCOMMAND>
 
 | Command | Description |
 | ------- | ----------- |
-| [hab origin key download](#hab-origin-key-download) | Download origin key(s) |
+| [hab origin key download](#hab-origin-key-download) | Download origin keys |
 | [hab origin key export](#hab-origin-key-export) | Outputs the latest origin key contents to stdout |
 | [hab origin key generate](#hab-origin-key-generate) | Generates a Habitat origin key pair |
 | [hab origin key import](#hab-origin-key-import) | Reads a stdin stream containing a public or private origin key contents and writes the key to disk |
@@ -1251,7 +1251,7 @@ hab origin key <SUBCOMMAND>
 
 ### hab origin key download
 
-Download origin key(s)
+Download origin keys
 
 **USAGE**
 
