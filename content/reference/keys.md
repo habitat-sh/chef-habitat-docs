@@ -14,7 +14,7 @@ Chef Habitat has strong cryptography built into Chef Habitat Builder, the Superv
 
 ## Origin Key Pairs
 
-Every Chef Habitat artifact belongs to an [origin]({{< relref "pkg_ids" >}}) and is cryptographically signed with that origin's private key. Chef Habitat requires the private key for producing artifacts and requires the public key for verification of artifacts before installation. If it is present on Builder, Chef Habitat will automatically download the public key for an origin when necessary.
+Every Chef Habitat artifact belongs to an [origin]({{< relref "pkg_ids" >}}) and is cryptographically signed with that origin's private key. Chef Habitat requires the private key for producing artifacts and requires the public key for verification of artifacts before installation. If it's present on Builder, Chef Habitat will automatically download the public key for an origin when necessary.
 
 Origin key cryptography is asymmetric: it has a public key that you can distribute freely, and a private key that you should keep safe.
 
@@ -36,7 +36,7 @@ See the [hab origin key]({{< relref "habitat_cli/#hab-origin-key" >}}) command d
 
 ## User and Service Group Keys
 
-User and service group keys are used to set up trust relationships between these two entities. Service groups can be set up to reject communication (e.g. applying new configuration via `hab config apply`) from untrusted users.
+User and service group keys are used to set up trust relationships between these two entities. Service groups can be set up to reject communication (for example applying new configuration with `hab config apply`) from untrusted users.
 
 By default, service groups will trust *any* communication, so for a production deployment of Chef Habitat, setting up these relationships is essential.
 

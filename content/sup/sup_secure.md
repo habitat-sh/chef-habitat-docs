@@ -11,9 +11,9 @@ description = "Securing Supervisor Networks"
 
 +++
 
-By default, a Supervisor runs unsecured. It communicates with other Supervisors in cleartext, and it allows any user to apply new configuration without authentication. While this is beneficial for demonstrating the concepts of Chef Habitat, users will want to provide external security on production deployments of Chef Habitat Supervisor networks.
+By default, a Supervisor runs unsecured. It communicates with other Supervisors in cleartext, and it allows any user to apply new configuration without authentication. While this is beneficial for demonstrating the concepts of Chef Habitat, you should provide external security on production deployments of Chef Habitat Supervisor networks.
 
-There are several types of security measures:
+Use following security measures in a Supervisor network:
 
 * Wire encryption of inter-Supervisor traffic
 * Trust relationships between supervisors and users
@@ -24,7 +24,7 @@ Supervisors running in a ring can be configured to encrypt all traffic between t
 
 ### Generating a Ring Key
 
-1. Generate a ring key using the `hab` command-line tool. This can be done on your workstation. The generated key has the `.sym.key` extension, indicating that it is a symmetric pre-shared key, and is stored in the `$HOME/.hab/cache/keys` directory.
+1. Generate a ring key using the `hab` command-line tool. This can be done on your workstation. The generated key has the `.sym.key` extension, indicating that it's a symmetric pre-shared key, and is stored in the `$HOME/.hab/cache/keys` directory.
 
     ```bash
     hab ring key generate <RING>
@@ -39,7 +39,7 @@ Supervisors running in a ring can be configured to encrypt all traffic between t
     ```
 
 4. The Supervisor becomes part of the named ring `<RING>` and uses the key for network encryption. Other supervisors that now attempt to connect to it without presenting the correct ring key will be rejected.
-5. It is also possible to set the environment variable `HAB_RING_KEY` to the contents of the ring key; for example:
+5. It's also possible to set the environment variable `HAB_RING_KEY` to the contents of the ring key; for example:
 
     ```bash
     env HAB_RING_KEY=$(cat /hab/cache/keys/ring-key-file) hab sup run
@@ -81,11 +81,11 @@ The user key is used to encrypt configuration data targeted for a particular ser
 
 The `hab config apply` and `hab file upload` commands will work as usual when user/service group trust relationships are set up in this way.
 
-If a running Supervisor cannot decrypt a secret due to a missing key, it will retry with exponential backoff starting with a one-second interval. This allows an administrator to provide the Supervisor with the key to resume normal operations, without taking down the Supervisor.
+If a running Supervisor can't decrypt a secret due to a missing key, it will retry with exponential backoff starting with a one-second interval. This allows an administrator to provide the Supervisor with the key to resume normal operations, without taking down the Supervisor.
 
 ## Identifying Key Types
 
-To aid the user in the visual identification of the many varieties of keys in use by Chef Habitat, a key itself is in cleartext and contains a header on the first line indicating what kind of key it is. The file extension and, in some situations, the format of the file name, provide additional guidance to the user in identifying the type of key.
+To aid the user in the visual identification of the many varieties of keys in use by Chef Habitat, a key itself is in cleartext and contains a header on the first line indicating what its key type. The file extension and, in some situations, the format of the file name, provide additional guidance to the user in identifying the type of key.
 
 `YYYYMMDDRRRRRR` denotes the creation time and release identifier of that key.
 

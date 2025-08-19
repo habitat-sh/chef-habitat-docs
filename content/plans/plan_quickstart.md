@@ -5,14 +5,14 @@ draft = false
 
 [menu.plans]
     title = "Plan Quickstart"
-    identifier = "plans/plan-quickstart Plan Quickstart"
+    identifier = "plans/plan-quickstart plan Quickstart"
     parent = "plans"
     weight = 20
 +++
 
 All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file will be used by the `hab-plan-build` command to build your package. To create a plan, do the following:
 
-1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it per the instructions on the download page.
+1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it according to the instructions on the download page.
 
 2. Run `hab cli setup` and follow the instructions in the setup script.
 

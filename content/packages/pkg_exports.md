@@ -20,7 +20,7 @@ The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See th
 
 If you specify an `origin/package` identifier, such as `core/postgresql`, the Chef Habitat CLI will check Builder for the latest stable version of the package and export that.
 
-If you wish to export a package that is not on Builder, create a Chef Habitat artifact by running the `build` command, then point `hab pkg` to the `.hart` file within the `/results` directory:
+If you wish to export a package that isn't on Builder, create a Chef Habitat artifact by running the `build` command, then point `hab pkg` to the `.hart` file within the `/results` directory:
 
 ```bash
 hab pkg export tar ./results/example-app.hart
@@ -48,7 +48,7 @@ You can create a Docker container image for any package by performing the follow
 
     > **Note** On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
 
-    > **Note** In a Windows container studio, the `export` command will not be able to access the host docker engine. To export a Windows package or hart file built inside of a Windows container studio, first exit the studio and then export the `.hart` file in your local `results` directory.
+    > **Note** In a Windows container studio, the `export` command won't be able to access the host docker engine. To export a Windows package or hart file built inside of a Windows container studio, first exit the studio and then export the `.hart` file in your local `results` directory.
 
 1. You may now exit the studio. The new Docker image exists on your computer and can be examined with `docker images` or run with `docker run`.
 
@@ -78,7 +78,7 @@ You can create a Docker container image for any package by performing the follow
 
 4. Your package is now in a tar file that exists locally on your computer in the format `<ORIGIN>-<NAME>-<VERSION>-<TIMESTAMP>.tar.gz` and can be deployed and run on a target machine.
 
-5. If you wish to run this tar file on a remote machine (i.e. a virtual machine in a cloud environment), scp (or whatever transfer protocol you prefer) the file to whatever you wish to run it.
+5. If you wish to run this tar file on a remote machine (a virtual machine in a cloud environment), scp (or whatever transfer protocol you prefer) the file to whatever you wish to run it.
 
 6. SSH into the virtual machine
 
@@ -138,7 +138,7 @@ Packages can be exported to run in a [Cloud Foundry platform](https://www.cloudf
 
 #### Setting up Docker Support in Cloud Foundry
 
-If you have not done so already, you must enable Docker support for Cloud Foundry before you can upload your Cloud Foundry-specific Docker image.
+If you haven't done so already, you must enable Docker support for Cloud Foundry before you can upload your Cloud Foundry-specific Docker image.
 
 To do so, make sure you have done the following:
 

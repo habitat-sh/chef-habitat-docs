@@ -10,13 +10,13 @@ description = "Dynamically adjust the logging configuration of a running Supervi
     weight = 90
 +++
 
-With the 0.83.0 release of the Chef Habitat Supervisor, it is possible to have greater control over logging output, including the ability to dynamically adjust the logging configuration of a running Supervisor. There are two main ways of configuring logging, each of which has their own strengths and weaknesses: using environment variables, and using a configuration file.
+With the 0.83.0 release of the Chef Habitat Supervisor, it's possible to have greater control over logging output, including the ability to dynamically adjust the logging configuration of a running Supervisor. The two main ways of configuring logging are using environment variables and using a configuration file. Each has its own strengths and weaknesses.
 
 ## Environment Variable Configuration
 
-It is still possible to configure logging via the `RUST_LOG` environment variable. This approach is often useful for quickly re-configuring logging (requiring a restart), or for easily configuring logging in container-based deployments.
+It's still possible to configure logging with the `RUST_LOG` environment variable. This approach is often useful for quickly re-configuring logging (requiring a restart), or for easily configuring logging in container-based deployments.
 
-The configuration scheme is essentially the same as that described in the documentation of the Rust [env_logger](https://docs.rs/env_logger/0.6.1/env_logger/#enabling-logging) crate, with the exception that we do not allow additional regular expression-based filtering. The configuration values the Supervisor recognizes are described below:
+The configuration scheme is essentially the same as that described in the documentation of the Rust [env_logger](https://docs.rs/env_logger/0.6.1/env_logger/#enabling-logging) crate, with the exception that we don't allow additional regular expression-based filtering. The configuration values the Supervisor recognizes are described below:
 
 ## Simple Logging Levels
 
@@ -28,7 +28,7 @@ Setting `RUST_LOG` to one of these values will cause all log messages at that ve
 
 This is much finer grained than the simple logging levels above, and to fully leverage it requires some knowledge of both the internal code structure of Habitat itself, as well as of how Rust code is organized generally. Despite this, it allows you to target specific subsystems, which can be very helpful for troubleshooting.
 
-For example, `RUST_LOG=habitat_sup::manager=info` will cause all log messages at the `info` level or more severe (i.e., `error`, `warn`, and `info`) originating anywhere in the module hierarchy rooted at `habitat_sup::manager`.
+For example, `RUST_LOG=habitat_sup::manager=info` will cause all log messages at the `info` level or more severe (`error`, `warn`, and `info`) originating anywhere in the module hierarchy rooted at `habitat_sup::manager`.
 
 Note that Rust modules are identified first by the crate (or library) they come from, followed by a `::`-delimited path of module names.
 
@@ -68,7 +68,7 @@ root:
     - stdout
 ```
 
-The `refresh_rate` configuration is very important. If it is present when the Supervisor starts, the file will be checked periodically for updates (according to the value of `refresh_rate`; in the above example, the file will be checked every 5 seconds). If the file changes, then the current content of the file becomes the active configuration. This allows you to, for example, increase the logging level of a running supervisor if you suspect you are running into problems.
+The `refresh_rate` configuration is very important. If it's present when the Supervisor starts, the file will be checked periodically for updates (according to the value of `refresh_rate`; in the above example, the file will be checked every 5 seconds). If the file changes, then the current content of the file becomes the active configuration. This allows you to, for example, increase the logging level of a running supervisor if you suspect you are running into problems.
 
 This dynamism also has a catch, though: you can change the refresh rate as well, and even remove it entirely. If you remove it, however, the Supervisor will stop checking for updates to the file. Any subsequent changes you might make would require a Supervisor restart to be recognized. Work is planned to make this more flexible, however.
 
@@ -82,6 +82,6 @@ loggers:
     level: error
 ```
 
-Here, `loggers` is a map of maps. Map keys are module paths (as described above in the `RUST_LOG` environment variable documentation), while the values are maps with additional configuration. Here, we are only setting the logging level, but more advanced configurations are possible.
+Here, `loggers` is a map of maps. Map keys are module paths (as described above in the `RUST_LOG` environment variable documentation), while the values are maps with additional configuration. Here, we're only setting the logging level, but more advanced configurations are possible.
 
 Users are encouraged to read the [log4rs configuration documentation](https://docs.rs/log4rs/0.8.3/log4rs/#configuration) for further details.

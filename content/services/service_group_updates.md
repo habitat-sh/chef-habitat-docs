@@ -21,7 +21,7 @@ Builder, and more specifically, a channel for new versions.
 
 Chef Habitat supports three update strategies: `none`, `rolling`, and `at-once`.
 
-To start a Supervisor with the auto-update strategy, pass the `--strategy` argument
+To start a Supervisor with the automatic update strategy, pass the `--strategy` argument
 to a Supervisor run command, and optionally specify the depot URL:
 
 ```bash
@@ -31,7 +31,7 @@ hab svc load <ORIGIN>/<NAME>
 
 ### None Strategy
 
-This strategy means your package will not automatically be updated when a newer
+This strategy means your package won't automatically be updated when a newer
 version is available. By default, Supervisors start with their update strategy
 set to `none` unless explicitly set to one of the other two update strategies.
 
@@ -40,7 +40,7 @@ set to `none` unless explicitly set to one of the other two update strategies.
 This strategy requires Supervisors to update to a newer version of their package
 one at a time in their service group. An update leader is elected which all Supervisors
 within a service group will update around. All update followers will first ensure
-they are running the same version of a service that their leader is running, and
+they're running the same version of a service that their leader is running, and
 then the leader will poll Builder for a newer version of the service's package.
 
 Once the update leader finds a new version, it will update and wait until all other

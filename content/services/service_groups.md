@@ -11,7 +11,7 @@ description = "Service Groups"
 +++
 
 A service group is a logical grouping of services with the same package and topology type connected together across a Supervisor network.
-They are created to share configuration and file updates among the services within those groups and can be segmented based on workflow or deployment needs (QA, Production, and so on).
+They're created to share configuration and file updates among the services within those groups and can be segmented based on workflow or deployment needs (for example, QA or production).
 Updates can also be [encrypted]({{< relref "sup_secure" >}}) so that only members of a specific service group can decrypt the contents.
 
 By default, every service joins the `service-name.default` service group unless
@@ -19,12 +19,12 @@ otherwise specified at runtime.
 
 In addition, multiple service groups can reside in the same Supervisor network.
 This allows data exposed by Supervisors to be shared with other members of the
-ring, regardless of which group they are in.
+ring, regardless of which group they're in.
 
 ## Joining a Service Group
 
 To join services together in a group, they must be running on Supervisors that
-are participating in the same Supervisor gossip network (i.e., they are ultimately
+are participating in the same Supervisor gossip network (they're ultimately
 peered together), and they must be using the same group name. To illustrate, we'll
 show two `core/redis` services joining into the same group.
 
@@ -59,9 +59,9 @@ Each will start up, and will be joined into the same group; here is Supervisor A
 And here is Supervisor B's output:
 ![Supervisor B running Redis](/images/habitat/supervisor_b_before.png)
 
-Note that they are both listening on the same port.
+Note that they're both listening on the same port.
 
-To prove they are in the same group, we can apply a configuration change; if they
+To prove they're in the same group, we can apply a configuration change; if they
 are in the same group, they should both receive the change.
 
 Let's change the port they're running on using the `hab config apply` command, run from Supervisor A.

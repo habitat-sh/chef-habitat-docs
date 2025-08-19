@@ -224,7 +224,7 @@ pkg_filename
 {{< /foundation_tabs_panels >}}
 
 pkg_shasum
-: The sha-256 sum of the downloaded `pkg_source`. If you do not have the checksum, generate it by downloading the source and using the `sha256sum` or `gsha256sum` tools. Override with `do_verify()`. When the value is unset or incorrect and you do not override it with `do_verify()`, then the build output of your package will show the expected value. Type: varchar(64) or char(64). _Required_ when providing a valid URL is provided for `pkg_source`, but is otherwise _Optional_.
+: The sha-256 sum of the downloaded `pkg_source`. If you don't have the checksum, generate it by downloading the source and using the `sha256sum` or `gsha256sum` tools. Override with `do_verify()`. When the value is unset or incorrect and you don't override it with `do_verify()`, then the build output of your package will show the expected value. Type: varchar(64) or char(64). _Required_ when providing a valid URL is provided for `pkg_source`, but is otherwise _Optional_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel7" >}}
   {{< foundation_tab active="true" panel-link="bash-panel7" tab-text="Bash">}}
@@ -330,14 +330,14 @@ pkg_pconfig_dirs=(lib/pkgconfig)
 ```
 
 pkg_svc_run
-: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs`  to place package binaries in the path. If your package hs complex start-up behaviors, use a [run hook]({{< relref "#hooks" >}}) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor.  _Optional_.
+: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs`  to place package binaries in the path. If your package hs complex start-up behaviors, use a [run hook]({{< relref "#hooks" >}}) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor. _Optional_.
 
 ```bash
 pkg_svc_run="haproxy -f $pkg_svc_config_path/haproxy.conf"
 ```
 
 pkg_exports
-: Configuration data that will be passed between peers. The keys in this array are used with `pkg_exposes` and for any consuming services that set `pkg_binds` or `pkg_binds_optional`. An [associative array](https://www.linuxjournal.com/content/bash-associative-arrays) in Bash or a `hashtable` in Powershell.  Type: array. _Optional_.
+: Configuration data that will be passed between peers. The keys in this array are used with `pkg_exposes` and for any consuming services that set `pkg_binds` or `pkg_binds_optional`. An [associative array](https://www.linuxjournal.com/content/bash-associative-arrays) in Bash or a `hashtable` in Powershell. Type: array. _Optional_.
 
 ```bash
 pkg_exports=(
@@ -370,7 +370,7 @@ In addition to specifying the keys you defined in `pkg_exports`, you must have a
 {{< /note >}}
 
 pkg_binds
-: An associative array (or `hashtable` in Powershell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds _must_ be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind does not contain the expected keys, the service will not start successfully. _Optional_.
+: An associative array (or `hashtable` in Powershell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds _must_ be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind doesn't contain the expected keys, the service won't start successfully. _Optional_.
 
 ```bash
 pkg_binds=(
@@ -395,7 +395,7 @@ pkg_interpreters=(bin/bash)
 ```
 
 pkg_svc_user
-: The user to run the service as. Default: `hab`. On Windows, if the `hab` user does not exist then the service will run under the same account as the Supervisor. _Optional_.
+: The user to run the service as. Default: `hab`. On Windows, if the `hab` user doesn't exist then the service will run under the same account as the Supervisor. _Optional_.
 
 ```bash
 pkg_svc_user=hab

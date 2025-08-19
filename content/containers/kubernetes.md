@@ -10,7 +10,7 @@ description = "Export your Chef Habitat package as a Docker and run it on a Kube
     weight = 30
 +++
 
-[Kubernetes](https://kubernetes.io/) is an open source container cluster manager that is available as a stand-alone platform or embedded in several distributed platforms including [Google's Container Engine](https://cloud.google.com/container-engine/), [AWS Elastic Kubernetes Service](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/), and [Red Hat OpenShift](https://openshift.com/).
+[Kubernetes](https://kubernetes.io/) is an open source container cluster manager that's available as a stand-alone platform or embedded in several distributed platforms including [Google's Container Engine](https://cloud.google.com/container-engine/), [AWS Elastic Kubernetes Service](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/), and [Red Hat OpenShift](https://openshift.com/).
 Chef Habitat and Kubernetes are complementary. While Kubernetes provides a platform for deployment, scaling, and operations of application containers across clusters of hosts, Chef Habitat manages the build pipeline and lifecycle of those application containers.
 
 ## Chef Habitat on Kubernetes
@@ -63,7 +63,7 @@ spec:
         fsGroup: 42
 ```
 
-This section sets the group ownership for the persistent volume mount point so the Habitat Supervisor can write to it.  The Habitat user (`hab`) by default has the uid `42` and the gid `42`.
+This section sets the group ownership for the persistent volume mount point so the Habitat Supervisor can write to it. The Habitat user (`hab`) by default has the uid `42` and the gid `42`.
 
 ```yaml
       containers:
@@ -107,7 +107,7 @@ Resource requests are important because they give instructions to the Kubernetes
           periodSeconds: 20
 ```
 
-The `livenessProbe` tells Kubernetes if the pod is healthy or not.  If not, the pod gets restarted.
+The `livenessProbe` tells Kubernetes if the pod is healthy or not. If not, the pod gets restarted.
 The `readinessProbe` signals to Kubernetes that the pod has started up successfully.
 
 ```yaml

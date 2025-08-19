@@ -10,7 +10,7 @@ draft= false
 +++
 
 <!-- markdownlint-disable-file -->
-<!-- This is a generated file, do not edit it directly. See https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-cli-docs.js -->
+<!-- This is a generated file, don't edit it directly. See https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-cli-docs.js -->
 
 
 The commands for the Chef Habitat CLI (`hab`) are listed below.
@@ -1461,7 +1461,7 @@ hab origin rbac set [FLAGS] [OPTIONS] <MEMBER_ACCOUNT> <ROLE> --origin <ORIGIN>
 **FLAGS**
 
 ```
--n, --no-prompt    Do not prompt for confirmation
+-n, --no-prompt    Don't prompt for confirmation
 -h, --help         Prints help information
 -V, --version      Prints version information
 ```
@@ -1713,7 +1713,7 @@ hab pkg <SUBCOMMAND>
 | ------- | ----------- |
 | [hab pkg binds](#hab-pkg-binds) | Displays the binds for a service |
 | [hab pkg binlink](#hab-pkg-binlink) | Creates a binlink for a package binary in a common 'PATH' location |
-| [hab pkg build](#hab-pkg-build) | Builds a Plan using a Studio |
+| [hab pkg build](#hab-pkg-build) | Builds a plan using a Studio |
 | [hab pkg bulkupload](#hab-pkg-bulkupload) | Bulk Uploads Habitat Artifacts to a Depot from a local directory |
 | [hab pkg channels](#hab-pkg-channels) | Find out what channels a package belongs to |
 | [hab pkg config](#hab-pkg-config) | Displays the default configuration options for a service |
@@ -1803,7 +1803,7 @@ hab pkg binlink [FLAGS] [OPTIONS] <PKG_IDENT> [BINARY]
 
 ### hab pkg build
 
-Builds a Plan using a Studio
+Builds a plan using a Studio
 
 **USAGE**
 
@@ -1855,7 +1855,7 @@ hab pkg bulkupload [FLAGS] [OPTIONS] <UPLOAD_DIRECTORY>
 
 ```
 --auto-build             Enable auto-build for all packages in this upload. Only applicable to SaaS Builder
-    --auto-create-origins    Skip the confirmation prompt and automatically create origins that do not exist in the target Builder
+    --auto-create-origins    Skip the confirmation prompt and automatically create origins that don't exist in the target Builder
     --force                  Skip checking availability of package and force uploads, potentially overwriting a stored copy of a package
 -h, --help                   Prints help information
 -V, --version                Prints version information
@@ -2056,7 +2056,7 @@ hab pkg download [FLAGS] [OPTIONS] [--] [PKG_IDENT]...
 **FLAGS**
 
 ```
---ignore-missing-seeds    Ignore packages specified that are not present on the target Builder
+--ignore-missing-seeds    Ignore packages specified that aren't present on the target Builder
     --verify                  Verify package integrity after download (Warning: this can be slow)
 -h, --help                    Prints help information
 -V, --version                 Prints version information
@@ -2244,8 +2244,8 @@ hab pkg install [FLAGS] [OPTIONS] <PKG_IDENT_OR_ARTIFACT>...
 ```
 -b, --binlink                Binlink all binaries from installed package(s) into BINLINK_DIR
 -f, --force                  Overwrite existing binlinks
-    --ignore-install-hook    Do not run any install hooks
-    --ignore-local           Do not use locally-installed packages when a corresponding package cannot be installed from Builder
+    --ignore-install-hook    Don't run any install hooks
+    --ignore-local           Don't use locally-installed packages when a corresponding package can't be installed from Builder
 -h, --help                   Prints help information
 -V, --version                Prints version information
 ```
@@ -2481,7 +2481,7 @@ hab pkg uninstall [FLAGS] [OPTIONS] <PKG_IDENT>
 
 ```
 -d, --dryrun                   Just show what would be uninstalled, don't actually do it
-    --ignore-uninstall-hook    Do not run any uninstall hooks
+    --ignore-uninstall-hook    Don't run any uninstall hooks
     --no-deps                  Don't uninstall dependencies
 -h, --help                     Prints help information
 -V, --version                  Prints version information
@@ -2490,7 +2490,7 @@ hab pkg uninstall [FLAGS] [OPTIONS] <PKG_IDENT>
 **OPTIONS**
 
 ```
---exclude <EXCLUDE>...         Identifier of one or more packages that should not be uninstalled. (ex: core/redis, core/busybox-static/1.42.2/21120102031201)
+--exclude <EXCLUDE>...         Identifier of one or more packages that shouldn't be uninstalled. (ex: core/redis, core/busybox-static/1.42.2/21120102031201)
     --keep-latest <KEEP_LATEST>    Only keep this number of latest packages uninstalling all others
 ```
 

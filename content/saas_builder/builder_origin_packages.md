@@ -40,7 +40,7 @@ You can create your own origin in Builder or be invited to join an existing one.
 
 ## Set up Chef Habitat to Authenticate to Builder
 
-When you upload a package to Builder, you are required to supply an auth token as part of the `hab pkg upload` subcommand. You can generate a Chef Habitat personal access token via the Builder site [Profile page](https://bldr.habitat.sh/#/profile) for use with the `hab` command-line utility.
+When you upload a package to Builder, you are required to supply an auth token as part of the `hab pkg upload` subcommand. You can generate a Chef Habitat personal access token with the Builder site [Profile page](https://bldr.habitat.sh/#/profile) for use with the `hab` command-line utility.
 
 Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable]({{< relref "environment_variables" >}}) to this value, so that any commands requiring authentication will use it.
 
@@ -54,17 +54,17 @@ Your public and private origin keys are located at `~/.hab/cache/keys` on your h
 
 ## Upload Your Origin Keys
 
-If you created a new Habitat origin from your host machine or from the Studio, Builder will not have either of the origin keys corresponding to your artifact. Builder will not accept uploaded artifacts without first having the correct public origin key.
+If you created a new Habitat origin from your host machine or from the Studio, Builder won't have either of the origin keys corresponding to your artifact. Builder won't accept uploaded artifacts without first having the correct public origin key.
 
 You can upload keys for the origin through the web interface for Builder, or by using the `hab origin key upload` command. You must have the access token for authentication, as described earlier, before you can upload keys.
 
 ## Upload Packages to Builder
 
-As long as you are already a member of the Habitat origin, once Builder possesses at least the public origin key, then you may upload one or more artifacts to that origin with the `hab pkg upload` command. After Habitat validates the cryptographic integrity of the artifact, it is then uploaded and stored on Builder. Uploading artifacts is a privileged operation for which you must have the access token.
+As long as you are already a member of the Habitat origin, once Builder possesses at least the public origin key, then you may upload one or more artifacts to that origin with the `hab pkg upload` command. After Habitat validates the cryptographic integrity of the artifact, it's then uploaded and stored on Builder. Uploading artifacts is a privileged operation for which you must have the access token.
 
 ## Promote Packages
 
-By default, newly uploaded packages are placed in the `unstable` channel. However, the default package that is downloaded is the latest `stable` version of a package, unless overridden in commands such as `hab sup run`, `hab svc load`, and `hab pkg install`. If you want to promote your package to the `stable` channel, run the `hab pkg promote` command as follows:
+By default, newly uploaded packages are placed in the `unstable` channel. However, the default package that's downloaded is the latest `stable` version of a package, unless overridden in commands such as `hab sup run`, `hab svc load`, and `hab pkg install`. If you want to promote your package to the `stable` channel, run the `hab pkg promote` command as follows:
 
 ```bash
 hab pkg promote -z <TOKEN> origin/package/version/release stable
@@ -82,7 +82,7 @@ For more information on how to use channels, see [Continuous Deployment Using Ch
 
 {{< note >}}
 
-When running private packages from Builder, it's necessary to add your [Chef Habitat access token]({{< relref "builder_profile#create-a-personal-access-token" >}}) to the machine where you intend to deploy the package, via `export HAB_AUTH_TOKEN=<token>`.
+When running private packages from Builder, it's necessary to add your [Chef Habitat access token]({{< relref "builder_profile#create-a-personal-access-token" >}}) to the machine where you intend to deploy the package, with `export HAB_AUTH_TOKEN=<token>`.
 
 {{< /note >}}
 
@@ -93,7 +93,7 @@ hab sup run
 hab svc load core/postgresql
 ```
 
-If the Supervisor does not have the `core/postgresql` package in its local cache, it will contact Builder, retrieve the latest version and the public key for the `core` origin, verify the cryptographic integrity of the package, and then start it.
+If the Supervisor doesn't have the `core/postgresql` package in its local cache, it will contact Builder, retrieve the latest version and the public key for the `core` origin, verify the cryptographic integrity of the package, and then start it.
 
 You may also supply a `--channel` argument to instruct the Supervisor to use a different channel for the purposes of continuous deployment:
 
@@ -121,7 +121,7 @@ Note: On a clean server, this will download additional packages to satisfy the S
 
 ## Building Packages with Multiple Plans
 
-If you have a GitHub repository with multiple components inside, you will most likely also have individual plans for those components that are located inside of component subfolders. By default, Builder will only look for a package plan in either the root of the repository, or in a `habitat` subfolder at the root. If it does not find a plan file in those locations, it will not automatically issue builds when it detects file changes in the repository.
+If you have a GitHub repository with multiple components inside, you will most likely also have individual plans for those components that are located inside of component subfolders. By default, Builder will only look for a package plan in either the root of the repository, or in a `habitat` subfolder at the root. If it doesn't find a plan file in those locations, it won't automatically issue builds when it detects file changes in the repository.
 
 In order to tell Builder about the location of the individual plan files, and in order provide more fine-grained control over when component packages are built, you can programmatically customize how and when Builder will build your plans by specifying build behavior in a `.bldr.toml` file at the root of the repository that you connect to Builder.
 
@@ -133,11 +133,11 @@ To enable this functionality, do the following:
 
 2. Open it and add an entry for each component package that you want to build.
 
-    The `.bldr.toml` file is in TOML format, so create a TOML table specifying the `$pkg_name` value for that plan and then add a `plan_path` field specifying the path to your `plan.sh` file (you do not need to include plan.sh explicitly in the path). If all the files related to the plan are under the plan path, then you are done. Otherwise, you will need an additional 'paths' field specifying Unix-style path globs to files that are associated with the plan you specified in the 'plan_path'. File or directory changes made in these path locations determine which packages will be rebuilt. Basically, when a file is committed, Builder will check to see whether it falls underneath the `plan_path` hierarchy, or matches one of the globs in the `paths` field if it was specified - if the answer is yes, then Builder will issue a build for that commit.
+    The `.bldr.toml` file is in TOML format, so create a TOML table specifying the `$pkg_name` value for that plan and then add a `plan_path` field specifying the path to your `plan.sh` file (you don't need to include plan.sh explicitly in the path). If all the files related to the plan are under the plan path, then you are done. Otherwise, you will need an additional 'paths' field specifying Unix-style path globs to files that are associated with the plan you specified in the 'plan_path'. File or directory changes made in these path locations determine which packages will be rebuilt. Basically, when a file is committed, Builder will check to see whether it falls underneath the `plan_path` hierarchy, or matches one of the globs in the `paths` field if it was specified - if the answer is yes, then Builder will issue a build for that commit.
 
-    It's important to note that the entries for `plan_path` and `paths` do not behave the same. If you have something like `plan_path = "habitat"`, that behaves as if you had written `plan_path = "habitat/*"` - that is, it will automatically check every file under the `habitat` directory. However, if you have something like `paths = [ "src" ]`, that is *not* automatically expanded to `src/*`. That line will only watch for changes to a file called `src`. If you're wanting to watch for changes to any file inside the `src` directory, then you must explicitly specify the glob, like so: `paths = [ "src/*" ]`.
+    It's important to note that the entries for `plan_path` and `paths` don't behave the same. If you have something like `plan_path = "habitat"`, that behaves as if you had written `plan_path = "habitat/*"` - that is, it will automatically check every file under the `habitat` directory. However, if you have something like `paths = [ "src" ]`, that's *not* automatically expanded to `src/*`. That line will only watch for changes to a file called `src`. If you're wanting to watch for changes to any file inside the `src` directory, then you must explicitly specify the glob, like so: `paths = [ "src/*" ]`.
 
-    For example, in the Chef Habitat repository itself, this TOML states that the `hab-launcher`, `hab-studio`, and `hab-sup` packages will be rebuilt if there are any changes in any of the specified `components` sub-directories. Note that `hab-studio` does not need to specify a `path` because all of it's files are within the `plan_path` hierarchy, but that is not the case for the other projects.
+    For example, in the Chef Habitat repository itself, this TOML states that the `hab-launcher`, `hab-studio`, and `hab-sup` packages will be rebuilt if there are any changes in any of the specified `components` sub-directories. Note that `hab-studio` doesn't need to specify a `path` because all of it's files are within the `plan_path` hierarchy, but that isn't the case for the other projects.
 
     ```toml
     # .bldr.toml
@@ -174,7 +174,7 @@ To enable this functionality, do the following:
 * `[...]` matches any character inside the brackets. You can also specify a range, such as `[0-9]` to match any digit or `[a-z]` to match any lowercase letter.
 * `[!...]` is the negation of `[...]` so it will match any character *not* in the brackets.
 
-    Note that while the above set of rules bears a remarkable resemblance to regular expressions, we do not support full regular expression syntax. Only what's shown here is supported. Here is an example.
+    Note that while the above set of rules bears a remarkable resemblance to regular expressions, we don't support full regular expression syntax. Only what's shown here is supported. Here is an example.
 
     ```toml
     # .bldr.toml
@@ -190,7 +190,7 @@ To enable this functionality, do the following:
 
 ## Automated Builds
 
-By connecting a plan file in <a href="https://bldr.habitat.sh/#/sign-in" class="link-external" target="_blank">Chef Habitat Builder</a>, you can trigger both manual (via the web UI, or via the `hab` command line) as well as automated package rebuilds whenever a change is merged into the `master` branch of the repository containing your Chef Habitat plan, or when a dependent package updates (rebuilds).
+By connecting a plan file in [Chef Habitat Builder](https://bldr.habitat.sh/#/sign-in), you can trigger both manual (with the web UI, or with the `hab` command line) as well as automated package rebuilds whenever a change is merged into the `master` branch of the repository containing your Chef Habitat plan, or when a dependent package updates (rebuilds).
 
 ### Connect a Plan
 
@@ -204,6 +204,6 @@ To connect a plan to Builder, view one of your origins (while signed in), click 
 
 ### Auto-build Option
 
-The auto-build option controls whether or not your package will get automatically re-built. This option is a useful capability to have - for example, if you have a demo app that doesn't need to be kept constantly up to date when some underlying dependency updates. Auto-build encompasses both builds that are triggered by Github web hooks (on commits to master), as well as builds that are triggered by a dependency updating.
+The auto-build option controls whether or not your package will get automatically re-built. This option is a useful capability to have---for example, if you have a demo app that doesn't need to be kept constantly up to date when some underlying dependency updates. Auto-build encompasses both builds that are triggered by GitHub web hooks (on commits to the default branch), as well as builds that are triggered by a dependency updating.
 
 By default, new plan connections will have auto-build turned off.

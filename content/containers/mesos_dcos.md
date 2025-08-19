@@ -58,11 +58,11 @@ You can create native Mesos containers from Chef Habitat packages by following t
 
     ![Screen shot of DC/OS Services](/images/habitat/mesos1-services-marathon.png)
 
-7. Select "Create Application".
+7. Select **Create Application**.
 
     ![Screen shot of Marathon Applications List](/images/habitat/mesos2-new-application.png)
 
-8. Click on the "JSON Mode" selector and enter the JSON output of the Mesos exporter and click "Create Application".
+8. Click on the "JSON Mode" selector and enter the JSON output of the Mesos exporter and click **Create Application**.
 
     ![Screen shot of Marathon New Application JSON Mode](/images/habitat/mesos3-new-application-json.png)
 
@@ -79,7 +79,7 @@ You can get to the output from the running application by clicking on the "Marat
 
 This is a basic integration, there are many improvements yet to be made. Here are a few examples:
 
-* Marathon environment variables are not passed into the Chef Habitat package "cmd" yet.
+* Marathon environment variables aren't passed into the Chef Habitat package "cmd" yet.
 * Networking ports exposed by Chef Habitat need to be added to the JSON.
 * The Chef Habitat gossip protocol needs to be included as a default exposed port.
 * If Marathon is running the [artifact store](https://mesosphere.github.io/marathon/docs/), support uploading the tarball directly into it.

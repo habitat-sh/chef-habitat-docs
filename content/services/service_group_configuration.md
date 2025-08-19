@@ -13,7 +13,7 @@ description = "Update Services with File Uploads"
 ## Uploading Files to a Service Group
 
 In addition to [configuration updates]({{< relref "service_updates" >}}), you can
-upload files to a service group. Keep these small - we recommend 4k or less per
+upload files to a service group. Keep these small---we recommend 4 KB or less for each
 file, and keep the count of files to a minimum.
 
 ### Usage
@@ -29,7 +29,7 @@ integer that starts at one and must be incremented with every subsequent update
 to the same service group.
 
 If the version number is less than or equal to
-the current version number, the change(s) will not be applied.
+the current version number, the change(s) won't be applied.
 
 {{< /note >}}
 
@@ -44,7 +44,7 @@ Your output would look something like this:
 ```sh
 » Uploading file yourfile.txt to 1 incarnation myapp.prod
 Ω Creating service file
-↑ Applying via peer 172.0.0.3:9632
+↑ Applying with peer 172.0.0.3:9632
 ★ Uploaded file
 ```
 
@@ -60,7 +60,7 @@ myapp.prod(SR): Service file updated, yourfile.txt
 
 ### Encryption
 
-Files can be encrypted for the service group they are intended for. To do so,
+Files can be encrypted for the service group they're intended for. To do so,
 pass the `--user` option with the name of your user key, and the `--org` option
 with the organization of the service group. If you have the public key for the
 service group, the data will be encrypted for that key, signed with your user key,

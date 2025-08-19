@@ -19,7 +19,7 @@ redis.default(O):
 
 The letters in parentheses are called "log keys" and signify what type of log message is being shown. This can be useful for log filtering.
 
-They are mostly organized by the part of the Chef Habitat Supervisor code base that they are running from, so they often are of value to somebody troubleshooting problems in the Chef Habitat Supervisor source code.
+They're mostly organized by the part of the Chef Habitat Supervisor code base that they're running from, so they often are of value to somebody troubleshooting problems in the Chef Habitat Supervisor source code.
 
 The meanings of the keys are as follows:
 

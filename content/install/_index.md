@@ -20,13 +20,13 @@ hr
 
 Chef Habitat for Linux requires a 64-bit processor with kernel 2.6.32 or later. On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
 
-Once you have downloaded the package, extract the hab binary with tar to `/usr/local/bin` or add its location to your `PATH` (e.g. `tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1`).
+Once you have downloaded the package, extract the hab binary with tar to `/usr/local/bin` or add its location to your `PATH` (for example `tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1`).
 
 [Download Chef Habitat for Linux](https://www.chef.io/downloads)
 
 ### Install Chef Habitat from the Command Line
 
-Alternatively, you can install Chef Habitat via the command line by downloading and running the installation script:
+Alternatively, you can install Chef Habitat with the command line by downloading and running the installation script:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
@@ -34,7 +34,7 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 ### Install Chef Habitat for Linux Kernel 2.x from the Command Line
 
-Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x.  Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they are upgraded to more recent versions of the Linux kernel.
+Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x. Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they're upgraded to more recent versions of the Linux kernel.
 
 ```bash
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t x86_64-linux-kernel2

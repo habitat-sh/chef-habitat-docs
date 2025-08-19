@@ -14,7 +14,7 @@ When you have finished creating your plan and call `build` in Chef Habitat Studi
 
 1. Checks that Studio has the private origin key is available to sign the artifact
 2. Downloads the source code from the location in `pkg_source`, if specified
-3. Validates checksum of the downloaded file using the `pkg_shasum` value, if it is specified.
+3. Validates checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
 4. Extracts the source into a temporary cache.
 5. Builds and installs the binary or library using `make` and `make install` for Linux based builds, and
   TODO: WHAT DOES WINDOWS USE? Invoke-Unpack function with Start-Process? Invoke-Install & Copy-Item? unless the callback methods are overridden in the plan.
@@ -31,7 +31,7 @@ hab origin key generate <ORIGIN>
 
 The `hab-origin` subcommand will place the origin key files, originname-_timestamp_.sig.key (the private key) and originname-_timestamp_.pub files (the public key), in the `$HOME/.hab/cache/keys` directory. If you're creating origin keys in the Studio container, or you are running as root on a Linux machine, your keys will be stored in `/hab/cache/keys`.
 
-Because the private key is used to sign your artifact, it should not be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key is not present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
+Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
 
 ### Passing Origin Keys into the Studio
 
@@ -84,7 +84,7 @@ The directory where your plan is located is known as the plan context.
     build /src/planname
     ```
 
-4. If the package builds successfully, it is placed into a `results` directory at the same level as your plan.
+4. If the package builds successfully, it's placed into a `results` directory at the same level as your plan.
 
 #### Managing the Studio Type (Docker/Linux/Windows)
 
@@ -137,9 +137,9 @@ For information on the contents of an installed package, see [Package contents](
 
 ### Bash Plans: `attach`
 
-While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (e.g. download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your plan.sh that functions like a debugging breakpoint and provides an easy <acronym title="Read, Evaluation, Print Loop">REPL</acronym> at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
+While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your plan.sh that functions like a debugging breakpoint and provides an easy <acronym title="Read, Evaluation, Print Loop">REPL</acronym> at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
 
-To use `attach`, insert it into your plan at the point where you would like to use it, e.g.
+To use `attach`, insert it into your plan at the point where you would like to use it, for example
 
 ```bash
  do_build() {
@@ -148,7 +148,7 @@ To use `attach`, insert it into your plan at the point where you would like to u
  }
 ```
 
-Now, perform a [build]({{< relref "pkg_build" >}}) -- we recommend using an interactive studio so you do not need to set up the environment from scratch for every build.
+Now, perform a [build]({{< relref "pkg_build" >}}) -- we recommend using an interactive studio so you don't need to set up the environment from scratch for every build.
 
 ```bash
 hab studio enter

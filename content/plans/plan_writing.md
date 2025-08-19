@@ -1,12 +1,12 @@
 +++
 title = "Writing Plans"
-description = "Documentation for writing Chef Habitat Plan files including configuration templates, binds, and exporting"
+description = "Documentation for writing Chef Habitat plan files including configuration templates, binds, and exporting"
 
 
 
 [menu.plans]
     title = "Plan Writing"
-    identifier = "plans/plan-writing Chef Habitat Plan Overview"
+    identifier = "plans/plan-writing Chef Habitat plan Overview"
     parent = "plans"
     weight = 10
 +++
@@ -15,7 +15,7 @@ In Chef Habitat the unit of automation is the application itself. This chapter i
 
 ## Writing Plans
 
-Artifacts are the cryptographically-signed tarballs that are uploaded, downloaded, unpacked, and installed in Chef Habitat. They are built from shell scripts known as plans, but may also include application lifecycle hooks and service configuration files that describe the behavior and configuration of a running service.
+Artifacts are the cryptographically-signed tarballs that are uploaded, downloaded, unpacked, and installed in Chef Habitat. They're built from shell scripts known as plans, but may also include application lifecycle hooks and service configuration files that describe the behavior and configuration of a running service.
 
 At the center of Chef Habitat packaging is the plan. This is a directory comprised of shell scripts and optional configuration files that define how you download, configure, make, install, and manage the lifecycle of the software in the artifact. More conceptual information on artifacts can be found in the [Package Identifiers]({{< relref "pkg_ids" >}}) page.
 
@@ -46,7 +46,7 @@ On Windows we would create a `plan.ps1` file instead. All the variable names are
 
 {{< /note >}}
 
-It has the name of the software, the version, where to download it, a checksum to verify the contents are what we expect, run dependencies on `core/glibc` and `core/readline`, build dependencies on `core/coreutils`, `core/make`, `core/gcc`, libraries files in `lib`, header files in `include`, and a binary file in `bin`. Also, because it's a core plan, it has a description and upstream URL for the source project included.
+It has the name of the software, the version, where to download it, a checksum to verify the contents are what we expect, run dependencies on `core/glibc` and `core/readline`, build dependencies on `core/coreutils`, `core/make`, `core/gcc`, libraries files in `lib`, header files in `include`, and a binary file in `bin`. Also, because it's a core plan, it has a description and upstream URL of the source project included.
 
 {{< note >}}
 
@@ -60,7 +60,7 @@ When you have finished creating your plan and call `build` in Chef Habitat studi
 2. If specified in `pkg_source`, a compressed file containing the source code is downloaded.
 3. The checksum of that file, specified in `pkg_shasum`, is validated.
 4. The source is extracted into a temporary cache.
-5. Unless overridden, the callback methods will build and install the binary or library via `make` and `make install`, respectively for Linux based builds.
+5. Unless overridden, the callback methods will build and install the binary or library with `make` and `make install`, respectively for Linux based builds.
 6. Your package contents (binaries, runtime dependencies, libraries, assets, etc.) are then compressed into a tarball.
 7. The tarball is signed with your private origin key and given a `.hart` file extension.
 
@@ -76,7 +76,7 @@ The plan.sh or plan.ps1 file is the only required file to create a package. Conf
 
 All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file will be used by the `hab-plan-build` command to build your package. To create a plan, do the following:
 
-1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it per the instructions on the download page.
+1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it according to the instructions on the download page.
 
 2. Run `hab cli setup` and follow the instructions in the setup script.
 
@@ -135,9 +135,9 @@ The build script will look for the base of your plan in the following locations:
 - `<app_root>/`
 - `<app_root>/habitat/`
 
-If it finds a plan both inside as well as outside of a target folder, the target specific plan will be used as long as that is the target currently being built. However it is strongly recommended that you do not have plans both inside and outside of a target folder. We currently allow this only for backwards compatibility with some existing plans but plan to eventually fail builds where a plan exists in both places. The best practice when you need multiple plans for different targets is to put each plan in its own target folder.
+If it finds a plan both inside as well as outside of a target folder, the target specific plan will be used as long as that's the target currently being built. However it's strongly recommended that you don't have plans both inside and outside of a target folder. We currently allow this only for backwards compatibility with some existing plans but plan to eventually fail builds where a plan exists in both places. The best practice when you need multiple plans for different targets is to put each plan in its own target folder.
 
-Of course if your plan does not include hooks or configuration templates and just requires a plan file, you may choose this simpler structure:
+Of course if your plan doesn't include hooks or configuration templates and just requires a plan file, you may choose this simpler structure:
 
 ```plain
 app_root/
@@ -148,11 +148,11 @@ app_root/
 
 {{< note >}}
 
-It is recommended to place all plan files inside of a `habitat` parent folder in order to allow for clean separation between your application source code and habitat specific files. However, if you maintain a separate repository solely for the purpose of storing habitat plans, then the use of a `habitat` folder may not be necessary.
+Place all plan files inside of a `habitat` parent folder to allow for clean separation between your application source code and habitat specific files. However, if you maintain a separate repository solely for the purpose of storing habitat plans, then the use of a `habitat` folder may not be necessary.
 
 {{< /note >}}
 
-On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux kernel 2. So if your application requires different plans for Linux and Linux Kernel 2, even without hooks and configuration templates, you will need to use target folders for each platform.
+On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux kernel 2. If your application requires different plans for Linux and Linux Kernel 2, even without hooks and configuration templates, you will need to use target folders for each platform.
 
 ### Buildtime Workflow
 
@@ -170,9 +170,9 @@ The following sections describe each of these steps in more detail.
 
 #### Create your Package Identifier
 
-The origin is a place for you to set default privacy rules, store your packages, and collaborate with teammates. For example, the "core" origin is where the core maintainers of Chef Habitat share packages that are foundational to building other packages. If you would like to browse them, they are located in the [core-plans repo](https://github.com/habitat-sh/core-plans), and on [Chef Habitat Builder's Core Origin](https://bldr.habitat.sh/#/pkgs/core).
+The origin is a place for you to set default privacy rules, store your packages, and collaborate with teammates. For example, the "core" origin is where the core maintainers of Chef Habitat share packages that are foundational to building other packages. If you would like to browse them, they're located in the [core-plans repo](https://github.com/habitat-sh/core-plans), and on [Chef Habitat Builder's Core Origin](https://bldr.habitat.sh/#/pkgs/core).
 
-Creating artifacts for a specific origin requires that you have access to the that origin's private key. The private origin key will be used to sign the artifact when it is built by the `hab plan build` command. Origin keys are kept in `$HOME/.hab/cache/keys` on the host machine when running `hab` as a non-root user and `/hab/cache/keys` when running as root (including in the studio). For more information on origin keys, see [Keys]({{< relref "keys" >}}).
+Creating artifacts for a specific origin requires that you have access to the that origin's private key. The private origin key will be used to sign the artifact when it's built by the `hab plan build` command. Origin keys are kept in `$HOME/.hab/cache/keys` on the host machine when running `hab` as a non-root user and `/hab/cache/keys` when running as root (including in the studio). For more information on origin keys, see [Keys]({{< relref "keys" >}}).
 
 The next important part of your package identifier is the name of the package. Standard naming convention is to base the name of the package off of the name of the source or project you download and install into the package.
 
@@ -184,7 +184,7 @@ Most importantly, you should update the `pkg_license` value to indicate the type
 
 {{< note >}}
 
-Because all arrays in the pkg_* settings are shell arrays, they are whitespace delimited.
+Because all arrays in the pkg_* settings are shell arrays, they're whitespace delimited.
 
 {{< /note >}}
 
@@ -192,7 +192,7 @@ Because all arrays in the pkg_* settings are shell arrays, they are whitespace d
 
 Add in the `pkg_source` value that points to where your source files are located at. Any `wget` url will work; however, unless you're downloading a tarball from a public endpoint, you may need to modify how you download your source files and where in your plan.sh you perform the download operation.
 
-Chef Habitat supports retrieving source files from [GitHub](https://github.com). When cloning from GitHub, it is recommended to use https URIs because they are proxy friendly, whereas `git@github` or `git://` are not. To download the source from a GitHub repository, implement `do_download()` in your plan.sh (or `Invoke-Download` in a plan.ps1) and add a reference the `core/git` package as a build dependency. Because Chef Habitat does not contain a system-wide CA cert bundle, you must use the `core/cacerts` package and export the `GIT_SSL_CAINFO` environment variable to point the `core/cacerts` package on Linux. Here's an example of how to do this in the `do_download()` callback.
+Chef Habitat supports retrieving source files from [GitHub](https://github.com). When cloning from GitHub, it's recommended to use https URIs because they're proxy friendly, whereas `git@github` or `git://` aren't. To download the source from a GitHub repository, implement `do_download()` in your plan.sh (or `Invoke-Download` in a plan.ps1) and add a reference the `core/git` package as a build dependency. Because Chef Habitat doesn't contain a system-wide CA cert bundle, you must use the `core/cacerts` package and export the `GIT_SSL_CAINFO` environment variable to point the `core/cacerts` package on Linux. Here's an example of how to do this in the `do_download()` callback.
 
 ```bash
 do_download() {
@@ -225,11 +225,11 @@ After you have either specified your source in `pkg_source`, or overridden the *
 
 {{< note >}}
 
-If your computed value does not match the value calculated by the `hab-plan-build` script, an error with the expected value will be returned when you execute your plan.
+If your computed value doesn't match the value calculated by the `hab-plan-build` script, an error with the expected value will be returned when you execute your plan.
 
 {{< /note >}}
 
-If your package does not download any application or service source files, then you will need to override the **do_download()**, **do_verify()**, and **do_unpack()** callbacks. See [Callbacks]({{< relref "build_phase_callbacks" >}}) for more details.
+If your package doesn't download any application or service source files, then you will need to override the **do_download()**, **do_verify()**, and **do_unpack()** callbacks. See [Callbacks]({{< relref "build_phase_callbacks" >}}) for more details.
 
 #### Define Your Dependencies
 
@@ -237,13 +237,13 @@ Applications have two types of dependencies: buildtime and runtime.
 
 Declare any build dependencies in `pkg_build_deps` and any run dependencies in `pkg_deps`. You can include version and release information when declaring dependencies if your application is bound to a particular version.
 
-The package `core/glibc` is typically listed as a run dependency and `core/coreutils` as a build dependency, however, you should not take any inference from this. There are no standard dependencies that every package must have. For example, the mytutorialapp package only includes the `core/node` as a run dependency. You should include dependencies that would natively be part of the build or runtime dependencies your application or service would normally depend on.
+The package `core/glibc` is typically listed as a run dependency and `core/coreutils` as a build dependency, however, you shouldn't take any inference from this. There aren't standard dependencies that every package must have. For example, the `mytutorialapp` package only includes the `core/node` as a run dependency. You should include dependencies that would natively be part of the build or runtime dependencies your application or service would normally depend on.
 
-There is a third type of dependencies, transitive dependencies, that are the run dependencies of either the build or run dependencies listed in your plan. You do not need to explicitly declare transitive dependencies, but they are included in the list of files when your package is built. See [Package contents]({{< relref "package_contents" >}}) for more information.
+The third type of dependencies, transitive dependencies, that are the run dependencies of either the build or run dependencies listed in your plan. You don't need to explicitly declare transitive dependencies, but they're included in the list of files when your package is built. See [Package contents]({{< relref "package_contents" >}}) for more information.
 
 #### Override Build Phase Defaults with Callbacks
 
-As shown in an example above, there are occasions when you want to override the default behavior of the hab-plan-build script. The Plan syntax guide lists the default implementations for [build phase callbacks]({{< relref "build_phase_callbacks" >}}), but if you need to reference specific packages in the process of building your applications or services, then you need to override the default implementations as in the example below.
+As shown in an example above, there are occasions when you want to override the default behavior of the hab-plan-build script. The plan syntax guide lists the default implementations for [build phase callbacks]({{< relref "build_phase_callbacks" >}}), but if you need to reference specific packages in the process of building your applications or services, then you need to override the default implementations as in the example below.
 
 ```bash
 pkg_name=httpd
@@ -294,7 +294,7 @@ function Invoke-Build {
 }
 ```
 
-Here the plan is building an application written in Rust. So it overrides `Invoke-Build` and uses the `cargo` utility included in its buildtime dependency on `core/rust`.
+Here the plan is building an application written in Rust, so it overrides `Invoke-Build` and uses the `cargo` utility included in its buildtime dependency on `core/rust`.
 
 {{< note >}}
 

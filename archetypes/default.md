@@ -9,4 +9,4 @@ parent = "client"
 weight = 10
 +++
 
-{{</*Run 'hugo new content path/to/new/page.md' to generate a new page.*/>}}
+{{</* Run 'hugo new content path/to/new/page.md' to generate a new page. */>}}

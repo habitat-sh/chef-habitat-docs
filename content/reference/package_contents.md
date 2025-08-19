@@ -22,10 +22,10 @@ BUILD_TDEPS
 : Fully-qualified package identifiers of any runtime dependencies that the build dependencies for your project depend on. This is essentially a flattened tree of dependencies all the way up to the root dependency (`linux-headers` in most cases).
 
 BUILDTIME_ENVIRONMENT
-: A file that contains similar information as the RUNTIME_ENVIRONMENT file, but is constructed from a package's build-time dependencies instead of its runtime dependencies. This file is not currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
+: A file that contains similar information as the RUNTIME_ENVIRONMENT file, but is constructed from a package's build-time dependencies instead of its runtime dependencies. This file isn't currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
 
 BUILDTIME_ENVIRONMENT_PROVENANCE
-: A file that provides information on which specific dependencies have influenced the final value of a given variable in the BUILDTIME_ENVIRONMENT file. This file is not currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
+: A file that provides information on which specific dependencies have influenced the final value of a given variable in the BUILDTIME_ENVIRONMENT file. This file isn't currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
 
 CFLAGS
 : Additional switches to be passed to the compiler when this package is used as a build dependency.
@@ -52,16 +52,16 @@ MANIFEST
 : A file containing package information, such as checksum, maintainer, build variables, and other metadata specified in plan.sh as well as the contents of the plan.sh itself.
 
 PATH
-: A file that contains all directories in the package which contain program binaries. The directories are separated with the target platform's path separator character (i.e. either `:` or `;`).
+: A file that contains all directories in the package which contain program binaries. The directories are separated with the target platform's path separator character (either `:` or `;`).
 
 RUNTIME_ENVIRONMENT
 : A file containing the result of the layering operation of the current package's runtime environment variables on top of those of its dependencies. This is what the build process consults when it processes dependencies, and this is what the Supervisor consults in concert with `RUNTIME_PATH` when generating the full set of environment variables that should be added to an environment before running a supervised process.
 
 RUNTIME_ENVIRONMENT_PROVENANCE
-: A file that provides information on which specific dependencies have influenced the final value of a given variable in the RUNTIME_ENVIRONMENT file. This file is not currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
+: A file that provides information on which specific dependencies have influenced the final value of a given variable in the RUNTIME_ENVIRONMENT file. This file isn't currently consumed by any other software in the Chef Habitat ecosystem, but can be used for troubleshooting and informative purposes.
 
 RUNTIME_PATH
-: A file that contains all directories that need to be prepended to an environment's `$PATH` before a program in this package can be expected to run correctly. The order of the elements are precise and meaningful so should not be altered. This file is used in concert with `RUNTIME_ENVIRONMENT` to compute the full set of environment variables that should be added to an environment before running a program in this package.
+: A file that contains all directories that need to be prepended to an environment's `$PATH` before a program in this package can be expected to run correctly. The order of the elements are precise and meaningful so shouldn't be altered. This file is used in concert with `RUNTIME_ENVIRONMENT` to compute the full set of environment variables that should be added to an environment before running a program in this package.
 
 TARGET
 : The CPU architecture and platform for the package. The format is `architecture-platform`. For example, x86_64-linux.
