@@ -135,9 +135,9 @@ By default, the Studio is reset to a clean state after the package is built; how
 
 For information on the contents of an installed package, see [Package contents]({{< relref "package_contents" >}}).
 
-# Troubleshooting Builds
+## Troubleshooting Builds
 
-## Bash Plans: `attach`
+### Bash Plans: `attach`
 
 While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your `plan.sh` that functions like a debugging breakpoint and provides an easy read-evaluate-print loop (REPL) at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
 
@@ -210,7 +210,7 @@ Aliases
 
   Type `quit` when you are done with the debugger, and the remainder of the build will continue. If you wish to abort the build entirely, type `quit-program`.
 
-## PowerShell Plans: `Set-PSBreakpoint`
+### PowerShell Plans: `Set-PSBreakpoint`
 
 While there is no `attach` function exposed in a `plan.ps1` file, one can use the native PowerShell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
 
