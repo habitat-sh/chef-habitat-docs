@@ -10,7 +10,7 @@ description = "Control service runtime actions with application lifecycle hooks"
 
 +++
 
-Each plan can specify lifecycle event handlers, or hooks, to perform certain actions during a service's runtime. Each hook is a script with a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) defined at the top to specify the interpreter to be used. On Windows, Powershell Core is the only interpreter ever used.
+Each plan can specify lifecycle event handlers, or hooks, to perform certain actions during a service's runtime. Each hook is a script with a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) defined at the top to specify the interpreter to be used. On Windows, PowerShell Core is the only interpreter ever used.
 
 To define a hook, simply create a file of the same name in `/my_plan_name/hooks/`, for example, `/postgresql/hooks/health-check`.
 

@@ -14,11 +14,11 @@ This is a list of all environment variables that can be used to modify the opera
 
 | Variable | Context | Default | Description |
 |----------|----------|----------|-----------|
-| `HAB_AUTH_TOKEN` | build system | no default | Authorization token used to perform privileged operations against the depot, for example uploading packages or keys.
+| `HAB_AUTH_TOKEN` | build system | no default | Authorization token used to perform privileged operations against the depot, for example uploading packages or keys. |
 | `HAB_BINLINK_DIR` | build system | `/hab/bin` | Allows you to change the target directory for the symlink created when you run `hab pkg binlink`. The default value is already included in the `$PATH` variable inside the Studio. |
 | `HAB_CACHE_KEY_PATH` | build system, Supervisor | `/hab/cache/keys` if running as root; `$HOME/.hab/cache/keys` if running as non-root | Cache directory for origin signing keys |
 | `HAB_CTL_SECRET` | Supervisor | no default | Shared secret used for [communicating with a Supervisor]({{< relref "sup_remote_control" >}}). |
-| `HAB_BLDR_CHANNEL` | build system, Supervisor | `stable` | Set the Chef Habitat Builder channel you are subscribing to, to a specific channel. Defaults to `stable`.
+| `HAB_BLDR_CHANNEL` | build system, Supervisor | `stable` | Set the Chef Habitat Builder channel you are subscribing to, to a specific channel. Defaults to `stable`. |
 | `HAB_BLDR_URL` | build system, Supervisor | `https://bldr.habitat.sh` | Sets an alternate default endpoint for communicating with Builder. Used by the Chef Habitat build system and the Supervisor |
 | `HAB_DOCKER_OPTS` | build system | no default | When running a Studio on a platform that uses Docker (macOS), additional command line options to pass to the `docker` command. |
 | `HAB_INTERNAL_BLDR_CHANNEL` | build system, Supervisor, exporters | `stable` | Channel from which Chef Habitat-specific packages (for example, `core/hab-sup`, `core/hab-launcher`, etc.) are downloaded on-demand when first called. Generally of use only for those developing Chef Habitat. Only applies to Chef Habitat-specific packages, and nothing else. |
@@ -28,7 +28,7 @@ This is a list of all environment variables that can be used to modify the opera
 | `HAB_LISTEN_HTTP` | Supervisor | 0.0.0.0:9631 | The listen address for the HTTP Gateway |
 | `HAB_NOCOLORING` | build system | no default | If set to the lowercase string `"true"` this environment variable will unconditionally disable text coloring where possible |
 | `HAB_NONINTERACTIVE` | build system | no default | If set to the lowercase string `"true"` this environment variable will unconditionally disable interactive progress bars ("spinners") where possible |
-| `HAB_ORG` | Supervisor | no default | Organization to use when running with [service group encryption]({{< relref "sup_secure" >}})
+| `HAB_ORG` | Supervisor | no default | Organization to use when running with [service group encryption]({{< relref "sup_secure" >}}) |
 | `HAB_ORIGIN` | build system | no default | Origin used to build packages. The signing key for this origin is passed to the build system. |
 | `HAB_ORIGIN_KEYS` | build system | no default | Comma-separated list of origin keys to automatically share with the build system |
 | `HAB_REFRESH_CHANNEL` | build system | `stable` | Channel used to retrieve plan dependencies for Chef supported origins. |

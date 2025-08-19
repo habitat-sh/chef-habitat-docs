@@ -122,10 +122,10 @@ Butterfly uses ZeroMQ to disseminate rumors throughout the network. Its flow:
 - Send each member every rumor that has a Heat lower than 3; update the heat for each rumor sent.
 - When the list is exhausted, start the loop again.
 
-Whats good about this system:
+What's good about this system:
 
 - ZeroMQ provides a scalable PULL socket, that processes incoming messages from multiple peers as a single fair-queue.
-- It has no back-chatter - messages are PUSH-ed to members, but require no receipt acknowledgement.
+- It has no back-chatter---messages are pushed to members, but require no receipt acknowledgement.
 - Messages are sent over TCP, giving them some durability guarantees.
 - In common use, the gossip protocol becomes inactive; if there are no rumors to send to a given member, nothing is sent.
 
@@ -136,7 +136,7 @@ The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) 
 - Rather than sending messages to update member state, we send the entire member.
 - We support encryption on the wire.
 - Payloads are protocol buffers.
-- We support "persistent" members - these are members who will continue to have the failure detection protocol run against them, even if they're confirmed dead. This enables the system to heal from long-lived total partitions.
+- We support "persistent" members---these are members who will continue to have the failure detection protocol run against them, even if they're confirmed dead. This enables the system to heal from long-lived total partitions.
 - Members who are confirmed dead, but who later receive a membership rumor about themselves being suspected or confirmed, respond by spreading an Alive rumor with a higher incarnation. This allows members who return from a partition to re-join the ring gracefully.
 
 ### Further Reading

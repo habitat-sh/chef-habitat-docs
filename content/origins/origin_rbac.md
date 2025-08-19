@@ -42,41 +42,41 @@ Owner
 
 ## Comparison of RBAC Membership Roles and Actions
 
-| Action | Read-Only | Member | Maintainer | Administrator | Owner |
-|---------|-------|-------|-------|-------|-------|
-| **Packages** |
-| View packages | Y | Y | Y | Y | Y |
-| Upload packages to `unstable` | N | Y | Y | Y | Y |
-| Promote packages from `unstable` | N | N | Y | Y | Y |
-| **Build Jobs** |
-| View build jobs | Y | Y | Y | Y | Y |
-| Trigger `unstable` build job | N | Y | Y | Y | Y |
-| **Channels** |
-| View channels | Y | Y | Y | Y | Y |
-| Add/Update/Delete channels | N | N | Y | Y | Y |
-| **Origin Keys** |
-| View keys | Y | Y | Y | Y | Y |
-| Add/Update/Delete keys | N | N | N | Y | Y |
-| **Origin Membership** |
-| View origin membership | Y | Y | Y | Y | Y |
-| View invitations | Y | Y | Y | Y | Y |
-| Send Invitations | N | N | Y | Y | Y |
-| Revoke Invitations | N | N | Y | Y | Y |
-| **Member Roles** |
-| View member roles | Y | Y | Y | Y | Y |
-| Update member roles | N | N | N | Y | Y |
-| **Origin Settings** |
-| View settings | Y | Y | Y | Y | Y |
-| Add/Update/Delete settings | N | N | N | Y | Y |
-| **Origin Secrets** |
-| View secrets | N | N | N | Y | Y |
-| Add/Update/Delete secrets | N | N | N | Y | Y |
-| **Cloud Integrations** |
-| View integrations | Y | Y | Y | Y | Y |
-| Add/Update/Delete integrations | N | N | Y | Y | Y |
-| **Ownership** |
-| Transfer Origin | N | N | N | N | Y |
-| Delete Origin | N | N | N | N | Y |
+| Action                           | Read-Only | Member | Maintainer | Administrator | Owner |
+| -------------------------------- | --------- | ------ | ---------- | ------------- | ----- |
+| **Packages**                     |           |        |            |               |       |
+| View packages                    | Y         | Y      | Y          | Y             | Y     |
+| Upload packages to `unstable`    | N         | Y      | Y          | Y             | Y     |
+| Promote packages from `unstable` | N         | N      | Y          | Y             | Y     |
+| **Build Jobs**                   |           |        |            |               |       |
+| View build jobs                  | Y         | Y      | Y          | Y             | Y     |
+| Trigger `unstable` build job     | N         | Y      | Y          | Y             | Y     |
+| **Channels**                     |           |        |            |               |       |
+| View channels                    | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete channels       | N         | N      | Y          | Y             | Y     |
+| **Origin Keys**                  |           |        |            |               |       |
+| View keys                        | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete keys           | N         | N      | N          | Y             | Y     |
+| **Origin Membership**            |           |        |            |               |       |
+| View origin membership           | Y         | Y      | Y          | Y             | Y     |
+| View invitations                 | Y         | Y      | Y          | Y             | Y     |
+| Send Invitations                 | N         | N      | Y          | Y             | Y     |
+| Revoke Invitations               | N         | N      | Y          | Y             | Y     |
+| **Member Roles**                 |           |        |            |               |       |
+| View member roles                | Y         | Y      | Y          | Y             | Y     |
+| Update member roles              | N         | N      | N          | Y             | Y     |
+| **Origin Settings**              |           |        |            |               |       |
+| View settings                    | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete settings       | N         | N      | N          | Y             | Y     |
+| **Origin Secrets**               |           |        |            |               |       |
+| View secrets                     | N         | N      | N          | Y             | Y     |
+| Add/Update/Delete secrets        | N         | N      | N          | Y             | Y     |
+| **Cloud Integrations**           |           |        |            |               |       |
+| View integrations                | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete integrations   | N         | N      | Y          | Y             | Y     |
+| **Ownership**                    |           |        |            |               |       |
+| Transfer Origin                  | N         | N      | N          | N             | Y     |
+| Delete Origin                    | N         | N      | N          | N             | Y     |
 
 ## Manage Origin Membership
 

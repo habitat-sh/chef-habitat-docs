@@ -337,7 +337,7 @@ pkg_svc_run="haproxy -f $pkg_svc_config_path/haproxy.conf"
 ```
 
 pkg_exports
-: Configuration data that will be passed between peers. The keys in this array are used with `pkg_exposes` and for any consuming services that set `pkg_binds` or `pkg_binds_optional`. An [associative array](https://www.linuxjournal.com/content/bash-associative-arrays) in Bash or a `hashtable` in Powershell. Type: array. _Optional_.
+: Configuration data that will be passed between peers. The keys in this array are used with `pkg_exposes` and for any consuming services that set `pkg_binds` or `pkg_binds_optional`. An [associative array](https://www.linuxjournal.com/content/bash-associative-arrays) in Bash or a `hashtable` in PowerShell. Type: array. _Optional_.
 
 ```bash
 pkg_exports=(
@@ -370,7 +370,7 @@ In addition to specifying the keys you defined in `pkg_exports`, you must have a
 {{< /note >}}
 
 pkg_binds
-: An associative array (or `hashtable` in Powershell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds _must_ be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind doesn't contain the expected keys, the service won't start successfully. _Optional_.
+: An associative array (or `hashtable` in PowerShell) representing services which you depend on and the configuration keys that you expect the service to export (by their `pkg_exports`). These binds _must_ be set for the Supervisor to load the service. The loaded service will wait to run until its bind becomes available. If the bind doesn't contain the expected keys, the service won't start successfully. _Optional_.
 
 ```bash
 pkg_binds=(

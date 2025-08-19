@@ -78,13 +78,13 @@ The directory where your plan is located is known as the plan context.
 
     The directory you were in is now mounted as `/src` inside the Studio. By default, a Supervisor runs in the background for iterative testing. You can see the streaming output by running <code>sup-log</code>. Type <code>Ctrl-C</code> to exit the streaming output and <code>sup-term</code> to terminate the background Supervisor. If you terminate the background Supervisor, then running <code>sup-run</code> will restart it along with every service that was previously loaded. You have to explicitly run <code>hab svc unload origin/package</code> to remove a package from the "loaded" list.
 
-3. Enter the following command to create the package.
+1. Enter the following command to create the package.
 
     ```bash
     build /src/planname
     ```
 
-4. If the package builds successfully, it's placed into a `results` directory at the same level as your plan.
+1. If the package builds successfully, it's placed into a `results` directory at the same level as your plan.
 
 #### Managing the Studio Type (Docker/Linux/Windows)
 
@@ -137,7 +137,7 @@ For information on the contents of an installed package, see [Package contents](
 
 ### Bash Plans: `attach`
 
-While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your plan.sh that functions like a debugging breakpoint and provides an easy <acronym title="Read, Evaluation, Print Loop">REPL</acronym> at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
+While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your `plan.sh` that functions like a debugging breakpoint and provides an easy read-evaluate-print loop (REPL) at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
 
 To use `attach`, insert it into your plan at the point where you would like to use it, for example
 
@@ -148,13 +148,13 @@ To use `attach`, insert it into your plan at the point where you would like to u
  }
 ```
 
-Now, perform a [build]({{< relref "pkg_build" >}}) -- we recommend using an interactive studio so you don't need to set up the environment from scratch for every build.
+Now, perform a [build]({{< relref "pkg_build" >}})---we recommend using an interactive studio so you don't need to set up the environment from scratch for every build.
 
 ```bash
 hab studio enter
 ```
 
-```studio
+```sh
 build yourapp
 ```
 
@@ -184,7 +184,7 @@ From: /src/yourapp/plan.sh @ line 15 :
 
 You can use basic Linux commands like `ls` in this environment. You can also use the `help` command the Chef Habitat build system provides in this context to see what other functions can help you debug the plan.
 
-```studio
+```sh
 [1] yourapp(do_build)> help
 Help
   help          Show a list of command or information about a specific command.
@@ -210,7 +210,7 @@ Aliases
 
 ### PowerShell Plans: `Set-PSBreakpoint`
 
-While there is no `attach` function exposed in a `plan.ps1` file, one can use the native Powershell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
+While there is no `attach` function exposed in a `plan.ps1` file, one can use the native PowerShell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
 
 ```powershell
 [HAB-STUDIO] Habitat:\src> Set-PSBreakpoint -Command Invoke-Build
@@ -230,4 +230,4 @@ At C:\src\habitat\plan.ps1:26 char:23
 [HAB-STUDIO] C:\hab\cache\src\habitat-aspnet-sample-0.2.0>>
 ```
 
-You can now call Powershell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.
+You can now call PowerShell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.

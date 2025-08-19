@@ -30,9 +30,11 @@ Each package plan should contain a value adhering to the guidelines for each of 
 ## Package Name Conventions
 
 Each package is identified by a unique string containing four sub-strings separated
-by a forward slash (`/`) called a [PackageIdent]({{< relref "pkg_ids" >}}).
+by a forward slash (`/`) called a [PackageIdent]({{< relref "pkg_ids" >}}) in the following format:
 
-    `origin`/`name`/`version`/`release`
+```sh
+origin/name/version/release
+```
 
 The `origin`, `name`, and `version` values of this identifier are user defined by
 setting their corresponding variable in your `plan.sh` or `plan.ps1` file while the value of

@@ -23,7 +23,7 @@ When building binary packages, you override the behavior of phases that don't ap
 ```bash plan.sh
 (...)
 do_build() {
-  # relocate library dependencies here, if needed -- see next topic
+  # relocate library dependencies here, if needed---see next topic
   return 0
 }
 
@@ -47,22 +47,22 @@ On Windows, library dependency locations aren't maintained in a binary file's he
 Most binaries compiled in a full Linux environment have a hard dependency on `/lib/ld-linux.so` or `/lib/ld-linux-x86_64.so`. In order to relocate this dependency to the Chef Habitat-provided variant, which is provided by `core/glibc`, use the `patchelf(1)` utility within your plan:
 
 1. Declare a build-time dependency on `core/patchelf` as part of your `pkg_build_deps` line.
-2. Invoke `patchelf` on any binaries with this problem during the `do_install()` phase. For example:
+1. Invoke `patchelf` on any binaries with this problem during the `do_install()` phase. For example:
 
-```bash
-patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
-  "${pkg_prefix}/bin/somebinary"
-```
+    ```bash
+    patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
+      "${pkg_prefix}/bin/somebinary"
+    ```
 
-3. The binary may have other hardcoded dependencies on its own libraries that you may need to relocate using other flags to `patchelf` like `--rpath`. For example, Oracle Java provides additional libraries in `lib/amd64/jli` that you will need to relocate to the Chef Habitat location:
+1. The binary may have other hardcoded dependencies on its own libraries that you may need to relocate using other flags to `patchelf` like `--rpath`. For example, Oracle Java provides additional libraries in `lib/amd64/jli` that you will need to relocate to the Chef Habitat location:
 
-```bash
-export LD_RUN_PATH=$LD_RUN_PATH:$pkg_prefix/lib/amd64/jli
-patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
-  --set-rpath ${LD_RUN_PATH} "${pkg_prefix}/bin/java"
-```
+    ```bash
+    export LD_RUN_PATH=$LD_RUN_PATH:$pkg_prefix/lib/amd64/jli
+    patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
+      --set-rpath ${LD_RUN_PATH} "${pkg_prefix}/bin/java"
+    ```
 
-4. For more information, please see the [patchelf](https://nixos.org/patchelf.html) documentation.
+1. For more information, please see the [patchelf](https://nixos.org/patchelf.html) documentation.
 
 ## Relocating library dependencies
 

@@ -14,9 +14,7 @@ draft = false
 
 Generate a Supervisor configuration file and use it to set any of the 40+ Supervisor configuration settings instead of configuring them on the command line.
 
-<div style="justify-content: center; display: flex; padding-top:2rem; padding-bottom:2rem">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/B_ppJ1xaC5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-</div>
+{{< youtube B_ppJ1xaC5o >}}
 
 Chef Habitat looks for Supervisor configuration settings in four locations and applies them in order, which means that settings defined in later locations overwrite earlier ones.
 

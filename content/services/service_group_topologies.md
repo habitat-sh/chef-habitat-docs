@@ -75,7 +75,7 @@ it's a leader or a follower:
 This logic says that if this peer is a follower, it will become a read replica of
 the IP and port of service leader (`svc.leader`), which is found by service
 discovery through the ring. However, if this peer is the leader, the entire list
-of statements here evaluate to empty text -- meaning that the peer starts up as
+of statements here evaluate to empty text---meaning that the peer starts up as
 the leader.
 
 ## Robustness, Network Boundaries and Recovering from Partitions

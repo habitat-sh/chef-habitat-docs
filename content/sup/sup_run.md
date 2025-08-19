@@ -40,7 +40,7 @@ You can start up a Supervisor with or without specifying a package identifier. I
 
 In most cases, you should always start up a Supervisor explicitly, using `hab sup run` _without_ a package identifier argument, _especially_ in production environments.
 
-The `<PACKAGE_IDENTIFIER>` invocation mixes Supervisor-specific and service-specific options, it can sometimes be difficult to reason about, depending on how complex your usecase is. As a result, that form should be limited to constrained container-based usecases, and perhaps local simple testing or evaluation scenarios. Additionally, since a Supervisor has state -- the services it's manages -- you may end up starting additional services, depending on what you've done in the past on the same machine. That is, `hab sup run <PACKAGE_IDENTIFIER>` doesn't necessarily run only this single service.
+The `<PACKAGE_IDENTIFIER>` invocation mixes Supervisor-specific and service-specific options, it can sometimes be difficult to reason about, depending on how complex your usecase is. As a result, that form should be limited to constrained container-based usecases, and perhaps local simple testing or evaluation scenarios. Additionally, since a Supervisor has state---the services it's manages---you may end up starting additional services, depending on what you've done in the past on the same machine. That is, `hab sup run <PACKAGE_IDENTIFIER>` doesn't necessarily run only this single service.
 
 For all other uses, it's far preferable to start a Supervisor using the identifier-less `hab sup run` invocation, and manage the population of services it runs using `hab svc load` and other commands.
 

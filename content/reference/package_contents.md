@@ -16,7 +16,7 @@ Packages are installed in the `/hab/pkgs/` directory, and then further organized
 ## Contents of a Chef Habitat package
 
 BUILD_DEPS
-: Fully-qualified package identifiers of any build dependencies that your package depends on. These are listed in the root plan.sh file of your plan directory.
+: Fully-qualified package identifiers of any build dependencies that your package depends on. These are listed in the root `plan.sh` file of your plan directory.
 
 BUILD_TDEPS
 : Fully-qualified package identifiers of any runtime dependencies that the build dependencies for your project depend on. This is essentially a flattened tree of dependencies all the way up to the root dependency (`linux-headers` in most cases).
@@ -49,7 +49,7 @@ LD_RUN_PATH
 : Additional switches to be passed to the compiler when this package is used as a build dependency.
 
 MANIFEST
-: A file containing package information, such as checksum, maintainer, build variables, and other metadata specified in plan.sh as well as the contents of the plan.sh itself.
+: A file containing package information, such as checksum, maintainer, build variables, and other metadata specified in `plan.sh` as well as the contents of the `plan.sh` itself.
 
 PATH
 : A file that contains all directories in the package which contain program binaries. The directories are separated with the target platform's path separator character (either `:` or `;`).

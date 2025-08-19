@@ -99,13 +99,9 @@ https://packages.chef.io/release-notes/habitat/<VERSION>.md
 
 We love getting feedback, questions, or comments.
 
-**Email**
-
 Send an email to <Chef-Docs@progress.com> for documentation bugs,
 ideas, thoughts, and suggestions. This email address isn't a
 support email address. If you need support, contact [Chef Support](https://www.chef.io/support/).
-
-**GitHub issues**
 
 Submit an issue to the [Habitat repo](https://github.com/habitat-sh/chef-habitat-docs/issues)
 for "important" documentation bugs that may need visibility among a larger group,

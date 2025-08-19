@@ -18,13 +18,13 @@ The _Origin Settings_ tab contains:
 
 Everyone with origin membership can see the _Settings_ tab, but only origin administrators and owners can add, update, or delete settings content.
 
-| Settings Actions | Read-Only | Member | Maintainer | Administrator | Owner |
-|---------|-------|-------|-------|-------|-------|
-| View settings | Y | Y | Y | Y | Y |
-| Add/Update/Delete settings | N | N | N | Y | Y |
-| **Origin Secrets Actions** |
-| View secrets | N | N | Y | Y | Y |
-| Add/Update/Delete secrets | N | N | N | Y | Y |
+| Settings Actions           | Read-Only | Member | Maintainer | Administrator | Owner |
+| -------------------------- | --------- | ------ | ---------- | ------------- | ----- |
+| View settings              | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete settings | N         | N      | N          | Y             | Y     |
+| **Origin Secrets Actions** |           |        |            |               |       |
+| View secrets               | N         | N      | Y          | Y             | Y     |
+| Add/Update/Delete secrets  | N         | N      | N          | Y             | Y     |
 
 ![The administrator or owner's view of the origin settings tab with a public default package setting and a saved origin secret](/images/habitat/origin-secrets.png)
 

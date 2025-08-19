@@ -71,8 +71,7 @@ When submitting a configuration update to a service group, you must specify the 
 - the version number of the configuration update
 - the new configuration
 
-Configuration updates can be either TOML passed into stdin, or passed in a TOML
-file that's referenced in [`hab config apply`]({{< relref "habitat_cli#hab-config-apply" >}}).
+Configuration updates can be either TOML passed into stdin, or passed in a TOML file that's referenced in [`hab config apply`]({{< relref "habitat_cli#hab-config-apply" >}}).
 
 {{< note >}}
 
@@ -82,13 +81,13 @@ Configuration updates for service groups must be versioned. The version number m
 
 Here are some examples of how to apply configuration changes through both the shell and through a TOML file.
 
-**Stdin**
+Using standard input:
 
 ```bash
 echo 'buffersize = 16384' | hab config apply --remote-sup=hab1.mycompany.com myapp.prod 1
 ```
 
-**TOML file**
+Using a TOML file:
 
 ```bash
 hab config apply --remote-sup=hab1.mycompany.com myapp.prod 1 /tmp/newconfig.toml

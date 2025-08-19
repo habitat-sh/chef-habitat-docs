@@ -27,7 +27,7 @@ pkg_exports=(
 )
 ```
 
-Note that Powershell plans use hashtables where Bash plans use associative arrays. A `plan.ps1` would declare its exports as:
+Note that PowerShell plans use hashtables where Bash plans use associative arrays. A `plan.ps1` would declare its exports as:
 
 ```powershell
 $pkg_exports=@{

@@ -42,7 +42,7 @@ pkg_bin_dirs=(bin)
 
 {{< note >}}
 
-On Windows we would create a `plan.ps1` file instead. All the variable names are the same but we use Powershell syntax so, for example, `pkg_deps=(core/glibc core/readline)` becomes `$pkg_deps=@("core/glibc", "core/readline")`.
+On Windows we would create a `plan.ps1` file instead. All the variable names are the same but we use PowerShell syntax so, for example, `pkg_deps=(core/glibc core/readline)` becomes `$pkg_deps=@("core/glibc", "core/readline")`.
 
 {{< /note >}}
 
@@ -68,7 +68,7 @@ After the build script completes, you can then upload your package to Chef Habit
 
 {{< note >}}
 
-The plan.sh or plan.ps1 file is the only required file to create a package. Configuration files, runtime hooks, and other source files are optional.
+The `plan.sh` or `plan.ps1` file is the only required file to create a package. Configuration files, runtime hooks, and other source files are optional.
 
 {{< /note >}}
 
@@ -82,7 +82,7 @@ All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. T
 
 3. The easiest way to create a plan is to use the `hab plan init` subcommand. This subcommand will create a directory, known as the plan context, that contains your plan file and any runtime hooks and/or templated configuration data.
 
-    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It will create a new `habitat` sub-directory with a plan.sh (or plan.ps1 on Windows) based on the name of the parent directory, and include a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
+    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It will create a new `habitat` sub-directory with a `plan.sh` (or `plan.ps1` on Windows) based on the name of the parent directory, and include a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
 
     ```bash
     cd /path/to/<reponame>
@@ -190,9 +190,9 @@ Because all arrays in the pkg_* settings are shell arrays, they're whitespace de
 
 #### Download and Unpack Your Source Files
 
-Add in the `pkg_source` value that points to where your source files are located at. Any `wget` url will work; however, unless you're downloading a tarball from a public endpoint, you may need to modify how you download your source files and where in your plan.sh you perform the download operation.
+Add in the `pkg_source` value that points to where your source files are located at. Any `wget` url will work; however, unless you're downloading a tarball from a public endpoint, you may need to modify how you download your source files and where in your `plan.sh` you perform the download operation.
 
-Chef Habitat supports retrieving source files from [GitHub](https://github.com). When cloning from GitHub, it's recommended to use https URIs because they're proxy friendly, whereas `git@github` or `git://` aren't. To download the source from a GitHub repository, implement `do_download()` in your plan.sh (or `Invoke-Download` in a plan.ps1) and add a reference the `core/git` package as a build dependency. Because Chef Habitat doesn't contain a system-wide CA cert bundle, you must use the `core/cacerts` package and export the `GIT_SSL_CAINFO` environment variable to point the `core/cacerts` package on Linux. Here's an example of how to do this in the `do_download()` callback.
+Chef Habitat supports retrieving source files from [GitHub](https://github.com). When cloning from GitHub, it's recommended to use https URIs because they're proxy friendly, whereas `git@github` or `git://` aren't. To download the source from a GitHub repository, implement `do_download()` in your `plan.sh` (or `Invoke-Download` in a plan.ps1) and add a reference the `core/git` package as a build dependency. Because Chef Habitat doesn't contain a system-wide CA cert bundle, you must use the `core/cacerts` package and export the `GIT_SSL_CAINFO` environment variable to point the `core/cacerts` package on Linux. Here's an example of how to do this in the `do_download()` callback.
 
 ```bash
 do_download() {
@@ -208,7 +208,7 @@ do_download() {
 }
 ```
 
-The plan.ps1 equivalent would be:
+The `plan.ps1` equivalent would be:
 
 ```powershell
 Function Invoke-Download {
@@ -298,7 +298,7 @@ Here the plan is building an application written in Rust, so it overrides `Invok
 
 {{< note >}}
 
-Powershell plan function names differ from their Bash counterparts in that they use the `Invoke` `verb` instead of the `do_` prefix.
+PowerShell plan function names differ from their Bash counterparts in that they use the `Invoke` `verb` instead of the `do_` prefix.
 
 {{< /note >}}
 

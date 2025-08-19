@@ -14,18 +14,18 @@ The following helper functions can be useful in your plan to help you build your
 
 {{< note >}}
 
-Most of the following helper functions aren't available in Powershell plans (`plan.ps1`). However in most cases, the standard Powershell cmdlets provide the same functionality. For example: use `Resolve-Path` instead of `abspath` or `Get-Command` instead of `exists`.
+Most of the following helper functions aren't available in PowerShell plans (`plan.ps1`). However in most cases, the standard PowerShell cmdlets provide the same functionality. For example: use `Resolve-Path` instead of `abspath` or `Get-Command` instead of `exists`.
 
 {{< /note >}}
 
 attach()
 : `plan.sh` only. Attaches your script to an interactive debugging session, which lets you check the state of variables, call arbitrary functions, and turn on higher levels of logging by using the `set -x` command and switch.
 
-  To use attach, add `attach` to any callback or part of your plan.sh file and the debugging session with start up when hab-plan-build comes to that part in the file.
+  To use attach, add `attach` to any callback or part of your `plan.sh` file and the debugging session with start up when hab-plan-build comes to that part in the file.
 
 {{< note >}}
 
-Use the native Powershell cmdlet `Set-PSBreakpoint` for debugging plan.ps1 functions. You can set its `-Command` parameter to any build phase function.
+Use the native PowerShell cmdlet `Set-PSBreakpoint` for debugging `plan.ps1` functions. You can set its `-Command` parameter to any build phase function.
 
 {{< /note >}}
 

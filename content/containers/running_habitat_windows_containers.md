@@ -26,7 +26,7 @@ These containers, like their Linux counterparts, share the host's kernel. You ca
 
 ### Hyper-V Containers
 
-Windows Hyper-V containers run inside of a very minimal Hyper-V VM. As a result, they don't share the host's kernel and offer a higher level of security and isolation. The cost of this isolation is that it will take longer for the container to start - perhaps a noticeable delay. Also be aware that the VM is provisioned with a default 1 GB limit of memory. If your service requires more than a gigabyte of memory, you can use the `--memory` argument with `docker run` and pass a larger limit.
+Windows Hyper-V containers run inside of a very minimal Hyper-V VM. As a result, they don't share the host's kernel and offer a higher level of security and isolation. The cost of this isolation is that it will take longer for the container to start---perhaps a noticeable delay. Also be aware that the VM is provisioned with a default 1 GB limit of memory. If your service requires more than a gigabyte of memory, you can use the `--memory` argument with `docker run` and pass a larger limit.
 
 ```bash
 docker run --memory 2GB -it core/mysql

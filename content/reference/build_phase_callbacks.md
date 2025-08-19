@@ -15,7 +15,7 @@ These callbacks are listed in the order that they executed by the package build 
 
 {{< note >}}
 
-Bash callbacks are prefixed with `do_` and use an underscore convention. Powershell plans prefix callbacks with `Invoke-` and use a PascalCase convention.
+Bash callbacks are prefixed with `do_` and use an underscore convention. PowerShell plans prefix callbacks with `Invoke-` and use a PascalCase convention.
 
 {{< /note >}}
 
@@ -75,7 +75,7 @@ To add or modify your environment variables, there are special functions to call
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
-In Powershell plans, if your variable contains values that are file paths pointing inside the Chef Habitat `/hab` directory, you can use the `-IsPath` flag to ensure that the path remains portable accross different Chef Habitat environments. For example in a local (non-Docker) Windows Studio, the following line:
+In PowerShell plans, if your variable contains values that are file paths pointing inside the Chef Habitat `/hab` directory, you can use the `-IsPath` flag to ensure that the path remains portable accross different Chef Habitat environments. For example in a local (non-Docker) Windows Studio, the following line:
 
 ```powershell
 Set-RuntimeEnv SSL_CERT_FILE "$(Get-HabPackagePath cacerts)/ssl/cert.pem"
