@@ -17,7 +17,7 @@ Because Chef Habitat is an eventually-consistent distributed system, the role of
 
 Services grouped using a leader need to have a minimum of three supervisors in order to break ties. Don't run the service group with an even number of members. Otherwise, in the event of a network partition with equal members on each side, both sides will elect a new leader, causing a full split-brain from which the algorithm can't recover. Supervisors in a service group will warn you if you are using leader election and have an even number of supervisors.
 
-### Protocol for electing a leader
+## Protocol for electing a leader
 
 When a service group starts in a leader topology, it will wait until there are sufficient members to form a quorum (at least three). At this point, an election cycle can happen. Each Supervisor injects an election rumor into ring, targeted at the service group, with the _exact same_ rumor, which demands an election and insists that the peer itself is the leader. This algorithm is known as [Bully](https://en.wikipedia.org/wiki/Bully_algorithm).
 
@@ -25,6 +25,6 @@ Every peer that receives this rumor does a simple lexicographic comparison of it
 
 An election ends when a candidate peer X gets a rumor back from the ring saying that it (X) is the winner, with all members voting. At this point, it sends out a rumor saying it's the declared winner, and the election cycle ends.
 
-### Related reading
+## Related reading
 
-* For more information about the Bully algorithm, see [Elections in a Distributed Computing System](http://dl.acm.org/citation.cfm?id=1309451) by Héctor García-Molina.
+- For more information about the bully algorithm, see [Elections in a Distributed Computing System](http://dl.acm.org/citation.cfm?id=1309451) by Héctor García-Molina.

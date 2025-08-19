@@ -1,10 +1,11 @@
-# Habitat Documentation
+<!-- markdownlint-disable MD002 -->
+# Chef Habitat documentation
 
-The Habitat Documentation is deployed on <https://docs.chef.io/habitat/>.
+The Habitat documentation is deployed on <https://docs.chef.io/habitat/>.
 
-## The Fastest Way to Contribute
+## The fastest way to contribute
 
-### Update Habitat Documentation
+### Update the Chef Habitat documentation
 
 The fastest way to change the documentation is to edit a page on the
 GitHub website using the GitHub UI.
