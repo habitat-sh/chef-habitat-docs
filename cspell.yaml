@@ -6,13 +6,13 @@ dictionaries:
   - habitat-docs
 dictionaryDefinitions:
   - name: chef
-    path: https: //raw.githubusercontent.com/chef/chef_dictionary/main/chef.txt
+    path: https://raw.githubusercontent.com/chef/chef_dictionary/main/chef.txt
     description: Custom Chef Dictionary
   - name: docs
-    path: https: //raw.githubusercontent.com/chef/chef_dictionary/main/docs.txt
+    path: https://raw.githubusercontent.com/chef/chef_dictionary/main/docs.txt
     description: Custom Docs Dictionary
   - name: habitat-docs
-    path: https: //raw.githubusercontent.com/chef/chef_dictionary/refs/heads/main/hab-docs.txt
+    path: https://raw.githubusercontent.com/chef/chef_dictionary/main/hab-docs.txt
     description: Custom Habitat Docs Dictionary
 flagWords:
   - hte
@@ -20,12 +20,12 @@ ignorePaths:
   - "**/*.yml"
   - "**/*.toml"
   - "**/*.svg"
-  - archetypes /*.md
+  - archetypes/**/*
   - _vendor/**/*
   - cspell.json
   - public/**
-  - chef-web-docs
   - resources/**
+  - node_modules/**/*
 ignoreRegExpList:
   - /'s\b/
   - /'d\b/

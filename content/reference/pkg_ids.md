@@ -18,10 +18,17 @@ When referring to Chef Habitat artifacts from either Builder or the Studio, you 
 
 ## Package Identifier Components
 
-- `Origin`: A name that defines a set of related Chef Habitat packages and the artifacts they generate. For example, `sample`, `core`, or `company`.
-- `Name`: The name of the application or service. For example, `postgres`.
-- `Version`: The version number designation by the application or service authos. For example, `3.1.1`, or `20160118`.
-- `Release`: The unique Chef Habitat id for a given version based on the timestamp pattern _YYYYMMDDhhmmss_. For example, "20160204220358" would be a Chef Habitat artifact built at 22:03:58 on February 4th, 2016.
+`origin`
+: A name that defines a set of related Chef Habitat packages and the artifacts they generate. For example, `sample`, `core`, or `company_name`.
+
+`Name`
+: The name of the application or service. For example, `postgres`.
+
+`Version`
+: The version number defined by the application or service authors. For example, `3.1.1`, or `20160118`.
+
+`Release`
+: The unique Chef Habitat id for a given version based on the timestamp pattern _YYYYMMDDhhmmss_. For example,`20160204220358` would be a Chef Habitat artifact built at 22:03:58 on February 4th, 2016.
 
 ## Package Lookup
 

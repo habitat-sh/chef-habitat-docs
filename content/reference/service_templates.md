@@ -135,7 +135,7 @@ Represents a member of a service group
 | pkg | [package_identifier](#package_identifier) | The identifier of the release the member is running |
 | pkg_incarnation | integer | Incarnation number associated with this package update |
 | package | string | The package identifier |
-| sys | object | An abbrewithted version of the top-level {{sys}} object, containing networking information for the member. |
+| sys | object | An abbreviated version of the top-level {{sys}} object, containing networking information for the member. |
 | cfg | object | The configuration the member is currently exporting. This is constrained by what's defined in `pkg_exports`, where the values are replaced with the current values (for example, taking into account things like user.toml, gossiped configuration values, etc.) |
 | persistent | boolean | A misspelling of `permanent`; indicates whether a member is a permanent peer or not |
 | service | string | The name of the service. If the service is running from the package `core/redis`, the value will be `redis`. |

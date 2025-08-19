@@ -74,7 +74,7 @@ If your host machine is running Linux, do the following to run your packages for
 
 You may use the same `hab run` command on Windows but omit the `sudo` command. However, you should be inside of an elevated shell. Also, note that the `hab` user isn't necessary on Windows. If it's absent, services will run under the identity of the current user. If a `hab` user is present, you will need to provide its password with the`--password` argument:
 
-```bash
+```powershell
 PS C:\> $cred = Get-Credential hab
 PS C:\> hab sup run yourorigin/yourname --password $cred.GetNetworkCredential().Password
 ```
