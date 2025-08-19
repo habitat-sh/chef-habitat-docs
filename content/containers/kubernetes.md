@@ -10,7 +10,7 @@ description = "Export your Chef Habitat package as a Docker and run it on a Kube
     weight = 30
 +++
 
-[Kubernetes](https://kubernetes.io/) is an open source container cluster manager that is available as a stand-alone platform or embedded in several distributed platforms including [Google's Container Engine](https://cloud.google.com/container-engine/), [AWS Elastic Kubernetes Service](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/), and [Red Hat OpenShift](https://openshift.com/).
+[Kubernetes](https://kubernetes.io/) is an open source container cluster manager that's available as a stand-alone platform or embedded in several distributed platforms including [Google's Container Engine](https://cloud.google.com/container-engine/), [AWS Elastic Kubernetes Service](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/), and [Red Hat OpenShift](https://openshift.com/).
 Chef Habitat and Kubernetes are complementary. While Kubernetes provides a platform for deployment, scaling, and operations of application containers across clusters of hosts, Chef Habitat manages the build pipeline and lifecycle of those application containers.
 
 ## Chef Habitat on Kubernetes
@@ -47,6 +47,7 @@ spec:
 ```
 
 This service definition creates a virtual IP (VIP), opening access to the Chef Habitat service that runs on the pod.
+
 - The habitat gossip port (9638/UDP) listener
 - The habitat http-gateway (9631/TCP) listener
 - makes service name available in DNS (as `hab-bastion` or `hab-bastion.namespace-name`, etc) and discoverable by any pod
@@ -62,7 +63,7 @@ spec:
         fsGroup: 42
 ```
 
-This section sets the group ownership for the persistent volume mount point so the Habitat Supervisor can write to it.  The Habitat user (`hab`) by default has the uid `42` and the gid `42`.
+This section sets the group ownership for the persistent volume mount point so the Habitat Supervisor can write to it. The Habitat user (`hab`) by default has the uid `42` and the gid `42`.
 
 ```yaml
       containers:
@@ -106,7 +107,7 @@ Resource requests are important because they give instructions to the Kubernetes
           periodSeconds: 20
 ```
 
-The `livenessProbe` tells Kubernetes if the pod is healthy or not.  If not, the pod gets restarted.
+The `livenessProbe` tells Kubernetes if the pod is healthy or not. If not, the pod gets restarted.
 The `readinessProbe` signals to Kubernetes that the pod has started up successfully.
 
 ```yaml
@@ -186,13 +187,13 @@ spec:
 If your packages don't require communication with the Chef Habitat Supervisor ring, such as binds, secrets, etc., then you can execute your packages directly on the cluster. You can deploy Chef Habitat packages exported as containers to Kubernetes with the [`kubectl` command](http://kubernetes.io/docs/user-guide/pods/single-container/). Using the [Docker exporter]({{< relref "pkg_exports#exporting-to-docker" >}}) to create a containerized application, you can launch the container like this example:
 
 ```shell
-$ kubectl run mytutorial --image=myorigin/mytutorial --port=8080
+kubectl run mytutorial --image=myorigin/mytutorial --port=8080
 ```
 
 Assuming you're using the Docker image pulled from `myorigin/mytutorial`, port 8080 on the container should be accessible. Pass networking ports exposed by Chef Habitat with `kubectl run` as `--port` options. In this example, the `kubectl get` command is:
 
 ```shell
-$ kubectl get pods -l run=mytutorial
+kubectl get pods -l run=mytutorial
 ```
 
 ## Docker and ACI
@@ -205,5 +206,5 @@ Kubernetes supports passing [environment variables](https://kubernetes.io/docs/u
 
 ## Related Reading
 
-* [Export a Chef Habitat package]({{< relref "pkg_exports" >}})
-* [Chef Habitat CLI]({{< relref "habitat_cli" >}})
+- [Export a Chef Habitat package]({{< relref "pkg_exports" >}})
+- [Chef Habitat CLI]({{< relref "habitat_cli" >}})

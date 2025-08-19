@@ -5,20 +5,20 @@ draft = false
 
 [menu.plans]
     title = "Plan Quickstart"
-    identifier = "plans/plan-quickstart Plan Quickstart"
+    identifier = "plans/plan-quickstart plan Quickstart"
     parent = "plans"
     weight = 20
 +++
 
 All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file will be used by the `hab-plan-build` command to build your package. To create a plan, do the following:
 
-1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it per the instructions on the download page.
+1. If you haven't done so already, [download the `hab` CLI]({{< relref "/install/" >}}) and install it according to the instructions on the download page.
 
 2. Run `hab cli setup` and follow the instructions in the setup script.
 
 3. The easiest way to create a plan is to use the `hab plan init` subcommand. This subcommand will create a directory, known as the plan context, that contains your plan file and any runtime hooks and/or templated configuration data.
 
-    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It will create a new `habitat` sub-directory with a plan.sh (or plan.ps1 on Windows) based on the name of the parent directory, and include a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
+    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It will create a new `habitat` sub-directory with a `plan.sh` (or `plan.ps1` on Windows) based on the name of the parent directory, and include a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
 
     ```bash
     cd /path/to/<reponame>
@@ -41,4 +41,3 @@ All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. T
 4. Now that you have stubbed out your plan file in your plan context, open it and begin modifying it to suit your needs.
 
 When writing a plan, it's important to understand that you are defining both how the package is built and the actions Chef Habitat will take when the Supervisor starts and manages the child processes in the package. The following sections explain what you need to do for each phase.
-

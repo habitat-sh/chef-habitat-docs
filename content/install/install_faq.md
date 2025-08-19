@@ -25,17 +25,17 @@ A: We publish compiled packages for OSX, Linux, and Windows. `hab` has a require
 
 A: We've got you covered! The script we provide for doing curl-bash installations will allow you to specify a `-v` flag to pull down a specific version of Chef Habitat, eg:
 
-```
+```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
     | sudo bash -s -- -v 0.56.0
 ```
 
 **Q: Oh! A curl bash I (love||hate) those.**
 
-A: Indeed they are divisive, we know, that's why we provide a few different ways for you to download. If you'd like to take a look at the script before running it, you can find it in [the core Chef Habitat repo](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.sh).
+A: Indeed they're divisive, we know, that's why we provide a few different ways for you to download. If you'd like to take a look at the script before running it, you can find it in [the core Chef Habitat repo](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.sh).
 
 If you're staunchly in the anti-curl-bash camp, you can get the latest packages from the [download links]({{< relref "/install/" >}}) listed previously.
 
 **Q: How do I install `hab` across my server fleet?**
 
-A: For the most part, we leave that up to you. You could just use the aforementioned curl-bash with your provisioner of choice. If your app was dockerized with Chef Habitat then you won't even need to ask this question, because you'll have everything you need inside your container. We are working on first class Mesosphere DC/OS, and Cloud Foundry integrations - which you can keep up to date on in our [Apache Mesos and DC/OS documentation]({{< relref "mesos_dcos" >}}) and [blog](https://www.chef.io/blog).
+A: For the most part, we leave that up to you. You could just use the aforementioned curl-bash with your provisioner of choice. If your app was dockerized with Chef Habitat then you won't even need to ask this question, because you'll have everything you need inside your container. We're working on first class Mesosphere DC/OS, and Cloud Foundry integrations---which you can keep up to date on in our [Apache Mesos and DC/OS documentation]({{< relref "mesos_dcos" >}}) and [blog](https://www.chef.io/blog).

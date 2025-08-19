@@ -15,7 +15,7 @@ To assist in creating new packages, or modifying existing ones, the Supervisor h
 Build the plan as you normally would. When you start the Supervisor, pass the name of the directory with your plan inside it:
 
 ```bash
-$ hab sup run core/redis --config-from /src
+hab sup run core/redis --config-from /src
 ```
 
 The Supervisor will now take its configuration and hooks from /src, rather than from the package you previously built. When the configuration is as you want it, do a final rebuild of the package.

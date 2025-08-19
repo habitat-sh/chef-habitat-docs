@@ -13,16 +13,20 @@ description = "Define package buildtime actions with helper functions."
 The following helper functions can be useful in your plan to help you build your package correctly. `Attach()` specifically is to help with debugging - the other helper functions are to help you in building your package.
 
 {{< note >}}
-Most of the following helper functions are not available in Powershell plans (`plan.ps1`). However in most cases, the standard Powershell cmdlets provide the same functionality. For example: use `Resolve-Path` instead of `abspath` or `Get-Command` instead of `exists`.
+
+Most of the following helper functions aren't available in PowerShell plans (`plan.ps1`). However in most cases, the standard PowerShell cmdlets provide the same functionality. For example: use `Resolve-Path` instead of `abspath` or `Get-Command` instead of `exists`.
+
 {{< /note >}}
 
 attach()
 : `plan.sh` only. Attaches your script to an interactive debugging session, which lets you check the state of variables, call arbitrary functions, and turn on higher levels of logging by using the `set -x` command and switch.
 
-  To use attach, add `attach` to any callback or part of your plan.sh file and the debugging session with start up when hab-plan-build comes to that part in the file.
+  To use attach, add `attach` to any callback or part of your `plan.sh` file and the debugging session with start up when hab-plan-build comes to that part in the file.
 
 {{< note >}}
-Use the native Powershell cmdlet `Set-PSBreakpoint` for debugging plan.ps1 functions. You can set its `-Command` parameter to any build phase function.
+
+Use the native PowerShell cmdlet `Set-PSBreakpoint` for debugging `plan.ps1` functions. You can set its `-Command` parameter to any build phase function.
+
 {{< /note >}}
 
 download_file()
@@ -35,7 +39,7 @@ download_file <source_url> <local_file> [<shasum>]
 
 If an existing file is present and the third argument is set with a shasum
 digest, the file will be checked to see if it's valid. If so, the function
-ends early and returns 0. Otherwise, the shasums do not match so the
+ends early and returns 0. Otherwise, the shasums don't match so the
 file-on-disk is removed and a normal download proceeds as though no previous
 file existed. This is designed to restart an interrupted download.
 
@@ -77,7 +81,7 @@ _perl_path="$(pkg_path_for core/perl)/bin/perl"
 ```
 
 fix_interpreter()
-: `plan.sh` only. Edits the `#!` shebang of the target file in-place. This is useful for changing hard-coded paths defined by your source files to the equivalent path in a Chef Habitat package. You must include the required package that provides the expected path for the shebang in pkg_deps. This function performs a greedy match against the specified interpreter in the target file(s).
+: `plan.sh` only. Edits the `#!` shebang of the target file in-place. This is useful for changing hard-coded paths defined by your source files to the equivalent path in a Chef Habitat package. You must include the required package that provides the expected path for the shebang in pkg_deps. This function performs a greedy match against the specified interpreter in the target files.
 
 To use this function in your plan, you must specify the following arguments:
 
@@ -106,13 +110,13 @@ The following shows how to call pkg_interpreter_for with the package and interpr
 pkg_interpreter_for core/coreutils bin/env
 ```
 
-This function will return 0 if the specified package and interpreter were found, and 1 if the package could not be found or the interpreter is not specified for that package.
+This function will return 0 if the specified package and interpreter were found, and 1 if the package couldn't be found or the interpreter isn't specified for that package.
 
 pkg_version()
-: An optional way to determine the value for `$pkg_version`. The function must print the computed version string to standard output and will be called when the Plan author invokes the `update_pkg_version()` helper in a `plan.sh` or `Set-PkgVersion` in a `plan.ps1`.
+: An optional way to determine the value for `$pkg_version`. The function must print the computed version string to standard output and will be called when the plan author invokes the `update_pkg_version()` helper in a `plan.sh` or `Set-PkgVersion` in a `plan.ps1`.
 
 update\_pkg\_version()/Set-PkgVersion
-: Updates the value for `$pkg_version` by calling a Plan author-provided `pkg_version()` function. This function must be explicitly called in a Plan in or after the `do_before()`/`Invoke-Before` build phase but before the `do_prepare()`/`Invoke-Prepare` build phase. The `$pkg_version` variable will be updated and any other relevant variables will be recomputed. The following examples show how to use these functions to set a dynamic version number.
+: Updates the value for `$pkg_version` by calling a plan author-provided `pkg_version()` function. This function must be explicitly called in a plan in or after the `do_before()`/`Invoke-Before` build phase but before the `do_prepare()`/`Invoke-Prepare` build phase. The `$pkg_version` variable will be updated and any other relevant variables will be recomputed. The following examples show how to use these functions to set a dynamic version number.
 
 This plan concatenates a static file in the source root of the
 project to determine the version in the `before` phase:
@@ -124,6 +128,7 @@ project to determine the version in the `before` phase:
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+
   ```bash
   pkg_version() {
   cat "$SRC_PATH/version.txt"
@@ -134,9 +139,11 @@ project to determine the version in the `before` phase:
   update_pkg_version
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+
   ```powershell
   function pkg_version {
   Get-Content "$SRC_PATH/version.txt"
@@ -147,6 +154,7 @@ project to determine the version in the `before` phase:
   Set-PkgVersion
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -160,6 +168,7 @@ As the downloaded file is required before running the version logic, this helper
 
 {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
   {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+
   ```bash
   pkg_version() {
   local build_date
@@ -177,9 +186,11 @@ As the downloaded file is required before running the version logic, this helper
   update_pkg_version
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 
   {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+
   ```powershell
   function pkg_version {
     # Extract the build date of the certificates file
@@ -198,6 +209,7 @@ As the downloaded file is required before running the version logic, this helper
     Set-PkgVersion
   }
   ```
+
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
@@ -205,7 +217,7 @@ abspath()
 : `plan.sh` only. Return the absolute path for a path, which might be absolute or relative.
 
 exists()
-: `plan.sh` only. Checks that the command exists. Returns 0 if it does, 1 if it does not.
+: `plan.sh` only. Checks that the command exists. Returns 0 if it does, 1 if it doesn't.
 
 build_line()/Write-BuildLine
 : Print a line of build output. Takes a string as its only argument.

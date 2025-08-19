@@ -20,7 +20,7 @@ For help with Chef Habitat and these patterns, ask:
 
 ## Kubernetes Bastion Ring Pattern
 
-A _bastion ring_ is a robust type of Supervisor network in which a small number of Supervisors are set up as permanent peers and that are dedicated to anchoring Supervisor network communication. These Supervisors are designated solely for communication between Supervisor and _do not run services_. These solely to anchor the entire Supervisor network. See [Supervisor Networks]({{< relref "sup_networks" >}}) for more information. The following examples demonstrate running a bastion ring in Kubernetes.
+A _bastion ring_ is a robust type of Supervisor network in which a small number of Supervisors are set up as permanent peers and that are dedicated to anchoring Supervisor network communication. These Supervisors are designated solely for communication between Supervisor and _don't run services_. These solely to anchor the entire Supervisor network. See [Supervisor Networks]({{< relref "sup_networks" >}}) for more information. The following examples demonstrate running a bastion ring in Kubernetes.
 
 ### Kubernetes Bastion Ring Plan
 
@@ -278,7 +278,7 @@ packages = [
 ```
 
 This format allows us to specify multiple subsets of packages from different channels and for different architectures.
-Here, we are pulling down all the core service packages, which run on Linux, but are also pulling down the platform-specific versions of the
+Here, we're pulling down all the core service packages, which run on Linux, but are also pulling down the platform-specific versions of the
 `habitat/builder-worker` package.
 Without this format, we would have to invoke `hab pkg download` multiple times with different parameters.
 The file allows us to capture our full intention in one place.

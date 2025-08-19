@@ -10,7 +10,7 @@ description = "Running Chef Habitat Windows Containers"
     weight = 80
 +++
 
-Exported Windows images use `microsoft/windowsservercore` as their base. This is the equivalent of a minimal Windows Server 2016 Core install. So you should not expect non default features and roles to be enabled such as IIS or Active Directory. Consider using an `init` hook to install any features needed by your Chef Habitat service.
+Exported Windows images use `microsoft/windowsservercore` as their base. This is the equivalent of a minimal Windows Server 2016 Core install, so you shouldn't expect non default features and roles to be enabled such as IIS or Active Directory. Consider using an `init` hook to install any features needed by your Chef Habitat service.
 
 ## Container Pull and Startup Time
 
@@ -18,7 +18,7 @@ The `microsoft/windowsservercore` image is approximately 5GB. Due to this large 
 
 ## Windows Containers and Host Kernel Isolation
 
-There are two types of Windows containers and each runs under a different level of kernel isolation.
+The two types of Windows containers run under a different level of kernel isolation.
 
 ### Windows Server Containers
 
@@ -26,7 +26,7 @@ These containers, like their Linux counterparts, share the host's kernel. You ca
 
 ### Hyper-V Containers
 
-Windows Hyper-V containers run inside of a very minimal Hyper-V VM. As a result, they do not share the host's kernel and offer a higher level of security and isolation. The cost of this isolation is that it will take longer for the container to start - perhaps a noticeable delay. Also be aware that the VM is provisioned with a default 1 GB limit of memory. If your service requires more than a gigabyte of memory, you can use the `--memory` argument with `docker run` and pass a larger limit.
+Windows Hyper-V containers run inside of a very minimal Hyper-V VM. As a result, they don't share the host's kernel and offer a higher level of security and isolation. The cost of this isolation is that it will take longer for the container to start---perhaps a noticeable delay. Also be aware that the VM is provisioned with a default 1 GB limit of memory. If your service requires more than a gigabyte of memory, you can use the `--memory` argument with `docker run` and pass a larger limit.
 
 ```bash
 docker run --memory 2GB -it core/mysql
@@ -40,4 +40,4 @@ docker run --isolation hyperv -it core/mysql
 
 ## Host Loopback Network
 
-A common container pattern is to forward the container port to a local port and then access the container application by accessing `localhost` on the forwarded port. With Windows containers, published ports cannot be accessed using `localhost`. You will instead need to use the IP address of the host or the IP of the individual container to access the application's endpoint.
+A common container pattern is to forward the container port to a local port and then access the container application by accessing `localhost` on the forwarded port. With Windows containers, published ports can't be accessed using `localhost`. You will instead need to use the IP address of the host or the IP of the individual container to access the application's endpoint.

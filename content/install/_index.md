@@ -20,13 +20,13 @@ hr
 
 Chef Habitat for Linux requires a 64-bit processor with kernel 2.6.32 or later. On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
 
-Once you have downloaded the package, extract the hab binary with tar to `/usr/local/bin` or add its location to your `PATH` (e.g. `tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1`).
+Once you have downloaded the package, extract the hab binary with tar to `/usr/local/bin` or add its location to your `PATH` (for example `tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1`).
 
 [Download Chef Habitat for Linux](https://www.chef.io/downloads)
 
 ### Install Chef Habitat from the Command Line
 
-Alternatively, you can install Chef Habitat via the command line by downloading and running the installation script:
+Alternatively, you can install Chef Habitat with the command line by downloading and running the installation script:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
@@ -34,7 +34,7 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 ### Install Chef Habitat for Linux Kernel 2.x from the Command Line
 
-Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x.  Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they are upgraded to more recent versions of the Linux kernel.
+Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x. Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they're upgraded to more recent versions of the Linux kernel.
 
 ```bash
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t x86_64-linux-kernel2
@@ -71,7 +71,7 @@ Install Chef Habitat with Chocolatey, by running the following command:
 choco install habitat
 ```
 
-### Install Chef Habitat using a Powershell install script
+### Install Chef Habitat using a PowerShell install script
 
 Alternatively, you can install Chef Habitat by downloading and running the installation script:
 
@@ -80,9 +80,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
-### Installing Habitat for Windows using the dowloaded Chef Habitat package.
+### Installing Habitat for Windows using the dowloaded Chef Habitat package
 
-Downloaded the `hab` CLI, unzip it onto your machine. We suggest unzipping to `C:\habitat`, so that the full path to Chef Habitat is similar to `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`. If you've downloaded a more recent version of Chef Habitat, you'll see a different set of numbers following `hab-`. Replace the package name used in these examples with the filename you see on your computer. Next, add that folder to your `PATH` variable so your computer will know where to find it. Here's how to do that with Powershell:
+Downloaded the `hab` CLI, unzip it onto your machine. We suggest unzipping to `C:\habitat`, so that the full path to Chef Habitat is similar to `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`. If you've downloaded a more recent version of Chef Habitat, you'll see a different set of numbers following `hab-`. Replace the package name used in these examples with the filename you see on your computer. Next, add that folder to your `PATH` variable so your computer will know where to find it. Here's how to do that with PowerShell:
 
 ```powershell
 $env:PATH += ";C:\habitat\hab-0.79.1-20190410221450-x86_64-windows\"

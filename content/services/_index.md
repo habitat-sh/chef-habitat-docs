@@ -15,7 +15,7 @@ A service is a Chef Habitat package running under a Chef Habitat Supervisor.
 
 A service group is a set of one or more running services with a shared configuration
 and topology. If a service is started without explicitly naming the
-group, it is assigned to the default group for the name of that package. For example:
+group, it's assigned to the default group for the name of that package. For example:
 
 - `redis.default`
 - `postgres.financialdb` (possibly running in a cluster)

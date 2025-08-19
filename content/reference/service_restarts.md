@@ -21,8 +21,8 @@ The restart backoff behavior is set by three parameters:
 {{< note >}}
 
 The restart cooldown period is important because it ensures that the supervisor handles potential failures during restart correctly.
-If the cooldown period is not long enough, a slow service may still be restarting after the cooldown period has passed.
-If a service fails during a restart in that scenario, the service will not backoff correctly before the following restart.
+If the cooldown period isn't long enough, a slow service may still be restarting after the cooldown period has passed.
+If a service fails during a restart in that scenario, the service won't backoff correctly before the following restart.
 We recommend setting the restart cooldown period to be at least double your expected startup time to be safe.
 
 {{< /note >}}
@@ -48,7 +48,9 @@ You can also set this behavior using these parameters in the [supervisor configu
 Chef Habitat uses a decorrelated jitter algorithm to determine the backoff period. See [this blog post](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/) for a more in-depth comparison of various backoff algorithms and their efficiency.
 
 {{< note >}}
-There is no way to change the backoff algorithm. However, if you wish to have a simple fixed backoff, set the `service-min-backoff-period` and `service-max-backoff-period` to the same time in seconds.
+
+You can't change the backoff algorithm. However, if you wish to have a simple fixed backoff, set the `service-min-backoff-period` and `service-max-backoff-period` to the same time in seconds.
+
 {{< /note >}}
 
 ## Service Failure Detection
@@ -56,8 +58,8 @@ There is no way to change the backoff algorithm. However, if you wish to have a 
 Adding restart backoff behavior requires the ability to detect when a service has successfully started to reset the backoff period.
 Unfortunately, there is no clean way to differentiate between a service failure and a service simply taking too long to startup. A health-check hook would enable the detection of successful service startups; however, if a health check is absent, there is no way to know if the service started up. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.
 
-We attempt to solve this problem by using a restart cooldown period. The cooldown period is a continuous duration of time without a restart, after which we assume a service has started up successfully. It is important to configure this correctly to ensure the backoff period does not get reset prematurely.
-We recommend setting the `service-restart-cooldown-period` to be at least double your expected startup time to be safe. In general, a longer cooldown will not have an adverse effect; however, a shorter one may prevent the backoff behavior completely.
+We attempt to solve this problem by using a restart cooldown period. The cooldown period is a continuous duration of time without a restart, after which we assume a service has started up successfully. It's important to configure this correctly to ensure the backoff period doesn't get reset prematurely.
+We recommend setting the `service-restart-cooldown-period` to be at least double your expected startup time to be safe. In general, a longer cooldown won't have an adverse effect; however, a shorter one may prevent the backoff behavior completely.
 
 See the examples below to more properly understand this.
 
@@ -90,5 +92,5 @@ In the event of a failure during startup with the above configuration, the servi
 1. T = 30, service crashes, will be restarted after 5 secs
 1. T = 35, service is restarted
 1. T = 65, service crashes again, it will restart after a random duration between 5 and 20 secs, let's assume 15.
-1. T = 80, service is restarted again, notice that the backoff period has not been reset.
+1. T = 80, service is restarted again, notice that the backoff period hasn't been reset.
 1. T = 140, service backoff period is reset to 5 secs because 60 secs has elapsed since the last restart

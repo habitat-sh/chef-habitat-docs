@@ -16,9 +16,11 @@ You can export packages into several different external, immutable runtime forma
 
 The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide]({{< relref "habitat_cli#hab-pkg-export" >}}) for more CLI information.
 
-> **Note** If you specify an `origin/package` identifier, such as `core/postgresql`, the Chef Habitat CLI will check Builder for the latest stable version of the package and export that.
+{{< note >}}
 
-> If you wish to export a package that is not on Builder, create a Chef Habitat artifact by running the `build` command, then point `hab pkg` to the `.hart` file within the `/results` directory:
+If you specify an `origin/package` identifier, such as `core/postgresql`, the Chef Habitat CLI will check Builder for the latest stable version of the package and export that.
+
+If you wish to export a package that isn't on Builder, create a Chef Habitat artifact by running the `build` command, then point `hab pkg` to the `.hart` file within the `/results` directory:
 
 ```bash
 hab pkg export tar ./results/example-app.hart
@@ -26,7 +28,9 @@ hab pkg export tar ./results/example-app.hart
 
 Read on for more detailed instructions.
 
-### Exporting to Docker
+{{< /note >}}
+
+## Exporting to Docker
 
 You can create a Docker container image for any package by performing the following steps:
 
@@ -40,17 +44,21 @@ You can create a Docker container image for any package by performing the follow
     hab pkg export docker ./results/<hart-filename>.hart
     ```
 
-    > **Note** The command above is for local testing only. If you have uploaded your package to Builder, you can export it by calling `hab pkg export docker origin/package`. The default is to use the latest stable release; however, you can override that by specifying a different channel in an optional flag.
+    {{< note >}}
 
-    > **Note** On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
+    The command above is for local testing only. If you have uploaded your package to Builder, you can export it by calling `hab pkg export docker origin/package`. The default is to use the latest stable release; however, you can override that by specifying a different channel in an optional flag.
 
-    > **Note** In a Windows container studio, the `export` command will not be able to access the host docker engine. To export a Windows package or hart file built inside of a Windows container studio, first exit the studio and then export the `.hart` file in your local `results` directory.
+    On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
+
+    In a Windows container studio, the `export` command won't be able to access the host docker engine. To export a Windows package or hart file built inside of a Windows container studio, first exit the studio and then export the `.hart` file in your local `results` directory.
+
+    {{< /note >}}
 
 1. You may now exit the studio. The new Docker image exists on your computer and can be examined with `docker images` or run with `docker run`.
 
 1. Please note that when you run this docker container, you will need to pass the `HAB_LICENSE` environment variable into the container in order to accept the Habitat license. If you don't, your container will abort at a license acceptance prompt. One way to do this would be `docker run --env HAB_LICENSE=accept-no-persist IMAGE`. Alternatively, if you use a scheduler to run these docker containers, you should add that environment variable to your scheduler configuration.
 
-### Exporting to a Tarball
+## Exporting to a Tarball
 
 1. Enter the Chef Habitat studio by using `hab studio enter`.
 
@@ -74,7 +82,7 @@ You can create a Docker container image for any package by performing the follow
 
 4. Your package is now in a tar file that exists locally on your computer in the format `<ORIGIN>-<NAME>-<VERSION>-<TIMESTAMP>.tar.gz` and can be deployed and run on a target machine.
 
-5. If you wish to run this tar file on a remote machine (i.e. a virtual machine in a cloud environment), scp (or whatever transfer protocol you prefer) the file to whatever you wish to run it.
+5. If you wish to run this tar file on a remote machine (a virtual machine in a cloud environment), scp (or whatever transfer protocol you prefer) the file to whatever you wish to run it.
 
 6. SSH into the virtual machine
 
@@ -99,7 +107,7 @@ You can create a Docker container image for any package by performing the follow
     sudo /hab/bin/hab svc load <ORIGIN>/<NAME>
     ```
 
-### Exporting to Apache Mesos and DC/OS
+## Exporting to Apache Mesos and DC/OS
 
 1. Create an interactive studio in any directory with the `hab studio enter` command.
 
@@ -128,13 +136,13 @@ You can create a Docker container image for any package by performing the follow
 
 6. See the [Apaches Mesos and DC/OS documentation]({{< relref "mesos_dcos" >}}) for more information on getting your application running on Mesos.
 
-### Exporting to Cloud Foundry
+## Exporting to Cloud Foundry
 
 Packages can be exported to run in a [Cloud Foundry platform](https://www.cloudfoundry.org/certified-platforms/) through the use of a Docker image that contains additional layers meant to handle mapping from the Cloud Foundry environment to a Chef Habitat default.toml file.
 
-#### Setting up Docker Support in Cloud Foundry
+### Setting up Docker Support in Cloud Foundry
 
-If you have not done so already, you must enable Docker support for Cloud Foundry before you can upload your Cloud Foundry-specific Docker image.
+If you haven't done so already, you must enable Docker support for Cloud Foundry before you can upload your Cloud Foundry-specific Docker image.
 
 To do so, make sure you have done the following:
 
@@ -145,7 +153,7 @@ To do so, make sure you have done the following:
 cf enable-feature-flag diego_docker
 ```
 
-#### Creating a Mapping File
+### Creating a Mapping File
 
 The mapping file is a TOML file that can add Bash-interpolated variables and scripts. The Bash code will have access to:
 
@@ -167,14 +175,14 @@ host = "$(service "elephantsql" '.credentials.host')"
 name = "$(service "elephantsql" '.credentials.database')"
 ```
 
-#### Helpers
+### Helpers
 
 The helper methods are designed to extract information from the standard Cloud Foundry environment variables [VCAP_SERVICES](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) and [VCAP_APPLICATION](https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION).
 
 * `service <service-name> <jq-expression>` will extract the JSON associated with the given service-name from the `VCAP_SERVICES` environment variable and apply the jq-expression to it.
 * `application <jq-expression>` will apply the jq-expression to the `VCAP_APPLICATION` environment variable
 
-### Exporting and Pushing to a Cloud Foundry Endpoint
+## Exporting and Pushing to a Cloud Foundry Endpoint
 
 1. Create a mapping.toml file using the format specified above and place that file in your local project repo.
 
@@ -192,9 +200,13 @@ The helper methods are designed to extract information from the standard Cloud F
     hab pkg export cf <ORIGIN>/<NAME> /path/to/mapping.toml
     ```
 
-   > **Note** To generate this image, a base Docker image is also created. The Cloud Foundry version of the docker image will have `cf-` as a prefix in the image tag.
+    {{< note >}}
 
-5. (Optional) If you are creating a web app that binds to another Cloud Foundry service, such as ElephantSQL, you must have this service enabled in your deployment before running your app.
+    To generate this image, a base Docker image is also created. The Cloud Foundry version of the docker image will have `cf-` as a prefix in the image tag.
+
+    {{< /note >}}
+
+5. (Optional) If you're creating a web app that binds to another Cloud Foundry service, such as ElephantSQL, you must have this service enabled in your deployment before running your app.
 
 6. [Upload your Docker image to a supported registry](https://docs.cloudfoundry.org/devguide/deploy-apps/push-docker.html). Your Docker repository should be match the `origin/package` identifier of your package.
 
@@ -209,4 +221,3 @@ The helper methods are designed to extract information from the standard Cloud F
     ```
 
    Your application will start after it has been successfully uploaded and deployed.
-

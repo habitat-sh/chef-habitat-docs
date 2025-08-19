@@ -10,7 +10,7 @@ description = "Monitoring Services"
     weight = 70
 +++
 
-Use the HTTP API to monitor services. When a service starts, the [Supervisor]({{< relref "sup_networks">}}) exposes the status of its services' health and other information through an HTTP API endpoint. This information can be useful in monitoring service health, results of leader elections, and so on.
+Use the HTTP API to monitor services. When a service starts, the [Supervisor]({{< relref "sup_networks">}}) exposes the status of its services' health and other information through an HTTP API endpoint. This information can be useful in monitoring service health or leader election results.
 
 ## Authentication
 
@@ -24,7 +24,7 @@ an Authorization header, or they will receive a 401 Unauthorized response.
 
 The HTTP API provides information on the following endpoints:
 
-* `/butterfly` - Debug information about the rumors stored via Butterfly.
+* `/butterfly` - Debug information about the rumors stored with Butterfly.
 * `/census` - Returns the current Census of Services on the Ring (roughly what you see as a service in config.toml).
 * `/services` - Returns an array of all the services running under this Supervisor.
 * `/services/{name}/{group}` - Returns the information of a single loaded service.

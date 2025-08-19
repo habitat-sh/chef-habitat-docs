@@ -10,16 +10,18 @@ description = "Building Packages in the Studio"
     weight = 10
 +++
 
-When you have finished creating your plan and call `build` in Chef Habitat Studio, the build script does following steps:
+When you've finished creating your plan and call `build` in Chef Habitat Studio, the build script does following steps:
 
-1. Checks that Studio has the private origin key is available to sign the artifact
-2. Downloads the source code from the location in `pkg_source`, if specified
-3. Validates checksum of the downloaded file using the `pkg_shasum` value, if it is specified.
-4. Extracts the source into a temporary cache.
-5. Builds and installs the binary or library using `make` and `make install` for Linux based builds, and
-  TODO: WHAT DOES WINDOWS USE? Invoke-Unpack function with Start-Process? Invoke-Install & Copy-Item? unless the callback methods are overridden in the plan.
-6. Compresses the package contents (binaries, runtime dependencies, libraries, assets, etc.) into a tarball.
-7. Signs the tarball with your private origin key and gives it a `.hart` file extension.
+1. Checks that Studio has the private origin key is available to sign the artifact.
+1. Downloads the source code from the location in `pkg_source`, if specified
+1. Validates checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
+1. Extracts the source into a temporary cache.
+1. Builds and installs the binary or library using `make` and `make install` for Linux based builds.
+
+  <!--- TODO: WHAT DOES WINDOWS USE? Invoke-Unpack function with Start-Process? Invoke-Install & Copy-Item? unless the callback methods are overridden in the plan. --->
+
+1. Compresses the package contents (binaries, runtime dependencies, libraries, assets, etc.) into a tarball.
+1. Signs the tarball with your private origin key and gives it a `.hart` file extension.
 
 After the build script completes, you can then upload your package to Chef Habitat Builder, or install and start your package locally.
 
@@ -31,9 +33,9 @@ hab origin key generate <ORIGIN>
 
 The `hab-origin` subcommand will place the origin key files, originname-_timestamp_.sig.key (the private key) and originname-_timestamp_.pub files (the public key), in the `$HOME/.hab/cache/keys` directory. If you're creating origin keys in the Studio container, or you are running as root on a Linux machine, your keys will be stored in `/hab/cache/keys`.
 
-Because the private key is used to sign your artifact, it should not be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key is not present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (https://bldr.habitat.sh by default) to `hab pkg install`.
+Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
 
-### Passing Origin Keys into the Studio
+## Passing Origin Keys into the Studio
 
 The Habitat Studio is a self-contained and minimal environment, which means that you'll need to share your private origin keys with the Studio to sign artifacts. You can do this in three ways:
 
@@ -63,7 +65,7 @@ The Habitat Studio is a self-contained and minimal environment, which means that
 
 After you create or receive your private origin key, you can start up the Studio and build your artifact.
 
-### Interactive Build
+## Interactive Build
 
 Any build that you perform from a Chef Habitat Studio is an interactive build. Studio interactive builds allow you to examine the build environment before, during, and after the build.
 
@@ -78,15 +80,15 @@ The directory where your plan is located is known as the plan context.
 
     The directory you were in is now mounted as `/src` inside the Studio. By default, a Supervisor runs in the background for iterative testing. You can see the streaming output by running <code>sup-log</code>. Type <code>Ctrl-C</code> to exit the streaming output and <code>sup-term</code> to terminate the background Supervisor. If you terminate the background Supervisor, then running <code>sup-run</code> will restart it along with every service that was previously loaded. You have to explicitly run <code>hab svc unload origin/package</code> to remove a package from the "loaded" list.
 
-3. Enter the following command to create the package.
+1. Enter the following command to create the package.
 
     ```bash
     build /src/planname
     ```
 
-4. If the package builds successfully, it is placed into a `results` directory at the same level as your plan.
+1. If the package builds successfully, it's placed into a `results` directory at the same level as your plan.
 
-#### Managing the Studio Type (Docker/Linux/Windows)
+### Managing the Studio Type (Docker/Linux/Windows)
 
 Depending on the platform of your host and your Docker configuration, the behavior of `hab studio enter` may vary. Here is the default behavior listed by host platform:
 
@@ -94,9 +96,13 @@ Depending on the platform of your host and your Docker configuration, the behavi
 * **Mac** - A Docker container based Linux Studio
 * **Windows** - A local Windows studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you wish to enter.
 
-> Note: For more details related to Windows containers see [Running Chef Habitat Windows Containers]({{< relref "running_habitat_windows_containers" >}}).
+{{< note >}}
 
-#### Building Dependent Plans in the Studio
+For more details related to Windows containers see [Running Chef Habitat Windows Containers]({{< relref "running_habitat_windows_containers" >}}).
+
+{{< /note >}}
+
+### Building Dependent Plans in the Studio
 
 Writing plans for multiple packages that are dependent on each other can prove cumbersome when using multiple studios, as you need update dependencies frequently. On the other hand, using a single studio allows you to quickly test your changes by using locally built packages. To do so, you should use a folder structure like this:
 
@@ -110,7 +116,7 @@ projects/
 
 This way, you can `hab studio enter` in `projects/`. If `project-b` depends on `project-a`, you can call `build project-a && build project-b` for example.
 
-### Non-interactive Build
+## Non-interactive Build
 
 A non-interactive build is one in which Chef Habitat creates a Studio for you, builds the package inside it, and then destroys the Studio, leaving the resulting `.hart` on your computer. Use a non-interactive build when you are sure the build will succeed, or in conjunction with a continuous integration system.
 
@@ -125,7 +131,7 @@ A non-interactive build is one in which Chef Habitat creates a Studio for you, b
 
 1. The resulting artifact is inside a directory called `results`, along with any build logs and a build report (`last_build.env`) that includes machine-parsable metadata about the build.
 
-By default, the Studio is reset to a clean state after the package is built; however, *if you are using the Linux version of `hab`*, you can reuse a previous Studio when building your package by specifying the `-R` option when calling the `hab pkg build` subcommand.
+By default, the Studio is reset to a clean state after the package is built; however, _if you are using the Linux version of `hab`_, you can reuse a previous Studio when building your package by specifying the `-R` option when calling the `hab pkg build` subcommand.
 
 For information on the contents of an installed package, see [Package contents]({{< relref "package_contents" >}}).
 
@@ -133,9 +139,9 @@ For information on the contents of an installed package, see [Package contents](
 
 ### Bash Plans: `attach`
 
-While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (e.g. download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your plan.sh that functions like a debugging breakpoint and provides an easy <acronym title="Read, Evaluation, Print Loop">REPL</acronym> at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
+While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your `plan.sh` that functions like a debugging breakpoint and provides an easy read-evaluate-print loop (REPL) at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
 
-To use `attach`, insert it into your plan at the point where you would like to use it, e.g.
+To use `attach`, insert it into your plan at the point where you would like to use it, for example
 
 ```bash
  do_build() {
@@ -144,20 +150,20 @@ To use `attach`, insert it into your plan at the point where you would like to u
  }
 ```
 
-Now, perform a [build]({{< relref "pkg_build" >}}) -- we recommend using an interactive studio so you do not need to set up the environment from scratch for every build.
+Now, perform a [build]({{< relref "pkg_build" >}})---we recommend using an interactive studio so you don't need to set up the environment from scratch for every build.
 
 ```bash
 hab studio enter
 ```
 
-```studio
+```sh
 build yourapp
 ```
 
 The build system will proceed until the point where the `attach` function is invoked, and then drop you into a limited shell:
 
 ```bash
-## Attaching to debugging session
+# Attaching to debugging session
 From: /src/yourapp/plan.sh @ line 15 :
 
     5: pkg_maintainer="The Chef Habitat Maintainers <humans@habitat.sh>"
@@ -180,7 +186,7 @@ From: /src/yourapp/plan.sh @ line 15 :
 
 You can use basic Linux commands like `ls` in this environment. You can also use the `help` command the Chef Habitat build system provides in this context to see what other functions can help you debug the plan.
 
-```studio
+```sh
 [1] yourapp(do_build)> help
 Help
   help          Show a list of command or information about a specific command.
@@ -206,7 +212,7 @@ Aliases
 
 ### PowerShell Plans: `Set-PSBreakpoint`
 
-While there is no `attach` function exposed in a `plan.ps1` file, one can use the native Powershell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
+While there is no `attach` function exposed in a `plan.ps1` file, one can use the native PowerShell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
 
 ```powershell
 [HAB-STUDIO] Habitat:\src> Set-PSBreakpoint -Command Invoke-Build
@@ -226,4 +232,4 @@ At C:\src\habitat\plan.ps1:26 char:23
 [HAB-STUDIO] C:\hab\cache\src\habitat-aspnet-sample-0.2.0>>
 ```
 
-You can now call Powershell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.
+You can now call PowerShell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.

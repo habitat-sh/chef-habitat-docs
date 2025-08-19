@@ -22,7 +22,7 @@ You can supply a `user.toml` containing any configuration data that you want to 
 
 ### Using an Environment Variable
 
-Override default configuration data through the use of an environment variable with the following format: 
+Override default configuration data through the use of an environment variable with the following format:
 
 ```bash
 HAB_PACKAGENAME='{"keyname1":"newvalue1", "tablename1":{"keyname2":"newvalue2"}}'
@@ -33,11 +33,15 @@ HAB_MYTUTORIALAPP='{"message":"Chef Habitat rocks!"}' hab run <origin>/<packagen
 ```
 
 {{< note >}}
+
 The syntax used for applying configuration through environment variables can be either JSON or TOML, but TOML is preferred. The package name in the environment variable must be uppercase, any dashes must be replaced with underscores.
+
 {{< /note >}}
 
 {{< note >}}
+
 Variables must be set when the Supervisor process starts, not when the service is loaded, which may require a bit of planning on the part of the Chef Habitat user.
+
 {{< /note >}}
 
 For multiline environment variables, such as those in a TOML table or nested key value pairs, it can be easier to place your changes in a file and pass the file in. For example:
@@ -67,22 +71,23 @@ When submitting a configuration update to a service group, you must specify the 
 - the version number of the configuration update
 - the new configuration
 
-Configuration updates can be either TOML passed into stdin, or passed in a TOML
-file that is referenced in [`hab config apply`]({{< relref "habitat_cli#hab-config-apply" >}}).
+Configuration updates can be either TOML passed into stdin, or passed in a TOML file that's referenced in [`hab config apply`]({{< relref "habitat_cli#hab-config-apply" >}}).
 
 {{< note >}}
-Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. *If the version number is less than or equal to the current version number, the change(s) will not be applied.*
+
+Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the changes won't be applied._
+
 {{< /note >}}
 
 Here are some examples of how to apply configuration changes through both the shell and through a TOML file.
 
-**Stdin**
+Using standard input:
 
 ```bash
 echo 'buffersize = 16384' | hab config apply --remote-sup=hab1.mycompany.com myapp.prod 1
 ```
 
-**TOML file**
+Using a TOML file:
 
 ```bash
 hab config apply --remote-sup=hab1.mycompany.com myapp.prod 1 /tmp/newconfig.toml
@@ -93,7 +98,7 @@ Your output would look something like this:
 ```bash
 » Setting new configuration version 1 for myapp.prod
 Ω Creating service configuration
-↑ Applying via peer 172.18.0.2:9632
+↑ Applying with peer 172.18.0.2:9632
 ★ Applied configuration
 ```
 
@@ -108,11 +113,13 @@ myapp.prod(SV): Starting
 ```
 
 {{< note >}}
-As with all Supervisor interaction commands, if you do not specify `--remote-sup`, `hab config apply` will attempt to connect to a Supervisor running on the same host.
+
+As with all Supervisor interaction commands, if you don't specify `--remote-sup`, `hab config apply` will attempt to connect to a Supervisor running on the same host.
+
 {{< /note >}}
 
 ### Encryption
 
-Configuration updates can be encrypted for the service group they are intended. To do so, pass the `--user` option with the name of your user key, and the `--org` option with the organization of the service group. If you have the public key for the service group, the data will be encrypted for that key, signed with your user key, and sent to the ring.
+Configuration updates can be encrypted for the service group they're intended. To do so, pass the `--user` option with the name of your user key, and the `--org` option with the organization of the service group. If you have the public key for the service group, the data will be encrypted for that key, signed with your user key, and sent to the ring.
 
 It will then be stored encrypted in memory, and decrypted on disk.

@@ -19,7 +19,7 @@ Plan files are stored in the Chef Habitat Builder SaaS, where they can be viewed
 ## Chef Habitat Builder components
 
 - **Application Manifest**: The application manifest provides a single application directory, which includes, at a minimum, the compiled app artifact, dynamic links to all direct and transitive runtime dependencies, and instructions to install and run the app.
-- **Deployment Channel Management**: Pre-canned deployment channels that you can use as-is or customize. Apps deployed through Chef Habitat can subscribe to a channel and be auto-upgraded whenever the app is promoted.
+- **Deployment Channel Management**: Pre-canned deployment channels that you can use as-is or customize. Apps deployed through Chef Habitat can subscribe to a channel and be upgraded automatically whenever the app is promoted.
 - **Content Library**: Hundreds of pre-built [application delivery packages](https://bldr.habitat.sh/#/pkgs/core) and core dependencies make it easy to get started with Chef Habitat.
 - **Custom Data and Reporting APIs**: Rich APIs enable exporting data to CSV or JSON.
 - **DevOps Integration APIs**: APIs allow clients to find and download the necessary packages to run their applications. Additional APIs enable integration with popular DevOps tools, including Jenkins, Terraform, Artifactory, Hashi Vault, and others.

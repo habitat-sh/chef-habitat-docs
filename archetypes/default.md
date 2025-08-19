@@ -1,13 +1,12 @@
 +++
-title = "{{ .Name | humanize | title }}"
-date = {{ .Date }}
+title = '{{ .File.ContentBaseName | humanize | title }}'
 draft = false
 
-
-[menu]
-  [menu.habitat]
-    title = "{{ .Name | humanize | title }}"
-    identifier = "habitat/{{ .Name }}.md {{ .Name | humanize | title }}"
-    parent = "habitat"
-    weight = 10
+[menu.client]
+title = "{{ .File.ContentBaseName | humanize | title }}"
+identifier = "client/{{ .File.ContentBaseName | humanize | | title }}"
+parent = "client"
+weight = 10
 +++
+
+{{</* Run 'hugo new content path/to/new/page.md' to generate a new page. */>}}

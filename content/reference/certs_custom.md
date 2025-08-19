@@ -27,4 +27,4 @@ Copying multiple certificates--for example, a self-signed certificate and a cust
 
 The `/hab/cache/ssl` directory is also available inside a Habitat Studio. As long as the certificates are inside the cache directory before you enter the Studio, you'll also find them inside the Studio. In addition, if you've set the `SSL_CERT_FILE` environment variable, you'll also find both it and the file that it points to inside the Studio`/hab/cache/ssl` directory.
 
-Note: The `cert.pem` file name is reserved for Habitat. Do not use `cert.pem` as a file name when copying certs into the cache directory.
+Note: The `cert.pem` file name is reserved for Habitat. Don't use `cert.pem` as a file name when copying certs into the cache directory.

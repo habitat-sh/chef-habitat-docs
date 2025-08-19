@@ -9,3 +9,7 @@ action:
     - simple
 tokens:
   - 'auto-\w+'
+exceptions:
+  - auto-populate
+  - auto-build
+  - Auto-build

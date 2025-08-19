@@ -18,12 +18,12 @@ You can write plans to package up these binary artifacts with minimal special ha
 
 A Chef Habitat package build proceeds in phases: download, verification, unpacking (where you would also patch source code, if you had it), build, and finally installation. Each of these phases has [default behavior]({{< relref "build_phase_callbacks" >}}) within the build system.
 
-When building binary packages, you override the behavior of phases that do not apply to you. At the very minimum, you must override the `do_build` and `do_install` phases, for example:
+When building binary packages, you override the behavior of phases that don't apply to you. At the very minimum, you must override the `do_build` and `do_install` phases, for example:
 
 ```bash plan.sh
 (...)
 do_build() {
-  # relocate library dependencies here, if needed -- see next topic
+  # relocate library dependencies here, if needed---see next topic
   return 0
 }
 
@@ -36,29 +36,33 @@ do_install() {
 
 ## Relocate Hard-Coded Library Dependencies If Possible
 
-On Linux, many binaries hardcode library dependencies to `/lib` or `/lib64` inside their ELF symbol table. Unfortunately, this means that Chef Habitat is unable to provide dependency isolation guarantees if packages are dependent on any operating system's libraries in those directories. These Chef Habitat packages will also fail to run in minimal environments like containers built using `hab-pkg-export-docker`, because there will not be a `glibc` inside `/lib` or `/lib64`.
+On Linux, many binaries hardcode library dependencies to `/lib` or `/lib64` inside their ELF symbol table. Unfortunately, this means that Chef Habitat is unable to provide dependency isolation guarantees if packages are dependent on any operating system's libraries in those directories. These Chef Habitat packages will also fail to run in minimal environments like containers built using `hab-pkg-export-docker`, because there won't be a `glibc` inside `/lib` or `/lib64`.
 
-> Note: On Windows, library dependency locations are not maintained in a binary file's headers. See [this MSDN article](https://msdn.microsoft.com/library/windows/desktop/ms682586(v=vs.85).aspx) for a complete explanation of how Windows binaries are located. However, it's typically sufficient to ensure that the dependent binaries are on the `PATH`. You should make sure to include all dependencies in the `pkg_deps` of a `plan.ps1` to ensure all of their respective `DLL`s are accessible by your application.
+{{< note >}}
+
+On Windows, library dependency locations aren't maintained in a binary file's headers. See [this MSDN article](https://msdn.microsoft.com/library/windows/desktop/ms682586(v=vs.85).aspx) for a complete explanation of how Windows binaries are located. However, it's typically sufficient to ensure that the dependent binaries are on the `PATH`. You should make sure to include all dependencies in the `pkg_deps` of a `plan.ps1` to ensure all of their respective `DLL`s are accessible by your application.
+
+{{< /note >}}
 
 Most binaries compiled in a full Linux environment have a hard dependency on `/lib/ld-linux.so` or `/lib/ld-linux-x86_64.so`. In order to relocate this dependency to the Chef Habitat-provided variant, which is provided by `core/glibc`, use the `patchelf(1)` utility within your plan:
 
 1. Declare a build-time dependency on `core/patchelf` as part of your `pkg_build_deps` line.
-2. Invoke `patchelf` on any binaries with this problem during the `do_install()` phase. For example:
+1. Invoke `patchelf` on any binaries with this problem during the `do_install()` phase. For example:
 
-```bash
-patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
-  "${pkg_prefix}/bin/somebinary"
-```
+    ```bash
+    patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
+      "${pkg_prefix}/bin/somebinary"
+    ```
 
-3. The binary may have other hardcoded dependencies on its own libraries that you may need to relocate using other flags to `patchelf` like `--rpath`. For example, Oracle Java provides additional libraries in `lib/amd64/jli` that you will need to relocate to the Chef Habitat location:
+1. The binary may have other hardcoded dependencies on its own libraries that you may need to relocate using other flags to `patchelf` like `--rpath`. For example, Oracle Java provides additional libraries in `lib/amd64/jli` that you will need to relocate to the Chef Habitat location:
 
-```bash
-export LD_RUN_PATH=$LD_RUN_PATH:$pkg_prefix/lib/amd64/jli
-patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
-  --set-rpath ${LD_RUN_PATH} "${pkg_prefix}/bin/java"
-```
+    ```bash
+    export LD_RUN_PATH=$LD_RUN_PATH:$pkg_prefix/lib/amd64/jli
+    patchelf --interpreter "$(pkg_path_for core/glibc)/lib/ld-linux-x86-64.so.2" \
+      --set-rpath ${LD_RUN_PATH} "${pkg_prefix}/bin/java"
+    ```
 
-4. For more information, please see the [patchelf](https://nixos.org/patchelf.html) documentation.
+1. For more information, please see the [patchelf](https://nixos.org/patchelf.html) documentation.
 
 ## Relocating library dependencies
 
@@ -70,7 +74,7 @@ In these situations, you will have to give up Chef Habitat's guarantees of compl
 
 ## Fixing hardcoded interpreters
 
-Binary packages often come with other utility scripts that have their interpreter, or "shebang", line (first line of a script) hardcoded to a path that will not exist under Chef Habitat. Examples are: `#!/bin/sh`, `#!/bin/bash`, `#!/bin/env` or `#!/usr/bin/perl`. It is necessary to modify these to point to the Chef Habitat-provided versions, and also declare a runtime dependency in your plan on the corresponding Chef Habitat package (for example, `core/perl`).
+Binary packages often come with other utility scripts that have their interpreter or shebang hardcoded to a path that won't exist under Chef Habitat. Examples are: `#!/bin/sh`, `#!/bin/bash`, `#!/bin/env` or `#!/usr/bin/perl`. You must modify these to point to the Chef Habitat-provided versions, and also declare a runtime dependency in your plan on the corresponding Chef Habitat package (for example, `core/perl`).
 
 Use the `fix_interpreter` function within your plan to correct these interpreter lines during any phase, but most likely your `do_build` phase. For example:
 

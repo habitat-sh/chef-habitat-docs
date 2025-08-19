@@ -14,9 +14,7 @@ draft = false
 
 Generate a Supervisor configuration file and use it to set any of the 40+ Supervisor configuration settings instead of configuring them on the command line.
 
-<div style="justify-content: center; display: flex; padding-top:2rem; padding-bottom:2rem">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/B_ppJ1xaC5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-</div>
+{{< youtube B_ppJ1xaC5o >}}
 
 Chef Habitat looks for Supervisor configuration settings in four locations and applies them in order, which means that settings defined in later locations overwrite earlier ones.
 
@@ -110,7 +108,7 @@ json_logging = false
 
 ### The IPv4 address to use as the `sys.ip` template variable
 ###
-### If this argument is not set, the supervisor tries to dynamically determine an IP address. If that fails, the supervisor defaults to using `127.0.0.1`.
+### If this argument isn't set, the supervisor tries to dynamically determine an IP address. If that fails, the supervisor defaults to using `127.0.0.1`.
 sys_ip_address = "1.2.3.4"
 
 ### The name of the application for event stream purposes
@@ -149,7 +147,7 @@ event_stream_server_certificate = "/path/to/file"
 
 ### Automatically cleanup old packages
 ###
-### The Supervisor will automatically cleanup old packages only keeping the KEEP_LATEST_PACKAGES latest packages. If this argument is not specified, no automatic package cleanup is performed.
+### The Supervisor will automatically cleanup old packages only keeping the KEEP_LATEST_PACKAGES latest packages. If this argument isn't specified, no automatic package cleanup is performed.
 keep_latest_packages = 1
 
 ### Receive updates from the specified release channel
@@ -186,8 +184,8 @@ service_max_backoff_period = 180
 
 ### The duration of time in seconds to wait before resetting the current backoff duration to the 'service_min_backoff_period'.
 ### This is important because it ensures that the supervisor handles potential failures during restart correctly.
-### If the cooldown period is not long enough, a slow service may still be restarting after the cooldown period has passed.
-### If a service fails during restart but after the cooldown period has passed, the service will not backoff correctly before the following restart.
+### If the cooldown period isn't long enough, a slow service may still be restarting after the cooldown period has passed.
+### If a service fails during restart but after the cooldown period has passed, the service won't backoff correctly before the following restart.
 ###
 ### The default value if this config is absent is 300 seconds.
 service_restart_cooldown_period = 300

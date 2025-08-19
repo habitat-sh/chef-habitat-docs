@@ -19,7 +19,7 @@ The leader-follower topology employs [leader election]({{< relref "sup_crypto" >
 The standalone topology is what a Supervisor starts with by default if no topology
 is specified, or if the topology is explicitly specified with `--topology standalone`
 when starting the Supervisor. The standalone topology means that the service group
-members do not have any defined relationship with one another, other than sharing
+members don't have any defined relationship with one another, other than sharing
 the same configuration.
 
 ## Leader-follower Topology
@@ -48,8 +48,8 @@ hab svc load <ORIGIN>/<NAME>
 
 {{< note >}}
 
-The `--peer` service does not need a peer that is in the same service group;
-it merely needs to be in the same ring with the other member(s).
+The `--peer` service doesn't need a peer that's in the same service group;
+it merely needs to be in the same ring with the other members.
 
 {{< /note >}}
 
@@ -62,7 +62,7 @@ at package build time, and the service group starts up.
 Chef Habitat allows you to use the same immutable package in different deployment
 scenarios. In this example, a configuration template with conditional logic
 will make the running application to behave differently based on whether
-it is a leader or a follower:
+it's a leader or a follower:
 
 ```handlebars
 {{#if svc.me.follower}}
@@ -75,12 +75,12 @@ it is a leader or a follower:
 This logic says that if this peer is a follower, it will become a read replica of
 the IP and port of service leader (`svc.leader`), which is found by service
 discovery through the ring. However, if this peer is the leader, the entire list
-of statements here evaluate to empty text -- meaning that the peer starts up as
+of statements here evaluate to empty text---meaning that the peer starts up as
 the leader.
 
 ## Robustness, Network Boundaries and Recovering from Partitions
 
-Within a leader-follower topology, it is possible to get into a partitioned state
+Within a leader-follower topology, it's possible to get into a partitioned state
 where nodes are unable to achieve quorum. To solve this, use a permanent peer to
 heal the netsplit. Pass the `--permanent-peer` option, or it's short form `-I`,
 to make a Supervisor act as a permanent peer.

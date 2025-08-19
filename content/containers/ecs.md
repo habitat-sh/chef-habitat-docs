@@ -18,14 +18,14 @@ Amazon Web Services provides a container management service called [EC2 Containe
 [EC2 Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with ```hab pkg export docker``` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building ```core/mongodb``` containers you would use the following command:
 
 ```bash
-$ aws ecr create-repository --repository-name core/mongodb
+aws ecr create-repository --repository-name core/mongodb
 ```
 
 To tag and push the images to the ECR you will use your Repository URI (substituting your **aws_account_id** and availability zone).
 
 ```bash
-$ docker tag core/mongodb:latest aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
-$ docker push aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
+docker tag core/mongodb:latest aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
+docker push aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
 ```
 
 ## EC2 Compute Service
@@ -47,7 +47,7 @@ services:
     command: --peer mongodb --bind database:mongodb.default
 ```
 
-From the example, the ```mongo``` and ```national-parks``` services use the Docker images from the ECR. The ```links``` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file) ```links``` should create ```/etc/hosts``` entries. This does not appear to currently work with ECS so we assign the ```hostname: "mongodb"```.
+From the example, the ```mongo``` and ```national-parks``` services use the Docker images from the ECR. The ```links``` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file) ```links``` should create ```/etc/hosts``` entries. This doesn't appear to currently work with ECS so we assign the ```hostname: "mongodb"```.
 
 The ```command``` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to ```--peer``` to the ```mongo``` gossip ring and ```--bind``` applies ```database``` entries to its Mongo configuration.
 

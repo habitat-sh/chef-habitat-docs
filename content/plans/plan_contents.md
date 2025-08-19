@@ -30,9 +30,11 @@ Each package plan should contain a value adhering to the guidelines for each of 
 ## Package Name Conventions
 
 Each package is identified by a unique string containing four sub-strings separated
-by a forward slash (`/`) called a [PackageIdent]({{< relref "pkg_ids" >}}).
+by a forward slash (`/`) called a [PackageIdent]({{< relref "pkg_ids" >}}) in the following format:
 
-    `origin`/`name`/`version`/`release`
+```sh
+origin/name/version/release
+```
 
 The `origin`, `name`, and `version` values of this identifier are user defined by
 setting their corresponding variable in your `plan.sh` or `plan.ps1` file while the value of
@@ -44,7 +46,7 @@ The value of `name` should exactly match the name of the project it represents a
 
 ## Managing Major Versions
 
-There is one exception to this rule: Additional plans may be defined for projects for their past major versions by appending the major version number to its name. The plan file for this new package should be located within a directory of the same name.
+The one exception to this rule: Additional plans may be defined for projects for their past major versions by appending the major version number to its name. The plan file for this new package should be located within a directory of the same name.
 
 > Example: the [bison project](https://www.gnu.org/software/bison/) maintains the 2.x line along with their current major version (at time of writing: 3.x). A second plan is created as `bison2` and placed within a directory of the same name in this repository.
 
@@ -75,7 +77,7 @@ You can read more about [callbacks]({{< relref "build_phase_callbacks" >}}) here
 - Don't call `exit` within a build phase. In a `plan.sh`, you should instead return an exit code such as `return 1` for failure, and `return 0` for success. In a `plan.ps1` you should call `Write-Exception` or `throw` an exception upon failure.
 - Don't use `pkg_source` unless you are downloading something as a third party.
 - Don't shell out to `hab` from inside of a callback. If you think you want to, you should use a [utility function]({{< relref "plan_helpers" >}}) instead.
-- Don't call any functions or helper sthat begin with an underscore, for example `_dont_call_this_function()`. Those are internal for internal builder functions and are not supported for external use. They will break your plan if you call them.
+- Don't call any functions or helper sthat begin with an underscore, for example `_dont_call_this_function()`. Those are internal for internal builder functions and aren't supported for external use. They will break your plan if you call them.
 - Don't run any code or run anything outside of a build phase or a function.
 
 ## Application Lifecycle Hooks
@@ -84,13 +86,13 @@ The Supervisor dynamically invokes hooks at run-time, triggered by an applicatio
 
 ### Lifecycle Hook Do's
 
-- Do redirect `stderr` to `stdout` (e.g. with `exec 2>&1` at the start of the hook)
+- Do redirect `stderr` to `stdout` (for example with `exec 2>&1` at the start of the hook)
 - Do call the command to execute with `exec <command> <options>` rather than running the command directly in a Linux targeted hook. This ensures the command is executed in the same process and that the service will restart correctly on configuration changes.
 - You can write to the `/var/`, `/static/`, and `/data/` directories. Access these with your `runtime configuration setting` variable.
 
 ### Lifecycle Hook Don't's
 
-- Don't call `hab` or `sleep` in a hook that is not the `run` hook. You can only block the thread in a hook if it is in the `run` hook.
+- Don't call `hab` or `sleep` in a hook that isn't the `run` hook. You can only block the thread in a hook if it's in the `run` hook.
 - Don't shell out to `hab` from within a hook. If you think you want to, you should use a [runtime configuration setting]({{< relref "service_templates" >}}) instead. If none of those will solve your problem, open an issue and tell the core team why.
 - Don't use `exec` if you're running something with a pipe. It won't work.
 - Don't execute commands as a `root` user or try to `sudo hab pkg install`.

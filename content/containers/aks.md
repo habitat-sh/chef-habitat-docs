@@ -21,7 +21,7 @@ In order to do this you need to create an Azure Service Principal that has `Owne
 on your ACR instance. You can do this with the following script, changing the environment
 variable values to match your environment.
 
-```
+```sh
   !/bin/bash
 
     R_RESOURCE_GROUP=myACRResourceGroup
@@ -44,11 +44,11 @@ configuration.
 
 ## Connecting ACR and AKS
 
-Since ACR is a private Docker registry, AKS must be authorized to pull images from it. The best way is to create a role assignment on the Service Principal that is automatically created for AKS, granting it `Reader` access on your ACR instance.
+Since ACR is a private Docker registry, AKS must be authorized to pull images from it. The best way is to create a role assignment on the Service Principal that's automatically created for AKS, granting it `Reader` access on your ACR instance.
 
 To do this you can use the following script, changing the environment variable values to match your configuration.
 
-```
+```sh
 #!/bin/bash
 
 AKS_RESOURCE_GROUP=myAKSResourceGroup

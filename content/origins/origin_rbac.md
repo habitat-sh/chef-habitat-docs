@@ -26,13 +26,13 @@ Role-Based Access Control (RBAC) membership is a token-based authentication proc
 RBAC Origin Member Roles:
 
 Read-Only
-: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users cannot add to, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
+: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users can't add to, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
 
 Member
-: In addition to 'Read-Only' access, an origin 'Member' can upload and build packages in the 'unstable' channel, but they cannot promote packages to other channels.
+: In addition to 'Read-Only' access, an origin 'Member' can upload and build packages in the 'unstable' channel, but they can't promote packages to other channels.
 
 Maintainer
-: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but cannot add, update or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they cannot otherwise change origin membership--their own or anybody else's. 'Maintainers' can neither read nor write origin secrets.
+: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but can't add, update or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they can't otherwise change origin membership--their own or anybody else's. 'Maintainers' can neither read nor write origin secrets.
 
 Administrator
 : In addition to 'Maintainer' access, the 'Administrator' role has write access to origin keys and can add, update, and delete origin membership. An 'Administrator' can read and write origin secrets.
@@ -42,45 +42,45 @@ Owner
 
 ## Comparison of RBAC Membership Roles and Actions
 
-| Action | Read-Only | Member | Maintainer | Administrator | Owner |
-|---------|-------|-------|-------|-------|-------|
-| **Packages** |
-| View packages | Y | Y | Y | Y | Y |
-| Upload packages to `unstable` | N | Y | Y | Y | Y |
-| Promote packages from `unstable` | N | N | Y | Y | Y |
-| **Build Jobs** |
-| View build jobs | Y | Y | Y | Y | Y |
-| Trigger `unstable` build job | N | Y | Y | Y | Y |
-| **Channels** |
-| View channels | Y | Y | Y | Y | Y |
-| Add/Update/Delete channels | N | N | Y | Y | Y |
-| **Origin Keys** |
-| View keys | Y | Y | Y | Y | Y |
-| Add/Update/Delete keys | N | N | N | Y | Y |
-| **Origin Membership** |
-| View origin membership | Y | Y | Y | Y | Y |
-| View invitations | Y | Y | Y | Y | Y |
-| Send Invitations | N | N | Y | Y | Y |
-| Revoke Invitations | N | N | Y | Y | Y |
-| **Member Roles** |
-| View member roles | Y | Y | Y | Y | Y |
-| Update member roles | N | N | N | Y | Y |
-| **Origin Settings** |
-| View settings | Y | Y | Y | Y | Y |
-| Add/Update/Delete settings | N | N | N | Y | Y |
-| **Origin Secrets** |
-| View secrets | N | N | N | Y | Y |
-| Add/Update/Delete secrets | N | N | N | Y | Y |
-| **Cloud Integrations** |
-| View integrations | Y | Y | Y | Y | Y |
-| Add/Update/Delete integrations | N | N | Y | Y | Y |
-| **Ownership** |
-| Transfer Origin | N | N | N | N | Y |
-| Delete Origin | N | N | N | N | Y |
+| Action                           | Read-Only | Member | Maintainer | Administrator | Owner |
+| -------------------------------- | --------- | ------ | ---------- | ------------- | ----- |
+| **Packages**                     |           |        |            |               |       |
+| View packages                    | Y         | Y      | Y          | Y             | Y     |
+| Upload packages to `unstable`    | N         | Y      | Y          | Y             | Y     |
+| Promote packages from `unstable` | N         | N      | Y          | Y             | Y     |
+| **Build Jobs**                   |           |        |            |               |       |
+| View build jobs                  | Y         | Y      | Y          | Y             | Y     |
+| Trigger `unstable` build job     | N         | Y      | Y          | Y             | Y     |
+| **Channels**                     |           |        |            |               |       |
+| View channels                    | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete channels       | N         | N      | Y          | Y             | Y     |
+| **Origin Keys**                  |           |        |            |               |       |
+| View keys                        | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete keys           | N         | N      | N          | Y             | Y     |
+| **Origin Membership**            |           |        |            |               |       |
+| View origin membership           | Y         | Y      | Y          | Y             | Y     |
+| View invitations                 | Y         | Y      | Y          | Y             | Y     |
+| Send Invitations                 | N         | N      | Y          | Y             | Y     |
+| Revoke Invitations               | N         | N      | Y          | Y             | Y     |
+| **Member Roles**                 |           |        |            |               |       |
+| View member roles                | Y         | Y      | Y          | Y             | Y     |
+| Update member roles              | N         | N      | N          | Y             | Y     |
+| **Origin Settings**              |           |        |            |               |       |
+| View settings                    | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete settings       | N         | N      | N          | Y             | Y     |
+| **Origin Secrets**               |           |        |            |               |       |
+| View secrets                     | N         | N      | N          | Y             | Y     |
+| Add/Update/Delete secrets        | N         | N      | N          | Y             | Y     |
+| **Cloud Integrations**           |           |        |            |               |       |
+| View integrations                | Y         | Y      | Y          | Y             | Y     |
+| Add/Update/Delete integrations   | N         | N      | Y          | Y             | Y     |
+| **Ownership**                    |           |        |            |               |       |
+| Transfer Origin                  | N         | N      | N          | N             | Y     |
+| Delete Origin                    | N         | N      | N          | N             | Y     |
 
 ## Manage Origin Membership
 
-The `hab` CLI supports RBAC. You need to use the CLI to manage origin roles, you cannot manage origin roles from the Chef Habitat Builder site.
+The `hab` CLI supports RBAC. You need to use the CLI to manage origin roles, you can't manage origin roles from the Chef Habitat Builder site.
 
 ![Manage origin membership](/images/habitat/origin-members.png)
 
