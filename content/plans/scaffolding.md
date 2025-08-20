@@ -1,6 +1,7 @@
 +++
-title = "Scaffolding"
+title = "Chef Habitat scaffolding"
 description = "Scaffolding"
+summary = "A scaffolding is a standardized plan that automates building and running your application."
 
 
 [menu.plans]
@@ -32,11 +33,11 @@ If you want to override phases of a scaffold's build in your plans, make sure to
 
 A language or framework scaffolding is shipped as a Chef Habitat package, which means that each scaffolding runtime dependency becomes a build dependency for the application being built.
 
-## lib/scaffolding.sh File
+## `lib/scaffolding.sh` File
 
 To create scaffolding, a package must contain a `lib/scaffolding.sh` file which gets sourced by the build program running Bash.
 
-## scaffolding_load() Function
+## `scaffolding_load()` Function
 
 A optional function named `scaffolding_load()` may be created in `lib/scaffolding.sh` which will be called early in the build program which allows a Scaffolding author to control and augment the `pkg_deps` and `pkg_build_deps` arrays. At this point, no other build or run dependencies have been resolved so the code in this function can only rely on what the build program provides or software pulled in with the Scaffolding's Plan.
 

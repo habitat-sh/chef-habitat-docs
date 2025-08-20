@@ -1,8 +1,10 @@
 +++
 title = "About Chef Habitat"
+linkTitle = "Chef Habitat"
 
 [cascade]
   product = ["habitat"]
+  breadcrumbs = true
 
 [menu.about]
   title = "About Chef Habitat"
@@ -71,7 +73,6 @@ You can also develop your application if you are unsure of the infrastructure yo
 
 - [Download and install the Chef Habitat CLI]({{< relref "/install/" >}}).
 - [Create an account]({{< relref "/saas_builder/builder_account" >}}) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
-- Try our [getting started guide](get_started) for Chef Habitat.
 
 ## Additional Resources
 

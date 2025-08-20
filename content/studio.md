@@ -1,6 +1,6 @@
 +++
-title = "Chef Habitat Studio Overview"
-description = "About the Chef Habitat Studio"
+title = "About Chef Habitat Studio"
+description = "About Chef Habitat Studio"
 draft = false
 
 [menu.studio]
@@ -22,7 +22,7 @@ In order to explain why that is, so that there is a common starting point, my go
 
 ## Customizing Studio
 
-When you enter a Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux or `/src/studio_profile.ps1` on Windows and source it.
+When you enter Chef Habitat Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux or `/src/studio_profile.ps1` on Windows and source it.
 Think `~/.bashrc` or `$PROFILE`.
 This file can be used to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
 

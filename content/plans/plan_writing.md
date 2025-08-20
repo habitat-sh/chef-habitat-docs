@@ -1,6 +1,7 @@
 +++
 title = "Writing Plans"
 description = "Documentation for writing Chef Habitat plan files including configuration templates, binds, and exporting"
+summary = "How to write Chef Habitat plans, including configuration templates, binds, exporting, and multi-platform support."
 
 
 

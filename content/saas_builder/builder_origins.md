@@ -23,5 +23,5 @@ Progress Chef maintains the following origins:
 
 ## Where can I create an origin
 
-You can create origins with [Habitat On-Prem Builder](/habitat/on_prem_builder/).
+You can create origins with [Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/).
 You can't create origins in [Chef's public Habitat Builder SaaS](https://bldr.habitat.sh).

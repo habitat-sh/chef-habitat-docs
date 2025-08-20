@@ -1,6 +1,8 @@
 +++
 title = "Chef Habitat Command-Line Interface (CLI) Reference"
 draft= false
+linkTitle = "Habitat CLI"
+summary = "hab CLI reference"
 
 [menu.reference]
     title = "Habitat CLI Reference"

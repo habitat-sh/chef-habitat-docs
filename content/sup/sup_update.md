@@ -21,7 +21,7 @@ While an older version of the Supervisor is running, install the newer Superviso
 hab pkg install core/hab-sup
 ```
 
-This won't update the running Supervisor. It simply downloads the new Supervisor and stores it in your `/hab/pkgs` store. To update the running Supervisor, restart it with:
+This won't update the running Supervisor. It downloads the new Supervisor and stores it in your `/hab/pkgs` store. To update the running Supervisor, restart it with:
 
 ```bash
 hab sup restart

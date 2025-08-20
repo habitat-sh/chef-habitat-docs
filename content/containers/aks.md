@@ -1,10 +1,11 @@
 +++
 title = "Azure Container Services (AKS)"
 description = "Azure and Kubernetes K8"
-
+linkTitle = "Azure Container Services"
+summary = "Use Habitat with AKS, including setting up Azure Container Registry (ACR) and connecting it to AKS."
 
 [menu.containers]
-    title = "Azure Container Services (AKS)"
+    title = "Azure Container Services"
     identifier = "containers/aks Chef Habitat Azure Kubernetes"
     parent = "containers"
     weight = 40

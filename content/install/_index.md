@@ -5,7 +5,7 @@ linkTitle = "Install"
 
 
 [menu.install]
-    title = "Get Chef Habitat"
+    title = "Install Chef Habitat"
     identifier = "install/installing-packages"
     parent = "install"
     weight = 10

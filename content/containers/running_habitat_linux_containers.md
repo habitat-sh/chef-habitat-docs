@@ -38,13 +38,13 @@ Here, `core/redis:latest` would be the image exported from the `core/redis` Chef
 
 ### Running a Chef Habitat Container as a Non-root User
 
-If you can't run as the `root` user, but you are fine with `root` being the container user's primary group, you can simply specify a user ID to run as. This user need not exist in the container itself, and it's better if it doesn't. Using pure Docker, it might look like this:
+If you can't run as the `root` user, but you are fine with `root` being the container user's primary group, you can specify a user ID to run as. This user need not exist in the container itself, and it's better if it doesn't. Using pure Docker, it might look like this:
 
 ```sh
 docker run --rm -it --user=888888 core/redis:latest
 ```
 
-Again, we use our `core/redis` Chef Habitat package container; the user ID 888888 is simply a number chosen at random (this is how platforms like OpenShift operate). No user inside the container has this ID, meaning that the user will be an anonymous user with `root` as its primary group. Because of how we generate Chef Habitat containers, this fact ensures that the user has write permissions within the `/hab` directory.
+Again, we use our `core/redis` Chef Habitat package container; the user ID 888888 is a number chosen at random (this is how platforms like OpenShift operate). No user inside the container has this ID, meaning that the user will be an anonymous user with `root` as its primary group. Because of how we generate Chef Habitat containers, this fact ensures that the user has write permissions within the `/hab` directory.
 
 Due to the current logic around package installation, there is an extra step needed if you would like to have your containerized Supervisors update either themselves or the services they supervise. When installing packages as a non-root user, Chef Habitat will download the origin keys and compressed hart files into the user's `${HOME}/.hab` directory, rather than the global `/hab/cache` directory. You will need to ensure that a user-writable directory is mounted into the container, and specify it as the user's home directory using the `HOME` environment variable. Using pure Docker with a volume that's accessible by the user, that might look like this:
 
