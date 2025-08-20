@@ -3,7 +3,6 @@ title = "About Chef Habitat"
 linkTitle = "Chef Habitat"
 
 [cascade]
-  product = ["habitat"]
   breadcrumbs = true
 
 [menu.about]
