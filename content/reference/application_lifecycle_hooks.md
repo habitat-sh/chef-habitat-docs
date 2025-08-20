@@ -12,7 +12,7 @@ description = "Control service runtime actions with application lifecycle hooks"
 
 Each plan can specify lifecycle event handlers, or hooks, to perform certain actions during a service's runtime. Each hook is a script with a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) defined at the top to specify the interpreter to be used. On Windows, PowerShell Core is the only interpreter ever used.
 
-To define a hook, simply create a file of the same name in `/my_plan_name/hooks/`, for example, `/postgresql/hooks/health-check`.
+To define a hook, create a file of the same name in `/my_plan_name/hooks/`, for example, `/postgresql/hooks/health-check`.
 
 Optionally you may add an extension to the hook file. For example, you might create `/postgresql/hooks/health-check.sh` which can be useful in some editors to automatically take advantage of syntax highlighting. Note that having two files for the same hook but with different extensions isn't permitted. For example you might create a `run.sh` and `run.ps1` to support both Linux and Windows packages. If you would like to create different hooks for different platforms, you must use [target directories]({{< relref "plan_writing#writing-a-plan-for-multiple-platform-targets" >}}).
 

@@ -12,9 +12,9 @@ linkTitle = "Habitat Builder SaaS"
 
 Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub.
 It was first launched as a cloud service and as the repository of all available plan templates built by Chef and the supporting community.
-Since the application source code is stored alongside the build package, many users preferred storing packages and running [Chef Habitat On-prem Builder](/habitat/on_prem_builder/).
+Since the application source code is stored alongside the build package, many users preferred storing packages and running [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/).
 As a result, Chef Habitat Builder can be used as either a cloud-based or on-premises solution.
-Plan files are stored in the Chef Habitat Builder SaaS, where they can be viewed and accessed by the Chef Habitat community and shared with Habitat On-prem Builder for local copying and maintenance.
+Plan files are stored in the Chef Habitat Builder SaaS, where they can be viewed and accessed by the Chef Habitat community and shared with Habitat On-Prem Builder for local copying and maintenance.
 
 ## Chef Habitat Builder components
 

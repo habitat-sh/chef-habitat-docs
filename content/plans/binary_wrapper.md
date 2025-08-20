@@ -1,6 +1,7 @@
 +++
 title = "Binary Wrapper Packages"
 description = "Tips and tricks for managing hardcoded library dependencies in binaries"
+summary = "Tips for creating Chef Habitat plans for binary-only applications, including handling hardcoded dependencies and fixing interpreters."
 
 
 [menu.plans]
@@ -84,7 +85,7 @@ fix_interpreter ${target} core/coreutils bin/env
 
 The arguments to `fix_interpreter` are the file (represented here by `${target}`) you are trying to fix, the origin/name pair of the Chef Habitat package that provides that interpreter, and the interpreter pattern to search and replace in the target.
 
-If you have many files you need to fix, or the binary package automatically generates scripts with hardcoded shebang lines, you may need to simply symlink Chef Habitat's version into where the binary package expects it to go:
+If you have many files you need to fix, or the binary package automatically generates scripts with hardcoded shebang lines, you may need to symlink Chef Habitat's version into where the binary package expects it to go:
 
 ```bash
 ln -sv $(pkg_path_for coreutils)/bin/env /usr/bin/env

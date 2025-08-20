@@ -1,6 +1,7 @@
 +++
 title = "Plan Contents"
 description = "Best Practices for Plans"
+summary = "Best practices for writing production-quality Chef Habitat plans, including metadata, naming conventions, callbacks, and lifecycle hooks."
 
 
 [menu.plans]

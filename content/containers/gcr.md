@@ -1,15 +1,17 @@
 +++
 title = "Google Container Registry (GCR)"
 description = "Google Container Registry"
-
+linkTitle = "Google Container Registry"
+Summary = "Use Habitat with Google Container Registry, including configuring Docker for authentication, pushing images to GCR, and related access control information."
 
 [menu.containers]
-    title = "Google Container Registry (GCR)"
+    title = "Google Container Registry"
     identifier = "containers/gcr GCR"
     parent = "containers"
     weight = 60
 
 +++
+
 [Google Container Registry](https://cloud.google.com/container-registry/) is a private Docker repository that
 works with popular continuous delivery systems. It runs on GCP to provide consistent uptime on an infrastructure
 protected by Google's security. The registry service hosts your private images in Cloud Storage under your GCP project.

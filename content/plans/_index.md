@@ -1,4 +1,5 @@
 +++
-layout = "redirect"
-redirect_url = "plan_writing"
+title = "Chef Habitat plans"
+linkTitle = "Plans"
+list_pages = true
 +++

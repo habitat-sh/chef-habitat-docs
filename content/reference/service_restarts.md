@@ -56,7 +56,7 @@ You can't change the backoff algorithm. However, if you wish to have a simple fi
 ## Service Failure Detection
 
 Adding restart backoff behavior requires the ability to detect when a service has successfully started to reset the backoff period.
-Unfortunately, there is no clean way to differentiate between a service failure and a service simply taking too long to startup. A health-check hook would enable the detection of successful service startups; however, if a health check is absent, there is no way to know if the service started up. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.
+Unfortunately, there is no clean way to differentiate between a service failure and a service taking too long to startup. A health-check hook would enable the detection of successful service startups; however, if a health check is absent, there is no way to know if the service started up. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.
 
 We attempt to solve this problem by using a restart cooldown period. The cooldown period is a continuous duration of time without a restart, after which we assume a service has started up successfully. It's important to configure this correctly to ensure the backoff period doesn't get reset prematurely.
 We recommend setting the `service-restart-cooldown-period` to be at least double your expected startup time to be safe. In general, a longer cooldown won't have an adverse effect; however, a shorter one may prevent the backoff behavior completely.

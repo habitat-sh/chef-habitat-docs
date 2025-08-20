@@ -1,6 +1,7 @@
 +++
 title = "Plan Quickstart"
 draft = false
+summary = "A quickstart guide for creating Chef Habitat plans, including using the `hab plan init` command and customizing the plan file."
 
 
 [menu.plans]

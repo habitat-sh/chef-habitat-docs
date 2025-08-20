@@ -10,7 +10,7 @@ description = "Robust Supervisor Networks"
     weight = 60
 +++
 
-Chef Habitat Supervisors communicate amongst each other using "gossip" algorithms, which underpin the membership management, leadership election, and service discovery mechanics of Chef Habitat. By simply being "peered" to a single existing Supervisor, a new Supervisor will gradually come to know about _all_ the Supervisors in a Chef Habitat network. The gossip algorithm has built-in features to counteract brief network splits, but care must be taken to set up a robust Supervisor network.
+Chef Habitat Supervisors communicate amongst each other using "gossip" algorithms, which underpin the membership management, leadership election, and service discovery mechanics of Chef Habitat. By being "peered" to a single existing Supervisor, a new Supervisor will gradually come to know about _all_ the Supervisors in a Chef Habitat network. The gossip algorithm has built-in features to counteract brief network splits, but care must be taken to set up a robust Supervisor network.
 
 ## The Initial Peer
 

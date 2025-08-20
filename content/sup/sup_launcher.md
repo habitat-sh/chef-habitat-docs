@@ -21,6 +21,6 @@ hab pkg install core/hab-launcher
 
 Then restart the Supervisor. This will, by necessity, require a restart of supervised services, so factor that into your planning.
 
-The Launcher is designed to run as process 1; it's minimal by design. Its responsibilities are simply to be the parent process for the Supervisor.
+The Launcher is designed to run as process 1; it's minimal by design. Its responsibilities are to be the parent process for the Supervisor.
 
 The Launcher enables the Supervisor to update itself without shutting down or re-parenting the services that the Supervisor is supervising. The Launcher is versioned separately from the Supervisor and should be updated very infrequently since an update of the Launcher could require a system restart if it's running as process 1.

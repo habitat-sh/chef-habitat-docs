@@ -4,11 +4,10 @@ description = "Amazon ECS registry service and Chef Habitat"
 
 
 [menu.containers]
-    title = "Amazon Container Services (ECS)"
+    title = "Amazon Container Services"
     identifier = "containers/ecs EC2 Container Service"
     parent = "containers"
     weight = 50
-
 +++
 
 Amazon Web Services provides a container management service called [EC2 Container Service (ECS)](https://aws.amazon.com/ecs/). ECS provides a Docker registry, container hosting and tooling to make deploying Docker-based containers fairly straightforward. ECS will schedule and deploy  your Docker containers within a Task while Chef Habitat manages the applications.
@@ -47,9 +46,9 @@ services:
     command: --peer mongodb --bind database:mongodb.default
 ```
 
-From the example, the ```mongo``` and ```national-parks``` services use the Docker images from the ECR. The ```links``` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file) ```links``` should create ```/etc/hosts``` entries. This doesn't appear to currently work with ECS so we assign the ```hostname: "mongodb"```.
+From the example, the `mongo` and `national-parks` services use the Docker images from the ECR. The `links` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file) `links` should create `/etc/hosts` entries. This doesn't appear to currently work with ECS so we assign the `hostname: "mongodb"`.
 
-The ```command``` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to ```--peer``` to the ```mongo``` gossip ring and ```--bind``` applies ```database``` entries to its Mongo configuration.
+The `command` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to `--peer` to the `mongo` gossip ring and `--bind` applies `database` entries to its Mongo configuration.
 
 ## Related Reading
 
