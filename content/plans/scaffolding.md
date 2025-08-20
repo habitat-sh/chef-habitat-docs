@@ -2,7 +2,7 @@
 title = "Chef Habitat scaffolding"
 description = "Scaffolding"
 summary = "A scaffolding is a standardized plan that automates building and running your application."
-
+linkTitle = "Scaffolding"
 
 [menu.plans]
     title = "Scaffolding"

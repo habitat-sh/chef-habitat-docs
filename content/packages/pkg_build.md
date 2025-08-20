@@ -16,9 +16,9 @@ When you've finished creating your plan and call `build` in Chef Habitat Studio,
 1. Downloads the source code from the location in `pkg_source`, if specified
 1. Validates checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
 1. Extracts the source into a temporary cache.
-1. Builds and installs the binary or library using `make` and `make install` for Linux based builds.
+1. Builds and installs the binary or library using `make` and `make install` for Linux-based builds.
 
-  <!--- TODO: WHAT DOES WINDOWS USE? Invoke-Unpack function with Start-Process? Invoke-Install & Copy-Item? unless the callback methods are overridden in the plan. --->
+    <!--- TODO: WHAT DOES WINDOWS USE? Invoke-Unpack function with Start-Process? Invoke-Install & Copy-Item? unless the callback methods are overridden in the plan. --->
 
 1. Compresses the package contents (binaries, runtime dependencies, libraries, assets, etc.) into a tarball.
 1. Signs the tarball with your private origin key and gives it a `.hart` file extension.
