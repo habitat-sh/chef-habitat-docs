@@ -21,8 +21,6 @@ set -eoux pipefail
 
 # Define variables
 
-EXPEDITOR_TARGET_CHANNEL="stable"
-
 product_key="habitat"
 manifest="https://packages.chef.io/files/${EXPEDITOR_TARGET_CHANNEL}/habitat/latest/manifest.json"
 git_sha="$(curl -s $manifest | jq -r -c ".sha")"
@@ -41,25 +39,25 @@ rm generated-documentation.tar.gz
 
 # We use product version numbers for release notes.
 # There's no list of Habitat versions on packages.chef.io, so we store one in assets/habitat-release-versions.json
-# This file is updated every time there's a new release of Hab
+# This file is updated every time there's a new release of Habitat.
 
+version_data="$(jq --arg version "$version" 'if index($version) then . else . + [$version] | unique end' assets/habitat-release-versions.json)" && \
+printf "%s" "${version_data}" > assets/habitat-release-versions.json
 
-version_data="$(jq --arg version "$version" '. += [$version]' assets/habitat-release-versions.json)" && \
-echo -E "${version_data}" > assets/habitat-release-versions.json
-
-# submit pull request
+# Submit a pull request
 
 git add .
 
-# give a friendly message for the commit and make sure it's noted for any future
+# Give a friendly message for the commit and make sure it's noted for any future
 # audit of our codebase that no DCO sign-off is needed for this sort of PR since
 # it contains no intellectual property
 
-# dco_safe_git_commit "Bump $product_key docs content to latest $EXPEDITOR_TARGET_CHANNEL release ($git_sha)."
+dco_safe_git_commit "Bump $product_key docs content to latest $EXPEDITOR_TARGET_CHANNEL release ($git_sha)."
 
-# open_pull_request
+open_pull_request
 
 # Get back to main and cleanup the leftovers - any changed files left over at
 # the end of this script will get committed to main.
-# git checkout -
-# git branch -D "$branch"
+
+git checkout -
+git branch -D "$branch"

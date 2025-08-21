@@ -8,20 +8,11 @@ clean_all:
 	rm -rf public/
 	hugo mod clean
 
-audit:
-	HUGO_MINIFY_TDEWOLFF_HTML_KEEPCOMMENTS=true HUGO_ENABLEMISSINGTRANSLATIONPLACEHOLDERS=true hugo --cleanDestinationDir && grep -inorE "<\!-- raw HTML omitted -->|ZgotmplZ|\[i18n\]|\(<nil>\)|(&lt;nil&gt;)|hahahugo" public/
-
 serve: bundle
 	hugo server --buildDrafts --noHTTPCache --buildFuture
 
 static: bundle
 	hugo --buildDrafts --buildFuture --cleanDestinationDir
-
-embedded-chef-web-docs: bundle
-	hugo --cleanDestinationDir --gc --minify --environment embedded-chef-web-docs
-
-serve-embedded-chef-web-docs: bundle
-	hugo server --noHTTPCache --environment embedded-chef-web-docs
 
 metrics: bundle
 	hugo --gc --minify --enableGitInfo --templateMetrics --templateMetricsHints
@@ -61,14 +52,32 @@ update_theme:
 spellcheck:
 	cspell --no-progress "**/*.{md, html, js, yml, yaml, toml, json}"
 
+##
+# markdownlint-cli
+# See: https://github.com/igorshubovych/markdownlint-cli
+##
+
 markdownlint:
 	markdownlint "**/*.md" --ignore "node_modules/**" --ignore "public/**" --ignore "_vendor/**" --ignore "archetypes/**" --ignore "resources/**" --ignore "tools/**"
+
+##
+# Vale CLI
+# See: https://vale.sh/docs
+##
 
 vale:
 	vale --glob='!{**/habitat_cli.md,**/service_templates.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
 
 vale_error:
 	vale --filter=error.expr --glob='!{**/habitat_cli.md,**/service_templates.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
+
+##
+# Hugo Audit
+# See: https://gohugo.io/troubleshooting/audit
+##
+
+audit:
+	HUGO_MINIFY_TDEWOLFF_HTML_KEEPCOMMENTS=true HUGO_ENABLEMISSINGTRANSLATIONPLACEHOLDERS=true hugo --cleanDestinationDir && grep -inorE "<\!-- raw HTML omitted -->|ZgotmplZ|\[i18n\]|\(<nil>\)|(&lt;nil&gt;)|hahahugo" public/
 
 lint: spellcheck markdownlint
 
