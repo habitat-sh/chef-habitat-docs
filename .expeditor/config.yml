@@ -17,4 +17,4 @@ slack:
 subscriptions:
   - workload: habitat-sh/habitat:main_completed:project_promoted:habitat-sh/habitat:main:current:*
     actions:
-      - bash:.expeditor/update_hugo_modules_project_promoted.sh
+      - bash:.expeditor/update_generated_content_project_promoted.sh
