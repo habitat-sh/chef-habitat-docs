@@ -1,7 +1,4 @@
 ---
-project:
-  alias: "habitat"
-
 github:
   delete_branch_on_merge: true
 
@@ -14,4 +11,10 @@ pipelines:
       public: true
 
 slack:
-  notify_channel: docs-notify
+  notify_channel:
+    - docs-notify
+
+subscriptions:
+  - workload: habitat-sh/habitat:main_completed:project_promoted:habitat-sh/habitat:main:current:*
+    actions:
+      - bash:.expeditor/update_generated_content_project_promoted.sh
