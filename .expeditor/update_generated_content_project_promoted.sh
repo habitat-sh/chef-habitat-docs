@@ -16,8 +16,8 @@ set -eoux pipefail
 
 # See:
 # - https://github.com/habitat-sh/habitat/pull/7993
-# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/habitat_cli.md
-# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/service_templates.md
+# - https://github.com/habitat-sh/chef-habitat-docs/blob/main/content/reference/habitat_cli.md
+# - https://github.com/habitat-sh/chef-habitat-docs/blob/main/content/reference/service_templates.md
 
 # Define variables
 
