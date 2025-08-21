@@ -65,10 +65,10 @@ markdownlint:
 	markdownlint "**/*.md" --ignore "node_modules/**" --ignore "public/**" --ignore "_vendor/**" --ignore "archetypes/**" --ignore "resources/**" --ignore "tools/**"
 
 vale:
-	vale --glob='!{**/habitat_cli.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
+	vale --glob='!{**/habitat_cli.md,**/service_templates.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
 
 vale_error:
-	vale --filter=error.expr --glob='!{**/habitat_cli.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
+	vale --filter=error.expr --glob='!{**/habitat_cli.md,**/service_templates.md,node_modules/**/*,archetypes/**/*,**/README.md,tools/**/*}' *
 
 lint: spellcheck markdownlint
 
