@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/FortAwesome/Font-Awesome v0.0.0-20240108205627-a1232e345536 // indirect
-	github.com/chef/chef-docs-theme v0.0.0-20250808212116-563fde1a25bc // indirect
+	github.com/chef/chef-docs-theme v0.0.0-20250822214945-f8008ff74263 // indirect
 	github.com/cowboy/jquery-hashchange v0.0.0-20100902193700-0310f3847f90 // indirect
 	github.com/swiftype/swiftype-autocomplete-jquery v0.0.0-20190222215504-a90008d64b30 // indirect
 	github.com/swiftype/swiftype-search-jquery v1.1.0 // indirect
