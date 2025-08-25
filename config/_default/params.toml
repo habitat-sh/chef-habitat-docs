@@ -56,9 +56,9 @@ url = "https://docs.chef.io"
 # base_url = The base URL for a release. For example, `https://docs.chef.io/habitat/<MAJ>.<MIN>`
 ###############################
 
-# [[versions]]
-# version = "1.6"
-# base_url = "https://docs.chef.io/habitat/1.6"
+[[versions]]
+version = "1.6"
+base_url = "https://docs.chef.io/habitat/1.6"
 
 
 
@@ -74,8 +74,4 @@ url = "https://docs.chef.io"
 #################
 
 [release_data]
-version = ""
-release_date = ""
-deprecated = false
-eol = false
-github_branch = ""
+version = "1.6"

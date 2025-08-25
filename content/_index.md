@@ -4,6 +4,7 @@ linkTitle = "Chef Habitat"
 
 [cascade]
   breadcrumbs = true
+  product = ['chef-habitat-1.6']
 
 [menu.about]
   title = "About Chef Habitat"
