@@ -8,7 +8,7 @@
   {{- with .Params.st_robots -}}
     <meta name="st:robots" content="{{ . }}">
   {{- end }}
-  {{ with .Params.product -}}
+  {{ with or .Params.product .Params.swiftype_search_product_key $.Site.Params.versions.this_version.swiftype_search_products -}}
     {{- range $tag := . -}}
       <meta class="swiftype" name="chef-product" data-type="string" content="{{ $tag }}" />
     {{- end -}}
