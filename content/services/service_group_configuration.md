@@ -12,13 +12,13 @@ description = "Update Services with File Uploads"
 
 ## Uploading Files to a Service Group
 
-In addition to [configuration updates]({{< relref "service_updates" >}}), you can
+In addition to [configuration updates](service_updates), you can
 upload files to a service group. Keep these small---we recommend 4 KB or less for each
 file, and keep the count of files to a minimum.
 
 ### Usage
 
-Use the [`hab file upload`]({{< relref "habitat_cli#hab-file-upload" >}}) command
+Use the [`hab file upload`](habitat_cli#hab-file-upload) command
 to submit a file to a service group. Specify a peer in the ring to connect to,
 the version number of the file, and the new path to the file itself.
 

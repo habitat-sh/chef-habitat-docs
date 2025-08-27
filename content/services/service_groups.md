@@ -12,7 +12,7 @@ description = "Service Groups"
 
 A service group is a logical grouping of services with the same package and topology type connected together across a Supervisor network.
 They're created to share configuration and file updates among the services within those groups and can be segmented based on workflow or deployment needs (for example, QA or production).
-Updates can also be [encrypted]({{< relref "sup_secure" >}}) so that only members of a specific service group can decrypt the contents.
+Updates can also be [encrypted](sup_secure) so that only members of a specific service group can decrypt the contents.
 
 By default, every service joins the `service-name.default` service group unless
 otherwise specified at runtime.

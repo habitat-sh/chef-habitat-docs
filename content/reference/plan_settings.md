@@ -330,7 +330,7 @@ pkg_pconfig_dirs=(lib/pkgconfig)
 ```
 
 pkg_svc_run
-: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs`  to place package binaries in the path. If your package hs complex start-up behaviors, use a [run hook]({{< relref "#hooks" >}}) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor. _Optional_.
+: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs`  to place package binaries in the path. If your package hs complex start-up behaviors, use a [run hook](#hooks) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor. _Optional_.
 
 ```bash
 pkg_svc_run="haproxy -f $pkg_svc_config_path/haproxy.conf"
@@ -388,7 +388,7 @@ pkg_binds_optional=(
 ```
 
 pkg_interpreters
-: An array of interpreters used in [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) lines for scripts. Specify the subdirectory where the binary is relative to the package, for example, `bin/bash` or `libexec/neverland`, since binaries can be located in directories besides `bin`. This list of interpreters will be written to the metadata INTERPRETERS file, located inside a package, with their fully-qualified path. Then these can be used with the fix_interpreter function. For more information on declaring shebangs in Chef Habitat, see [Plan hooks]({{< relref "#hooks" >}}), and for more information on the fix_interpreter function, see [Plan utility functions]({{< relref "#plan-helpers" >}}). _Optional_.
+: An array of interpreters used in [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) lines for scripts. Specify the subdirectory where the binary is relative to the package, for example, `bin/bash` or `libexec/neverland`, since binaries can be located in directories besides `bin`. This list of interpreters will be written to the metadata INTERPRETERS file, located inside a package, with their fully-qualified path. Then these can be used with the fix_interpreter function. For more information on declaring shebangs in Chef Habitat, see [Plan hooks](#hooks), and for more information on the fix_interpreter function, see [Plan utility functions](#plan-helpers). _Optional_.
 
 ```bash
 pkg_interpreters=(bin/bash)

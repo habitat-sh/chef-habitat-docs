@@ -97,6 +97,6 @@ hab origin secret delete AWS_ACCESS_KEY_ID
 hab origin secret delete AWS_SECRET_ACCESS_KEY
 ```
 
-See [Using Origin Secrets in Plans]({{< relref "plan_writing.md#buildtime-workflow" >}}) for guidance on using origin secrets.
+See [Using Origin Secrets in Plans](plan_writing#buildtime-workflow" >}}) for guidance on using origin secrets.
 
-See the [`hab origin secret`]({{< relref "habitat_cli#hab-origin-secret" >}}) CLI documentation for more information on these commands.
+See the [`hab origin secret`](habitat_cli#hab-origin-secret) CLI documentation for more information on these commands.

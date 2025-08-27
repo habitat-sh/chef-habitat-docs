@@ -14,7 +14,7 @@ Chef Habitat Artifacts--`.hart` files--can be exported in a number of different 
 
 You can export packages into several different external, immutable runtime formats. Currently there are exports for: docker, mesos, tar, and cloudfoundry.
 
-The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide]({{< relref "habitat_cli#hab-pkg-export" >}}) for more CLI information.
+The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide](habitat_cli#hab-pkg-export) for more CLI information.
 
 {{< note >}}
 
@@ -38,7 +38,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. Create an interactive studio with the `hab studio enter` command.
 
-1. [Build]({{< relref "pkg_build" >}}) the Chef Habitat package from which you want to create a Docker container image and then run the Docker exporter on the package.
+1. [Build](pkg_build) the Chef Habitat package from which you want to create a Docker container image and then run the Docker exporter on the package.
 
     ```bash
     hab pkg export docker ./results/<hart-filename>.hart
@@ -62,7 +62,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. Enter the Chef Habitat studio by using `hab studio enter`.
 
-2. Install or [build]({{< relref "pkg_build" >}}) the Chef Habitat package from which you want to create a tarball, for example:
+2. Install or [build](pkg_build) the Chef Habitat package from which you want to create a tarball, for example:
 
     ```bash
     hab pkg install <ORIGIN>/<NAME>
@@ -111,7 +111,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. Create an interactive studio in any directory with the `hab studio enter` command.
 
-2. Install or [build]({{< relref "pkg_build" >}}) the Chef Habitat package from which you want to create a Marathon application, for example:
+2. Install or [build](pkg_build) the Chef Habitat package from which you want to create a Marathon application, for example:
 
     ```bash
     hab pkg install <ORIGIN>/<NAME>
@@ -134,7 +134,7 @@ You can create a Docker container image for any package by performing the follow
 
 5. Note that the default resource allocation for the application is very small: 0.5 units of CPU, no disk, one instance, and 256MB of memory. To change these resource allocations, pass different values to the Mesos exporter as command line options (defaults are documented with `--help`).
 
-6. See the [Apaches Mesos and DC/OS documentation]({{< relref "mesos_dcos" >}}) for more information on getting your application running on Mesos.
+6. See the [Apaches Mesos and DC/OS documentation](mesos_dcos) for more information on getting your application running on Mesos.
 
 ## Exporting to Cloud Foundry
 
@@ -188,7 +188,7 @@ The helper methods are designed to extract information from the standard Cloud F
 
 2. Enter the Studio through `hab studio enter`.
 
-3. Install or [build]({{< relref "pkg_build" >}}) the package that you want to export.
+3. Install or [build](pkg_build) the package that you want to export.
 
     ```bash
     hab pkg install <ORIGIN>/<NAME>

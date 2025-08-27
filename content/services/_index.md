@@ -41,4 +41,4 @@ that follows the new leader. Subsequent elections due to leader failure will upd
 both leader and follower configuration data.
 
 You can read more about the internals behind the elections in our [advanced developer
-documentation]({{< relref "sup_crypto#leader-election" >}}).
+documentation](sup_crypto#leader-election).

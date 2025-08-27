@@ -19,7 +19,7 @@ Linux-based packages can run on Linux distributions running kernel 2.6.32 or lat
 
 {{< /note >}}
 
-Information about [installing Chef Habitat]({{< relref "/install/" >}}) and configuring your workstation can be found in the previous section.
+Information about [installing Chef Habitat](/install/) and configuring your workstation can be found in the previous section.
 
 ## Starting the Supervisor
 
@@ -27,7 +27,7 @@ In order to run a Chef Habitat-packaged service, you must first run a Chef Habit
 You can start up a Supervisor with or without specifying a package identifier. It's important to know the implications of each method, and which method is appropriate for your circumstances.
 
 `hab sup run`
-: Executing [`hab sup run`]({{< relref "/reference/habitat_cli#hab-sup-run" >}}) starts a Supervisor process in the foreground. If this is the first time a Supervisor has been run on the system, nothing else will happen; the process will be waiting for the user to "load" services into it. However, if this isn't the first time the Supervisor has been run, any previously loaded services that weren't stopped (told not to run) will start up as well.
+: Executing [`hab sup run`](/reference/habitat_cli#hab-sup-run) starts a Supervisor process in the foreground. If this is the first time a Supervisor has been run on the system, nothing else will happen; the process will be waiting for the user to "load" services into it. However, if this isn't the first time the Supervisor has been run, any previously loaded services that weren't stopped (told not to run) will start up as well.
 
   When executing `hab sup run`, additional options can be passed that allow the Supervisor to communicate with other Supervisors (such as `--peer` or `--permanent-peer`), forming a connected network of Supervisors. This is the communication framework that any services running on the Supervisors use to communicate with each other.
 
@@ -52,7 +52,7 @@ Packages can be tested in the interactive studio environment or natively on a wo
 
 When entering an interactive studio, a Supervisor is started for you in the background by default. To run packages inside of this Supervisor:
 
-1. [Build a package]({{< relref "pkg_build" >}}) inside an interactive studio. Don't exit the studio after it's built.
+1. [Build a package](pkg_build) inside an interactive studio. Don't exit the studio after it's built.
 2. To start your service in the running Supervisor, type `hab svc load yourorigin/yourname`, substituting the name and origin of the package you built in Step 1. Your service should now be running.
 
 Because the Supervisor is running in the background, you won't see the Supervisor output as you start your service. However you can use the `sup-log` (or `Get-SupervisorLog` on Windows) command that will stream the tail of the Supervisor output (you can also look at the contents of `/hab/sup/default/sup.log`, which is where the Studio directs its Supervisor output).
@@ -81,7 +81,7 @@ PS C:\> hab sup run yourorigin/yourname --password $cred.GetNetworkCredential().
 
 In all cases, you may wish to run `hab svc unload <yourorigin>/<yourname>` when you are done working with your package, to remove it from the Supervisor. Otherwise, your Supervisor will try to start your service each time it start up.
 
-For more structured ways of running the Chef Habitat Supervisor on servers, please see [Running Chef Habitat on Servers]({{< relref "running_habitat_servers" >}}).
+For more structured ways of running the Chef Habitat Supervisor on servers, please see [Running Chef Habitat on Servers](running_habitat_servers).
 
 ## Loading a Service
 

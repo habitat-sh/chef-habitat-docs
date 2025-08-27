@@ -16,15 +16,15 @@ Once Chef Habitat has been installed, the `hab` CLI makes it easy to get your wo
 
 Setup asks you to create a new origin and a set of origin keys.
 
-Optionally, you can also provide a Chef Habitat personal access token to upload packages to the public depot and share them with the Chef Habitat community. See the [access token documentation]({{< relref "builder_profile#create-a-personal-access-token" >}}) for details on generating and using your access token.
+Optionally, you can also provide a Chef Habitat personal access token to upload packages to the public depot and share them with the Chef Habitat community. See the [access token documentation](builder_profile#create-a-personal-access-token) for details on generating and using your access token.
 
 {{< note >}}
 
-For more information about using Chef Habitat Builder, see the section on [Using Builder]({{< relref "/saas_builder/" >}}).
+For more information about using Chef Habitat Builder, see the section on [Using Builder](/saas_builder/).
 
 {{< /note >}}
 
-You will also be asked if you want to register Supervisor control gateway secret (see [Remote Command-and-Control of Supervisors]({{< relref "sup_remote_control" >}}) for further details).
+You will also be asked if you want to register Supervisor control gateway secret (see [Remote Command-and-Control of Supervisors](sup_remote_control) for further details).
 
 You can change your settings at any time by re-running the `hab cli setup` command.
 

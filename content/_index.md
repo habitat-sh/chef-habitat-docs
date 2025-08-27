@@ -26,7 +26,7 @@ Services can be joined together in a service group, which is a collection of ser
 
 {{< readfile file="content/reusable/md/habitat_builder_overview.md" >}}
 
-For more information, see the [Chef Habitat Builder]({{< relref "saas_builder" >}}) documentation.
+For more information, see the [Chef Habitat Builder](saas_builder) documentation.
 
 ### Habitat Package
 
@@ -35,29 +35,29 @@ The package is bundled into a Habitat Artifact (.HART) file, which is a binary d
 The package is immutable and cryptographically signed with a key so you can verify that the artifact came from the place you expected it to come from.
 Artifacts can be exported to run in a variety of runtimes with zero refactoring or rewriting.
 
-### Plan
+### Plans
 
 {{< readfile file="content/reusable/md/habitat_plans_overview.md" >}}
 
-For more information, see the [plan]({{< relref "plan_writing" >}}) documentation.
+For more information, see the [Habitat plan](/plans/plan_writing) documentation.
 
 ### Services
 
 {{< readfile file="content/reusable/md/habitat_services_overview.md" >}}
 
-See the [services documentation]({{< relref "/services/" >}}) for more information.
+See the [services documentation](/services/) for more information.
 
 ### Habitat Studio
 
 {{< readfile file="content/reusable/md/habitat_studio_overview.md" >}}
 
-See the [Habitat Studio documentation]({{< relref "/studio/" >}}) for more information.
+See the [Habitat Studio documentation](/studio/) for more information.
 
 ### Habitat Supervisor
 
 {{< readfile file="content/reusable/md/habitat_supervisor_overview.md" >}}
 
-See the [Habitat Supervisor documentation]({{< relref "sup" >}}) for more information.
+See the [Habitat Supervisor documentation](sup) for more information.
 
 ## When Should I Use Chef Habitat?
 
@@ -70,15 +70,15 @@ You can also develop your application if you are unsure of the infrastructure yo
 
 ## Next Steps
 
-- [Download and install the Chef Habitat CLI]({{< relref "/install/" >}}).
-- [Create an account]({{< relref "/saas_builder/builder_account" >}}) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
+- [Download and install the Chef Habitat CLI](/install/).
+- [Create an account](/saas_builder/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
 
 ## Additional Resources
 
 ### Download
 
 - [Download Chef Habitat](https://www.chef.io/downloads)
-- [Install documentation]({{< relref "/install/" >}})
+- [Install documentation](/install/)
 
 ### Learning
 

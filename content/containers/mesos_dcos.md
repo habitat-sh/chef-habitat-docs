@@ -26,7 +26,7 @@ You can create native Mesos containers from Chef Habitat packages by following t
 
 1. Create an interactive studio in any directory with the `hab studio enter` command.
 
-2. Install or [build]({{< relref "pkg_build" >}}) the Chef Habitat package from which you want to create a Marathon application, for example:
+2. Install or [build](pkg_build) the Chef Habitat package from which you want to create a Marathon application, for example:
 
     ```bash
     hab pkg install yourorigin/yourpackage

@@ -34,8 +34,8 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 A: Indeed they're divisive, we know, that's why we provide a few different ways for you to download. If you'd like to take a look at the script before running it, you can find it in [the core Chef Habitat repo](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.sh).
 
-If you're staunchly in the anti-curl-bash camp, you can get the latest packages from the [download links]({{< relref "/install/" >}}) listed previously.
+If you're staunchly in the anti-curl-bash camp, you can get the latest packages from the [download links](/install/) listed previously.
 
 **Q: How do I install `hab` across my server fleet?**
 
-A: For the most part, we leave that up to you. You could just use the aforementioned curl-bash with your provisioner of choice. If your app was dockerized with Chef Habitat then you won't even need to ask this question, because you'll have everything you need inside your container. We're working on first class Mesosphere DC/OS, and Cloud Foundry integrations---which you can keep up to date on in our [Apache Mesos and DC/OS documentation]({{< relref "mesos_dcos" >}}) and [blog](https://www.chef.io/blog).
+A: For the most part, we leave that up to you. You could just use the aforementioned curl-bash with your provisioner of choice. If your app was dockerized with Chef Habitat then you won't even need to ask this question, because you'll have everything you need inside your container. We're working on first class Mesosphere DC/OS, and Cloud Foundry integrations---which you can keep up to date on in our [Apache Mesos and DC/OS documentation](mesos_dcos) and [blog](https://www.chef.io/blog).
