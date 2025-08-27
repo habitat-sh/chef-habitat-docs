@@ -14,7 +14,7 @@ Chef Habitat Artifacts--`.hart` files--can be exported in a number of different 
 
 You can export packages into several different external, immutable runtime formats. Currently there are exports for: docker, mesos, tar, and cloudfoundry.
 
-The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide](habitat_cli#hab-pkg-export) for more CLI information.
+The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide](../reference/habitat_cli.md#hab-pkg-export) for more CLI information.
 
 {{< note >}}
 
@@ -127,14 +127,14 @@ You can create a Docker container image for any package by performing the follow
 
     ```json
     { "id": "yourorigin/yourpackage", "cmd": "/bin/id -u hab &>/dev/null || /sbin/useradd hab; /bin/chown -R hab:hab *;
-    mount -t proc proc proc/; mount -t sysfs sys sys/;mount -o bind /dev dev/; /usr/sbin/chroot . ./init.sh start
+    mount -t proc proc/; mount -t sysfs sys/;mount -o bind /dev dev/; /usr/sbin/chroot . ./init.sh start
     yourorigin/yourpackage", "cpus": 0.5, "disk": 0, "mem": 256, "instances": 1, "uris":
     ["https://storage.googleapis.com/mesos-habitat/yourorigin/yourpackage-0.0.1-20160611121519.tgz" ] }
     ```
 
 5. Note that the default resource allocation for the application is very small: 0.5 units of CPU, no disk, one instance, and 256MB of memory. To change these resource allocations, pass different values to the Mesos exporter as command line options (defaults are documented with `--help`).
 
-6. See the [Apaches Mesos and DC/OS documentation](mesos_dcos) for more information on getting your application running on Mesos.
+6. See the [Apaches Mesos and DC/OS documentation](../containers/mesos_dcos.md) for more information on getting your application running on Mesos.
 
 ## Exporting to Cloud Foundry
 

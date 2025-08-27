@@ -15,8 +15,8 @@ draft = false
 Prerequisites:
 
 - [Get Chef Habitat](/install/)
-- [Create a Chef Habitat Builder account](builder_account#builder-account)
-- [Generate a personal access token](builder_profile#create-a-personal-access-token)
+- [Create a Chef Habitat Builder account](../saas_builder/builder_account.md)
+- [Generate a personal access token](../saas_builder/builder_profile.md#create-a-personal-access-token)
 - [Create an origin](origins) or join an origin by [invitation](origin_rbac#manage-origin-membership-with-hab-origin-invitations)
 
 When you create an origin, Chef Habitat Builder automatically generates _origin keys_.

@@ -41,7 +41,7 @@ hab pkg promote -z <TOKEN> <ORIGIN>/<PACKAGE>/<VERSION>/<RELEASE> stable
 
 ### Combining an Update Strategy with Channels
 
-By using both channels and either the `at-once` or `rolling` [update strategies](#using-updates), you can automatically update packages in a given channel as shown below:
+By using both channels and either the `at-once` or `rolling` [update strategies](#combining-an-update-strategy-with-channels), you can automatically update packages in a given channel as shown below:
 
 ![Promoting packages through channels](/images/habitat/habitat-promote-packages-through-channels.png)
 

@@ -12,7 +12,7 @@ description = "Service Group Topologies"
 
 A topology describes the intended relationship between peers within a service group.
 Two topologies ship with Chef Habitat by default: **standalone** and **leader-follower**.
-The leader-follower topology employs [leader election](sup_crypto) to define a leader.
+The leader-follower topology employs [leader election](../sup/sup_crypto) to define a leader.
 
 ## Standalone
 

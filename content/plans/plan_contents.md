@@ -31,7 +31,7 @@ Each package plan should contain a value adhering to the guidelines for each of 
 ## Package Name Conventions
 
 Each package is identified by a unique string containing four sub-strings separated
-by a forward slash (`/`) called a [PackageIdent](pkg_ids) in the following format:
+by a forward slash (`/`) called a [PackageIdent](../reference/pkg_ids.md) in the following format:
 
 ```sh
 origin/name/version/release
@@ -66,7 +66,7 @@ You can read more about [basic plan settings](plan_writing) here. The minimum re
 
 ## Callbacks
 
-You can read more about [callbacks](build_phase_callbacks) here. The minimum requirement for a core plan are:
+You can read more about [callbacks](../reference/build_phase_callbacks.md) here. The minimum requirement for a core plan are:
 
 ### Callback Do's
 
@@ -77,13 +77,13 @@ You can read more about [callbacks](build_phase_callbacks) here. The minimum req
 
 - Don't call `exit` within a build phase. In a `plan.sh`, you should instead return an exit code such as `return 1` for failure, and `return 0` for success. In a `plan.ps1` you should call `Write-Exception` or `throw` an exception upon failure.
 - Don't use `pkg_source` unless you are downloading something as a third party.
-- Don't shell out to `hab` from inside of a callback. If you think you want to, you should use a [utility function](plan_helpers) instead.
+- Don't shell out to `hab` from inside of a callback. If you think you want to, you should use a [utility function](../reference/plan_helpers.md) instead.
 - Don't call any functions or helper sthat begin with an underscore, for example `_dont_call_this_function()`. Those are internal for internal builder functions and aren't supported for external use. They will break your plan if you call them.
 - Don't run any code or run anything outside of a build phase or a function.
 
 ## Application Lifecycle Hooks
 
-The Supervisor dynamically invokes hooks at run-time, triggered by an application lifecycle event. You can read more about [hooks](application_lifecycle_hooks) here.
+The Supervisor dynamically invokes hooks at run-time, triggered by an application lifecycle event. You can read more about [hooks](../reference/application_lifecycle_hooks.md) here.
 
 ### Lifecycle Hook Do's
 
@@ -94,7 +94,7 @@ The Supervisor dynamically invokes hooks at run-time, triggered by an applicatio
 ### Lifecycle Hook Don't's
 
 - Don't call `hab` or `sleep` in a hook that isn't the `run` hook. You can only block the thread in a hook if it's in the `run` hook.
-- Don't shell out to `hab` from within a hook. If you think you want to, you should use a [runtime configuration setting](service_templates) instead. If none of those will solve your problem, open an issue and tell the core team why.
+- Don't shell out to `hab` from within a hook. If you think you want to, you should use a [runtime configuration setting](../reference/service_templates.md) instead. If none of those will solve your problem, open an issue and tell the core team why.
 - Don't use `exec` if you're running something with a pipe. It won't work.
 - Don't execute commands as a `root` user or try to `sudo hab pkg install`.
 - Don't edit any of the Supervisor rendered templates.

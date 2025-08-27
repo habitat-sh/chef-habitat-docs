@@ -39,7 +39,7 @@ For example:
 hab sup run --service-min-backoff-period 5 --service-max-backoff-period 20 --service-restart-cooldown-period 60  core/redis
 ```
 
-You can also set this behavior using these parameters in the [supervisor configuration file](sup_config):
+You can also set this behavior using these parameters in the [supervisor configuration file](../sup/sup_config.md):
 
 - `service_min_backoff_period`
 - `service_max_backoff_period`

@@ -98,7 +98,7 @@ Depending on the platform of your host and your Docker configuration, the behavi
 
 {{< note >}}
 
-For more details related to Windows containers see [Running Chef Habitat Windows Containers](running_habitat_windows_containers).
+For more details related to Windows containers see [Running Chef Habitat Windows Containers](../containers/running_habitat_windows_containers.md).
 
 {{< /note >}}
 
@@ -133,7 +133,7 @@ A non-interactive build is one in which Chef Habitat creates a Studio for you, b
 
 By default, the Studio is reset to a clean state after the package is built; however, _if you are using the Linux version of `hab`_, you can reuse a previous Studio when building your package by specifying the `-R` option when calling the `hab pkg build` subcommand.
 
-For information on the contents of an installed package, see [Package contents](package_contents).
+For information on the contents of an installed package, see [Package contents](../reference/package_contents.md).
 
 ## Troubleshooting Builds
 

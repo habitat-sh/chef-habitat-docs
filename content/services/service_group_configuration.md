@@ -18,7 +18,7 @@ file, and keep the count of files to a minimum.
 
 ### Usage
 
-Use the [`hab file upload`](habitat_cli#hab-file-upload) command
+Use the [`hab file upload`](../reference/habitat_cli#hab-file-upload) command
 to submit a file to a service group. Specify a peer in the ring to connect to,
 the version number of the file, and the new path to the file itself.
 

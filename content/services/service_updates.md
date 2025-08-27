@@ -51,7 +51,7 @@ HAB_MYTUTORIALAPP="$(cat my-env-stuff.toml)" hab run
 hab svc load <origin>/mytutorialapp
 ```
 
-Or, for [testing scenarios and containerized workflows](sup_run/#starting-the-supervisor):
+Or, for [testing scenarios and containerized workflows](../sup/sup_run#starting-the-supervisor):
 
 ```bash
 HAB_MYTUTORIALAPP="$(cat my-env-stuff.toml)" hab run <origin>/mytutorialapp
@@ -61,7 +61,7 @@ The main advantage of applying configuration updates to an individual service th
 
 ## Apply Configuration Updates to all Services in a Service Group
 
-Similar to specifying updates to individual settings at runtime, you can apply multiple configuration changes to an entire service group at runtime. These configuration updates can be sent in the clear or encrypted in gossip messages through [wire encryption](sup_secure). Configuration updates to a service group will trigger a restart of the services as new changes are applied throughout the group.
+Similar to specifying updates to individual settings at runtime, you can apply multiple configuration changes to an entire service group at runtime. These configuration updates can be sent in the clear or encrypted in gossip messages through [wire encryption](../sup/sup_secure). Configuration updates to a service group will trigger a restart of the services as new changes are applied throughout the group.
 
 ### Usage
 
@@ -71,7 +71,7 @@ When submitting a configuration update to a service group, you must specify the 
 - the version number of the configuration update
 - the new configuration
 
-Configuration updates can be either TOML passed into stdin, or passed in a TOML file that's referenced in [`hab config apply`](habitat_cli#hab-config-apply).
+Configuration updates can be either TOML passed into stdin, or passed in a TOML file that's referenced in [`hab config apply`](../reference/habitat_cli#hab-config-apply).
 
 {{< note >}}
 

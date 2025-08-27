@@ -14,7 +14,7 @@ Each plan can specify lifecycle event handlers, or hooks, to perform certain act
 
 To define a hook, create a file of the same name in `/my_plan_name/hooks/`, for example, `/postgresql/hooks/health-check`.
 
-Optionally you may add an extension to the hook file. For example, you might create `/postgresql/hooks/health-check.sh` which can be useful in some editors to automatically take advantage of syntax highlighting. Note that having two files for the same hook but with different extensions isn't permitted. For example you might create a `run.sh` and `run.ps1` to support both Linux and Windows packages. If you would like to create different hooks for different platforms, you must use [target directories](plan_writing#writing-a-plan-for-multiple-platform-targets).
+Optionally you may add an extension to the hook file. For example, you might create `/postgresql/hooks/health-check.sh` which can be useful in some editors to automatically take advantage of syntax highlighting. Note that having two files for the same hook but with different extensions isn't permitted. For example you might create a `run.sh` and `run.ps1` to support both Linux and Windows packages. If you would like to create different hooks for different platforms, you must use [target directories](../plans/plan_writing.md#writing-a-plan-for-multiple-platform-targets).
 
 {{< warning >}}
 You can't block the thread in a hook unless it's in the `run` hook. Never call `hab` or `sleep` in a hook that isn't the `run` hook.

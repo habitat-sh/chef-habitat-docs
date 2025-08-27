@@ -20,7 +20,8 @@ As a result, you no longer have to rely on a large operating system and unnecess
 This enables you to include only the binaries your application uses inside your container, which can decrease your container size.
 By eliminating the need for a large operating system, you also avoid including binaries that an attacker could use, which further increases the security of your container.
 Visit the [Running Chef Habitat Containers](running_habitat_linux_containers) section of the docs to find more details about how containers are built with Chef Habitat.
-Finally, [Chef Habitat's HTTP API](monitor_services) allows all of your application's runtime dependencies to be audited at any time.
-If a brand new vulnerability is revealed, [Chef Habitat's HTTP API](monitor_services) makes it easy to programmatically inspect and audit the entire toolchain of your runtime environment without needing to worry about how your containers got built in the first place.
+Finally, [Chef Habitat's HTTP API](../services/monitor_services) allows all of your application's runtime dependencies to be audited at any time.
+
+If a brand new vulnerability is revealed, [Chef Habitat's HTTP API](../services/monitor_services) makes it easy to programmatically inspect and audit the entire toolchain of your runtime environment without needing to worry about how your containers got built in the first place.
 
 If your situation requires it, Chef Habitat makes it simple to switch from containerized to non-containerized workloads. This is because Chef Habitat packages only have a requirement on the kernel version of your operating system. (Linux: kernel 2.6.32 or later, Windows: Windows Server 2008 R2 or later and Windows 7 64-bit or later). You can take the same `.hart` file you use to export to a Docker container and run it on a virtual machine or bare metal. By only requiring the kernel, Chef Habitat gives you the ability to switch container formats or to switch to non-containerized workloads without significant rework.

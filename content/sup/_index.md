@@ -31,4 +31,4 @@ The Chef Habitat Supervisor provides a HTTP API to expose cluster metadata, stat
 ## Control Gateway
 
 The Supervisor control gateway is used to issue commands to a remote Supervisor. When a new Supervisor is created, a key for the `HAB_CTL_SECRET` environment variable is generated for it by default, if one isn't already present; this key is used to authenticate requests that are made with the control gateway.
-See the [control gateway](keys#control-gateway) documentation for more details.
+See the [control gateway](sup_remote_control) documentation for more details.

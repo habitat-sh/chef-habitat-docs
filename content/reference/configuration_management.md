@@ -35,7 +35,7 @@ The Chef Habitat Supervisor's responsibility is to update your configuration man
 
 Chef Habitat can provide an easier transition from virtual machine or bare metal workloads to containers, without needing to rewrite a monolithic application into microservices all at once.
 In this scenario, you can run the [Chef Habitat Supervisor](sup) on your existing virtual machine or bare metal infrastructure as you migrate away from your configuration management tool.
-Then, when you're ready, you export your application to the container format of your choice using the [Chef Habitat Studio](pkg_build).
+Then, when you're ready, you export your application to the container format of your choice using the [Chef Habitat Studio](../packages/pkg_build.md).
 While you migrate your applications and services, the [Chef Habitat Supervisor](sup) runs on your existing mutable infrastructure, and runs your existing configuration management tool.
 New packages that don't require configuration management can also run under the [Chef Habitat Supervisor](sup) on your existing mutable infrastructure.
 As a result, you can continue to verify the working state of your application as you incrementally migrate your services.
