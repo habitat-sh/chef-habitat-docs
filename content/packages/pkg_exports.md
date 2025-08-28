@@ -127,7 +127,7 @@ You can create a Docker container image for any package by performing the follow
 
     ```json
     { "id": "yourorigin/yourpackage", "cmd": "/bin/id -u hab &>/dev/null || /sbin/useradd hab; /bin/chown -R hab:hab *;
-    mount -t proc proc/; mount -t sysfs sys/;mount -o bind /dev dev/; /usr/sbin/chroot . ./init.sh start
+    mount -t proc proc proc/; mount -t sysfs sys sys/;mount -o bind /dev dev/; /usr/sbin/chroot . ./init.sh start
     yourorigin/yourpackage", "cpus": 0.5, "disk": 0, "mem": 256, "instances": 1, "uris":
     ["https://storage.googleapis.com/mesos-habitat/yourorigin/yourpackage-0.0.1-20160611121519.tgz" ] }
     ```
