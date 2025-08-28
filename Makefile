@@ -28,6 +28,9 @@ production: bundle
 test_theme: bundle
 	HUGO_MODULE_WORKSPACE=hugo.work hugo server --buildDrafts --noHTTPCache --buildFuture --ignoreVendorPaths "github.com/chef/chef-docs-theme"
 
+test_theme_branch_deploy: bundle
+	HUGO_MODULE_WORKSPACE=hugo.work hugo server --buildDrafts --noHTTPCache --buildFuture --ignoreVendorPaths "github.com/chef/chef-docs-theme" --baseURL http://localhost:1313/habitat/version/ -e branch-deploy
+
 test_theme_static: bundle
 	HUGO_MODULE_WORKSPACE=hugo.work hugo --buildDrafts --buildFuture --ignoreVendorPaths "github.com/chef/chef-docs-theme" --cleanDestinationDir
 

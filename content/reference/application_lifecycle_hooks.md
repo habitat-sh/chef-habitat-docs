@@ -14,7 +14,7 @@ Each plan can specify lifecycle event handlers, or hooks, to perform certain act
 
 To define a hook, create a file of the same name in `/my_plan_name/hooks/`, for example, `/postgresql/hooks/health-check`.
 
-Optionally you may add an extension to the hook file. For example, you might create `/postgresql/hooks/health-check.sh` which can be useful in some editors to automatically take advantage of syntax highlighting. Note that having two files for the same hook but with different extensions isn't permitted. For example you might create a `run.sh` and `run.ps1` to support both Linux and Windows packages. If you would like to create different hooks for different platforms, you must use [target directories]({{< relref "plan_writing#writing-a-plan-for-multiple-platform-targets" >}}).
+Optionally you may add an extension to the hook file. For example, you might create `/postgresql/hooks/health-check.sh` which can be useful in some editors to automatically take advantage of syntax highlighting. Note that having two files for the same hook but with different extensions isn't permitted. For example you might create a `run.sh` and `run.ps1` to support both Linux and Windows packages. If you would like to create different hooks for different platforms, you must use [target directories](../plans/plan_writing.md#writing-a-plan-for-multiple-platform-targets).
 
 {{< warning >}}
 You can't block the thread in a hook unless it's in the `run` hook. Never call `hab` or `sleep` in a hook that isn't the `run` hook.
@@ -22,7 +22,7 @@ You can't block the thread in a hook unless it's in the `run` hook. Never call `
 
 ## Runtime Settings
 
-[Chef Habitat's runtime configuration settings]({{< relref "service_templates" >}}) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
+[Chef Habitat's runtime configuration settings](service_templates) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
 
 {{< note >}}
 
@@ -79,7 +79,7 @@ File location: `<plan>/hooks/init`. This hook is run when a Chef Habitat topolog
 
 {{< note >}}
 
-If the init hook fails with a non-zero exit code, the service will be restarted with the [configured service backoff]({{< relref "service_restarts" >}}).
+If the init hook fails with a non-zero exit code, the service will be restarted with the [configured service backoff](service_restarts).
 
 {{< /note >}}
 
@@ -144,7 +144,7 @@ exec my_command --option {{cfg.option}} --option2 {{cfg.option2}}
 
 {{< note >}}
 
-If the run hook exits it will be considered as a run failure. The service will be restarted with the [configured service backoff]({{< relref "service_restarts" >}}) regardless of the exit code that
+If the run hook exits it will be considered as a run failure. The service will be restarted with the [configured service backoff](service_restarts) regardless of the exit code that
 was returned by the hook.
 
 {{< /note >}}

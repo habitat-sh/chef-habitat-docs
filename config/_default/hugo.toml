@@ -6,6 +6,12 @@ enableGitInfo = true
 disableKinds = ["taxonomy", "term", "RSS"]
 timeZone = 'America/New_York'
 
+####
+#
+# Markdown markup config
+# https://gohugo.io/configuration/markup/
+#
+####
 
 [markup]
   [markup.goldmark]
@@ -18,8 +24,10 @@ timeZone = 'America/New_York'
       taskList = true
       typographer = true
     [markup.goldmark.parser]
+      autoDefinitionTermID = false
       autoHeadingID = true
       autoHeadingIDType = "github"
+      wrapStandAloneImageWithinParagraph = true
       [markup.goldmark.parser.attribute]
         block = true
         title = true

@@ -27,7 +27,7 @@ We recommend setting the restart cooldown period to be at least double your expe
 
 {{< /note >}}
 
-Enable these values using the [`sup run`]({{< relref "habitat_cli#hab-sup" >}}) command by passing in the number of seconds to the following parameters:
+Enable these values using the [`sup run`](habitat_cli#hab-sup) command by passing in the number of seconds to the following parameters:
 
 - `service-min-backoff-period`
 - `service-max-backoff-period`
@@ -39,7 +39,7 @@ For example:
 hab sup run --service-min-backoff-period 5 --service-max-backoff-period 20 --service-restart-cooldown-period 60  core/redis
 ```
 
-You can also set this behavior using these parameters in the [supervisor configuration file]({{< relref "sup_config" >}}):
+You can also set this behavior using these parameters in the [supervisor configuration file](../sup/sup_config.md):
 
 - `service_min_backoff_period`
 - `service_max_backoff_period`

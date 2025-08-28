@@ -33,6 +33,33 @@ url = "https://docs.chef.io"
 
 #######
 #
+# Settings for the link and image render hooks.
+#
+# See:
+# - https://www.veriphor.com/articles/link-and-image-render-hooks/
+# - https://gohugo.io/render-hooks/links/
+# - https://gohugo.io/render-hooks/images/
+#
+# render_hooks.link.errorLevel
+#       ignore (default), warning, or error (fails the build)
+#
+# render_hooks.link.highlightBroken
+#        true or false (default). Adds `broken` class to link in development env
+#
+# render_hooks.image.errorLevel
+#        ignore (default), warning, or error (fails the build)
+#
+#######
+
+[render_hooks.link]
+errorLevel = 'warning'
+highlightBroken = true
+
+[render_hooks.image]
+errorLevel = 'warning'
+
+#######
+#
 # versions:
 #     Version data used to link to other releases and populate page layouts with version information.
 #
