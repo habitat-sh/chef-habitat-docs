@@ -10,7 +10,7 @@ description = "Monitoring Services"
     weight = 70
 +++
 
-Use the HTTP API to monitor services. When a service starts, the [Supervisor]({{< relref "sup_networks">}}) exposes the status of its services' health and other information through an HTTP API endpoint. This information can be useful in monitoring service health or leader election results.
+Use the HTTP API to monitor services. When a service starts, the [Supervisor](../sup/sup_networks.md) exposes the status of its services' health and other information through an HTTP API endpoint. This information can be useful in monitoring service health or leader election results.
 
 ## Authentication
 

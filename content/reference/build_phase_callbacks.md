@@ -19,9 +19,9 @@ Bash callbacks are prefixed with `do_` and use an underscore convention. PowerSh
 
 {{< /note >}}
 
-You can also use [plan variables]({{< relref "plan_variables" >}}) in your plans to place binaries, libraries, and files into their correct locations during package compilation or when running as a service.
+You can also use [plan variables](plan_variables) in your plans to place binaries, libraries, and files into their correct locations during package compilation or when running as a service.
 
-Additionally, [plan helper functions]({{< relref "build_helpers" >}}) can be useful in your plan to help you build your package correctly. They're mostly used for building packages - attach() is used for debugging.
+Additionally, [plan helper functions](build_helpers) can be useful in your plan to help you build your package correctly. They're mostly used for building packages - attach() is used for debugging.
 
 do_begin()/Invoke-Begin
 : Used to execute arbitrary commands before anything else happens. Note that at this phase of the build, no dependencies are resolved, the `$PATH` and environment isn't set, and no external source has been downloaded. For a phase that's more completely set up, see the `do_before()` phase.

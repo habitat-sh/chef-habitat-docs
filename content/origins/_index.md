@@ -33,4 +33,4 @@ You can create origins in an on-prem Habitat Builder deployment.
 
 {{< readfile file="/reusable/md/create_origins_cli.md" >}}
 
-To create key pair for your origin, see the [origin keys]({{< relref "/origins/origin_keys/#generate-origin-keys" >}}) documentation.
+To create key pair for your origin, see the [origin keys](/origins/origin_keys/#generate-origin-keys) documentation.

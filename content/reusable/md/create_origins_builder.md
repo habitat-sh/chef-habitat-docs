@@ -19,7 +19,7 @@ To create an origin in Chef Habitat Builder, follow these steps:
     Habitat Builder does the following:
 
     - Creates your origin.
-    - Creates an [origin key pair]({{< relref "/origins/origin_keys" >}}).
+    - Creates an [origin key pair](/origins/origin_keys).
     - Redirects Chef Habitat Builder to the origin page.
 
    ![Origin successfully created](/images/habitat/create-origin-done.png)
