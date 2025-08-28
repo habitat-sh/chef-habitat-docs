@@ -75,7 +75,7 @@ SVC_GROUP
 SVC_USER
 : The value of `pkg_svc_user` from a plan. The Chef Habitat Supervisor will try to start a service with this user if it exists.
 
-[default.toml](@)
+default.toml
 : If you have defined a `default.toml` file in the root of your plan, then it will be included in the same relative location within the installed package directory. For more information on configuration and the default.toml file, see [Configuration Updates](../services/service_updates.md).
 
 config directory
