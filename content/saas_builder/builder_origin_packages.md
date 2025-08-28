@@ -32,7 +32,7 @@ Chef Habitat Builder supports both public and private origins, packages, and Git
 
 ## Create a Builder Account
 
-If you haven't created an account yet, see the [Create a Builder Account]({{< relref "builder_account" >}}) section above.
+If you haven't created an account yet, see the [Create a Builder Account](builder_account) section above.
 
 ## Create or Join an Existing Origin
 
@@ -42,7 +42,7 @@ You can create your own origin in Builder or be invited to join an existing one.
 
 When you upload a package to Builder, you are required to supply an auth token as part of the `hab pkg upload` subcommand. You can generate a Chef Habitat personal access token with the Builder site [Profile page](https://bldr.habitat.sh/#/profile) for use with the `hab` command-line utility.
 
-Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable]({{< relref "environment_variables" >}}) to this value, so that any commands requiring authentication will use it.
+Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable](../reference/environment_variables.md) to this value, so that any commands requiring authentication will use it.
 
 ## Create an Origin Key Pair
 
@@ -76,13 +76,13 @@ You can also promote packages to the `stable` channel using the *promote to stab
 
 {{< /note >}}
 
-For more information on how to use channels, see [Continuous Deployment Using Channels]({{< relref "pkg_promote" >}}).
+For more information on how to use channels, see [Continuous Deployment Using Channels](../packages/pkg_promote.md).
 
 ### Running Packages from Builder
 
 {{< note >}}
 
-When running private packages from Builder, it's necessary to add your [Chef Habitat access token]({{< relref "builder_profile#create-a-personal-access-token" >}}) to the machine where you intend to deploy the package, with `export HAB_AUTH_TOKEN=<token>`.
+When running private packages from Builder, it's necessary to add your [Chef Habitat access token](builder_profile#create-a-personal-access-token) to the machine where you intend to deploy the package, with `export HAB_AUTH_TOKEN=<token>`.
 
 {{< /note >}}
 
