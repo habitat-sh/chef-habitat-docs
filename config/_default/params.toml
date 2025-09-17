@@ -7,7 +7,7 @@
 #             Menus are defined in the /config/_default/menu.toml file
 #######
 
-menuOrder = ["about", "install", "saas", "origins", "packages", "plans", "services", "sup", "studio", "reference", "containers", "release_notes"]
+menuOrder = ["about", "install", "upgrade", "saas", "origins", "packages", "plans", "services", "sup", "studio", "reference", "containers", "release_notes"]
 
 #######
 # robots = The default robots config applied to each page in the robots meta tag.
