@@ -55,6 +55,10 @@ weight = 60
 title = "Install"
 identifier = "install"
 
+[[upgrade]]
+title = "Upgrade"
+identifier = "upgrade"
+
 [[saas]]
 title = "SaaS Builder"
 identifier = "saas_builder"
@@ -96,5 +100,3 @@ identifier = "containers"
 [[release_notes]]
 title = "Release notes"
 identifier = "release_notes"
-
-
