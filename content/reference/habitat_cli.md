@@ -2168,9 +2168,7 @@ hab pkg export <SUBCOMMAND>
 
 | Command | Description |
 | ------- | ----------- |
-| [hab pkg export cf](#hab-pkg-export-cf) | Cloud Foundry exporter |
 | [hab pkg export container](#hab-pkg-export-container) | Container exporter |
-| [hab pkg export mesos](#hab-pkg-export-mesos) | Mesos exporter |
 | [hab pkg export tar](#hab-pkg-export-tar) | Tar exporter |
 ---
 
