@@ -58,7 +58,7 @@ If you prefer not to use these scripts, you can download packages directly from 
 
 **Q: How do I install `hab` across my server fleet?**
 
-A: For enterprise deployments, consider these approaches:
+\A: For enterprise deployments, consider these approaches:
 
 1. **Configuration management**: Use your existing tools (Ansible, Chef 360, Chef Infra, Puppet, etc.) with our installation scripts
 2. **Container images**: If your applications are containerized with Chef Habitat, the `hab` CLI is included in the container
