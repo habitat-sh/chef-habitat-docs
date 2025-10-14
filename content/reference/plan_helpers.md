@@ -317,3 +317,65 @@ strConcat
 : The `concat` helper can be used to connect multiple strings into one string without a separator. For example, `{{strConcat "foo" "bar" "baz"}}` would return `"foobarbaz"`.\
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
+
+## Effective Use of Handlebars Whitespace Trimming
+
+The Handlebars templating language allows the use of tildes inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action. Consider this Handlebars template.
+
+```handlebars
+<!--comment-->
+{{#if items}}
+<ul>
+  {{#each items}}
+    <li> {{item}} </li>
+  {{/each}}
+</ul>
+{{/if}}
+<!--comment-->
+```
+
+If provided this context
+
+```json
+{
+    "items": [
+        { "item": "one" },
+        { "item": "two" },
+        { "item": "three" }
+    ]
+}
+```
+
+then Handlebars would render this output.
+
+```html
+<!--comment-->
+<ul>
+    <li> one </li>
+    <li> two </li>
+    <li> three </li>
+</ul>
+<!--comment-->
+```
+
+Notice how all whitespace in the template is preserved in what was rendered. If we keep the same context but change the template to introduce a `~` everywhere one is allowed then the Handlebars templating now look like this.
+
+```handlebars
+<!--comment-->
+{{~#if items~}}
+<ul>
+  {{~#each items~}}
+    <li> {{~item~}} </li>
+  {{~/each~}}
+</ul>
+{{~/if~}}
+<!--comment-->>
+```
+
+With those additions the rendered output would have all of the whitespace consumed such that everything is squashed down to a single line resulting in the following.
+
+```html
+<!--comment--><ul><li>one</li><li>two</li><li>three</li></ul><!--comment-->
+```
+
+The point is that `{{~` and `~}}` are powerful bits of syntax that require some care to use properly. In the contrived example presented here no harm is done beyond compromising the human readability of the rendered output.  However, if you are using Handlebars templating in a context where whitespace is significant then you can easily end up something that will be invalid.  For additional information around such pitfalls please see [this discussion](../upgrade#trimming-whitespace-now-works-correctly) in the Habitat 2.0 upgrade documentation. You can also experiment with code above in the [Handlebars playground](https://handlebarsjs.com/playground.html).
