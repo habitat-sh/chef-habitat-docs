@@ -24,7 +24,7 @@ The action required is that you will need to proactively or reactively change an
 
 One way to identify files for review is `find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches` but this should be adapted as appropriate for use against your codebase.
 
-### Trimming Whitespace Via `{{~` and `~}}` Now Works Correctly
+### Trimming Whitespace Now Works Correctly
 
 The `{{~` and `~}}` syntax for whitespace trimming was effectively a noop for habitat versions prior to 2.0 After 2.0 usage of `{{~` and `~}}` will trim whitespace as expected which may result in errors.
 
@@ -35,3 +35,5 @@ For example, one issue that the habitat team encountered was with templated ngin
 However, another example the habitat team encountered was in the context of generating a PostgreSQL pg_hba.conf file. There the use of `{{~` caused a line that should have been created on a line by itself to be concatenated with the previous line. In this instance the plan built as expected but contained an unparsable pg_hba.conf file that caused an error when attempting to run postgres.
 
 One way to identify files for review is `find . -type f | xargs grep --perl-regexp '{{~|~}}' --files-with-matches` but this should be adapted as appropriate for use against your code base.
+
+For more on how to use `{{~` and `~}}` you can read [Effective Use of Handlebars Whitespace Trimming](../reference/plan_helpers/#effective-use-of-handlebars-whitespace-trimming) or visit the [Handlebars website](https://handlebarsjs.com/).
