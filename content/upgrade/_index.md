@@ -18,11 +18,11 @@ The impact of this is that you may have to update your templates as described in
 
 ### Object Access Syntax Removed
 
-In Habitat versions prior to 2.0 both `object.[index]` and `object[index]` were valid syntax for object access.  After habitat 2.0 only the `object[index]` remains valid syntax.
+In Habitat versions prior to 2.0 both `object.[index]` and `object[index]` were valid syntax for object access.  After habitat 2.0 only the `object.[index]` remains valid syntax.
 
-The action required is that you will need to proactively or reactively change any usages of the now removed `object.[index]` syntax to the still viable `object[index]` syntax.  See [PR #6323](https://github.com/habitat-sh/habitat/issues/6323) [PR #9585](https://github.com/habitat-sh/habitat/pull/9585) for more information.
+The action required is that you will need to proactively or reactively change any usages of the now removed `object[index]` syntax to the still viable `object.[index]` syntax.  See [PR #6323](https://github.com/habitat-sh/habitat/issues/6323) [PR #9585](https://github.com/habitat-sh/habitat/pull/9585) for more information.
 
-One way to identify files for review is `find . -type f | xargs grep --perl-regexp '\.\[.*\]' --files-with-matches` but this should be adapted as appropriate for use against your codebase.
+One way to identify files for review is `find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches` but this should be adapted as appropriate for use against your codebase.
 
 ### Trimming Whitespace Via `{{~` and `~}}` Now Works Correctly
 
