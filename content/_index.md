@@ -13,7 +13,7 @@ linkTitle = "Chef Habitat"
 
 Chef Habitat is a workload-packaging, orchestration, and deployment system that allows you to build, package, deploy, and manage applications and services without worrying about which infrastructure your application will deploy on, and without any rewriting or refactoring if you switch to a different infrastructure.
 
-Habitat separates the platform-independent parts of your application—the build dependencies, runtime dependencies, lifecycle events, and application codebase—from the operating system or deployment environment that the application will run on, and bundles it into an immutable Habitat Package.
+Habitat separates the platform-independent parts of your application-the build dependencies, runtime dependencies, lifecycle events, and application codebase-from the operating system or deployment environment that the application will run on, and bundles it into an immutable Habitat Package.
 The package is sent to the Chef Habitat Builder (SaaS or on-prem), which acts as a package store like Docker Hub where you can store, build, and deploy your Habitat package.
 Habitat Supervisor pulls packages from Habitat Builder, and will start, stop, run, monitor, and update your application based on the plan and lifecycle hooks you define in the package.
 Habitat Supervisor runs on bare metal, virtual machines, containers, or Platform-as-a-Service environments.
