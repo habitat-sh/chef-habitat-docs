@@ -92,12 +92,12 @@ Another useful thing to keep in mind when thinking about required and optional b
 
 Once you've defined both ends of the contract, you can leverage the bind in any of your package's hooks or configuration files. Given the two example services above, a section of a configuration file for `session-server` might look like this:
 
-```handlebars
-{{~#each bind.database.members as |member|}}
-  database = "{{member.sys.ip}}:{{member.cfg.port}}"
-  database-secure = "{{member.sys.ip}}:{{member.cfg.ssl-port}}"
-{{~/each}}
-```
+  ```handlebars
+  {{#each bind.database.members as |member|}}
+    database = "{{member.sys.ip}}:{{member.cfg.port}}"
+    database-secure = "{{member.sys.ip}}:{{member.cfg.ssl-port}}"
+  {{/each}}
+  ```
 
 Here, `bind.<BINDING_NAME>` will be "truthy" (and can thus be used in boolean expressions) only if the bind has been satisfied, and `bind.<BINDING_NAME>.members` will be an array of only active members.
 
