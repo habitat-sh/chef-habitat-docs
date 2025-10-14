@@ -40,14 +40,14 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 #### Available Flags
 
-- `-c CHANNEL` — Specifies the release channel [values: stable, unstable] [default: stable]
-- `-h` — Prints help information
-- `-v VERSION` — Specifies a version (for example: 1.6.1245, 1.6.1245/20250905140900)
-- `-t TARGET` — Specifies the target architecture of the 'hab' program to download
+- `-c CHANNEL` - Specifies the release channel [values: stable, unstable] [default: stable]
+- `-h` - Prints help information
+- `-v VERSION` - Specifies a version (for example: 1.6.1245, 1.6.1245/20250905140900)
+- `-t TARGET` - Specifies the target architecture of the 'hab' program to download
   - [values: x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin] [default: x86_64-linux]
-- `-u URL` — Specifies a custom Builder URL
-- `-b CHANNEL` — Specifies Builder channel (for temporary use)
-- `-o ORIGIN` — Specifies the origin [default: core]
+- `-u URL` - Specifies a custom Builder URL
+- `-b CHANNEL` - Specifies Builder channel (for temporary use)
+- `-o ORIGIN` - Specifies the origin [default: core]
 
 {{< note >}}
 These options when combined may result in a request to to install something that does not exist.  For example, if you specify `-o FOO -c BAR` then an origin named FOO must exist and a channel named BAR must exist and must also be used within the FOO origin.
@@ -95,9 +95,9 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 The script recognizes these environment variables:
 
-- `SSL_CERT_FILE` — Allows you to verify against a custom certificate, such as one generated from a corporate firewall
-- `DEBUG` — If set, prints shell commands as they execute for troubleshooting
-- `TMPDIR` — Specifies the temporary directory for downloads [default: /var/tmp or /tmp]
+- `SSL_CERT_FILE` - Allows you to verify against a custom certificate, such as one generated from a corporate firewall
+- `DEBUG` - If set, prints shell commands as they execute for troubleshooting
+- `TMPDIR` - Specifies the temporary directory for downloads [default: /var/tmp or /tmp]
 
 ### Platform-Specific Behavior
 
@@ -156,9 +156,9 @@ For Apple Silicon Macs, the script performs these additional setup steps:
 
 The script includes multiple verification steps:
 
-1. **Checksum Verification** — Downloads and verifies SHA256 checksums for all packages
-2. **GPG Signature Verification** — If GnuPG is available, verifies package signatures using Chef's public key
-3. **Package Integrity** — Ensures downloaded archives match expected checksums before installation
+1. **Checksum Verification** - Downloads and verifies SHA256 checksums for all packages
+2. **GPG Signature Verification** - If GnuPG is available, verifies package signatures using Chef's public key
+3. **Package Integrity** - Ensures downloaded archives match expected checksums before installation
 
 ### Requirements
 
