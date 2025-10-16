@@ -242,14 +242,13 @@ After successful installation:
 
 1. Verify the installation: `hab --version`
 2. Set up your origin: `hab origin key generate YOUR_ORIGIN`
-3. Review the [CLI setup guide](../install/cli-setup.md) for initial configuration
-4. Explore the [getting started tutorials](../getting-started) to begin using Habitat
+3. Review the [CLI setup guide](../install/hab_setup.md) for initial configuration
+4. Take the [Chef Habitat tutorial](https://www.chef.io/training/tutorials) available at [Chef Training](https://www.chef.io/training) to learn more about using Habitat.
 
 ### Support
 
 If you encounter issues with the install script:
 
 - Check the [troubleshooting guide](../install/troubleshooting.md)
-- Review [known issues](../known-issues) for your platform
 - Visit the [Habitat community forum](https://discourse.chef.io/c/habitat)
-- File issues in the [Habitat GitHub repository](https://github.com/habitat-sh/habitat/issues)
+- Review known or file new issues in the [Habitat GitHub repository](https://github.com/habitat-sh/habitat/issues)
