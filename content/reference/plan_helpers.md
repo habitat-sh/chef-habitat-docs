@@ -39,7 +39,7 @@ Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/g
 When using `each` in a block expression, you must reference the parent context of that block to use any user-defined configuration values referenced _within_ the block, such as those that start with `cfg`. For example, if your block looked like the following, you must reference `cfg.port` from the parent context of the block:
 
 ```handlebars
-{{#each svc.members ~}}
+{{#each svc.members}}
     server {{sys.ip}}:{{../cfg.port}}
 {{/each}}
 ```
@@ -55,9 +55,9 @@ if
   Here's an example that will only write out configuration for the unixsocket tunable if a value was set by the user:
 
   ```handlebars
-  {{#if cfg.unixsocket ~}}
+  {{#if cfg.unixsocket}}
     unixsocket {{cfg.unixsocket}}
-  {{/if ~}}
+  {{/if}}
   ```
 
 {{< note >}}
@@ -78,39 +78,39 @@ disable-tcp-nodelay = no
 When writing your template, you can use the `with` helper to reduce duplication:
 
 ```handlebars
-{{#with cfg.repl ~}}
+{{#with cfg.repl}}
   repl-backlog-size {{backlog-size}}
   repl-backlog-ttl {{backlog-ttl}}
   repl-disable-tcp-nodelay {{disable-tcp-nodelay}}
-{{/with ~}}
+{{/with}}
 ```
 
 Helpers can also be nested and used together in block expressions. Here is another example from the redis.config file where the `if` and `with` helpers are used together to set up `core/redis` Chef Habitat services in a leader-follower topology.
 
   ```handlebars
-  {{#if svc.me.follower ~}}
+  {{#if svc.me.follower}}
     replicaof {{svc.leader.sys.ip}} {{svc.leader.cfg.port}}
-  {/if ~}}
+  {/if}}
   ```
 
 each
 : Here's an example using each to render multiple server entries:
 
   ```handlebars
-  {{#each cfg.servers as |server| ~}}
+  {{#each cfg.servers as |server|}}
   server {
     host {{server.host}}
     port {{server.port}}
   }
-  {{/each ~}}
+  {{/each}}
   ```
 
   You can also use each with `@key` and `this`. Here is an example that takes the `[env]` section of your default.toml and makes an env file you can source from your run hook:
 
   ```handlebars
-  {{#each cfg.env ~}}
+  {{#each cfg.env}}
     export {{toUppercase @key}}={{this}}
-  {{/each ~}}
+  {{/each}}
   ```
 
   You would specify the corresponding values in a TOML file using an [array of tables](https://github.com/toml-lang/toml#array-of-tables) like this:
@@ -129,12 +129,12 @@ each
 
   ```handlebars
   "mongo": {
-    {{#each bind.database.members as |member| ~}}
-      {{#if @first ~}}
+    {{#each bind.database.members as |member|}}
+      {{#if @first}
         "host" : "{{member.sys.ip}}",
         "port" : "{{member.cfg.port}}"
-      {{/if ~}}
-    {{/each ~}}
+      {{/if}}
+    {{/each}}
   }
   ```
 
@@ -148,10 +148,10 @@ unless
 : For `unless`, using `@last` can also be helpful when you need to optionally include delimiters. In the example below, the IP addresses of the alive members returned by the `servers` binding is comma-separated. The logic check `{{#unless @last}}, {{/unless}}` at the end ensures that the comma is written after each element except the last element.
 
   ```handlebars
-  {{#eachAlive bind.servers.members as |member| ~}}
+  {{#eachAlive bind.servers.members as |member|}}
     "{{member.sys.ip}}"
-    {{#unless @last ~}}, {{/unless ~}}
-  {{/eachAlive ~}}]
+    {{#unless @last}}, {{/unless }}
+  {{/eachAlive}}]
   ```
 
 ## Plan Helpers
@@ -206,9 +206,9 @@ eachAlive
 : Iterates over a collection of members and renders the template for members that are marked alive.
 
   ```handlebars
-  {{~#eachAlive bind.backend.members as |member|}}
+  {{#eachAlive bind.backend.members as |member|}}
   server ip {{member.sys.ip}}:{{member.cfg.port}}
-  {{~/eachAlive}}
+  {{/eachAlive}}
   ```
 
 toJson
@@ -317,3 +317,65 @@ strConcat
 : The `concat` helper can be used to connect multiple strings into one string without a separator. For example, `{{strConcat "foo" "bar" "baz"}}` would return `"foobarbaz"`.\
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
+
+## Effective Use of Handlebars Whitespace Trimming
+
+The Handlebars templating language allows the use of tildes inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action. Consider this Handlebars template.
+
+```handlebars
+<!--comment-->
+{{#if items}}
+<ul>
+  {{#each items}}
+    <li> {{item}} </li>
+  {{/each}}
+</ul>
+{{/if}}
+<!--comment-->
+```
+
+If provided this context
+
+```json
+{
+    "items": [
+        { "item": "one" },
+        { "item": "two" },
+        { "item": "three" }
+    ]
+}
+```
+
+then Handlebars would render this output.
+
+```html
+<!--comment-->
+<ul>
+    <li> one </li>
+    <li> two </li>
+    <li> three </li>
+</ul>
+<!--comment-->
+```
+
+Notice how all whitespace in the template is preserved in what was rendered. If we keep the same context but change the template to introduce a `~` everywhere one is allowed then the Handlebars templating now look like this.
+
+```handlebars
+<!--comment-->
+{{~#if items~}}
+<ul>
+  {{~#each items~}}
+    <li> {{~item~}} </li>
+  {{~/each~}}
+</ul>
+{{~/if~}}
+<!--comment-->>
+```
+
+With those additions the rendered output would have all of the whitespace consumed such that everything is squashed down to a single line resulting in the following.
+
+```html
+<!--comment--><ul><li>one</li><li>two</li><li>three</li></ul><!--comment-->
+```
+
+The point is that `{{~` and `~}}` are powerful bits of syntax that require some care to use properly. In the contrived example presented here no harm is done beyond compromising the human readability of the rendered output.  However, if you are using Handlebars templating in a context where whitespace is significant then you can easily end up something that will be invalid.  For additional information around such pitfalls please see [this discussion](../upgrade#trimming-whitespace-now-works-correctly) in the Habitat 2.0 upgrade documentation. You can also experiment with code above in the [Handlebars playground](https://handlebarsjs.com/playground.html).
