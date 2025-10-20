@@ -51,52 +51,86 @@ weight = 60
 ## End Main Menu ##
 ####
 
-[[install]]
-title = "Install"
-identifier = "install"
+[[chef_habitat]]
+title = "Chef Habitat"
+identifier = "chef_habitat"
 
-[[upgrade]]
-title = "Upgrade"
-identifier = "upgrade"
+    [[chef_habitat]]
+    title = "Overview"
+    parent = "chef_habitat"
+    identifier = "chef_habitat/overview"
+    weight = 10
 
-[[saas]]
-title = "SaaS Builder"
-identifier = "saas_builder"
+    [[chef_habitat]]
+    title = "Habitat"
+    parent = "chef_habitat"
+    identifier = "chef_habitat/habitat"
+    weight = 20
 
-[[origins]]
-title = "Origins"
-identifier = "origins"
+    [[chef_habitat]]
+    title = "Builder"
+    parent = "chef_habitat"
+    identifier = "chef_habitat/builder"
+    weight = 30
 
-[[packages]]
-title = "Packages"
-identifier = "packages"
+        [[chef_habitat]]
+        title = "SaaS builder"
+        parent = "chef_habitat/builder"
+        identifier = "chef_habitat/builder/saas"
 
-[[plans]]
-title = "Plans"
-identifier = "plans"
+    [[packages ]]
+    title = "Packages"
+    parent = "chef_habitat"
+    identifier = "chef_habitat/packages"
+    weight = 40
 
-[[services]]
-title = "Services"
-identifier = "services"
-
-[[sup]]
-title = "Supervisors"
-identifier = "supervisors"
-
-[[reference]]
-title = "Reference"
-identifier = "reference"
-
-    [[reference]]
-    title = "APIs"
-    identifier  = "reference/api"
-    parent = "reference"
-    weight = "20"
-
-[[containers]]
-title = "Containers"
-identifier = "containers"
-
-[[release_notes]]
-title = "Release notes"
-identifier = "release_notes"
+# [[overview.overview]]
+# title = "Overview"
+# identifier = "overview"
+#
+# [[habitat.install]]
+# title = "Install"
+# identifier = "install"
+#
+# [[habitat.upgrade]]
+# title = "Upgrade"
+# identifier = "upgrade"
+#
+# [[habitat.origins]]
+# title = "Origins"
+# identifier = "origins"
+#
+# [[habitat.packages]]
+# title = "Packages"
+# identifier = "packages"
+#
+# [[habitat.plans]]
+# title = "Plans"
+# identifier = "plans"
+#
+# [[habitat.services]]
+# title = "Services"
+# identifier = "services"
+#
+# [[habitat.sup]]
+# title = "Supervisors"
+# identifier = "supervisors"
+#
+# [[habitat.reference]]
+# title = "Reference"
+# identifier = "reference"
+#
+#     [[habitat.reference]]
+#     title = "APIs"
+#     parent = "reference"
+#     identifier  = "reference/api"
+#     weight = "20"
+#
+# [[habitat.containers]]
+# title = "Containers"
+# identifier = "containers"
+#
+# [[habitat.release_notes]]
+# title = "Release notes"
+# identifier = "release_notes"
+#
