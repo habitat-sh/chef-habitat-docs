@@ -6,7 +6,7 @@
         <div class="grid-x grid-margin-x grid-margin-y">
             {{ range .Pages.ByTitle }}
             <div class="cell small-12 medium-6 large-4">
-                <a href="{{ .Permalink }}" class="grid-cell">
+                <a href="{{ .RelPermalink }}" class="grid-cell">
                 <h2>{{ .LinkTitle }}</h2>
                 <hr>
                 <p>{{ .Summary | plainify | safeHTML | truncate 100 }}</p>
