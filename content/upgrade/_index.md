@@ -10,6 +10,19 @@ linkTitle = "Upgrade"
   weight = 10
 +++
 
+While basic Chef Habitat behavior has not changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x cannot seamlessly update themselves via the auto-update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.
+
+This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On windows you will also need the updated `windows-service` package. Further, the supervisor will need a valid HAB_AUTH_TOKEN associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
+
+Similar to the curlbash style install scripts used to install Chef Habitat, we are providing a migration script that will install a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
+
+To upgrade a supervisor from 1.6.x to 2.0.x, run the following:
+
+- **linux**: `curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/migrate.sh | sudo bash -s -- --auth <HAB_AUTH_TOKEN>`
+- **windows**: `iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"`
+
+Note that if your supervisor is running services while executing the migration script, these services will be restarted.
+
 ## Potentially breaking changes to handlebars templates
 
 The [handlebars implementation](https://crates.io/crates/handlebars) was upgraded from an early version that habitat had pinned due to breaking changes after habitat was released for general use.  The code base was upgraded to the most recent version available.  Also it has been, and will continue to be, updated as new releases of the crate become available.
