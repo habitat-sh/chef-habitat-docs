@@ -5,8 +5,8 @@ description = "Best practices for promoting packages in channels for building an
 
 [menu.packages]
     title = "Promoting Packages"
-    identifier = "packages/promote Promoting Packages"
-    parent = "packages"
+    identifier = "packages/promote"
+    parent = "chef_habitat/packages"
     weight = 20
 
 +++

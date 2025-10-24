@@ -5,10 +5,10 @@ summary = "How to write Chef Habitat plans, including configuration templates, b
 
 
 
-[menu.plans]
+[menu.habitat]
     title = "Plan Writing"
-    identifier = "plans/plan-writing Chef Habitat plan Overview"
-    parent = "plans"
+    identifier = "habitat/plans/plan-writing"
+    parent = "chef_habitat/plans"
     weight = 10
 +++
 

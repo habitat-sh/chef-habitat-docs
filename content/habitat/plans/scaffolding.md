@@ -4,10 +4,10 @@ description = "Scaffolding"
 summary = "A scaffolding is a standardized plan that automates building and running your application."
 linkTitle = "Scaffolding"
 
-[menu.plans]
+[menu.habitat]
     title = "Scaffolding"
-    identifier = "plans/scaffolding"
-    parent = "plans"
+    identifier = "habitat/plans/scaffolding"
+    parent = "chef_habitat/plans"
     weight = 95
 +++
 

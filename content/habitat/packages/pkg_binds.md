@@ -6,7 +6,7 @@ description = "Define runtime binds in your plan file"
 [menu.packages]
     title = "Runtime Binds"
     identifier = "packages/pkg-binds"
-    parent = "packages"
+    parent = "chef_habitat/packages"
 
 +++
 

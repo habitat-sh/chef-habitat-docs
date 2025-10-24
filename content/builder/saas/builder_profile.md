@@ -1,10 +1,10 @@
 +++
 title = "Builder Profile"
 
-[menu.builder.saas]
+[menu.builder]
     title = "Builder Profile"
     parent = "builder/saas"
-    identifier = "builder/saas/Builder Profile"
+    identifier = "builder/saas/builder-profile"
     weight = 40
 +++
 

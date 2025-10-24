@@ -3,10 +3,10 @@ title = "Install Chef Habitat"
 description = "Download and install the Chef Habitat CLI and configure your workstation for Chef Habitat development"
 linkTitle = "Install"
 
-[menu.install]
+[menu.habitat]
     title = "Install Chef Habitat"
-    identifier = "install/installing-packages"
-    parent = "install"
+    identifier = "habitat/install/installing-packages"
+    parent = "chef_habitat/habitat"
     weight = 10
 +++
 

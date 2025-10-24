@@ -6,8 +6,8 @@ summary = "How Habitat integrates with CI tools like Jenkins and TravisCI, simpl
 
 [menu.packages]
     title = "Continuous Integration"
-    identifier = "packages/habitat-and-continuous-integration"
-    parent = "packages"
+    identifier = "packages/continuous-integration"
+    parent = "chef_habitat/packages"
     weight = 200
 
 +++

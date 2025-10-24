@@ -13,6 +13,7 @@ workspace = ''
 ###
 
 [[mounts]]
+    excludeFiles = 'saas_builder/*'
     source = 'content'
     target = 'content'
 [[mounts]]

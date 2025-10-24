@@ -3,8 +3,8 @@ title = "Overview"
 linkTitle = "Overview"
 
 [menu.builder]
-    title = "Overview"
-    parent = "builder"
+    title = "Chef Habitat Builder"
+    parent = "chef_habitat/builder"
     identifier = "builder/Overview"
     weight = 10
 +++

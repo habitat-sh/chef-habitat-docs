@@ -4,8 +4,8 @@ linkTitle = "On-Premises"
 
 [menu.builder]
     title = "On-Premises"
-    parent = "builder"
-    identifier = "builder/saas/On-Premises"
+    parent = "chef_habitat/builder"
+    identifier = "builder/on-premises"
     weight = 30
 +++
 

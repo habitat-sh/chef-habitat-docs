@@ -5,8 +5,8 @@ description = "Building Packages in the Studio"
 
 [menu.packages]
     title = "Building Packages"
-    identifier = "packages/pkg-build Build your Package"
-    parent = "packages"
+    identifier = "packages/pkg-build"
+    parent = "chef_habitat/packages"
     weight = 10
 +++
 

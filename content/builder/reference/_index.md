@@ -4,8 +4,8 @@ linkTitle = "Reference"
 
 [menu.builder]
     title = "Reference"
-    parent = "builder"
-    identifier = "builder/saas/Reference"
+    parent = "chef_habitat/builder"
+    identifier = "builder/reference"
     weight = 40
 +++
 

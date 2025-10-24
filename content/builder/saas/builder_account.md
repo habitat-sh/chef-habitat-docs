@@ -1,10 +1,10 @@
 +++
 title = "Create an Account"
 
-[menu.builder.saas]
+[menu.builder]
     title = "Create an Account"
     parent = "builder/saas"
-    identifier = "builder/saas/Create an Account"
+    identifier = "builder/saas/create-an-account"
     weight = 30
 +++
 

@@ -4,10 +4,10 @@ draft = false
 summary = "A quickstart guide for creating Chef Habitat plans, including using the `hab plan init` command and customizing the plan file."
 
 
-[menu.plans]
+[menu.habitat]
     title = "Plan Quickstart"
-    identifier = "plans/plan-quickstart plan Quickstart"
-    parent = "plans"
+    identifier = "habitat/plans/plan-quickstart"
+    parent = "chef_habitat/plans"
     weight = 20
 +++
 

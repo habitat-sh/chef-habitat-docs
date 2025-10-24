@@ -4,8 +4,8 @@ linkTitle = "Release Notes"
 
 [menu.builder]
     title = "Release Notes"
-    parent = "builder"
-    identifier = "builder/saas/Release Notes"
+    parent = "chef_habitat/builder"
+    identifier = "builder/release-notes"
     weight = 60
 +++
 

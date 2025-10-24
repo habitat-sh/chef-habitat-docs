@@ -1,11 +1,10 @@
 +++
 title = "Upload and Promote Packages"
 
-[menu]
-  [menu.saas]
+[menu.builder]
     title = "Upload and Promote Packages"
     parent = "builder/saas"
-    identifier = "builder/saas/Upload and Promote Packages"
+    identifier = "builder/saas/upload-and-promote-packages"
     weight = 50
 +++
 

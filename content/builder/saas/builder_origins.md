@@ -1,10 +1,10 @@
 +++
 title = "Create an Origin on Builder"
 
-[menu.builder.saas]
+[menu.builder]
     title = "Origins"
     parent = "builder/saas"
-    identifier = "builder/saas/Origins"
+    identifier = "builder/saas/origins"
     weight = 20
 +++
 

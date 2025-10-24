@@ -4,11 +4,10 @@ description = "Tips and tricks for managing hardcoded library dependencies in bi
 summary = "Tips for creating Chef Habitat plans for binary-only applications, including handling hardcoded dependencies and fixing interpreters."
 
 
-[menu.plans]
+[menu.habitat]
     title = "Binary Wrapper Packages"
-    identifier = "plans/binary-wrapper"
-    parent = "plans"
-
+    identifier = "habitat/plans/binary-wrapper"
+    parent = "chef_habitat/plans"
 +++
 
 While Chef Habitat provides the best behavior for applications that can be compiled from source into the Chef Habitat ecosystem, it can also bring the same management benefits to applications distributed in binary-only form.

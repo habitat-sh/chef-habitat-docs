@@ -4,10 +4,10 @@ description = "Best Practices for Plans"
 summary = "Best practices for writing production-quality Chef Habitat plans, including metadata, naming conventions, callbacks, and lifecycle hooks."
 
 
-[menu.plans]
+[menu.habitat]
     title = "Plan Contents"
-    identifier = "plans/plan-contents"
-    parent = "plans"
+    identifier = "habitat/plans/plan-contents"
+    parent = "chef_habitat/plans"
     weight = 30
 +++
 

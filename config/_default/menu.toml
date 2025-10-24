@@ -51,38 +51,25 @@ weight = 60
 ## End Main Menu ##
 ####
 
-[[chef_habitat]]
-title = "Chef Habitat"
-identifier = "chef_habitat"
+[[oveview]]
+title = "Overview"
+identifier = "chef_habitat/overview"
+weight = 10
 
-    [[chef_habitat]]
-    title = "Overview"
-    parent = "chef_habitat"
-    identifier = "chef_habitat/overview"
-    weight = 10
+[[habitat]]
+title = "Habitat"
+identifier = "chef_habitat/habitat"
+weight = 20
 
-    [[chef_habitat]]
-    title = "Habitat"
-    parent = "chef_habitat"
-    identifier = "chef_habitat/habitat"
-    weight = 20
+[[builder]]
+title = "Builder"
+identifier = "chef_habitat/builder"
+weight = 30
 
-    [[chef_habitat]]
-    title = "Builder"
-    parent = "chef_habitat"
-    identifier = "chef_habitat/builder"
-    weight = 30
-
-        [[chef_habitat]]
-        title = "SaaS builder"
-        parent = "chef_habitat/builder"
-        identifier = "chef_habitat/builder/saas"
-
-    [[packages ]]
-    title = "Packages"
-    parent = "chef_habitat"
-    identifier = "chef_habitat/packages"
-    weight = 40
+[[packages]]
+title = "Packages"
+identifier = "chef_habitat/packages"
+weight = 40
 
 # [[overview.overview]]
 # title = "Overview"

@@ -4,8 +4,7 @@ linkTitle = "Chef Habitat Overview"
 
 [menu.overview]
   title = "Chef Habitat Overview"
-  parent = "overview"
-  identifier = "overview/Chef Habitat Overview"
+  identifier = "overview/chef-habitat-overview"
 +++
 
 Chef Habitat is a workload-packaging, orchestration, and deployment system that allows you to build, package, deploy, and manage applications and services without worrying about which infrastructure your application will be deployed on, and without any rewriting or refactoring the application if you switch to a different infrastructure.

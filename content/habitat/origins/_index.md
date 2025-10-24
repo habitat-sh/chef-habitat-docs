@@ -2,11 +2,11 @@
 title = "Chef Habitat Origins"
 linkTitle = "Origins"
 
-[menu.origins]
-    parent = "habitat"
+[menu.habitat]
+    parent = "chef_habitat/habitat"
     title = "Chef Habitat Origins"
     identifier = "habitat/origins/Chef Habitat Origins"
-    weight = 10
+    weight = 30
 +++
 
 {{< readfile file="/reusable/md/builder_origins.md" >}}

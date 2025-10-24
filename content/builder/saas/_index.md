@@ -5,8 +5,8 @@ linkTitle = "SaaS Builder"
 
 [menu.builder]
     title = "SaaS Builder"
-    parent = "builder"
-    identifier = "builder/saas/SaaS Builder"
+    parent = "chef_habitat/builder"
+    identifier = "builder/saas"
     weight = 10
 +++
 
