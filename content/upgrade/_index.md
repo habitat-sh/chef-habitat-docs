@@ -1,6 +1,6 @@
 +++
 title = "Upgrading from 1.6.x to 2.0.x"
-description = "How to Upgrade Habitat from 1.6.x to 2.0.x"
+description = "How to Upgrade Chef Habitat from 1.6.x to 2.0.x"
 linkTitle = "Upgrade"
 
 [menu.upgrade]
@@ -12,9 +12,9 @@ linkTitle = "Upgrade"
 
 While basic Chef Habitat behavior has not changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x cannot seamlessly update themselves via the auto-update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.
 
-This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On windows you will also need the updated `windows-service` package. Further, the supervisor will need a valid HAB_AUTH_TOKEN associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
+This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On windows you will also need the updated `windows-service` package. Further, the supervisor will need a valid `HAB_AUTH_TOKEN` associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
 
-Similar to the curlbash style install scripts used to install Chef Habitat, we are providing a migration script that will install a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
+Similar to the install scripts used to install Chef Habitat, we are providing a migration script that will install a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
 
 To upgrade a supervisor from 1.6.x to 2.0.x, run the following:
 
