@@ -78,7 +78,6 @@ A: Yes, you can download packages for offline installation:
 
 A: Chef Habitat can be used with Kubernetes. See our [Kubernetes documentation](/habitat/containers/kubernetes/) for more information.
 
-
 ## Troubleshooting
 
 **Q: What if installation fails?**
