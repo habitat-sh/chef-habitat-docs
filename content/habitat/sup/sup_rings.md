@@ -3,10 +3,10 @@ title = "Setting Up a Ring"
 description = "Setting Up a Ring"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Setting Up a Ring"
     identifier = "supervisors/sup-rings"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 50
 +++
 

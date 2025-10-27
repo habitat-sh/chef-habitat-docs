@@ -9,8 +9,8 @@ return_page = "../"
 description = "Chef Habitat Builder API documentation."
 summary = "Habitat Builder OpenAPI specification"
 
-[menu.reference]
+[menu.habitat]
     title = "Builder API"
-    parent = "reference/api"
-    identifier = "reference/api/Builder API"
+    parent = "habitat/reference/api"
+    identifier = "reference/api/builder-api"
 +++

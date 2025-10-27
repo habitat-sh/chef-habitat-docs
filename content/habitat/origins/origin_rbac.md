@@ -4,10 +4,10 @@ date = 2020-10-12T13:53:50-07:00
 draft = false
 
 
-[menu.origins]
+[menu.habitat]
     title = "Origin Membership & RBAC"
-    identifier = "origins/origin-rbac Builder RBAC"
-    parent = "origins"
+    identifier = "origins/origin-rbac"
+    parent = "habitat/origins"
     weight = 30
 +++
 

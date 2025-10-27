@@ -3,10 +3,10 @@ title = "Promote Packages"
 description = "Best practices for promoting packages in channels for building and testing code changes as part of continuous deployment with channel tags"
 
 
-[menu.packages]
+[menu.habitat]
     title = "Promoting Packages"
     identifier = "packages/promote"
-    parent = "chef_habitat/packages"
+    parent = "habitat/packages"
     weight = 20
 
 +++

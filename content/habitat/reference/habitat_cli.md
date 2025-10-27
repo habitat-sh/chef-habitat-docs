@@ -4,10 +4,10 @@ draft= false
 linkTitle = "Chef Habitat Command-Line Interface (CLI) Reference"
 summary = "Chef Habitat Command-Line Interface (CLI) Reference"
 
-[menu.reference]
+[menu.habitat]
     title = "Habitat CLI Reference"
     identifier = "reference/habitat_cli"
-    parent = "reference"
+    parent = "habitat/reference"
     weight = 1
 +++
 

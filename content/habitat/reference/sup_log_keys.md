@@ -3,10 +3,10 @@ title = "Supervisor Log Codes"
 description = "Supervisor log code key reference"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Supervisor Log Codes"
     identifier = "reference/sup-log-key"
-    parent = "reference"
+    parent = "habitat/reference"
 +++
 
 When running services with the Chef Habitat Supervisor you'll see log output similar to this:

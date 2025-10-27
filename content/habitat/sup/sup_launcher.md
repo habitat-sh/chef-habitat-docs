@@ -3,10 +3,10 @@ title = "Launcher"
 description = "Launcher"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Launcher"
-    identifier = "supervisors/sup-launcher Supervisor Launcher Sidecar Process"
-    parent = "supervisors"
+    identifier = "supervisors/sup-launcher"
+    parent = "habitat/supervisors"
     weight = 110
 
 +++

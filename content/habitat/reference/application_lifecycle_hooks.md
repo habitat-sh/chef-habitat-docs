@@ -3,10 +3,10 @@ title = "Application Lifecycle Hooks"
 description = "Control service runtime actions with application lifecycle hooks"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Application Lifecycle Hooks"
-    identifier = "reference/application-lifecycle-hooks plan Lifecycle Hooks"
-    parent = "reference"
+    identifier = "reference/application-lifecycle-hooks"
+    parent = "habitat/reference"
 
 +++
 

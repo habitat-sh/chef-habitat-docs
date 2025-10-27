@@ -4,10 +4,10 @@ description = "Azure and Kubernetes K8"
 linkTitle = "Azure Container Services"
 summary = "Use Habitat with AKS, including setting up Azure Container Registry (ACR) and connecting it to AKS."
 
-[menu.containers]
+[menu.habitat]
     title = "Azure Container Services"
-    identifier = "habitat/containers/aks"
-    parent = "containers"
+    identifier = "containers/aks"
+    parent = "habitat/containers"
     weight = 40
 +++
 

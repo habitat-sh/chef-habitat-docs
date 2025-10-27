@@ -3,10 +3,10 @@ title = "Build Helpers"
 description = "Define package buildtime actions with helper functions."
 
 
-[menu.reference]
+[menu.habitat]
     title = "Build Helpers"
     identifier = "reference/build-helpers"
-    parent = "reference"
+    parent = "habitat/reference"
 
 +++
 

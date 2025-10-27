@@ -4,10 +4,10 @@ date = 2020-10-26T19:05:42-07:00
 draft = false
 
 
-[menu.sup]
+[menu.habitat]
     title = "Leader Elections"
-    identifier = "supervisors/Leader Elections"
-    parent = "supervisors"
+    identifier = "supervisors/leader-elections"
+    parent = "habitat/supervisors"
     weight = 40
 +++
 

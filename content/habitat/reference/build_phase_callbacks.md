@@ -3,10 +3,10 @@ title = "Build Phase Callbacks"
 description = "Override default buildtime behavior with build phase callbacks"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Build Phase Callbacks"
     identifier = "reference/build-phase-callbacks"
-    parent = "reference"
+    parent = "habitat/reference"
 +++
 
 When defining your plan, you can override the default behavior of Chef Habitat in each build phase through a callback. To define a callback, create a shell function of the same name in your plan file and then write your script. If you don't want to use the default callback behavior, you must override the callback and `return 0` in the function definition or provide no implementation in a `plan.ps1`.

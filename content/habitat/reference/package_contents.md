@@ -3,10 +3,10 @@ title = "Package Contents"
 description = "Package Contents"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Package Contents"
     identifier = "reference/package-contents"
-    parent = "reference"
+    parent = "habitat/reference"
 +++
 
 During the build process, the hab-plan-build script creates several files that specify dependency, build, and configuration information. When packages are unpacked (extracted) and installed during the initialization phase of a Chef Habitat service, these files define what those packages need to run.

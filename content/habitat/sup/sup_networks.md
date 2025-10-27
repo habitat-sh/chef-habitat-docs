@@ -3,10 +3,10 @@ title = "Supervisor Networks"
 description = "Robust Supervisor Networks"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Supervisor Networks"
-    identifier = "supervisors/sup-networks Supervisor Networks Explained"
-    parent = "supervisors"
+    identifier = "supervisors/sup-networks"
+    parent = "habitat/supervisors"
     weight = 60
 +++
 

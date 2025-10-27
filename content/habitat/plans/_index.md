@@ -7,4 +7,5 @@ list_pages = true
     name = "Plans"
     identifier = "chef_habitat/plans"
     parent = "chef_habitat/habitat"
+    weight = 60
 +++

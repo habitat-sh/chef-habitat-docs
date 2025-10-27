@@ -3,10 +3,10 @@ title = "Amazon ECS"
 description = "Amazon ECS registry service and Chef Habitat"
 
 
-[menu.containers]
+[menu.habitat]
     title = "Amazon Container Services"
-    identifier = "containers/ecs EC2 Container Service"
-    parent = "containers"
+    identifier = "containers/ecs"
+    parent = "habitat/containers"
     weight = 50
 +++
 

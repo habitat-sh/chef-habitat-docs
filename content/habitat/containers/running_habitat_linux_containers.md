@@ -3,10 +3,10 @@ title = "Running Chef Habitat Linux Containers"
 description = "Running Chef Habitat Linux Containers"
 
 
-[menu.containers]
+[menu.habitat]
     title = "Running Chef Habitat Linux Containers"
-    identifier = "containers/running-habitat-linux-containers Linux Containers"
-    parent = "containers"
+    identifier = "containers/running-habitat-linux-containers"
+    parent = "habitat/containers"
     weight = 70
 +++
 

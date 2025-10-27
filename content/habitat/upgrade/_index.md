@@ -3,11 +3,11 @@ title = "Upgrading from 1.6.x to 2.0.x"
 description = "How to Upgrade Chef Habitat from 1.6.x to 2.0.x"
 linkTitle = "Upgrade"
 
-[menu.upgrade]
-  title = "Upgrading from 1.6"
+[menu.habitat]
+  title = "Upgrade to Chef Habitat 2.0"
   identifier = "upgrade/upgrading-hab"
-  parent = "upgrade"
-  weight = 10
+  parent = "chef_habitat/habitat"
+  weight = 30
 +++
 
 While basic Chef Habitat behavior has not changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x cannot seamlessly update themselves via the auto-update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.

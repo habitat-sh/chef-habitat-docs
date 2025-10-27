@@ -4,10 +4,10 @@ date = 2020-10-26T19:09:25-07:00
 draft = false
 
 
-[menu.sup]
+[menu.habitat]
     title = "Supervisor Cryptography"
-    identifier = "supervisors/Supervisor Cryptography"
-    parent = "supervisors"
+    identifier = "supervisors/supervisor-cryptography"
+    parent = "habitat/supervisors"
     weight = 70
 +++
 

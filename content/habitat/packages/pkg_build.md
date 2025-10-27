@@ -3,10 +3,10 @@ title = "Building Packages"
 description = "Building Packages in the Studio"
 
 
-[menu.packages]
+[menu.habitat]
     title = "Building Packages"
     identifier = "packages/pkg-build"
-    parent = "chef_habitat/packages"
+    parent = "habitat/packages"
     weight = 10
 +++
 

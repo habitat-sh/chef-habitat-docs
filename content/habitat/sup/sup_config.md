@@ -5,10 +5,10 @@ date = 2020-10-26T17:32:36-07:00
 draft = false
 
 
-[menu.sup]
+[menu.habitat]
     title = "Supervisor Configuration File"
-    identifier = "supervisors/sup_config How to Rollback"
-    parent = "supervisors"
+    identifier = "supervisors/sup-config"
+    parent = "habitat/supervisors"
     weight = 85
 +++
 

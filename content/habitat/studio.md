@@ -3,10 +3,11 @@ title = "About Chef Habitat Studio"
 description = "About Chef Habitat Studio"
 draft = false
 
-[menu.studio]
+[menu.habitat]
   title = "Habitat Studio"
-  identifier = "/habitat/studio"
-  weight = 10
+  identifier = "habitat/studio"
+  parent = "chef_habitat/habitat"
+  weight = 90
 +++
 
 <!-- ## Scotts goals:

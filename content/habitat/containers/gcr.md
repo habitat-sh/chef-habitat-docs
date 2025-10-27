@@ -4,10 +4,10 @@ description = "Google Container Registry"
 linkTitle = "Google Container Registry"
 Summary = "Use Habitat with Google Container Registry, including configuring Docker for authentication, pushing images to GCR, and related access control information."
 
-[menu.containers]
+[menu.habitat]
     title = "Google Container Registry"
-    identifier = "containers/gcr GCR"
-    parent = "containers"
+    identifier = "containers/gcr"
+    parent = "habitat/containers"
     weight = 60
 
 +++

@@ -3,10 +3,10 @@ title = "Control Supervisors Remotely"
 description = "Controlling Supervisors Remotely"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Remote Control"
     identifier = "supervisors/sup-remote-control"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 120
 +++
 

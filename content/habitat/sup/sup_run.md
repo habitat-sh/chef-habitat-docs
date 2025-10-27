@@ -3,10 +3,10 @@ title = "Running Chef Habitat Supervisors"
 description = "Running Chef Habitat Packages"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Running Supervisors"
-    identifier = "supervisors/sup-run Run Packages on the Supervisor"
-    parent = "supervisors"
+    identifier = "supervisors/running-supervisors"
+    parent = "habitat/supervisors"
     weight = 20
 
 +++

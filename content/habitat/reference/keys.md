@@ -3,10 +3,10 @@ title = "Keys"
 description = "Chef Habitat Security"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Keys"
     identifier = "reference/keys"
-    parent = "reference"
+    parent = "habitat/reference"
 
 +++
 

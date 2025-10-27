@@ -4,11 +4,11 @@ description = "Chef Habitat and Continuous Integration"
 summary = "How Habitat integrates with CI tools like Jenkins and TravisCI, simplifying builds, testing, and package promotion."
 
 
-[menu.packages]
+[menu.habitat]
     title = "Continuous Integration"
     identifier = "packages/continuous-integration"
-    parent = "chef_habitat/packages"
-    weight = 200
+    parent = "habitat/packages"
+    weight = 45
 
 +++
 

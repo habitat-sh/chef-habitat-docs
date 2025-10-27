@@ -3,10 +3,10 @@ title = "Environment Variables"
 description = "Customize and configure your Chef Habitat Studio and Supervisor environments"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Environment Variables"
     identifier = "reference/environment-variables"
-    parent = "reference"
+    parent = "habitat/reference"
 
 +++
 

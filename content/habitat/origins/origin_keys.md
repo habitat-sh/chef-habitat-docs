@@ -5,10 +5,10 @@ date = 2020-10-12T13:59:46-07:00
 draft = false
 
 
-[menu.origins]
+[menu.habitat]
     title = "Origin Keys"
-    identifier = "origins/origin-keys Origin Keys"
-    parent = "destination/origins"
+    identifier = "origins/origin-keys"
+    parent = "habitat/origins"
     weight = 20
 +++
 

@@ -3,10 +3,10 @@ title = "Updating the Supervisor"
 description = "Updating the Supervisor"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Updating Supervisors"
     identifier = "supervisors/updating"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 130
 
 +++

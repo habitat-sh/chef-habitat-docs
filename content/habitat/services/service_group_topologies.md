@@ -3,10 +3,10 @@ title = "Service Group Topologies"
 description = "Service Group Topologies"
 
 
-[menu.services]
+[menu.habitat]
     title = "Service Group Topologies"
-    identifier = "services/Service Group Topologies"
-    parent = "services"
+    identifier = "services/service-group-topologies"
+    parent = "habitat/services"
     weight = 30
 +++
 

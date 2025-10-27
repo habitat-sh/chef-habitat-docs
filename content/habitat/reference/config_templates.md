@@ -3,10 +3,10 @@ title = "Configuration Templates"
 description = "Using templates and tags to tune your application configuration files"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Configuration Templates"
-    identifier = "reference/configuration-templates Customize Chef Habitat Packages Configuration"
-    parent = "reference"
+    identifier = "reference/configuration-templates"
+    parent = "habitat/reference"
 
 +++
 

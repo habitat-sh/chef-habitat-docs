@@ -3,10 +3,9 @@ title = "Chef Habitat packages"
 linkTitle = "Packages"
 list_pages = true
 
-[menu.packages]
-    title = "Overview"
-    identifier = "packages/overview"
-    parent = "chef_habitat/packages"
+[menu.habitat]
+    title = "Packages"
+    identifier = "habitat/packages"
+    parent = "chef_habitat/habitat"
+    weight = 50
 +++
-
-docs/content/habitat/packages/_index.md

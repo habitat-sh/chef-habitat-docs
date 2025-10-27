@@ -3,10 +3,10 @@ title = "Running Chef Habitat on Servers (Linux and Windows)"
 description = "Running Chef Habitat on Servers (Linux and Windows)"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Running Chef Habitat on Servers (Linux and Windows)"
     identifier = "supervisors/running-habitat-servers"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 25
 +++
 

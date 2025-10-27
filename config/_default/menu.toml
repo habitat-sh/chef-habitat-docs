@@ -57,67 +57,16 @@ identifier = "chef_habitat/overview"
 weight = 10
 
 [[habitat]]
-title = "Habitat"
+title = "Chef Habitat Core"
 identifier = "chef_habitat/habitat"
 weight = 20
 
 [[builder]]
-title = "Builder"
+title = "Chef Habitat Builder"
 identifier = "chef_habitat/builder"
 weight = 30
 
 [[packages]]
-title = "Packages"
+title = "Chef Habitat Packages"
 identifier = "chef_habitat/packages"
 weight = 40
-
-# [[overview.overview]]
-# title = "Overview"
-# identifier = "overview"
-#
-# [[habitat.install]]
-# title = "Install"
-# identifier = "install"
-#
-# [[habitat.upgrade]]
-# title = "Upgrade"
-# identifier = "upgrade"
-#
-# [[habitat.origins]]
-# title = "Origins"
-# identifier = "origins"
-#
-# [[habitat.packages]]
-# title = "Packages"
-# identifier = "packages"
-#
-# [[habitat.plans]]
-# title = "Plans"
-# identifier = "plans"
-#
-# [[habitat.services]]
-# title = "Services"
-# identifier = "services"
-#
-# [[habitat.sup]]
-# title = "Supervisors"
-# identifier = "supervisors"
-#
-# [[habitat.reference]]
-# title = "Reference"
-# identifier = "reference"
-#
-#     [[habitat.reference]]
-#     title = "APIs"
-#     parent = "reference"
-#     identifier  = "reference/api"
-#     weight = "20"
-#
-# [[habitat.containers]]
-# title = "Containers"
-# identifier = "containers"
-#
-# [[habitat.release_notes]]
-# title = "Release notes"
-# identifier = "release_notes"
-#

@@ -3,10 +3,10 @@ title = "Supervisor Log Configuration"
 description = "Dynamically adjust the logging configuration of a running Supervisor"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Supervisor Log Configuration"
     identifier = "supervisors/sup-log-configuration"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 90
 +++
 

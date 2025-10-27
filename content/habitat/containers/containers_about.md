@@ -3,10 +3,10 @@ title = "Chef Habitat and Containers"
 linkTitle = "Containers"
 
 [menu.habitat]
-    parent = "chef_habitat/habitat"
-    title = "Containers"
-    identifier = "habitat/containers"
-    weight = 100
+    parent = "habitat/containers"
+    title = "Chef Habitat and Containers"
+    identifier = "containers/chef-habitat-and-containers"
+    weight = 10
 +++
 
 Containers (for example, [Docker](https://www.docker.com/)) enable you to build an immutable snapshot of your runtime environment, including your operating system, system libraries, application libraries, and application. The container is built with a CLI tool, and then pushed to a container-specific artifact repository, known as a container registry. Chef Habitat isn't a container format and exports your application to the container format of your choice.

@@ -5,10 +5,10 @@ draft = false
 summary = "This page explains how Chef Habitat complements configuration management tools by focusing on application automation, reducing runtime errors, and simplifying transitions to containerized workloads."
 
 
-[menu.reference]
+[menu.habitat]
     title = "Configuration Management"
     identifier = "reference/configuration-management"
-    parent = "reference"
+    parent = "habitat/reference"
 
 +++
 

@@ -3,10 +3,10 @@ title = "Plan Variables"
 description = "Set package, service, and cache paths, compiler options, install location and context with plan variables"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Plan Variables"
     identifier = "reference/plan-variables"
-    parent = "reference"
+    parent = "habitat/reference"
 +++
 
 The following variables can be used in your plans to help get binaries and libraries

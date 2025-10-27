@@ -3,10 +3,10 @@ title = "Service Group Updates"
 description = "Update service groups with supervisor configuration"
 
 
-[menu.services]
+[menu.habitat]
     title = "Service Group Updates"
-    identifier = "services/Service Group Updates"
-    parent = "services"
+    identifier = "services/service-group-updates"
+    parent = "habitat/services"
     weight = 50
 +++
 

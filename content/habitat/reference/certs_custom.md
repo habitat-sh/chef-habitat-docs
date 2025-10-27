@@ -3,10 +3,10 @@ title = "Custom Certificates"
 description = "Handling custom (CA) certificates"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Custom Certificates"
-    identifier = "reference/certs-custom Custom Certs"
-    parent = "reference"
+    identifier = "reference/certs-custom"
+    parent = "habitat/reference"
 +++
 
 Many enterprise environments use custom certificates (for example, self-signed). For example, an on-premises Chef Habitat Builder Depot might have a self-signed SSL certificate.

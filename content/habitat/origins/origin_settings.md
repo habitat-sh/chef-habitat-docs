@@ -4,10 +4,10 @@ date = 2020-10-12T14:02:01-07:00
 draft = false
 
 
-[menu.origins]
+[menu.habitat]
     title = "Origin Settings"
-    identifier = "origins/origin-settings Origin Settings"
-    parent = "origins"
+    identifier = "origins/origin-settings"
+    parent = "habitat/origins"
     weight = 40
 +++
 

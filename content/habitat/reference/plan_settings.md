@@ -3,10 +3,10 @@ title = "Plan Settings"
 description = "Define basic metadata about your artifact with plan settings"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Plan Settings"
     identifier = "reference/plan-settings"
-    parent = "reference"
+    parent = "habitat/reference"
 +++
 
 Habitat reserves some names for internal use. You can set all of these values in your plan and use them as variables in your Habitat code.

@@ -3,10 +3,10 @@ title = "Supervisor Configuration"
 description = "Configure the Supervisor for faster package development"
 
 
-[menu.sup]
+[menu.habitat]
     title = "Supervisor Package Configuration"
     identifier = "supervisors/sup-pkg-config"
-    parent = "supervisors"
+    parent = "habitat/supervisors"
     weight = 100
 +++
 

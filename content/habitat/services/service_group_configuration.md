@@ -3,10 +3,10 @@ title = "Service Group Configuration"
 description = "Update Services with File Uploads"
 
 
-[menu.services]
+[menu.habitat]
     title = "Service Group Configuration"
-    identifier = "services/Service Group Configuration"
-    parent = "services"
+    identifier = "services/service-group-configuration"
+    parent = "habitat/services"
     weight = 40
 +++
 

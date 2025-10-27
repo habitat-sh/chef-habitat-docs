@@ -4,10 +4,10 @@ description = "Download and install the Chef Habitat CLI and configure your work
 linkTitle = "Install"
 
 [menu.habitat]
-    title = "Install Chef Habitat"
-    identifier = "habitat/install/installing-packages"
+    title = "Install Chef Habitat CLI"
+    identifier = "habitat/install-hab"
     parent = "chef_habitat/habitat"
-    weight = 10
+    weight = 20
 +++
 
 Chef Habitat provides a command-line interface (CLI) tool called `hab` that you use to build packages, manage services, and interact with Chef Habitat Builder. This section provides installation instructions for Linux, macOS, and Windows.

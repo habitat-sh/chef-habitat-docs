@@ -3,10 +3,10 @@ title = "Kubernetes"
 description = "Export your Chef Habitat package as a Docker and run it on a Kubernetes Pod"
 
 
-[menu.containers]
+[menu.habitat]
     title = "Kubernetes"
-    identifier = "containers/kubernetes Kubernetes Development Patterns"
-    parent = "containers"
+    identifier = "containers/kubernetes"
+    parent = "habitat/containers"
     weight = 30
 +++
 

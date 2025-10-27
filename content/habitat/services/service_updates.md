@@ -3,10 +3,10 @@ title = "Single Service Updates"
 description = "Update single services at runtime or dynamically"
 
 
-[menu.services]
+[menu.habitat]
     title = "Single Service Updates"
-    identifier = "services/service-updates Individual Configuration Updates"
-    parent = "services"
+    identifier = "services/service-updates"
+    parent = "habitat/services"
     weight = 40
 +++
 

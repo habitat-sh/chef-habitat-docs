@@ -3,10 +3,10 @@ title = "Configuration Helpers"
 description = "Define dynamic plan configuration settings with plan helpers"
 
 
-[menu.reference]
+[menu.habitat]
     title = "Plan Configuration Helpers"
-    identifier = "reference/plan-helpers plan Tuning"
-    parent = "reference"
+    identifier = "reference/plan-helpers"
+    parent = "habitat/reference"
 +++
 
 Chef Habitat allows you to use [Handlebars-based](https://handlebarsjs.com/) tuneables in your plan, and you can also use both built-in Handlebars helpers and Chef Habitat-specific helpers in defining your configuration logic.
