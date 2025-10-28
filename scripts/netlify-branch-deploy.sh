@@ -7,7 +7,7 @@ set -eoux pipefail
 ###
 
 DART_SASS_VERSION="1.81.0"
-RELEASE_VERSION=$(echo $HEAD | sed 's/.*-//')
+RELEASE_VERSION=$(echo $HEAD | sed 's/^release-//')
 DESTINATION="./public/habitat/$RELEASE_VERSION"
 BASE_URL="https://docs.chef.io/habitat/$RELEASE_VERSION"
 
