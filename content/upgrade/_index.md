@@ -10,11 +10,11 @@ linkTitle = "Upgrade"
   weight = 10
 +++
 
-While basic Chef Habitat behavior has not changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x cannot seamlessly update themselves via the auto-update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.
+While basic Chef Habitat behavior hasn't changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x can't seamlessly update themselves with the auto update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.
 
 This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On windows you will also need the updated `windows-service` package. Further, the supervisor will need a valid `HAB_AUTH_TOKEN` associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
 
-Similar to the install scripts used to install Chef Habitat, we are providing a migration script that will install a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
+Similar to the install scripts used to install Chef Habitat, we provide a migration script that installs a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
 
 To upgrade a supervisor from 1.6.x to 2.0.x, run the following:
 
@@ -25,15 +25,15 @@ Note that if your supervisor is running services while executing the migration s
 
 ## Potentially breaking changes to handlebars templates
 
-The [handlebars implementation](https://crates.io/crates/handlebars) was upgraded from an early version that habitat had pinned due to breaking changes after habitat was released for general use.  The code base was upgraded to the most recent version available.  Also it has been, and will continue to be, updated as new releases of the crate become available.
+The [handlebars implementation](https://crates.io/crates/handlebars) was upgraded from an early version that habitat had pinned due to breaking changes after habitat was released for general use. The code base was upgraded to the most recent version available. Also it has been, and will continue to be, updated as new releases of the crate become available.
 
 The impact of this is that you may have to update your templates as described in the following sections.
 
 ### Object Access Syntax Removed
 
-In Habitat versions prior to 2.0 both `object.[index]` and `object[index]` were valid syntax for object access.  After habitat 2.0 only the `object.[index]` remains valid syntax.
+In Habitat versions prior to 2.0 both `object.[index]` and `object[index]` were valid syntax for object access. After habitat 2.0 only the `object.[index]` remains valid syntax.
 
-The action required is that you will need to proactively or reactively change any usages of the now removed `object[index]` syntax to the still viable `object.[index]` syntax.  See [PR #6323](https://github.com/habitat-sh/habitat/issues/6323) [PR #9585](https://github.com/habitat-sh/habitat/pull/9585) for more information.
+The action required is that you will need to proactively or reactively change any usages of the now removed `object[index]` syntax to the still viable `object.[index]` syntax. See [PR #6323](https://github.com/habitat-sh/habitat/issues/6323) [PR #9585](https://github.com/habitat-sh/habitat/pull/9585) for more information.
 
 One way to identify files for review is `find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches` but this should be adapted as appropriate for use against your codebase.
 

@@ -31,7 +31,7 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 ### Docker Issues
 
-**Problem**: Cannot use Studio because Docker is not installed or accessible.
+**Problem**: Can't use Studio because Docker isn't installed or accessible.
 
 **Solution**:
 
@@ -78,7 +78,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 
 ### Builder Connection Issues
 
-**Problem**: Cannot connect to Chef Habitat Builder during setup.
+**Problem**: Can't connect to Chef Habitat Builder during setup.
 
 **Solution**:
 

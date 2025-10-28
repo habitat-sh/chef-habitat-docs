@@ -50,7 +50,7 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 - `-o ORIGIN` - Specifies the origin [default: core]
 
 {{< note >}}
-These options when combined may result in a request to to install something that does not exist.  For example, if you specify `-o FOO -c BAR` then an origin named FOO must exist and a channel named BAR must exist and must also be used within the FOO origin.
+These options when combined may result in a request to to install something that doesn't exist. For example, if you specify `-o FOO -c BAR` then an origin named FOO must exist and a channel named BAR must exist and must also be used within the FOO origin.
 {{< /note >}}
 
 #### Examples
@@ -123,7 +123,7 @@ macOS installation varies by architecture:
 ##### aarch64 (Apple Silicon Macs)
 
 - Creates a dedicated APFS volume called "Habitat Store" mounted at `/hab`
-- Configures automatic mounting via LaunchDaemon
+- Configures automatic mounting with the LaunchDaemon
 - Handles FileVault encryption if enabled
 - Updates system configuration files (`/etc/synthetic.conf`, `/etc/fstab`)
 - Uses the full Habitat package installation process

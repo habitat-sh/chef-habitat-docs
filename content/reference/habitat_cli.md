@@ -1479,7 +1479,7 @@ Exports the package to the specified format
 -G, --registry-url <REGISTRY_URL> Remote registry url
     --rm-image Remove local image from engine after build and/or push (default: no)
 -m, --memory <MEMORY_LIMIT> Memory limit passed to docker build's --memory arg (ex: 2gb)
-    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This will allow for reusable layers, reducing storage and network transmission costs. If the resulting image cannot be built because there are too many layers, re-build without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
+    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This will allow for reusable layers, reducing storage and network transmission costs. If the resulting image can't be built because there are too many layers, re-build without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
     --engine <ENGINE> The name of the container creation engine to use. [env: HAB_PKG_EXPORT_CONTAINER_ENGINE=] default: docker] [possible values: docker, buildah]
 -h, --help Print help (see more with '--help')
 -V, --version Print version
@@ -1614,7 +1614,7 @@ Installs a Habitat package from Builder or locally from a Habitat Artifact
 -f, --force                      Overwrite existing binlinks
 -z, --auth <AUTH_TOKEN>          Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
     --ignore-install-hook        Do not run any install hooks
-    --ignore-local               Do not use locally-installed packages when a corresponding package cannot be installed from Builder
+    --ignore-local               Do not use locally-installed packages when a corresponding package can't be installed from Builder
 -h, --help                       Print help
 -V, --version                    Print version
 ```
