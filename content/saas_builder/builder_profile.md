@@ -9,7 +9,7 @@ title = "Builder Profile"
   weight = 30
 +++
 
-To use the SaaS or on-premises version of Chef Habitat Builder, you need to create an account on the SaaS version. After downloading the version, sync the two accounts.
+To use the SaaS or on-premises version of Chef Habitat Builder, you need to create an account on the SaaS version. After downloading the on-prem version, sync the two accounts.
 
 ## Get an account
 
