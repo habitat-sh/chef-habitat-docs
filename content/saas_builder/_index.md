@@ -11,11 +11,13 @@ linkTitle = "Chef Habitat Builder"
 +++
 
 Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub. Chef Habitat Builder can be used as either a cloud-based or an on-premises solution.
-Cloud-based SaaS Chef Habitat Builder is used to host core packages belonging to [Chef owned origins](path-to-chef-owned-origins). [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) can be used to host the packages belonging to user owned origins.
+Cloud-based SaaS Chef Habitat Builder is used to host core packages belonging to Chef-owned origins. [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) can be used to host the packages belonging to user owned origins.
 
-{{< note >}}
+<!--
+
 When this document is merged with the new menu structure, this should be part of "About Chef Habitat Builder" and not necessarily SaaS Builder documentation.
-{{< /note >}}
+
+-->
 
 ## Chef Habitat Builder components
 
