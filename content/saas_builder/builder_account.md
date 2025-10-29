@@ -11,7 +11,7 @@ description = "Setting up Chef Habitat Builder in the Cloud and on your workstat
 
 +++
 
-Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on the SaaS version of Chef Habitat Builder. After you have then downloaded the version, you'll then sync the two accounts.
+Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on the SaaS version of Chef Habitat Builder. After you have then downloaded the on-prem version, you'll then sync the two accounts.
 
 ## Prerequisites
 
