@@ -31,7 +31,7 @@ Before installing Chef Habitat, ensure your system meets these requirements:
 | **Windows** | 64-bit processor, versions of Windows receiving Active or Security support by Microsoft |
 
 {{< note >}}
-Modern kernel version means Linux kernel versions still supported the Linux kernel team or found within a distribution for which a vendor is actively providing support for.
+See [Supported Platforms](../platforms.md) for more information.
 {{< /note >}}
 
 ### Additional Requirements for Container Export
