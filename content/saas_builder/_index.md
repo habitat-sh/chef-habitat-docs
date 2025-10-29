@@ -1,7 +1,7 @@
 +++
 title = "About Chef Habitat Builder"
 description = "Chef Habitat Builder is Chef's Application Delivery Enterprise hub"
-linkTitle = "Habitat Builder SaaS"
+linkTitle = "Chef Habitat Builder"
 
 [menu.saas]
     title = "Chef Habitat Builder"
@@ -10,11 +10,14 @@ linkTitle = "Habitat Builder SaaS"
     weight = 10
 +++
 
-Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub.
-It was first launched as a cloud service and as the repository of all available plan templates built by Chef and the supporting community.
-Since the application source code is stored alongside the build package, many users preferred storing packages and running [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/).
-As a result, Chef Habitat Builder can be used as either a cloud-based or on-premises solution.
-Plan files are stored in the Chef Habitat Builder SaaS, where they can be viewed and accessed by the Chef Habitat community and shared with Habitat On-Prem Builder for local copying and maintenance.
+Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub. Chef Habitat Builder can be used as either a cloud-based or an on-premises solution.
+Cloud-based SaaS Chef Habitat Builder is used to host core packages belonging to Chef-owned origins. [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) can be used to host the packages belonging to user owned origins.
+
+<!--
+
+When this document is merged with the new menu structure, this should be part of "About Chef Habitat Builder" and not necessarily SaaS Builder documentation.
+
+-->
 
 ## Chef Habitat Builder components
 
