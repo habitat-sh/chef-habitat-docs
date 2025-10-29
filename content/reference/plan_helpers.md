@@ -24,14 +24,14 @@ The syntax is the same for all block expressions and looks like this:
 {{/helper}}
 ```
 
-Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/#built-in-helpers):
+Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html):
 
 - `if`
 - `unless`
 - `each`
 - `with`
 - `lookup`
-- `>` ([partials](http://handlebarsjs.com/partials.html))
+- `>` ([partials](https://handlebarsjs.com/guide/partials.html))
 - `log`
 
 {{< note >}}
@@ -318,7 +318,7 @@ strConcat
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
 
-## Effective Use of Handlebars Whitespace Trimming
+## Trimming whitespace
 
 The Handlebars templating language allows the use of tildes inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action. Consider this Handlebars template.
 

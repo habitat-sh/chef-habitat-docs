@@ -1,52 +1,114 @@
 +++
-title = "Upgrading from 1.6.x to 2.0.x"
-description = "How to Upgrade Chef Habitat from 1.6.x to 2.0.x"
+title = "Upgrading from 1.6 to 2.x"
+description = "Upgrade Chef Habitat from 1.6 to 2"
 linkTitle = "Upgrade"
 
 [menu.upgrade]
-  title = "Upgrading from 1.6"
+  title = "Upgrading to Habitat 2"
   identifier = "upgrade/upgrading-hab"
   parent = "upgrade"
   weight = 10
 +++
 
-While basic Chef Habitat behavior hasn't changed from version 1.6.x to 2.0.x, Chef Habitat Supervisor environments running 1.6.x can't seamlessly update themselves with the auto update feature nor can you install a Chef Habitat 2.0.x supervisor package and expect a supervisor restart to pick up the new 2.0.x package.
+## Update Habitat Supervisors
 
-This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On windows you will also need the updated `windows-service` package. Further, the supervisor will need a valid `HAB_AUTH_TOKEN` associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
+While basic Chef Habitat behavior hasn't changed from version 1.6 to 2.0, Chef Habitat Supervisor environments running 1.6 can't seamlessly update themselves with the auto update feature nor can you install a Chef Habitat 2.x Supervisor package and expect a Supervisor restart to pick up the new Habitat 2.0 package.
 
-Similar to the install scripts used to install Chef Habitat, we provide a migration script that installs a full set of the latest Chef Habitat 2.0.x packages, inject your auth token into the supervisor environment and restart all habitat services.
+This is largely because the Chef Habitat binaries have moved from the `core` origin to the `chef` origin. You will need updated cli, launcher and supervisor binaries for everything to run correctly. On Windows, you will also need the updated `windows-service` package. Further, the supervisor will need a valid `HAB_AUTH_TOKEN` associated with a valid license key in its environment in order to download any license restricted `core` or `chef` packages.
 
-To upgrade a supervisor from 1.6.x to 2.0.x, run the following:
+Similar to the install scripts used to install Chef Habitat, we provide a migration script that installs a full set of the latest Chef Habitat 2 packages, inject your auth token into the supervisor environment and restart all Habitat services.
 
-- **linux**: `curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/migrate.sh | sudo bash -s -- --auth <HAB_AUTH_TOKEN>`
-- **windows**: `iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"`
+### Supervisor migration script
 
-Note that if your supervisor is running services while executing the migration script, these services will be restarted.
+You can run the following scripts to upgrade Chef Habitat.
 
-## Potentially breaking changes to handlebars templates
+If you execute this migration script while a Habitat Supervisor is running services, the migration script will restart those services.
 
-The [handlebars implementation](https://crates.io/crates/handlebars) was upgraded from an early version that habitat had pinned due to breaking changes after habitat was released for general use. The code base was upgraded to the most recent version available. Also it has been, and will continue to be, updated as new releases of the crate become available.
+To upgrade a Supervisor from Habitat 1.6 to 2, run the following:
 
-The impact of this is that you may have to update your templates as described in the following sections.
+- On Linux:
 
-### Object Access Syntax Removed
+  ```sh
+  curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/migrate.sh | sudo bash -s -- --auth <HAB_AUTH_TOKEN>
+  ```
 
-In Habitat versions prior to 2.0 both `object.[index]` and `object[index]` were valid syntax for object access. After habitat 2.0 only the `object.[index]` remains valid syntax.
+- On Windows:
 
-The action required is that you will need to proactively or reactively change any usages of the now removed `object[index]` syntax to the still viable `object.[index]` syntax. See [PR #6323](https://github.com/habitat-sh/habitat/issues/6323) [PR #9585](https://github.com/habitat-sh/habitat/pull/9585) for more information.
+  ```ps1
+  iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"
+  ```
 
-One way to identify files for review is `find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches` but this should be adapted as appropriate for use against your codebase.
+## Update Habitat handlebars in templates
 
-### Trimming Whitespace Now Works Correctly
+For Chef Habitat 2, we've updated the [handlebars implementation](https://crates.io/crates/handlebars) used to input variables into templates.
+You may have to update your templates as described in the following sections.
 
-The `{{~` and `~}}` syntax for whitespace trimming was effectively a noop for habitat versions prior to 2.0 After 2.0 usage of `{{~` and `~}}` will trim whitespace as expected which may result in errors.
+### Object access syntax
 
-The action required is that you need to review your usage of habitat templating where `{{~` and `~}}` has been and update as appropriate for the context in which the whitespace trimming operators are used as the effect. The reason the guidance here is to "update as appropriate for the context" is that effect of using `{{~` and `~}}` is very dependent on where and how the syntax is used.
+In Chef Habitat 1.6 and earlier, both `object.[index]` and `object[index]` were valid syntax to access items in an object. After Habitat 2.0, only the `object.[index]` remains valid syntax.
 
-For example, one issue that the habitat team encountered was with templated nginx.conf files. In the context of a templated nginx.conf where semicolons and braces terminate simple and block directives the effect was one of poor formatting as opposed to broken habitat package because the file that was produced was syntactically valid and parsable by nginx.
+Review your templates and identify instances of `object[index]` syntax and replace them with `object.[index]` syntax.
 
-However, another example the habitat team encountered was in the context of generating a PostgreSQL pg_hba.conf file. There the use of `{{~` caused a line that should have been created on a line by itself to be concatenated with the previous line. In this instance the plan built as expected but contained an unparsable pg_hba.conf file that caused an error when attempting to run postgres.
+You can use the following command to identify files that need review:
 
-One way to identify files for review is `find . -type f | xargs grep --perl-regexp '{{~|~}}' --files-with-matches` but this should be adapted as appropriate for use against your code base.
+```sh
+find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches
+```
 
-For more on how to use `{{~` and `~}}` you can read [Effective Use of Handlebars Whitespace Trimming](../reference/plan_helpers/#effective-use-of-handlebars-whitespace-trimming) or visit the [Handlebars website](https://handlebarsjs.com/).
+Adapt this command as necessary for your codebase.
+
+See the following GitHub issue and PR for more information:
+
+- [issue #6323](https://github.com/habitat-sh/habitat/issues/6323)
+- [PR #9585](https://github.com/habitat-sh/habitat/pull/9585)
+
+### Whitespace trimming in templates
+
+Before Chef Habitat 2.x, [whitespace trimming](https://handlebarsjs.com/guide/expressions.html#whitespace-control) using tildes (`~`) around a mustache statement was effectively a noop. With Habitat 2.0, `{{~` and `~}}` trims whitespace as expected and may result in errors.
+
+In one case, the Habitat team found that a templated `nginx.conf` file output an `nginx.conf` that was poorly formatted, but syntactically valid and parsable by Nginx.
+
+However, in another example, whitespace trimming with `{{~` concatenated two lines together that should be separate in a generated PostgreSQL `pg_hba.conf` file.
+The Habitat plan built as expected, but PostgreSQL couldn't parse the `pg_hba.conf` file.
+
+#### Find whitespace trimming in your templates
+
+Before you upgrade to Habitat 2, identify and review instances of whitespace trimming in your Habitat plans.
+You can use the following command to identify instances of `{{~` and `~}}`:
+
+```sh
+find . -type f | xargs grep --perl-regexp '{{~|~}}' --files-with-matches
+```
+
+Adapt this command as necessary for your codebase.
+
+#### Whitespace trimming example
+
+If you have a template expression with `~`, for example:
+
+```handlebars
+Hello, {{~planet~}} !
+```
+
+And an input JSON file:
+
+```json
+{
+  "planet": "World"
+}
+```
+
+The whitespace around the expression is removed from the compiled output:
+
+```plain
+Hello,World!
+```
+
+If the template expression doesn't have the tildes (`~`), the whitespaces are preserved and the output would be:
+
+```plain
+Hello, World !
+```
+
+For more on how to use tildes (`~`) to collapse whitespace, read [Effective Use of Handlebars Whitespace Trimming](../reference/plan_helpers/#effective-use-of-handlebars-whitespace-trimming) or see the [Handlebars website](https://handlebarsjs.com/guide/expressions.html#whitespace-control
+).
