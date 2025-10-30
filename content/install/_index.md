@@ -80,7 +80,7 @@ Alternatively, you can install Chef Habitat by downloading and running the insta
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1" -OutFile "install.ps1"
 
 # Run the script with Habitat version
-.\install.ps1 -v 1.6.0
+.\install.ps1 -v 1.6.1245
 ```
 
 ### Installing Habitat for Windows using the dowloaded Chef Habitat package
