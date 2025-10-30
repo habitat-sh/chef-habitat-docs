@@ -12,9 +12,14 @@ linkTitle = "Upgrade"
 
 Chef Habitat 2.x includes the following feature changes:
 
-- we moved the Chef Habitat binaries from the `core` origin to the `chef` origin
-- Chef Habitat Supervisors now need a valid `HAB_AUTH_TOKEN` to download packages from the `core` and `chef` origins
-- we updated the Habitat handlebars templating
+- We moved the Chef Habitat binaries from the `core` origin to the `chef` origin.
+- Chef Habitat Supervisors now need a valid `HAB_AUTH_TOKEN` to download packages from the `core` and `chef` origins.
+- We updated the Habitat handlebars templating.
+
+To update to Chef Habitat 2.x:
+
+- review your Habitat templates to verify that they're compatible with Habitat 2
+- run migration script to update your Habitat Supervisors
 
 ## Update handlebars in Habitat templates
 
@@ -27,7 +32,7 @@ In Chef Habitat 1.6 and earlier, both `object.[index]` and `object[index]` were 
 In Habitat 2.0 and later, only `object.[index]` is valid syntax.
 Review your templates and replace instances of `object[index]` syntax with `object.[index]` syntax.
 
-Use the following command to identify files that need review:
+To identify files that need review, you can use the following command:
 
 ```sh
 find . -type f | xargs grep --perl-regexp '(^|\s)[a-zA-Z0-9-_]+\[.*\]' --files-with-matches
@@ -42,20 +47,19 @@ For more information, see:
 
 ### Update whitespace trimming in templates
 
-Before Chef Habitat 2.x, [whitespace trimming](https://handlebarsjs.com/guide/expressions.html#whitespace-control) using tildes (`~`) around a mustache statement was effectively a noop.
-In Habitat 2.0 and later, `{{~` and `~}}` trim whitespace as expected and may result in errors.
+Before Chef Habitat 2.x, the `~` character added to a set of braces in a mustache statement (for example `{{~#if items~}}`) didn't trim whitespace around the statement and was effectively a noop. In Habitat 2 and later, the `~` character [trims whitespace](https://handlebarsjs.com/guide/expressions.html#whitespace-control) as expected and may result in errors.
 
-In one case, the Habitat team found that a templated `nginx.conf` file output an `nginx.conf` that was poorly formatted, but syntactically valid and parsable by Nginx.
+In one case, we found that a templated `nginx.conf` file output an `nginx.conf` file that was poorly formatted but syntactically valid and parsable by Nginx.
 
-However, in another example, whitespace trimming with `{{~` concatenated two lines together that should be separate in a generated PostgreSQL `pg_hba.conf` file.
+However, in another case, the `~` character in a template concatenated two lines that should be separate in a generated PostgreSQL `pg_hba.conf` file.
 The Habitat plan built as expected, but PostgreSQL couldn't parse the `pg_hba.conf` file.
 
-For more on how to use tildes (`~`) in a mustache statement to collapse whitespace, see the [Habitat plan helpers documentation](../reference/plan_helpers/#effective-use-of-handlebars-whitespace-trimming) or the [Handlebars website](https://handlebarsjs.com/guide/expressions.html#whitespace-control).
+For more on how to use the `~` character in a mustache statement to control whitespace, see the [Habitat plan helpers documentation](../reference/plan_helpers/#trimming-whitespace) or the [Handlebars website](https://handlebarsjs.com/guide/expressions.html#whitespace-control).
 
 #### Find whitespace trimming in your templates
 
-Before you upgrade to Habitat 2, identify and review instances of whitespace trimming in your Habitat plans.
-Use the following command to identify instances of `{{~` and `~}}`:
+Before you upgrade to Chef Habitat 2, identify and review instances of `{{~` or `~}}` in your Habitat templates.
+To find `{{~` or `~}}` in your templates, you can use the following command:
 
 ```sh
 find . -type f | xargs grep --perl-regexp '{{~|~}}' --files-with-matches
@@ -68,19 +72,20 @@ Adapt this command as necessary for your codebase.
 While basic Chef Habitat behavior hasn't changed from version 1.6 to 2.0, you can't use the [Habitat Supervisor auto update feature](/sup/sup_update/) to update Supervisor environments running 1.6.
 Additionally, you can't install a Chef Habitat 2.x Supervisor package and expect a Supervisor restart to pick up the new Habitat 2.0 package.
 
-You can use the Habitat 2 Supervisor migration script to update your Supervisors. It handles the following tasks:
+To update your Supervisors, you can use the Habitat 2 Supervisor migration script.
+The migration script handles the following tasks:
 
-- installs the Habitat 2 CLI, launcher and Supervisor binaries
-- on Windows, it updates the `windows-service` package
-- it injects your Habitat Builder authentication token into your Supervisor environment
-- it restarts all Habitat services
+- Installs the Habitat 2 CLI, launcher, and Supervisor binaries
+- On Windows, updates the `windows-service` package
+- Injects your Habitat Builder authentication token into your Supervisor environment
+- Restarts all Habitat services
 
 ### Run the Supervisor migration script
 
 Use the following scripts to upgrade your Chef Habitat Supervisors.
 If you run this migration script while a Habitat Supervisor is running services, the script restarts those services.
 
-Before you run the migration script, you will need a [Habitat Builder authentication token](/saas_builder/builder_profile/#create-a-personal-access-token).
+Before you run the migration script, you'll need a [Habitat Builder authentication token](/saas_builder/builder_profile/#create-a-personal-access-token).
 
 To upgrade a Supervisor from Habitat 1.6 to 2:
 
