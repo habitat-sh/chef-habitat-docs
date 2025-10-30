@@ -16,7 +16,7 @@ Chef Habitat provides a command-line interface (CLI) tool called `hab` that you 
 
 Before installing Chef Habitat, ensure your system meets these requirements.
 
-### Operting system and architecture requirements
+### Operating system and architecture requirements
 
 - Linux kernel 2.6.32 or later on a 64-bit processor
 - Modern Linux kernels on a 64-bit ARM processor
