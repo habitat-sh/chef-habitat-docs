@@ -24,14 +24,14 @@ The syntax is the same for all block expressions and looks like this:
 {{/helper}}
 ```
 
-Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/#built-in-helpers):
+Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html):
 
 - `if`
 - `unless`
 - `each`
 - `with`
 - `lookup`
-- `>` ([partials](http://handlebarsjs.com/partials.html))
+- `>` ([partials](https://handlebarsjs.com/guide/partials.html))
 - `log`
 
 {{< note >}}
@@ -318,7 +318,7 @@ strConcat
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
 
-## Effective Use of Handlebars Whitespace Trimming
+## Trimming whitespace
 
 The Handlebars templating language allows the use of tildes inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action. Consider this Handlebars template.
 
@@ -378,4 +378,4 @@ With those additions the rendered output would have all of the whitespace consum
 <!--comment--><ul><li>one</li><li>two</li><li>three</li></ul><!--comment-->
 ```
 
-The point is that `{{~` and `~}}` are powerful bits of syntax that require some care to use properly. In the contrived example presented here no harm is done beyond compromising the human readability of the rendered output. However, if you are using Handlebars templating in a context where whitespace is significant then you can easily end up something that will be invalid. For additional information around such pitfalls please see [this discussion](../upgrade#trimming-whitespace-now-works-correctly) in the Habitat 2.0 upgrade documentation. You can also experiment with code above in the [Handlebars playground](https://handlebarsjs.com/playground.html).
+The point is that `{{~` and `~}}` are powerful bits of syntax that require some care to use properly. In the contrived example presented here no harm is done beyond compromising the human readability of the rendered output. However, if you are using Handlebars templating in a context where whitespace is significant then you can easily end up something that will be invalid. For additional information around such pitfalls please see [this discussion](../upgrade#update-whitespace-trimming-in-templates) in the Habitat 2.0 upgrade documentation. You can also experiment with code above in the [Handlebars playground](https://handlebarsjs.com/playground.html).
