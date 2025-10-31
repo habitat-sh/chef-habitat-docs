@@ -44,20 +44,13 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 Requires 64-bit processor running 10.9 or later
 
-Once you have downloaded the `hab` CLI, unzip it onto your machine. Unzipping to `/usr/local/bin` should place it on your `PATH`. In order to use the Chef Habitat Studio, you'll also need to install Docker for Mac.
+Once you have downloaded the `hab` CLI, unzip it onto your machine.
+Unzipping to `/usr/local/bin` should place it on your `PATH`.
+In order to use the Chef Habitat Studio, you'll also need to install Docker for Mac.
 
 [Download Chef Habitat for Mac](https://www.chef.io/downloads)
 
 [Download Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-
-### Install Chef Habitat Using Homebrew
-
-Chef Habitat can also be installed with Homebrew, by running the following commands:
-
-```bash
-brew tap habitat-sh/habitat
-brew install hab
-```
 
 ## Chef Habitat for Windows
 
