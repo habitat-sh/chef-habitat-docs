@@ -29,7 +29,7 @@ Once you have downloaded the package, extract the hab binary with tar to `/usr/l
 Alternatively, you can install Chef Habitat with the command line by downloading and running the installation script:
 
 ```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 1.6.1245
 ```
 
 ### Install Chef Habitat for Linux Kernel 2.x from the Command Line
@@ -37,27 +37,20 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x. Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they're upgraded to more recent versions of the Linux kernel.
 
 ```bash
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t x86_64-linux-kernel2
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t x86_64-linux-kernel2 -v 1.6.1245
 ```
 
 ## Chef Habitat for Mac
 
 Requires 64-bit processor running 10.9 or later
 
-Once you have downloaded the `hab` CLI, unzip it onto your machine. Unzipping to `/usr/local/bin` should place it on your `PATH`. In order to use the Chef Habitat Studio, you'll also need to install Docker for Mac.
+Once you have downloaded the `hab` CLI, unzip it onto your machine.
+Unzipping to `/usr/local/bin` should place it on your `PATH`.
+In order to use the Chef Habitat Studio, you'll also need to install Docker for Mac.
 
 [Download Chef Habitat for Mac](https://www.chef.io/downloads)
 
 [Download Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-
-### Install Chef Habitat Using Homebrew
-
-Chef Habitat can also be installed with Homebrew, by running the following commands:
-
-```bash
-brew tap habitat-sh/habitat
-brew install hab
-```
 
 ## Chef Habitat for Windows
 
@@ -68,16 +61,19 @@ Chocolatey is a package manager for Windows. You can use it to easily install, c
 Install Chef Habitat with Chocolatey, by running the following command:
 
 ```powershell
-choco install habitat
+choco install habitat --version=1.6.1245
 ```
 
-### Install Chef Habitat using a PowerShell install script
+### Install Chef Habitat using the PowerShell install script
 
 Alternatively, you can install Chef Habitat by downloading and running the installation script:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
+# Download the script
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1" -OutFile "install.ps1"
+
+# Run the script with Habitat version
+.\install.ps1 -v 1.6.1245
 ```
 
 ### Installing Habitat for Windows using the dowloaded Chef Habitat package
