@@ -20,8 +20,24 @@ The `install.sh` or `install.ps1` script fails to install Chef Habitat on your s
 #### Solution
 
 - Check system requirements
-- Verify internet connectivity
 - Run with elevated privileges if needed
+
+Download failures:
+
+- Verify internet connectivity
+- Check if a corporate firewalls blocks `packages.chef.io`
+- Set `SSL_CERT_FILE` if using custom certificates
+
+Permission errors:
+
+- Ensure you have appropriate privileges (sudo on Linux, admin on macOS)
+- Check that target directories are writable
+
+macOS volume creation failures:
+
+- Verify sufficient disk space for the new volume
+- Ensure the root disk has available space
+- Check that FileVault setup is complete if encryption is enabled
 
 ### Permission errors on Linux/macOS
 

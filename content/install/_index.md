@@ -1,6 +1,6 @@
 +++
 title = "Install the Chef Habitat CLI"
-description = "Download and install the Chef Habitat CLI and configure your workstation for Chef Habitat development"
+description = "Download and install the Chef Habitat CLI"
 linkTitle = "Install"
 
 [menu.install]
@@ -15,6 +15,27 @@ Chef Habitat provides a command-line interface (CLI) tool called `hab` that you 
 ## System requirements
 
 Before installing Chef Habitat, ensure your system meets these requirements.
+
+### Install script requirements
+
+Requirements on all platforms:
+
+- Internet connectivity to `packages.chef.io`
+
+Linux requirements:
+
+- `curl` or `wget` with SSL support
+- `tar` and `gzip` for archive extraction
+- `sha256sum` for checksum verification
+- Root or sudo access for system installation
+
+macOS requirements:
+
+- `curl` or `wget` with SSL support
+- `diskutil` for volume management
+- `security` command for keychain operations
+- `launchctl` for daemon management
+- Administrative privileges for system configuration
 
 ### Operating system and architecture requirements
 

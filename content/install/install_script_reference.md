@@ -11,8 +11,6 @@ draft = false
 
 The Habitat install script (`install.sh`) provides an automated way to download and install the Habitat CLI (`hab`) on Linux and macOS systems. This script handles platform detection, package verification, and system-specific configuration.
 
-## Overview
-
 The install script performs these main tasks:
 
 - Downloads the appropriate Habitat CLI package for your platform
@@ -43,7 +41,7 @@ macOS requirements:
 ## Usage
 
 ```bash
-curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash [FLAGS]
+curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash [options]
 ```
 
 ## Options
@@ -89,12 +87,12 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 Unpacking this a bit, `curl -sSfL` is equivalent to `curl --silent --show-error --fail --location` meaning that `curl` minimizes output, fails fast, shows any error that occurs while following any redirects.
 
-Alternatively, while we will use the curl bash version in our documentation you could choose to download the file and run it locally. One way to do this would be the following:
+Alternatively, you could download the file and run it locally. For example:
 
 ```bash
 curl -OL https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh
 chmod u+x install.sh
-./install.sh [FLAGS]
+./install.sh [options]
 ```
 
 ### Install a specific version
@@ -171,10 +169,13 @@ The script includes multiple verification steps:
 
 ### Common issues
 
+- Check system requirements
+- Run with elevated privileges if needed
+
 Download failures:
 
 - Verify internet connectivity
-- Check if corporate firewalls block `packages.chef.io`
+- Check if a corporate firewalls blocks `packages.chef.io`
 - Set `SSL_CERT_FILE` if using custom certificates
 
 Permission errors:
@@ -233,7 +234,7 @@ After successful installation:
 
 ## Support
 
-If you encounter issues with the install script:
+If you have issues with the install script:
 
 - See the [troubleshooting guide](/troubleshooting.md)
 - Visit the [Habitat community forum](https://discourse.chef.io/c/habitat)
