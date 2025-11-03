@@ -92,7 +92,9 @@ You can also develop your new application and use Chef Habitat to manage the dep
 
 ### Support
 
-- [Chef Support](https://www.chef.io/support)
+- [Chef Support](https://www.chef.io/support) (if you have a support contract)
+- [Community forum](https://discourse.chef.io/c/habitat/12)
+- [GitHub issues](https://github.com/habitat-sh/habitat/issues)
 
 ### GitHub Repositories
 

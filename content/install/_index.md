@@ -12,7 +12,7 @@ linkTitle = "Install"
 
 Chef Habitat provides a command-line interface (CLI) tool called `hab` that you use to build packages, manage services, and interact with Chef Habitat Builder. This section provides installation instructions for Linux, macOS, and Windows.
 
-## System Requirements
+## System requirements
 
 Before installing Chef Habitat, ensure your system meets these requirements.
 
@@ -47,6 +47,13 @@ To install Chef Habitat with the install script, run the following command:
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
+
+```sh
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+    | sudo bash -s -- -v 1.6.1245
+```
+
 ### Install manually
 
 1. [Download Chef Habitat for Linux](https://www.chef.io/downloads)
@@ -67,6 +74,13 @@ To install Chef Habitat with the install script, run the following command:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+```
+
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
+
+```sh
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+    | sudo bash -s -- -v 1.6.1245
 ```
 
 ### Install using Homebrew
@@ -105,6 +119,12 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
+You can install a specific Habitat version with `-Version <HABITAT_VERSION>`. For example:
+
+```ps1
+iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 1.6.1245"
+```
+
 ### Install manually
 
 1. [Download Chef Habitat for Windows](https://www.chef.io/downloads)
@@ -118,6 +138,20 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
     ```powershell
     $env:PATH += ";C:\habitat\hab-0.79.1-20190410221450-x86_64-windows\"
     ```
+
+## Verify installation
+
+To verify that Habitat is installed, you can run the following commands:
+
+```bash
+hab --version
+hab cli setup --help
+```
+
+## See also
+
+- [install.sh script reference](install_script_reference)
+- [troubleshooting](/troubleshooting/)
 
 ## Next steps
 

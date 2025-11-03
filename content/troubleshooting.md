@@ -11,6 +11,18 @@ This page provides solutions to common installation and setup issues with Chef H
 
 ## Installation issues
 
+### Installation fails
+
+#### Problem
+
+The `install.sh` or `install.ps1` script fails to install Chef Habitat on your system.
+
+#### Solution
+
+- Check system requirements
+- Verify internet connectivity
+- Run with elevated privileges if needed
+
 ### Permission errors on Linux/macOS
 
 #### Problem
@@ -19,15 +31,21 @@ You get a permission denied error when running installation scripts or accessing
 
 #### Solution
 
-```bash
-# Use sudo for system-wide installation
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+Use one of the following solutions:
 
-# Or install to a user directory
-mkdir -p ~/bin
-export PATH="$HOME/bin:$PATH"
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | bash -s -- -b ~/bin
-```
+- Use sudo for system-wide installation:
+
+  ```bash
+  curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+  ```
+
+- Install to a user directory:
+
+  ```sh
+  mkdir -p ~/bin
+  export PATH="$HOME/bin:$PATH"
+  curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | bash -s -- -b ~/bin
+  ```
 
 ### Docker issues
 
@@ -122,18 +140,14 @@ You get a `hab: command not found` error after installation.
 
 #### Solution
 
-#### Linux and macOS
-
-Add Habitat to your system `PATH`:
+On Linux and macOS, add Habitat to your system `PATH`:
 
 ```bash
 echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-#### Windows
-
-Add the Habitat directory to your system `PATH`:
+On Windows, add the Habitat directory to your system `PATH`:
 
 ```powershell
 $env:PATH += ";C:\habitat\hab-VERSION-x86_64-windows\"
