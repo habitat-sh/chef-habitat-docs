@@ -5,8 +5,8 @@ description = "Create an Origin on Builder"
 
 [menu.builder]
     title = "Origins"
-    identifier = "saas_builder/origins"
-    parent = "saas_builder"
+    identifier = "builder/saas/origins"
+    parent = "builder/saas"
     weight = 30
 +++
 
@@ -24,4 +24,4 @@ Progress Chef maintains the following origins:
 ## Where can I create an origin
 
 You can create origins with [Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/).
-You can't create origins in [Chef's public Habitat Builder SaaS](https://bldr.habitat.sh).
+You can't create origins in [Chef's public Habitat SaaS Builder](https://bldr.habitat.sh).

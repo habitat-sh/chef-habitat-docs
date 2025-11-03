@@ -1,21 +1,19 @@
 +++
 title = "About Chef Habitat Builder"
 description = "Chef Habitat Builder is Chef's Application Delivery Enterprise hub"
-linkTitle = "Chef Habitat Builder"
+linkTitle = "Builder"
 
 [menu.builder]
-    title = "Chef Habitat Builder"
-    identifier = "saas_builder/builder"
-    parent = "saas_builder"
+    title = "About Habitat Builder"
+    identifier = "builder/about"
+    parent = "builder"
     weight = 10
 +++
 
-
 Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub.
-
 You can use Chef Habitat Builder as either a cloud-based or on-premises solution:
 
-- Chef Habitat Builder SaaS is the cloud-based host for Chef's core packages.
+- [Chef Habitat SaaS Builder](saas) is the cloud-based host for Chef's core packages.
 - [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) hosts user-owned packages.
 
 ## Chef Habitat Builder components
@@ -27,4 +25,4 @@ You can use Chef Habitat Builder as either a cloud-based or on-premises solution
 - **DevOps Integration APIs**: APIs allow clients to find and download the necessary packages to run their applications. Additional APIs enable integration with popular DevOps tools, including Jenkins, Terraform, Artifactory, Hashi Vault, and others.
 - **Role-Based User Access**: Improves your organization's operational safety by letting you assign specific levels of access to each origin member.
 
-For more information about how the SaaS and on-premises versions of Chef Habitat Builder work together, read the blog: [Chef Habitat Builder On-Prem Enhancements that Extend Support to Airgap Environments and Simplify Set-Up](https://www.chef.io/blog/chef-habitat-product-announcement-builder-on-prem-enhancements-that-extend-support-to-airgap-environments-and-simplify-set-up).
+For more information about how the SaaS and on-premises versions of Chef Habitat Builder work together, read the blog: [Chef Habitat On-Prem Builder Enhancements that Extend Support to Airgap Environments and Simplify Set-Up](https://www.chef.io/blog/chef-habitat-product-announcement-builder-on-prem-enhancements-that-extend-support-to-airgap-environments-and-simplify-set-up).

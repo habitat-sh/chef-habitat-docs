@@ -5,13 +5,13 @@ description = "Setting up Chef Habitat Builder in the Cloud and on your workstat
 
 [menu.builder]
     title = "Create an Account"
-    identifier = "saas_builder/builder-account Builder Account"
-    parent = "saas_builder"
+    identifier = "builder/saas/Builder Account"
+    parent = "builder/saas"
     weight = 20
 
 +++
 
-Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on the SaaS version of Chef Habitat Builder. After you have then downloaded the on-prem version, you'll then sync the two accounts.
+Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on Chef Habitat SaaS Builder. After you've deployed Habitat On-Prem Builder, you'll sync the two using your SaaS and On-prem accounts.
 
 ## Prerequisites
 

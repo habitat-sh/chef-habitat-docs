@@ -59,9 +59,15 @@ identifier = "install"
 title = "Upgrade"
 identifier = "upgrade"
 
-[[saas]]
-title = "SaaS Builder"
-identifier = "saas_builder"
+[[builder]]
+title = "Builder"
+identifier = "builder"
+
+    [[builder]]
+    title = "Builder SaaS"
+    identifier = "builder/saas"
+    parent = "builder"
+    weight = "20"
 
 [[origins]]
 title = "Origins"
