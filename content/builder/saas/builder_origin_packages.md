@@ -3,7 +3,7 @@ title = "Upload and Promote Packages"
 description = "Upload and Promote packages on Chef Habitat Builder enables automated package rebuilds and increases collaboration"
 
 
-[menu.saas]
+[menu.builder]
     title = "Origin Packages"
     identifier = "saas_builder/origin-packages"
     parent = "saas_builder"

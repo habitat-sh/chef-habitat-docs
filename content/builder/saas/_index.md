@@ -1,9 +1,9 @@
 +++
 title = "About Chef Habitat Builder"
 description = "Chef Habitat Builder is Chef's Application Delivery Enterprise hub"
-linkTitle = "Chef Habitat Builder"
+linkTitle = "Chef Habitat Builder SaaS"
 
-[menu.saas]
+[menu.builder]
     title = "Chef Habitat Builder"
     identifier = "saas_builder/builder"
     parent = "saas_builder"

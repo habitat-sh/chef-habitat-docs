@@ -3,7 +3,7 @@ title = "Create an Origin on Builder"
 description = "Create an Origin on Builder"
 
 
-[menu.saas]
+[menu.builder]
     title = "Origins"
     identifier = "saas_builder/origins"
     parent = "saas_builder"

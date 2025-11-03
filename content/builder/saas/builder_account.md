@@ -3,7 +3,7 @@ title = "Create an Account"
 description = "Setting up Chef Habitat Builder in the Cloud and on your workstation"
 
 
-[menu.saas]
+[menu.builder]
     title = "Create an Account"
     identifier = "saas_builder/builder-account Builder Account"
     parent = "saas_builder"
