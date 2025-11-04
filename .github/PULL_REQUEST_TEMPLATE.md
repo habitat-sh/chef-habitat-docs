@@ -17,5 +17,4 @@ StackOverflow discussion that's relevant -->
 ## Checklist
 
 - [ ] spellcheck
-- [ ] use [relref shortcode](https://gohugo.io/content-management/cross-references/#use-of-ref-and-relref) for links to Courier docs
 - [ ] all tests pass
