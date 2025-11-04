@@ -33,7 +33,7 @@ Chef Habitat Builder supports both public and private origins, packages, and Git
 
 ## Create a Builder account
 
-Before you begin, [Cceate a Builder account](builder_account).
+Before you begin, [Create a Builder account](builder_account).
 
 ## Create or Join an Existing Origin
 
