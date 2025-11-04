@@ -1,26 +1,28 @@
 +++
 title = "Create an Account"
-description = "Setting up Chef Habitat Builder in the Cloud and on your workstation"
+description = "Create a SaaS Builder account"
+summary = "Create an account to manage origins and packages"
 
 
-[menu.saas]
+[menu.builder]
     title = "Create an Account"
-    identifier = "saas_builder/builder-account Builder Account"
-    parent = "saas_builder"
+    identifier = "builder/saas/Builder Account"
+    parent = "builder/saas"
     weight = 20
 
 +++
 
-Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on the SaaS version of Chef Habitat Builder. After you have then downloaded the on-prem version, you'll then sync the two accounts.
+Whether you are looking to leverage the SaaS or on-prem version of Chef Habitat Builder, you'll need to create an account on Chef Habitat SaaS Builder. After you've deployed Habitat On-Prem Builder, you'll sync the two using your SaaS and On-prem accounts.
 
 ## Prerequisites
 
 You need to set a few things up before you can get started with Chef Habitat Builder:
 
-* Download and install the [Chef Habitat CLI](/install/)
-* A [GitHub account](https://github.com/join)
+- download and install the [Chef Habitat CLI](/install/)
+- a [GitHub account](https://github.com/join)
+- a Progress Chef license
 
-## Sign-in and Authorize Chef Habitat Builder
+## Sign-in and authorize Chef Habitat Builder
 
 Chef Habitat Builder automatically creates your account the first time you sign in using the GitHub authentication process. You'll also need to authorize the Chef Habitat Builder application in Github.
 

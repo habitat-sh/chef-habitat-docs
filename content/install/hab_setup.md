@@ -47,7 +47,7 @@ Optionally provide a Chef Habitat personal access token to:
 - Share them with the Chef Habitat community
 - Access private origins
 
-See the [access token documentation](../saas_builder/builder_profile.md#create-a-personal-access-token) for details on generating and using your access token.
+See the [access token documentation](/builder/saas/builder_profile.md#create-a-personal-access-token) for details on generating and using your access token.
 
 ### 4. Supervisor Control Gateway Secret (Optional)
 
@@ -73,6 +73,6 @@ After configuration is complete, you're ready to:
 
 {{< note >}}
 
-For more information about using Chef Habitat Builder, see the [Builder documentation](/saas_builder/).
+For more information about using Chef Habitat Builder, see the [Builder documentation](/builder/saas/).
 
 {{< /note >}}
