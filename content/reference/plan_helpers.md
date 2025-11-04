@@ -320,7 +320,9 @@ strConcat
 
 ## Trimming whitespace
 
-The Handlebars templating language allows the use of tildes inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action. Consider this Handlebars template.
+The Handlebars templating language allows the use of tildes (`~`) inside of the double opening and closing braces that delineate expressions in order to give the user more control over whitespace. If you've coded in the Go programming language the Handlebars syntax `{{~` and `~}}` is analgous to `{{-` and `-}}` there. The definitive guide will always be [the Handlebars documentation](https://handlebarsjs.com/guide/) but the following examples will demonstrate the syntax in action.
+
+Consider this Handlebars template:
 
 ```handlebars
 <!--comment-->
@@ -334,7 +336,7 @@ The Handlebars templating language allows the use of tildes inside of the double
 <!--comment-->
 ```
 
-If provided this context
+with this context:
 
 ```json
 {
@@ -346,7 +348,7 @@ If provided this context
 }
 ```
 
-then Handlebars would render this output.
+produces an output that preserves the whitespaces around each statement:
 
 ```html
 <!--comment-->
@@ -358,7 +360,7 @@ then Handlebars would render this output.
 <!--comment-->
 ```
 
-Notice how all whitespace in the template is preserved in what was rendered. If we keep the same context but change the template to introduce a `~` everywhere one is allowed then the Handlebars templating now look like this.
+If the template is updated so the `~` character is added to both sides of each mustache statement:
 
 ```handlebars
 <!--comment-->
@@ -372,10 +374,18 @@ Notice how all whitespace in the template is preserved in what was rendered. If 
 <!--comment-->>
 ```
 
-With those additions the rendered output would have all of the whitespace consumed such that everything is squashed down to a single line resulting in the following.
+then the whitespace is removed and the rendered output collapses to a single line:
 
 ```html
 <!--comment--><ul><li>one</li><li>two</li><li>three</li></ul><!--comment-->
 ```
 
-The point is that `{{~` and `~}}` are powerful bits of syntax that require some care to use properly. In the contrived example presented here no harm is done beyond compromising the human readability of the rendered output. However, if you are using Handlebars templating in a context where whitespace is significant then you can easily end up something that will be invalid. For additional information around such pitfalls please see [this discussion](../upgrade#update-whitespace-trimming-in-templates) in the Habitat 2.0 upgrade documentation. You can also experiment with code above in the [Handlebars playground](https://handlebarsjs.com/playground.html).
+Whitespace control in handlebars templates is powerful bit of syntax that requires some care.
+In this example, there's no harm done beyond compromising the human readability of the rendered output.
+However, if you're using Handlebars templating in a context where whitespace is significant, then you can end up something that's invalid.
+
+For additional information, see:
+
+- the [Habitat 2 upgrade documentation](/upgrade#update-whitespace-trimming-in-templates)
+- the [Handlebars whitespace control documentation](https://handlebarsjs.com/guide/expressions.html#whitespace-control)
+- experiment in the [Handlebars playground](https://handlebarsjs.com/playground.html)
