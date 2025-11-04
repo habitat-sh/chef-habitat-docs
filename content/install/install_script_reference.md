@@ -175,7 +175,7 @@ The script includes multiple verification steps:
 Download failures:
 
 - Verify internet connectivity
-- Check if a corporate firewalls blocks `packages.chef.io`
+- Check if a corporate firewall blocks `packages.chef.io`
 - Set `SSL_CERT_FILE` if using custom certificates
 
 Permission errors:
