@@ -25,7 +25,7 @@ The `install.sh` or `install.ps1` script fails to install Chef Habitat on your s
 Download failures:
 
 - Verify internet connectivity
-- Check if a corporate firewalls blocks `packages.chef.io`
+- Check if a corporate firewall blocks `packages.chef.io`
 - Set `SSL_CERT_FILE` if using custom certificates
 
 Permission errors:
