@@ -1,6 +1,7 @@
 +++
-title = "Upload and Promote Packages"
+title = "Upload and promote Habitat packages"
 description = "Upload and Promote packages on Chef Habitat Builder enables automated package rebuilds and increases collaboration"
+summary = "Upload and promote packages so you can automated package rebuilds and collaborate"
 
 
 [menu.builder]
@@ -14,7 +15,7 @@ While you can build and run Chef Habitat packages without sharing them on [Chef 
 
 {{< note >}}
 
-Chef Habitat Builder can only build Linux based plans (`plan.sh`) at this time.
+Chef Habitat Builder can only build Linux-based plans (`plan.sh`) at this time.
 
 {{< /note >}}
 
@@ -22,17 +23,17 @@ Setting up Chef Habitat Builder is easily done on the website: these steps take 
 
 You interact with Chef Habitat Builder by:
 
-* Creating an account.
-* Creating an origin, or being invited to join an origin that already exists.
-* Setting up `hab` to authenticate with Builder.
-* Uploading the private and public keys for that origin.
-* Connecting your Github repositories and opting into rebuilds.
+- Creating an account.
+- Creating an origin, or being invited to join an origin that already exists.
+- Setting up `hab` to authenticate with Builder.
+- Uploading the private and public keys for that origin.
+- Connecting your Github repositories and opting into rebuilds.
 
 Chef Habitat Builder supports both public and private origins, packages, and Github repositories.
 
-## Create a Builder Account
+## Create a Builder account
 
-If you haven't created an account yet, see the [Create a Builder Account](builder_account) section above.
+Before you begin, [Cceate a Builder account](builder_account).
 
 ## Create or Join an Existing Origin
 

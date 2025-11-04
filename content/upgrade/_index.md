@@ -85,7 +85,7 @@ The migration script handles the following tasks:
 Use the following scripts to upgrade your Chef Habitat Supervisors.
 If you run this migration script while a Habitat Supervisor is running services, the script restarts those services.
 
-Before you run the migration script, you'll need a [Habitat Builder authentication token](/saas_builder/builder_profile/#create-a-personal-access-token).
+Before you run the migration script, you'll need a [Habitat Builder authentication token](/builder/saas/builder_profile/#create-a-personal-access-token).
 
 To upgrade a Supervisor from Habitat 1.6 to 2:
 

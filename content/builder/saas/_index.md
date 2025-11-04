@@ -11,3 +11,7 @@ list_pages = true
     parent = "builder/saas"
     weight = 10
 +++
+
+Chef Habitat SaaS Builder is the cloud-hosted version of Habitat Builder, designed to simplify the process of building, storing, and promoting application packages across environments.
+It provides a centralized platform where developers can upload Habitat plans, trigger builds, and manage package lifecycles without needing to maintain their own infrastructure.
+Habitat SaaS Builder integrates with GitHub to automate builds and supports channels for promoting packages through development, staging, and production workflows.

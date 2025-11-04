@@ -10,11 +10,7 @@ linkTitle = "Builder"
     weight = 10
 +++
 
-Chef Habitat Builder is the core of Chef's Application Delivery Enterprise hub.
-You can use Chef Habitat Builder as either a cloud-based or on-premises solution:
-
-- [Chef Habitat SaaS Builder](saas) is the cloud-based host for Chef's core packages.
-- [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) hosts user-owned packages.
+{{< readfile file="content/reusable/md/habitat_builder_overview.md" >}}
 
 ## Chef Habitat Builder components
 

@@ -26,7 +26,7 @@ Services can be joined together in a service group, which is a collection of ser
 
 {{< readfile file="content/reusable/md/habitat_builder_overview.md" >}}
 
-For more information, see the [Chef Habitat Builder](saas_builder) documentation.
+For more information, see the [Chef Habitat Builder](builder) documentation.
 
 ### Habitat package
 
@@ -71,7 +71,7 @@ You can also develop your new application and use Chef Habitat to manage the dep
 ## Next steps
 
 - [Download and install the Chef Habitat CLI](/install/).
-- [Create an account](/saas_builder/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
+- [Create an account](/builder/saas/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
 
 ## Additional resources
 
