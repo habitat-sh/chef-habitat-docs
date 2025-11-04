@@ -26,9 +26,9 @@ Services can be joined together in a service group, which is a collection of ser
 
 {{< readfile file="content/reusable/md/habitat_builder_overview.md" >}}
 
-For more information, see the [Chef Habitat Builder](saas_builder) documentation.
+For more information, see the [Chef Habitat Builder](builder) documentation.
 
-### Habitat Package
+### Habitat package
 
 A Habitat Package is an artifact that contains the application codebase, lifecycle hooks, and a manifest that defines build and runtime dependencies of the application.
 The package is bundled into a Habitat Artifact (`.HART`) file, which is a binary distribution of a given package built with Chef Habitat.
@@ -59,7 +59,7 @@ See the [Habitat Studio documentation](/studio/) for more information.
 
 See the [Habitat Supervisor documentation](sup) for more information.
 
-## When Should I Use Chef Habitat?
+## When should I use Chef Habitat?
 
 Chef Habitat allows you to build and package your applications and deploy them anywhere without having to refactor or rewrite your package for each platform.
 Everything that the application needs to run is defined, without assuming anything about the underlying infrastructure that the application is running on.
@@ -68,12 +68,12 @@ This will allow you to repackage and modernize legacy workloads in-place to incr
 
 You can also develop your new application and use Chef Habitat to manage the deployment if you are unsure of the infrastructure your application will run on, or in the event that business requirements change and you have to switch your application to a different environment.
 
-## Next Steps
+## Next steps
 
 - [Download and install the Chef Habitat CLI](/install/).
-- [Create an account](/saas_builder/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
+- [Create an account](/builder/saas/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
 
-## Additional Resources
+## Additional resources
 
 ### Download
 
@@ -96,7 +96,7 @@ You can also develop your new application and use Chef Habitat to manage the dep
 - [Community forum](https://discourse.chef.io/c/habitat/12)
 - [GitHub issues](https://github.com/habitat-sh/habitat/issues)
 
-### GitHub Repositories
+### GitHub repositories
 
 - [Chef Habitat repository](https://github.com/habitat-sh/habitat)
 - [Chef Habitat Foundational Packages repository](https://github.com/habitat-sh/foundational-packages)

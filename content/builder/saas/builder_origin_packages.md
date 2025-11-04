@@ -1,12 +1,13 @@
 +++
-title = "Upload and Promote Packages"
+title = "Upload and promote Habitat packages"
 description = "Upload and Promote packages on Chef Habitat Builder enables automated package rebuilds and increases collaboration"
+summary = "Upload and promote packages so you can automated package rebuilds and collaborate"
 
 
-[menu.saas]
+[menu.builder]
     title = "Origin Packages"
-    identifier = "saas_builder/origin-packages"
-    parent = "saas_builder"
+    identifier = "builder/saas/origin-packages"
+    parent = "builder/saas"
     weight = 40
 +++
 
@@ -14,7 +15,7 @@ While you can build and run Chef Habitat packages without sharing them on [Chef 
 
 {{< note >}}
 
-Chef Habitat Builder can only build Linux based plans (`plan.sh`) at this time.
+Chef Habitat Builder can only build Linux-based plans (`plan.sh`) at this time.
 
 {{< /note >}}
 
@@ -22,17 +23,17 @@ Setting up Chef Habitat Builder is easily done on the website: these steps take 
 
 You interact with Chef Habitat Builder by:
 
-* Creating an account.
-* Creating an origin, or being invited to join an origin that already exists.
-* Setting up `hab` to authenticate with Builder.
-* Uploading the private and public keys for that origin.
-* Connecting your Github repositories and opting into rebuilds.
+- Creating an account.
+- Creating an origin, or being invited to join an origin that already exists.
+- Setting up `hab` to authenticate with Builder.
+- Uploading the private and public keys for that origin.
+- Connecting your Github repositories and opting into rebuilds.
 
 Chef Habitat Builder supports both public and private origins, packages, and Github repositories.
 
-## Create a Builder Account
+## Create a Builder account
 
-If you haven't created an account yet, see the [Create a Builder Account](builder_account) section above.
+Before you begin, [Create a Builder account](builder_account).
 
 ## Create or Join an Existing Origin
 
@@ -42,7 +43,7 @@ You can create your own origin in Builder or be invited to join an existing one.
 
 When you upload a package to Builder, you are required to supply an auth token as part of the `hab pkg upload` subcommand. You can generate a Chef Habitat personal access token with the Builder site [Profile page](https://bldr.habitat.sh/#/profile) for use with the `hab` command-line utility.
 
-Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable](../reference/environment_variables.md) to this value, so that any commands requiring authentication will use it.
+Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable](/reference/environment_variables.md) to this value, so that any commands requiring authentication will use it.
 
 ## Create an Origin Key Pair
 
@@ -76,7 +77,7 @@ You can also promote packages to the `stable` channel using the *promote to stab
 
 {{< /note >}}
 
-For more information on how to use channels, see [Continuous Deployment Using Channels](../packages/pkg_promote.md).
+For more information on how to use channels, see [Continuous Deployment Using Channels](/packages/pkg_promote.md).
 
 ### Running Packages from Builder
 
