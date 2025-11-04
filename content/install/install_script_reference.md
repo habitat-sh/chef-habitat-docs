@@ -236,6 +236,6 @@ After successful installation:
 
 If you have issues with the install script:
 
-- See the [troubleshooting guide](/troubleshooting.md)
+- See the [troubleshooting guide](/troubleshooting/)
 - Visit the [Habitat community forum](https://discourse.chef.io/c/habitat)
 - Review known or file new issues in the [Habitat GitHub repository](https://github.com/habitat-sh/habitat/issues)
