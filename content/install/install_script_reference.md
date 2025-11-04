@@ -107,7 +107,7 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -c unstable
 ```
 
-### Install on Linux with aarch64 architecture
+### Install on Linux with AArch64 architecture
 
 ```bash
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t aarch64-linux
@@ -143,13 +143,13 @@ On Linux systems, the script:
 
 macOS installation varies by architecture:
 
-#### x86_64 (Intel Macs)
+#### x86-64 (Intel Macs)
 
 - Downloads and installs the hab binary directly to `/usr/local/bin`
 - Uses ZIP archives instead of tar.gz
 - No special volume configuration required
 
-#### aarch64 (Apple Silicon Macs)
+#### AArch64 (Apple Silicon Macs)
 
 - Creates a dedicated APFS volume called "Habitat Store" mounted at `/hab`
 - Configures automatic mounting with the LaunchDaemon
