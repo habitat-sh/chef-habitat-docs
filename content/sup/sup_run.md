@@ -83,7 +83,7 @@ In all cases, you may wish to run `hab svc unload <yourorigin>/<yourname>` when 
 
 For more structured ways of running the Chef Habitat Supervisor on servers, please see [Running Chef Habitat on Servers](running_habitat_servers).
 
-## Loading a Service
+## Loading a service
 
 To load a service into a Supervisor, you use the `hab svc load` subcommand. As an example, to load `origin_name/package_name` with a leader topology, a rolling update strategy, and the group name `acme`, run the following:
 
@@ -97,7 +97,7 @@ Running the `hab svc load` subcommand multiple times with different package iden
 hab svc load core/redis
 ```
 
-## Unloading a Service
+## Unloading a service
 
 To remove a service from a Supervisor, you use the `hab svc unload` subcommand. If the service is was running, then it will be stopped first, then removed. This means that the next time the Supervisor is started (or restarted), it won't run this unloaded service. For example, to remove the `yourorigin/yourname` service:
 
@@ -105,7 +105,7 @@ To remove a service from a Supervisor, you use the `hab svc unload` subcommand. 
 hab svc unload yourorigin/yourname
 ```
 
-## Stopping a Running Service
+## Stopping a running service
 
 Sometimes you need to stop a running service for a period of time, for example during a maintenance outage. Rather than completely removing a service from supervision, you can use the `hab svc stop` subcommand which will shut down the running service and leave it in this state until you start it again with the `hab svc start` subcommand, explained next. This means that all service-related options such as service topology, update strategy, etc. are preserved until the service is started again. For example, to stop the running `core/redis` service:
 
@@ -113,7 +113,7 @@ Sometimes you need to stop a running service for a period of time, for example d
 hab svc stop core/redis
 ```
 
-## Restarting a Stopped Service
+## Restarting a stopped service
 
 To resume running a service which has been loaded but stopped (with the `hab svc stop` subcommand explained above), you use the `hab svc start` subcommand. Let's resume our `core/redis` service with:
 
@@ -127,7 +127,7 @@ In Chef Habitat versions prior to 0.56.0, `hab svc start` could also be used to 
 
 {{< /note >}}
 
-## Querying the Supervisor for Service Status
+## Querying the Supervisor for service status
 
 You can query all services currently loaded or running under the local Supervisor using the `hab svc status` command. This command will list all services loaded by the Supervisor along with their current state. The `status` command includes the version and release of the service and for services that are running, it will include the `PID` of the running service.
 

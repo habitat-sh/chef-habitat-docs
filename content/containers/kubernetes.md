@@ -124,7 +124,7 @@ The `readinessProbe` signals to Kubernetes that the pod has started up successfu
 
 All of the Habitat Supervisor's state data is stored under `/hab/sup` - we mount this on a persistent volume so it gets re-attached if the pod is ever rescheduled. The data persists!
 
-## Create a Kubernetes Deployment That Works with the Bastion
+## Create a Kubernetes deployment that works with the bastion
 
 The following is an example of a Kubernetes `Stateful Set` built from the CockroachDB plan. The Bastion pattern uses the `--peer hab-bastion` configuration arguments to instruct the Kubernetes pods to use the `hab-bastion` service as a DNS-resolvable host name.
 
@@ -196,11 +196,11 @@ kubectl get pods -l run=mytutorial
 
 Chef Habitat packages can be exported in both Docker and ACI formats (as well as others). Kubernetes currently supports the Docker runtime and integration of the rkt container runtime (an implementation of the App Container spec) is under active development.
 
-## Environment Variables and Networking
+## Environment variables and networking
 
 Kubernetes supports passing [environment variables](https://kubernetes.io/docs/user-guide/environment-guide/) into containers.
 
-## Related Reading
+## Related reading
 
 - [Export a Chef Habitat package](../packages/pkg_exports.md)
 - [Chef Habitat CLI](../reference/habitat_cli)

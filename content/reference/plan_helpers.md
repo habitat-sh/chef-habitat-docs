@@ -11,7 +11,7 @@ description = "Define dynamic plan configuration settings with plan helpers"
 
 Chef Habitat allows you to use [Handlebars-based](https://handlebarsjs.com/) tuneables in your plan, and you can also use both built-in Handlebars helpers and Chef Habitat-specific helpers in defining your configuration logic.
 
-## Built-in Helpers
+## Built-in helpers
 
 You can use block expressions to add basic logic to your template such as checking if a value exists or iterating through a list of items.
 
@@ -154,7 +154,7 @@ unless
   {{/eachAlive}}]
   ```
 
-## Plan Helpers
+## Plan helpers
 
 Chef Habitat's templating flavour includes a number of custom helpers for writing configuration and hook files.
 

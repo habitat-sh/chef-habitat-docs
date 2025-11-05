@@ -35,17 +35,17 @@ Chef Habitat Builder supports both public and private origins, packages, and Git
 
 Before you begin, [Create a Builder account](builder_account).
 
-## Create or Join an Existing Origin
+## Create or join an existing origin
 
 You can create your own origin in Builder or be invited to join an existing one. If you already built some Chef Habitat packages on your local computer prior to signing up for an account, you must rename your local packages' `pkg_origin` if the origin you want already exists.
 
-## Set up Chef Habitat to Authenticate to Builder
+## Set up Chef Habitat to authenticate to Builder
 
 When you upload a package to Builder, you are required to supply an auth token as part of the `hab pkg upload` subcommand. You can generate a Chef Habitat personal access token with the Builder site [Profile page](https://bldr.habitat.sh/#/profile) for use with the `hab` command-line utility.
 
 Once you have this token, you can set the `HAB_AUTH_TOKEN` [environment variable](/reference/environment_variables.md) to this value, so that any commands requiring authentication will use it.
 
-## Create an Origin Key Pair
+## Create an origin key pair
 
 After finishing the basic account creation steps, you need to create your origin key pair. Habitat will use the private origin key to sign the artifacts (`.hart` files) created by building your plan and verify the integrity of your artifacts with the public origin key.
 
@@ -53,17 +53,17 @@ You can create an origin key pair by running `hab cli setup` from your host mach
 
 Your public and private origin keys are located at `~/.hab/cache/keys` on your host machine and at `/hab/cache/keys` inside the studio environment.
 
-## Upload Your Origin Keys
+## Upload your origin keys
 
 If you created a new Habitat origin from your host machine or from the Studio, Builder won't have either of the origin keys corresponding to your artifact. Builder won't accept uploaded artifacts without first having the correct public origin key.
 
 You can upload keys for the origin through the web interface for Builder, or by using the `hab origin key upload` command. You must have the access token for authentication, as described earlier, before you can upload keys.
 
-## Upload Packages to Builder
+## Upload packages to Builder
 
 As long as you are already a member of the Habitat origin, once Builder possesses at least the public origin key, then you may upload one or more artifacts to that origin with the `hab pkg upload` command. After Habitat validates the cryptographic integrity of the artifact, it's then uploaded and stored on Builder. Uploading artifacts is a privileged operation for which you must have the access token.
 
-## Promote Packages
+## Promote packages
 
 By default, newly uploaded packages are placed in the `unstable` channel. However, the default package that's downloaded is the latest `stable` version of a package, unless overridden in commands such as `hab sup run`, `hab svc load`, and `hab pkg install`. If you want to promote your package to the `stable` channel, run the `hab pkg promote` command as follows:
 
@@ -79,7 +79,7 @@ You can also promote packages to the `stable` channel using the *promote to stab
 
 For more information on how to use channels, see [Continuous Deployment Using Channels](/packages/pkg_promote.md).
 
-### Running Packages from Builder
+### Running packages from Builder
 
 {{< note >}}
 
@@ -102,7 +102,7 @@ You may also supply a `--channel` argument to instruct the Supervisor to use a d
 hab svc load core/postgresql --channel unstable
 ```
 
-### Running Packages from Exported Tarballs
+### Running packages from exported tarballs
 
 An exported tarball package contains the Chef Habitat client/binary as well as dependencies specified by your artifact.
 

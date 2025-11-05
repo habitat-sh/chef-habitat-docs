@@ -58,7 +58,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. Please note that when you run this docker container, you will need to pass the `HAB_LICENSE` environment variable into the container in order to accept the Habitat license. If you don't, your container will abort at a license acceptance prompt. One way to do this would be `docker run --env HAB_LICENSE=accept-no-persist IMAGE`. Alternatively, if you use a scheduler to run these docker containers, you should add that environment variable to your scheduler configuration.
 
-## Exporting to a Tarball
+## Exporting to a tarball
 
 1. Enter the Chef Habitat studio by using `hab studio enter`.
 

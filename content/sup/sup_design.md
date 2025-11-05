@@ -18,7 +18,7 @@ The Chef Habitat Supervisor is similar in some ways to well-known process superv
 
 Because the basic functionality of process supervision is well-known, this document doesn't discuss those details. Instead, this document focuses strictly on the internals of the feature that makes the Chef Habitat Supervisor special: the fact that each Supervisor is connected to others in a peer-to-peer network which we refer to as a _ring_. This allows Supervisors to share configuration data with one another and adapt to changing conditions in the ring by modifying their own configuration.
 
-## Important Terms
+## Important terms
 
 Members
 : The Butterfly keeps track of "members"; each Chef Habitat Supervisor is a single member.
@@ -41,7 +41,7 @@ Ring
 Incarnation
 : A counter used to determine which message is "newer"
 
-## Supervisor Internals
+## Supervisor internals
 
 The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](http://smarden.org/runit/) or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, ensures that children processes terminate cleanly.
 
@@ -61,21 +61,21 @@ Chef Habitat uses a gossip protocol named _butterfly_. This protocol provides fa
 
 Butterfly is an eventually consistent system---it says, with a very high degree of probability, that a given piece of information will be received by every member of the network. It makes no guarantees as to when that state will arrive; in practice, the answer is usually quite quickly.
 
-### Transport Protocols
+### Transport protocols
 
 Supervisors communicate with each other using UDP and TCP, both using port 9638.
 
-### Information Security
+### Information security
 
 Butterfly encrypts traffic on the wire using Curve25519 and a symmetric key. If a ring is configured to use transport level encryption, only members with a matching key are allowed to communicate.
 
 Service Configuration and Files can both be encrypted with public keys.
 
-### Membership and Failure Detection
+### Membership and failure detection
 
 Butterfly servers keep track of what members are present in a ring, and are constantly checking each other for failure.
 
-#### Health States
+#### Health states
 
 Ring members have one of four health states:
 
@@ -91,7 +91,7 @@ Confirmed
 Departed
 : This member has been intentionally kicked out of the ring for behavior unbecoming of a Supervisor, and is prevented from rejoining. This is accomplished with `hab` CLI commands.
 
-#### Failure Detection
+#### Failure detection
 
 The essential flow for detecting a failure is:
 
@@ -139,7 +139,7 @@ The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) 
 - We support "persistent" members---these are members who will continue to have the failure detection protocol run against them, even if they're confirmed dead. This enables the system to heal from long-lived total partitions.
 - Members who are confirmed dead, but who later receive a membership rumor about themselves being suspected or confirmed, respond by spreading an Alive rumor with a higher incarnation. This allows members who return from a partition to re-join the ring gracefully.
 
-### Further Reading
+### Further reading
 
 - [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership
 Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf) by Abhinandan Das, Indranil Gupta, and Ashish Motivala.

@@ -15,7 +15,7 @@ The following is a best practice guide to how to write a production quality plan
 
 If you haven't already, a good first step is to read [the Writing Plans](plan_writing/) documentation.
 
-## Package Metadata
+## Package metadata
 
 Each package plan should contain a value adhering to the guidelines for each of the following elements:
 
@@ -28,7 +28,7 @@ Each package plan should contain a value adhering to the guidelines for each of 
 - `pkg_upstream_url`
 - `pkg_version` must be the complete version number of the software
 
-## Package Name Conventions
+## Package name conventions
 
 Each package is identified by a unique string containing four sub-strings separated
 by a forward slash (`/`) called a [PackageIdent](../reference/pkg_ids.md) in the following format:
@@ -45,7 +45,7 @@ The value of `name` should exactly match the name of the project it represents a
 
 > Example: The plan for the [bison project](https://www.gnu.org/software/bison/) project contains setting `pkg_name=bison` and resides in `$root/bison/plan.sh`.
 
-## Managing Major Versions
+## Managing major versions
 
 The one exception to this rule: Additional plans may be defined for projects for their past major versions by appending the major version number to its name. The plan file for this new package should be located within a directory of the same name.
 
@@ -55,7 +55,7 @@ Packages meeting this exception will always have their latest major version foun
 
 > Example: the [bison project](https://www.gnu.org/software/bison/) releases the 4.x line and is continuing to support Bison 3.x. The `bison` package is copied to `bison3` and the `bison` package is updated to build Bison 4.x.
 
-## Plan Basic Settings
+## Plan basic settings
 
 You can read more about [basic plan settings](plan_writing) here. The minimum requirements for a core plan are:
 
@@ -68,12 +68,12 @@ You can read more about [basic plan settings](plan_writing) here. The minimum re
 
 You can read more about [callbacks](../reference/build_phase_callbacks.md) here. The minimum requirement for a core plan are:
 
-### Callback Do's
+### Callback do's
 
 - `do_prepare()` (`Invoke-Prepare` in a `plan.ps1`) is a good place to set environment variables and set the table to build the software. Think of it as a good place to do patches.
 - If you clone a repo from git, you must override `do_verify()` to `return 0` in a `plan.sh` or if you are authoring a `plan.ps1` then override `Invoke-Verify` with an empty implementation.
 
-### Callback Don't's
+### Callback don't's
 
 - Don't call `exit` within a build phase. In a `plan.sh`, you should instead return an exit code such as `return 1` for failure, and `return 0` for success. In a `plan.ps1` you should call `Write-Exception` or `throw` an exception upon failure.
 - Don't use `pkg_source` unless you are downloading something as a third party.
@@ -81,17 +81,17 @@ You can read more about [callbacks](../reference/build_phase_callbacks.md) here.
 - Don't call any functions or helper sthat begin with an underscore, for example `_dont_call_this_function()`. Those are internal for internal builder functions and aren't supported for external use. They will break your plan if you call them.
 - Don't run any code or run anything outside of a build phase or a function.
 
-## Application Lifecycle Hooks
+## Application lifecycle hooks
 
 The Supervisor dynamically invokes hooks at run-time, triggered by an application lifecycle event. You can read more about [hooks](../reference/application_lifecycle_hooks.md) here.
 
-### Lifecycle Hook Do's
+### Lifecycle hook do's
 
 - Do redirect `stderr` to `stdout` (for example with `exec 2>&1` at the start of the hook)
 - Do call the command to execute with `exec <command> <options>` rather than running the command directly in a Linux targeted hook. This ensures the command is executed in the same process and that the service will restart correctly on configuration changes.
 - You can write to the `/var/`, `/static/`, and `/data/` directories. Access these with your `runtime configuration setting` variable.
 
-### Lifecycle Hook Don't's
+### Lifecycle hook don't's
 
 - Don't call `hab` or `sleep` in a hook that isn't the `run` hook. You can only block the thread in a hook if it's in the `run` hook.
 - Don't shell out to `hab` from within a hook. If you think you want to, you should use a [runtime configuration setting](../reference/service_templates.md) instead. If none of those will solve your problem, open an issue and tell the core team why.

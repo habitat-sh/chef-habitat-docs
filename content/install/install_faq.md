@@ -12,7 +12,7 @@ draft = false
 
 This section covers frequently asked questions about downloading and installing the `hab` CLI.
 
-## General Questions
+## General questions
 
 **Q: Can I just download a GitHub release of Chef Habitat?**
 
@@ -27,7 +27,7 @@ A: We understand curl/bash scripts can be controversial. For transparency, you c
 
 If you prefer not to use these scripts, you can download packages directly from our [downloads page](/install/).
 
-## Enterprise and Fleet Installation
+## Enterprise and fleet installation
 
 **Q: How do I install `hab` across my server fleet?**
 
@@ -45,7 +45,7 @@ A: Yes, you can download packages for offline installation:
 2. Transfer to your air-gapped environment
 3. Install manually following the platform-specific instructions
 
-## Platform Integrations
+## Platform integrations
 
 **Q: Does Chef Habitat work with container orchestrators?**
 
