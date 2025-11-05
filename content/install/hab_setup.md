@@ -3,7 +3,7 @@ title = "Configure the Chef Habitat CLI"
 description = "Set up the Chef Habitat CLI and configure your workstation for development"
 
 [menu.install]
-    title = "Configure the CLI"
+    title = "Configure the Habitat CLI"
     identifier = "install/hab-setup"
     parent = "install"
     weight = 20
@@ -11,7 +11,7 @@ description = "Set up the Chef Habitat CLI and configure your workstation for de
 
 After installing Chef Habitat, you need to configure the CLI to work with your development environment and Chef Habitat Builder.
 
-## Initial Configuration
+## Initial configuration
 
 The `hab cli setup` command guides you through the essential configuration steps. Run this command and follow the prompts:
 
@@ -19,41 +19,27 @@ The `hab cli setup` command guides you through the essential configuration steps
 hab cli setup
 ```
 
-![Habitat CLI setup output](/images/habitat/hab-setup.png)
+During the setup process, you will be prompted for the following:
 
-## What Gets Configured
+- A Habitat [origin](/origins/), which is a unique namespace for your packages. Origins organize packages in [Chef Habitat Builder](/saas_builder/). You can use your GitHub username or organization name for your origin. The origin name will prefix all the packages you create.
 
-The setup process configures several important settings:
+- A cryptographic key pair for your origin:
 
-### 1. Origin Creation
+  - private key: Used to sign packages you build
+  - public key: Used by others to verify your packages
 
-You'll be prompted to create an **origin**, which is a unique namespace for your packages. Origins help organize and identify packages in Chef Habitat Builder.
+- Optional: A Chef Habitat personal access token to:
 
-- Choose a unique name (for example, your GitHub username or organization name)
-- This will be the prefix for all packages you create
+  - Upload packages to Chef Habitat Builder
+  - Share them with the Chef Habitat community
+  - Access private origins
 
-### 2. Origin Keys
+  For details on generating and using your access token, see the [access token documentation](../saas_builder/builder_profile.md#create-a-personal-access-token).
 
-Setup creates cryptographic key pairs for your origin:
+- Optional: Register a Supervisor control gateway secret.
+  This enables [remote command-and-control of Supervisors](/sup/sup_remote_control.md).
 
-- **Private key**: Used to sign packages you build
-- **Public key**: Used by others to verify your packages
-
-### 3. Personal Access Token (Optional)
-
-Optionally provide a Chef Habitat personal access token to:
-
-- Upload packages to the public depot
-- Share them with the Chef Habitat community
-- Access private origins
-
-See the [access token documentation](/builder/saas/builder_profile.md#create-a-personal-access-token) for details on generating and using your access token.
-
-### 4. Supervisor Control Gateway Secret (Optional)
-
-You'll be asked if you want to register a Supervisor control gateway secret. This enables [remote command-and-control of Supervisors](/sup/sup_remote_control.md).
-
-## Reconfiguring Settings
+## Reconfigure the Habitat CLI settings
 
 You can change your settings at any time by re-running:
 
@@ -61,18 +47,10 @@ You can change your settings at any time by re-running:
 hab cli setup
 ```
 
-![Completed Hab CLI setup output](/images/habitat/hab-setup-complete.png)
-
-## Next Steps
+## Next steps
 
 After configuration is complete, you're ready to:
 
 - [Build your first package](/plans/)
-- [Explore the Studio environment](/studio.md)
+- [Explore the Habitat Studio environment](/studio)
 - [Learn about services](/services/)
-
-{{< note >}}
-
-For more information about using Chef Habitat Builder, see the [Builder documentation](/builder/saas/).
-
-{{< /note >}}
