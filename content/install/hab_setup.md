@@ -21,7 +21,7 @@ hab cli setup
 
 During the setup process, you will be prompted for the following:
 
-- A Habitat [origin](/origins/), which is a unique namespace for your packages. Origins organize packages in [Chef Habitat Builder](/saas_builder/). You can use your GitHub username or organization name for your origin. The origin name will prefix all the packages you create.
+- A Habitat [origin](/origins/), which is a unique namespace for your packages. Origins organize packages in [Chef Habitat Builder](https://docs.chef.io/habitat/saas_builder/). You can use your GitHub username or organization name for your origin. The origin name will prefix all the packages you create.
 
 - A cryptographic key pair for your origin:
 
@@ -34,7 +34,7 @@ During the setup process, you will be prompted for the following:
   - Share them with the Chef Habitat community
   - Access private origins
 
-  For details on generating and using your access token, see the [access token documentation](../saas_builder/builder_profile.md#create-a-personal-access-token).
+  For details on generating and using your access token, see the [access token documentation](https://docs.chef.io/habitat/saas_builder/builder_profile/#create-a-personal-access-token).
 
 - Optional: Register a Supervisor control gateway secret.
   This enables [remote command-and-control of Supervisors](/sup/sup_remote_control.md).

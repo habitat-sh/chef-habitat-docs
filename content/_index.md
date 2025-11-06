@@ -71,7 +71,7 @@ You can also develop your new application and use Chef Habitat to manage the dep
 ## Next steps
 
 - [Download and install the Chef Habitat CLI](/install/).
-- [Create an account](/builder/saas/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
+- [Create an account](https://docs.chef.io/habitat/saas_builder/builder_account) on [Habitat SaaS Builder](https://bldr.habitat.sh).
 
 ## Additional resources
 

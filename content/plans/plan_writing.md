@@ -51,7 +51,7 @@ It has the name of the software, the version, where to download it, a checksum t
 
 {{< note >}}
 
-The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](/builder/saas/builder_origins/)
+The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](https://docs.chef.io/habitat/saas_builder/builder_origins/)
 
 {{< /note >}}
 
