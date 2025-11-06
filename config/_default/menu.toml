@@ -96,5 +96,6 @@ identifier = "containers"
 [[release_notes]]
 title = "Release notes"
 identifier = "release_notes"
+url = "https://docs.chef.io/release_notes_habitat/"
 
 
