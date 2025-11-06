@@ -5,7 +5,7 @@ linkTitle = "Habitat SaaS Builder"
 summary = "The cloud-based host for Chef's core packages"
 
 layout = "redirect"
-redirect_url = "https://docs.chef.io/habitat/saas_builder/"
+redirect_url = "https://docs.chef.io/habitat/builder/saas/"
 
 
 [menu.builder]

@@ -38,3 +38,11 @@
     Referrer-Policy = "no-referrer-when-downgrade"
     Strict-Transport-Security = "max-age=2592000"
     Permissions-Policy = "vibrate=(), geolocation=(), midi=(), notifications=(), push=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(), payment=()"
+
+
+# Custom page 404 handling
+# https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling
+[[redirects]]
+  from = "/habitat/2.0/*"
+  to = "/habitat/2.0/404.html"
+  status = 404

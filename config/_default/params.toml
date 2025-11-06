@@ -100,17 +100,17 @@ errorLevel = 'warning'
 #######
 
 [versions.this_version]
-# swiftype_search_products = [ "chef-habitat-1.6" ]
-# release_date = ""
+swiftype_search_products = [ "chef-habitat-2.0" ]
+release_date = "2025-11-06"
 
 [versions.version_selector]
-# enabled = true
-# this_version_text = "Chef Habitat 1.6"
+enabled = true
+this_version_text = "Chef Habitat 2.0"
 
-# [[versions.version_selector.versions]]
-# link_text = "Chef Habitat v 2.0"
-# base_url = "https://docs.chef.io/habitat/2.0"
+[[versions.version_selector.versions]]
+link_text = "Chef Habitat v 2.0"
+base_url = "https://docs.chef.io/habitat/2.0"
 
-# [[versions.version_selector.versions]]
-# link_text = "Chef Habitat v 1.6"
-# base_url = "https://docs.chef.io/habitat/1.6"
+[[versions.version_selector.versions]]
+link_text = "Chef Habitat v 1.6"
+base_url = "https://docs.chef.io/habitat/1.6"

@@ -5,7 +5,7 @@ linkTitle = "Habitat On-Prem Builder"
 summary = "Host and manage packages within your organization's infrastructure"
 
 layout = "redirect"
-redirect_url = "https://docs.chef.io/habitat/on_prem_builder/"
+redirect_url = "https://docs.chef.io/habitat/builder/on_prem/"
 
 [menu.builder]
     title = "On-Prem Builder"
