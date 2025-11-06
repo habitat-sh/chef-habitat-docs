@@ -12,7 +12,7 @@ description = "Chef Habitat Security"
 
 Chef Habitat has strong cryptography built into Chef Habitat Builder, the Supervisor, and the `hab` CLI commands. This means there are several different kinds of keys.
 
-## Origin Key Pairs
+## Origin key pairs
 
 Every Chef Habitat artifact belongs to an [origin](pkg_ids) and is cryptographically signed with that origin's private key. Chef Habitat requires the private key for producing artifacts and requires the public key for verification of artifacts before installation. If it's present on Builder, Chef Habitat will automatically download the public key for an origin when necessary.
 
@@ -34,7 +34,7 @@ curl <URL_THAT_RETURNS_KEY> | hab origin key import
 
 See the [hab origin key](habitat_cli/#hab-origin-key) command documentation for more information about working with origin keys from the command line.
 
-## User and Service Group Keys
+## User and service group keys
 
 User and service group keys are used to set up trust relationships between these two entities. Service groups can be set up to reject communication (for example applying new configuration with `hab config apply`) from untrusted users.
 
@@ -42,7 +42,7 @@ By default, service groups will trust *any* communication, so for a production d
 
 User and service group keys also use asymmetric cryptography. To apply configuration changes to service groups when running in this mode, a user uses their own private key to encrypt configuration information for a service group, using that service group's public key. The service group then uses its private key to decrypt the configuration information, and the user's public key to verify.
 
-## Ring Encryption Key
+## Ring encryption key
 
 A Supervisor network can be optionally set up to encrypt *all* supervisor-to-supervisor communication.
 This requires the use of a symmetric, pre-shared key.

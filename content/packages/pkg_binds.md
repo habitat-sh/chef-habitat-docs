@@ -16,7 +16,7 @@ With runtime binding, a consumer service can use a "binding name" of their choos
 
 Let's look at how we set up this relationship in detail.
 
-## Defining the Producer Contract
+## Defining the producer contract
 
 A producer service defines its contract by "exporting" a subset of its runtime configuration. This is done by defining values in the `pkg_exports` associative array defined in your package's `plan.sh`. For example, a database server named `amnesia` might define the following exports:
 
@@ -42,7 +42,7 @@ Producer services export only the *subset* of their configuration that's defined
 
 Additionally, the internal structure of the producer's configuration is independent of the exported interface it presents. In our example, `ssl-port` originally comes from a deeply-nested `network.ssl.port` value. However, the exported interface is *flat*, effectively a non-nested set of key-value pairs.
 
-## Defining the Consumer Contract
+## Defining the consumer contract
 
 The consumer service defines a "binding name" as a handle to refer to a service group from which it receives configuration data. However, it must do more than just name the bind, it must also state the configuration values it expects from the service group. Chef Habitat will make sure that whatever service group is bound actually exports the expected values to the consumer service.
 
@@ -60,7 +60,7 @@ A bound service group may export additional values, but they can't export less a
 
 Chef Habitat only matches services up at the syntactic, not semantic, level of this contract. If you bind to a service that exports a port, Chef Habitat only knows that the service exports something called "port"; it could be the port for a PostgreSQL database, or it could be the port of an application server. You will need to ensure that you connect the correct services together; Chef Habitat's binds provide the means by which you express these relationships. You are, however, free to create bind names and export names that are meaningful for you.
 
-### The Difference Between `pkg_binds` and `pkg_binds_optional`
+### The difference between `pkg_binds` and `pkg_binds_optional`
 
 In addition to the `pkg_binds` array, Plan authors may also specify `pkg_binds_optional`. It has exactly the same structure as `pkg_binds`, but, as the name implies, these bindings are *optional*; however, it's worth examining exactly what's meant by "optional" in this case.
 
@@ -76,19 +76,19 @@ The following are scenarios where optional binds may be useful:
 
 * A service may can optionally bind one of several services; if bind "X" is mapped, operate *this* way; if "Y" is mapped, operate *that* way. An application that could use either a Redis backend or a PostgreSQL backend, depending on the deployment scenario, could declare optional "redis" and "postgresql" bindings, and pick which one to map at service load-time. If this is your use case, Chef Habitat doesn't have a way to encode the fact that one and only one of these optional bindings should be mapped, so you will have to manage that on your own.
 
-## Service Start-up Behavior
+## Service start-up behavior
 
 Prior to Chef Habitat 0.56.0, if the service group that you bound to wasn't present in the Supervisor network census, or had no live members, your service would not start until the group was present with live members. While this can be desirable behavior in some cases, as with running certain legacy applications, it isn't always desirable, particularly for modern microservice applications, which should be able to gracefully cope with the absence of their networked dependencies.
 
 With 0.56.0, however, this behavior can be modified using the new runtime service option `--binding-mode`. By setting `--binding-mode=relaxed` when loading a service, that service can start immediately, whether there are any members of a bound service group present or not. (Setting `--binding-mode=strict` will give you the previous, start-only-after-all-bound-groups-are-present behavior. This is also the current default, though `relaxed` will be the eventual default for Chef Habitat 1.0.0.). Such a service should have configuration and lifecycle hook templates written in such a way that the service can remain operational (though perhaps with reduced functionality) when there are no live members of a bound service group present in the network census.
 
-### The Difference Between Required Binds, Optional Binds, and Binding Mode
+### The difference between required binds, optional binds, and binding mode
 
 While there is a bit of overlap in these concepts, they're distinct. It's best to think of required and optional binds as defining "how applications can be wired together" (specifically, which "wires" must be connected in order to provide the minimal amount of information needed to run a service). Binding mode, on the other hand, defines how the application's start-up behavior is affected the presence or absence of its networked dependencies.
 
 Another useful thing to keep in mind when thinking about required and optional binds is that service group mappings currently can't be dynamically changed at runtime. They can only be changed by stopping a service, reloading the service with a new set of options, and then starting it up again. This constraint (which may change in future versions of Chef Habitat) may help guide your choice between what should be a required bind, and what should be optional, particularly when using the relaxed binding mode.
 
-## Using Runtime Binds with Consumer Services
+## Using runtime binds with consumer services
 
 Once you've defined both ends of the contract, you can leverage the bind in any of your package's hooks or configuration files. Given the two example services above, a section of a configuration file for `session-server` might look like this:
 
@@ -103,7 +103,7 @@ Here, `bind.<BINDING_NAME>` will be "truthy" (and can thus be used in boolean ex
 
 (Prior to Chef Habitat 0.56.0, `bind.<BINDING_NAME>` was always present, and `bind.<BINDING_NAME>.members` had *all* members, even ones that had left the Supervisor network long ago. This necessitated using the `eachAlive` helper function, instead of just `each`.)
 
-## Starting a Consumer Service
+## Starting a consumer service
 
 Since your application server defined `database` as a required bind, you'll need to provide the name of a service group running a package which fulfills the contract using the `--bind` parameter to the Supervisor. For example, running the following:
 

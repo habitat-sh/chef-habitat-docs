@@ -10,7 +10,7 @@ description = "Update Services with File Uploads"
     weight = 40
 +++
 
-## Uploading Files to a Service Group
+## Uploading files to a service group
 
 In addition to [configuration updates](service_updates), you can
 upload files to a service group. Keep these small---we recommend 4 KB or less for each

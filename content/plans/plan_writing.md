@@ -14,7 +14,7 @@ summary = "How to write Chef Habitat plans, including configuration templates, b
 
 In Chef Habitat the unit of automation is the application itself. This chapter includes content related specifically to the process and workflow of developing a plan that will instruct Chef Habitat in how to build, deploy, and manage your application.
 
-## Writing Plans
+## Writing plans
 
 Artifacts are the cryptographically-signed tarballs that are uploaded, downloaded, unpacked, and installed in Chef Habitat. They're built from shell scripts known as plans, but may also include application lifecycle hooks and service configuration files that describe the behavior and configuration of a running service.
 
@@ -51,7 +51,7 @@ It has the name of the software, the version, where to download it, a checksum t
 
 {{< note >}}
 
-The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](/builder/saas/builder_origins/)
+The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](https://docs.chef.io/habitat/saas_builder/builder_origins/)
 
 {{< /note >}}
 
@@ -73,7 +73,7 @@ The `plan.sh` or `plan.ps1` file is the only required file to create a package. 
 
 {{< /note >}}
 
-## Write Your First Plan
+## Write your first plan
 
 All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file will be used by the `hab-plan-build` command to build your package. To create a plan, do the following:
 
@@ -107,7 +107,7 @@ All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. T
 
 When writing a plan, it's important to understand that you are defining both how the package is built and the actions Chef Habitat will take when the Supervisor starts and manages the child processes in the package. The following sections explain what you need to do for each phase.
 
-## Writing a Plan for Multiple Platform Targets
+## Writing a plan for multiple platform targets
 
 You may want to create a plan for an application that can run on multiple platform targets. You can create target specific folders beneath either the root of your project or a top level `habitat` folder. Then save the plan, hooks, and configuration templates specific to a single platform all inside of that target specific folder.
 
@@ -155,7 +155,7 @@ Place all plan files inside of a `habitat` parent folder to allow for clean sepa
 
 On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux kernel 2. If your application requires different plans for Linux and Linux Kernel 2, even without hooks and configuration templates, you will need to use target folders for each platform.
 
-### Buildtime Workflow
+### Buildtime workflow
 
 For buildtime installation and configuration, workflow steps need to be included in the plan file to define how you will install your application source files into a package. Before writing your plan, you should know and understand how your application binaries are currently built, installed, what their dependencies are, and where your application or software library expects to find those dependencies.
 
@@ -169,7 +169,7 @@ The main steps in the buildtime workflow are the following:
 
 The following sections describe each of these steps in more detail.
 
-#### Create your Package Identifier
+#### Create your package identifier
 
 The origin is a place for you to set default privacy rules, store your packages, and collaborate with teammates. For example, the "core" origin is where the core maintainers of Chef Habitat share packages that are foundational to building other packages. If you would like to browse them, they're located in the [core-plans repo](https://github.com/habitat-sh/core-plans), and on [Chef Habitat Builder's Core Origin](https://bldr.habitat.sh/#/pkgs/core).
 
@@ -177,7 +177,7 @@ Creating artifacts for a specific origin requires that you have access to the th
 
 The next important part of your package identifier is the name of the package. Standard naming convention is to base the name of the package off of the name of the source or project you download and install into the package.
 
-#### Add Licensing and Contact Information
+#### Add licensing and contact information
 
 You should enter your contact information in your plan.
 
@@ -189,7 +189,7 @@ Because all arrays in the pkg_* settings are shell arrays, they're whitespace de
 
 {{< /note >}}
 
-#### Download and Unpack Your Source Files
+#### Download and unpack your source files
 
 Add in the `pkg_source` value that points to where your source files are located at. Any `wget` url will work; however, unless you're downloading a tarball from a public endpoint, you may need to modify how you download your source files and where in your `plan.sh` you perform the download operation.
 
@@ -232,7 +232,7 @@ If your computed value doesn't match the value calculated by the `hab-plan-build
 
 If your package doesn't download any application or service source files, then you will need to override the **do_download()**, **do_verify()**, and **do_unpack()** callbacks. See [Callbacks](../reference/build_phase_callbacks.md) for more details.
 
-#### Define Your Dependencies
+#### Define your dependencies
 
 Applications have two types of dependencies: buildtime and runtime.
 
@@ -242,7 +242,7 @@ The package `core/glibc` is typically listed as a run dependency and `core/coreu
 
 The third type of dependencies, transitive dependencies, that are the run dependencies of either the build or run dependencies listed in your plan. You don't need to explicitly declare transitive dependencies, but they're included in the list of files when your package is built. See [Package contents](../reference/package_contents.md) for more information.
 
-#### Override Build Phase Defaults with Callbacks
+#### Override build phase defaults with callbacks
 
 As shown in an example above, there are occasions when you want to override the default behavior of the hab-plan-build script. The plan syntax guide lists the default implementations for [build phase callbacks](../reference/build_phase_callbacks.md), but if you need to reference specific packages in the process of building your applications or services, then you need to override the default implementations as in the example below.
 
@@ -305,7 +305,7 @@ PowerShell plan function names differ from their Bash counterparts in that they 
 
 When overriding any callbacks, you may use any of the [variables](../reference/plan_variables.md), [settings](../reference/plan_settings.md), or [functions](../reference/build_helpers.md), except for the [runtime template data](../reference/service_templates.md). Those can only be used in Application Lifecycle hooks once a Chef Habitat service is running.
 
-### Runtime Workflow
+### Runtime workflow
 
 Similar to defining the setup and installation experience at buildtime, behavior for your application or service needs to be defined for the Supervisor. This is done at runtime through Application lifecycle hooks. See [Application Lifecycle hooks](../reference/application_lifecycle_hooks.md) for more information and examples.
 
@@ -315,7 +315,7 @@ You can use any of the [runtime configuration settings](../reference/service_tem
 
 Once you are done writing your plan, use the studio to [build your package](../packages/pkg_build.md).
 
-### Related Resources
+### Related resources
 
 - [Write plans](#writing-plans): Describes what a plan is and how to create one.
 - [Add configuration to plans](../reference/config_templates.md): Learn how to make your running service configurable by templatizing configuration files in your plan.

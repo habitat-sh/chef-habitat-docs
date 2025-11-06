@@ -3,5 +3,5 @@ It provides a repository for all available Chef Habitat packages built by Chef a
 
 You can use Chef Habitat Builder as either a cloud-based or on-premises solution:
 
-- [Chef Habitat SaaS Builder](/builder/saas/) is the cloud-based host for Chef's core packages.
+- [Chef Habitat SaaS Builder](https://docs.chef.io/habitat/saas_builder/) is the cloud-based host for Chef's core packages.
 - [Chef Habitat On-Prem Builder](https://docs.chef.io/habitat/on_prem_builder/) hosts user-owned packages.

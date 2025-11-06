@@ -39,7 +39,7 @@ macOS volume creation failures:
 - Ensure the root disk has available space
 - Check that FileVault setup is complete if encryption is enabled
 
-### Permission errors on Linux/macOS
+### Permission errors on Linux or macOS
 
 #### Problem
 

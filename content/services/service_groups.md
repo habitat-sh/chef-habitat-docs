@@ -21,7 +21,7 @@ In addition, multiple service groups can reside in the same Supervisor network.
 This allows data exposed by Supervisors to be shared with other members of the
 ring, regardless of which group they're in.
 
-## Joining a Service Group
+## Joining a service group
 
 To join services together in a group, they must be running on Supervisors that
 are participating in the same Supervisor gossip network (they're ultimately

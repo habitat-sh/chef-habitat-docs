@@ -67,6 +67,6 @@ ACR_ID=$(az acr show --name $ACR_NAME --resource-group $ACR_RESOURCE_GROUP --que
 az role assignment create --assignee $CLIENT_ID --role Reader --scope $ACR_ID
 ```
 
-## Related Reading
+## Related reading
 
 * [Authenticate with Azure Container Registry from Azure Container Service](https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks#grant-aks-access-to-acr)
