@@ -55,9 +55,9 @@ weight = 60
 title = "Install"
 identifier = "install"
 
-[[saas]]
-title = "SaaS Builder"
-identifier = "saas_builder"
+[[builder]]
+title = "Builder"
+identifier = "builder"
 
 [[origins]]
 title = "Origins"
