@@ -27,7 +27,7 @@ pkg_name=two-tier-app
 ${"pkg_name"}
 ```
 
-## General Settings
+## General settings
 
 FORMAT:
 setting

@@ -11,7 +11,7 @@ LinkTitle = "Services"
 
 A service is a Chef Habitat package running under a Chef Habitat Supervisor.
 
-## Service Group
+## Service group
 
 A service group is a set of one or more running services with a shared configuration
 and topology. If a service is started without explicitly naming the
@@ -32,7 +32,7 @@ This is the default topology, useful for services inside a group that are comple
 independent from one another. Note that this still means they can share the same
 configuration.
 
-### Leader / Follower
+### Leader / follower
 
 This topology allows a distributed application running on at least three Chef Habitat
 nodes to use a leader/follower configuration. Leaders are elected with Chef Habitat's

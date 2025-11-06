@@ -1,41 +1,52 @@
 +++
-title = "Download and Install FAQ"
-description = "Download and Install FAQ"
+title = "Installation FAQ"
+description = "Frequently asked questions about downloading and installing Chef Habitat"
 draft = false
 
-
 [menu.install]
-    title = "Download and Install FAQ"
-    identifier = "install/install-faq Install Frequently Asked Questions FAQ"
+    title = "Installation FAQ"
+    identifier = "install/install-faq"
     parent = "install"
-    weight = 30
+    weight = 900
 +++
 
-This section tracks some questions that are frequently encountered when downloading and installing the `hab` binary.
+This section covers frequently asked questions about downloading and installing the `hab` CLI.
+
+## General questions
 
 **Q: Can I just download a GitHub release of Chef Habitat?**
 
-A: While we do cut releases in GitHub as part of our release process those archives are going to be a `.tar` point in time of our source code. As the `hab` cli is written in Rust, if you follow this approach you'll need to compile the source for your platform.
+A: While we do publish releases on GitHub as part of our release process, those archives contain source code that requires compilation. Since the `hab` CLI is written in Rust, you would need to compile the source for your platform. We recommend using our pre-compiled packages instead.
 
-**Q: Compile for my platform? Does that mean there aren't any OS native packages of `hab`?**
+**Q: Are curl/bash installation scripts safe?**
 
-A: We publish compiled packages for OSX, Linux, and Windows. `hab` has a requirement of either a Linux kernel >= 2.6.32, OSX >= 10.9, or 64-bit Windows 10 Pro, Enterprise, or Education editions (1511 November update, build 10586 or later) with Hyper-V enabled.
+A: We understand curl/bash scripts can be controversial. For transparency, you can review our installation scripts before running them:
 
-**Q: What if I need an old version of `hab`?**
+- [Linux/macOS script](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.sh)
+- [Windows script](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.ps1)
 
-A: We've got you covered! The script we provide for doing curl-bash installations will allow you to specify a `-v` flag to pull down a specific version of Chef Habitat, eg:
+If you prefer not to use these scripts, you can download packages directly from our [downloads page](/install/).
 
-```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo bash -s -- -v 0.56.0
-```
-
-**Q: Oh! A curl bash I (love||hate) those.**
-
-A: Indeed they're divisive, we know, that's why we provide a few different ways for you to download. If you'd like to take a look at the script before running it, you can find it in [the core Chef Habitat repo](https://github.com/habitat-sh/habitat/blob/main/components/hab/install.sh).
-
-If you're staunchly in the anti-curl-bash camp, you can get the latest packages from the [download links](/install/) listed previously.
+## Enterprise and fleet installation
 
 **Q: How do I install `hab` across my server fleet?**
 
-A: For the most part, we leave that up to you. You could just use the aforementioned curl-bash with your provisioner of choice. If your app was dockerized with Chef Habitat then you won't even need to ask this question, because you'll have everything you need inside your container. We're working on first class Mesosphere DC/OS, and Cloud Foundry integrations---which you can keep up to date on in our [Apache Mesos and DC/OS documentation](../containers/mesos_dcos) and [blog](https://www.chef.io/blog).
+A: For enterprise deployments, consider these approaches:
+
+1. **Configuration management**: Use your existing tools (Ansible, Chef 360, Chef Infra, Puppet, etc.) with our installation scripts
+2. **Container images**: If your applications are containerized with Chef Habitat, the `hab` CLI is included in the container
+3. **Custom packaging**: Create custom packages for your organization's package management system
+
+**Q: Do you support air-gapped environments?**
+
+A: Yes, you can download packages for offline installation:
+
+1. Download the appropriate package from [our downloads page](https://www.chef.io/downloads)
+2. Transfer to your air-gapped environment
+3. Install manually following the platform-specific instructions
+
+## Platform integrations
+
+**Q: Does Chef Habitat work with container orchestrators?**
+
+A: Chef Habitat can be used with Kubernetes. See our [Kubernetes documentation](/containers/kubernetes/) for more information.

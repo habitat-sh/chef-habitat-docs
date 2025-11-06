@@ -50,7 +50,7 @@ From the example, the `mongo` and `national-parks` services use the Docker image
 
 The `command` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to `--peer` to the `mongo` gossip ring and `--bind` applies `database` entries to its Mongo configuration.
 
-## Related Reading
+## Related reading
 
 * [A Journey with Chef Habitat on Amazon ECS, Part 1](https://www.chef.io/blog/a-journey-with-habitat-on-amazon-ecs-part-1)
 * [A Journey with Chef Habitat on Amazon ECS, Part 2](https://www.chef.io/blog/a-journey-with-habitat-on-amazon-ecs-part-2)

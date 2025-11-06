@@ -1,8 +1,7 @@
 +++
-title = "Download and Install the Chef Habitat CLI Tool"
-description = "Install the Chef Habitat CLI and configure your workstation for Chef Habitat development"
+title = "Install the Chef Habitat CLI"
+description = "Download and install the Chef Habitat CLI"
 linkTitle = "Install"
-
 
 [menu.install]
     title = "Install Chef Habitat"
@@ -11,87 +10,149 @@ linkTitle = "Install"
     weight = 10
 +++
 
-Below you'll find installation instructions for each platform and their requirements. The Chef Habitat CLI is currently supported on Linux, Mac, and Windows.
+Chef Habitat provides a command-line interface (CLI) tool called `hab` that you use to build packages, manage services, and interact with Chef Habitat Builder. This section provides installation instructions for Linux, macOS, and Windows.
 
-From building packages to running services, everything in Chef Habitat is done through the hab command-line interface (CLI) tool. To get started using Chef Habitat, you need to download and install the hab CLI tool that corresponds to your workstation OS.
-hr
+## System requirements
 
-## Chef Habitat for Linux
+Before installing Chef Habitat, ensure your system meets these requirements.
 
-Chef Habitat for Linux requires a 64-bit processor with kernel 2.6.32 or later. On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
+### Operating system and architecture requirements
 
-Once you have downloaded the package, extract the hab binary with tar to `/usr/local/bin` or add its location to your `PATH` (for example `tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1`).
+- Linux kernel 2.6.32 or later on a 64-bit processor
+- Modern Linux kernels on a 64-bit ARM processor
+- Windows Server 2012 or later, or Windows 8 or later on a 64-bit processor
+- macOS 10.9 or later on a 64-bit processor
 
-[Download Chef Habitat for Linux](https://www.chef.io/downloads)
+### Docker requirements
 
-### Install Chef Habitat from the Command Line
+To run Chef Habitat Studio, you must have Docker Desktop installed:
 
-Alternatively, you can install Chef Habitat with the command line by downloading and running the installation script:
+- [Docker Desktop for Linux](https://docs.docker.com/desktop/setup/install/linux/)
+- [Docker Desktop for macOS](https://docs.docker.com/desktop/setup/install/mac-install/)
+- [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+On Linux, you must have [Docker Engine installed](https://docs.docker.com/engine/install/) to export a Chef Habitat artifact to a Docker image.
+
+Chef Habitat doesn't support alternative containerization platforms.
+
+## Install on Linux
+
+### Install from the command line
+
+Progress Chef recommends installing Chef Habitat on Linux with the install script.
+
+To install Chef Habitat with the install script, run the following command:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-### Install Chef Habitat for Linux Kernel 2.x from the Command Line
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
 
-Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x. Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they're upgraded to more recent versions of the Linux kernel.
-
-```bash
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t x86_64-linux-kernel2
+```sh
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+    | sudo bash -s -- -v 1.6.1245
 ```
 
-## Chef Habitat for Mac
+### Install manually
 
-Requires 64-bit processor running 10.9 or later
+1. [Download Chef Habitat for Linux](https://www.chef.io/downloads)
 
-Once you have downloaded the `hab` CLI, unzip it onto your machine. Unzipping to `/usr/local/bin` should place it on your `PATH`. In order to use the Chef Habitat Studio, you'll also need to install Docker for Mac.
+1. Extract the `hab.tgz` binary to `/usr/local/bin` or add its location to your `PATH`. For example:
 
-[Download Chef Habitat for Mac](https://www.chef.io/downloads)
+   ```sh
+   tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1
+   ```
 
-[Download Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+## Install on macOS
 
-### Install Chef Habitat Using Homebrew
+### Install from the command line
 
-Chef Habitat can also be installed with Homebrew, by running the following commands:
+Progress Chef recommends installing Chef Habitat on macOS with the install script.
+
+To install Chef Habitat with the install script, run the following command:
+
+```shell
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+```
+
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
+
+```sh
+curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+    | sudo bash -s -- -v 1.6.1245
+```
+
+### Install using Homebrew
+
+To install Chef Habitat with Homebrew, run the following commands:
 
 ```bash
 brew tap habitat-sh/habitat
 brew install hab
 ```
 
-## Chef Habitat for Windows
+### Install manually
 
-Minimum Windows version supported: Windows Server 2012  or Windows 8 64-bit
+1. [Download Chef Habitat for macOS](https://www.chef.io/downloads)
 
-Chocolatey is a package manager for Windows. You can use it to easily install, configure, upgrade, and even uninstall Windows software packages. We recommend using Chocolatey for installing Chef Habitat.
+1. Unzip Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
 
-Install Chef Habitat with Chocolatey, by running the following command:
+## Install on Windows
+
+### Install using Chocolatey
+
+Progress Chef recommends installing Chef Habitat on Windows with Chocolatey.
+
+To install Chef Habitat with Chocolatey, run the following command:
 
 ```powershell
 choco install habitat
 ```
 
-### Install Chef Habitat using a PowerShell install script
+### Install from the command line
 
-Alternatively, you can install Chef Habitat by downloading and running the installation script:
+You can install Chef Habitat by downloading and running the installation script:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
-### Installing Habitat for Windows using the dowloaded Chef Habitat package
+You can install a specific Habitat version with `-Version <HABITAT_VERSION>`. For example:
 
-Downloaded the `hab` CLI, unzip it onto your machine. We suggest unzipping to `C:\habitat`, so that the full path to Chef Habitat is similar to `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`. If you've downloaded a more recent version of Chef Habitat, you'll see a different set of numbers following `hab-`. Replace the package name used in these examples with the filename you see on your computer. Next, add that folder to your `PATH` variable so your computer will know where to find it. Here's how to do that with PowerShell:
-
-```powershell
-$env:PATH += ";C:\habitat\hab-0.79.1-20190410221450-x86_64-windows\"
+```ps1
+iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 1.6.1245"
 ```
 
-To use a Docker Chef Habitat Studio as an isolated environment, you'll also need to install Docker for Windows.
+### Install manually
 
-Docker for Windows requires 64-bit Windows 10 Pro, Enterprise, or Education editions (1607 Anniversary Update, Build 14393 or later) with Hyper-V enabled
+1. [Download Chef Habitat for Windows](https://www.chef.io/downloads)
 
-[Download Chef Habitat for Windows](https://www.chef.io/downloads)
+1. Unzip the Habitat binary on your computer to `C:\habitat` so that the full path to Chef Habitat is similar to `C:\habitat\hab-<HABITAT_VERSION>-<YYYYMMDDHHMMSS>-x86_64-windows`
 
-[Download Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+    For example: `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`.
+
+1. Add that directory to your `PATH` variable:
+
+    ```powershell
+    $env:PATH += ";C:\habitat\hab-0.79.1-20190410221450-x86_64-windows\"
+    ```
+
+## Verify installation
+
+To verify that Habitat is installed, you can run the following commands:
+
+```bash
+hab --version
+hab cli setup --help
+```
+
+## See also
+
+- [install.sh script reference](install_script_reference)
+- [troubleshooting](/troubleshooting/)
+
+## Next steps
+
+- [Configure the Chef Habitat CLI](hab_setup)

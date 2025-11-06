@@ -15,11 +15,11 @@ Chef Habitat implements cryptography using a Rust [implementation](https://githu
 
 Chef Habitat uses both symmetric encryption (for wire encryption) and asymmetric encryption (for everything else). If you aren't familiar with the difference between the two, please consult [this article](https://support.microsoft.com/en-us/topic/a082a391-dee8-6265-9ce6-77c7f07c48dd).
 
-## Message Encryption
+## Message encryption
 
 When you have either wire encryption or service group encryption turned on, the messages use the Curve25519, Salsa20, and Poly1305 ciphers specified in [Cryptography in NaCl](https://nacl.cr.yp.to/valid.html).
 
-## Package Signing
+## Package signing
 
 Chef Habitat packages are signed using [BLAKE2b](https://blake2.net/) checksums. BLAKE2b is a cryptographic hash function faster than MD5, SHA-1, SHA-2 and SHA3, yet provides at least as much security as the latest standard SHA-3.
 

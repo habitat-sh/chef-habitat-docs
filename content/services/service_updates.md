@@ -12,15 +12,15 @@ description = "Update single services at runtime or dynamically"
 
 One of the key features of Chef Habitat is the ability to define an immutable package with a default configuration which can then be updated dynamically at runtime. You can update service configuration on two levels: individual services (for testing purposes), or a service group.
 
-## Apply Configuration Updates to an Individual Service
+## Apply configuration updates to an individual service
 
 When starting a single service, you can provide alternate configuration values to those specified in `default.toml`.
 
-### Using a _user.toml_ File
+### Using a _user.toml_ file
 
 You can supply a `user.toml` containing any configuration data that you want to override default values. This file should be placed in the Chef Habitat `user` directory under the `config` subdirectory of the specific service directory that owns the configuration data. For example, to override the default configuration of the `myservice` service, this `user.toml` would be located at `/hab/user/myservice/config/user.toml`.
 
-### Using an Environment Variable
+### Using an environment variable
 
 Override default configuration data through the use of an environment variable with the following format:
 
@@ -59,7 +59,7 @@ HAB_MYTUTORIALAPP="$(cat my-env-stuff.toml)" hab run <origin>/mytutorialapp
 
 The main advantage of applying configuration updates to an individual service through an environment variable is that you can quickly test configuration settings to see how your service behaves at runtime. The disadvantages of this method are that configuration changes have to be applied when the Supervisor itself starts up, and you have to restart a running Supervisor (and thus, all services it may be running) in order to change these settings again.
 
-## Apply Configuration Updates to all Services in a Service Group
+## Apply configuration updates to all services in a service group
 
 Similar to specifying updates to individual settings at runtime, you can apply multiple configuration changes to an entire service group at runtime. These configuration updates can be sent in the clear or encrypted in gossip messages through [wire encryption](../sup/sup_secure). Configuration updates to a service group will trigger a restart of the services as new changes are applied throughout the group.
 

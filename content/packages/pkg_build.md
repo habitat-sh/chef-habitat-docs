@@ -35,7 +35,7 @@ The `hab-origin` subcommand will place the origin key files, originname-_timesta
 
 Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
 
-## Passing Origin Keys into the Studio
+## Passing origin keys into the Studio
 
 The Habitat Studio is a self-contained and minimal environment, which means that you'll need to share your private origin keys with the Studio to sign artifacts. You can do this in three ways:
 
@@ -65,7 +65,7 @@ The Habitat Studio is a self-contained and minimal environment, which means that
 
 After you create or receive your private origin key, you can start up the Studio and build your artifact.
 
-## Interactive Build
+## Interactive build
 
 Any build that you perform from a Chef Habitat Studio is an interactive build. Studio interactive builds allow you to examine the build environment before, during, and after the build.
 
@@ -102,7 +102,7 @@ For more details related to Windows containers see [Running Chef Habitat Windows
 
 {{< /note >}}
 
-### Building Dependent Plans in the Studio
+### Building dependent plans in the Studio
 
 Writing plans for multiple packages that are dependent on each other can prove cumbersome when using multiple studios, as you need update dependencies frequently. On the other hand, using a single studio allows you to quickly test your changes by using locally built packages. To do so, you should use a folder structure like this:
 
@@ -116,7 +116,7 @@ projects/
 
 This way, you can `hab studio enter` in `projects/`. If `project-b` depends on `project-a`, you can call `build project-a && build project-b` for example.
 
-## Non-interactive Build
+## Non-interactive build
 
 A non-interactive build is one in which Chef Habitat creates a Studio for you, builds the package inside it, and then destroys the Studio, leaving the resulting `.hart` on your computer. Use a non-interactive build when you are sure the build will succeed, or in conjunction with a continuous integration system.
 
@@ -135,9 +135,9 @@ By default, the Studio is reset to a clean state after the package is built; how
 
 For information on the contents of an installed package, see [Package contents](../reference/package_contents.md).
 
-## Troubleshooting Builds
+## Troubleshooting builds
 
-### Bash Plans: `attach`
+### Bash plans: `attach`
 
 While working on plans, you may wish to stop the build and inspect the environment at any point during a build phase (for example download, build, unpack, etc.). In Bash-based plans, Chef Habitat provides an `attach` function for use in your `plan.sh` that functions like a debugging breakpoint and provides an easy read-evaluate-print loop (REPL) at that point. For PowerShell-based plans, you can use the PowerShell built-in `Set-PSBreakpoint` cmdlet prior to running your build.
 
@@ -210,7 +210,7 @@ Aliases
 
   Type `quit` when you are done with the debugger, and the remainder of the build will continue. If you wish to abort the build entirely, type `quit-program`.
 
-### PowerShell Plans: `Set-PSBreakpoint`
+### PowerShell plans: `Set-PSBreakpoint`
 
 While there is no `attach` function exposed in a `plan.ps1` file, one can use the native PowerShell cmdlet `Set-PSBreakpoint` to access virtually the same functionality. Instead of adding `attach` to your `Invoke-Build` function, enter the following from inside your studio shell:
 

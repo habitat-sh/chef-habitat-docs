@@ -11,7 +11,7 @@ description = "Define dynamic plan configuration settings with plan helpers"
 
 Chef Habitat allows you to use [Handlebars-based](https://handlebarsjs.com/) tuneables in your plan, and you can also use both built-in Handlebars helpers and Chef Habitat-specific helpers in defining your configuration logic.
 
-## Built-in Helpers
+## Built-in helpers
 
 You can use block expressions to add basic logic to your template such as checking if a value exists or iterating through a list of items.
 
@@ -24,14 +24,14 @@ The syntax is the same for all block expressions and looks like this:
 {{/helper}}
 ```
 
-Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/#built-in-helpers):
+Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html):
 
 - `if`
 - `unless`
 - `each`
 - `with`
 - `lookup`
-- `>` ([partials](http://handlebarsjs.com/partials.html))
+- `>` ([partials](https://handlebarsjs.com/guide/partials.html))
 - `log`
 
 {{< note >}}
@@ -39,7 +39,7 @@ Chef Habitat supports the standard [built-in helpers](https://handlebarsjs.com/g
 When using `each` in a block expression, you must reference the parent context of that block to use any user-defined configuration values referenced _within_ the block, such as those that start with `cfg`. For example, if your block looked like the following, you must reference `cfg.port` from the parent context of the block:
 
 ```handlebars
-{{#each svc.members ~}}
+{{#each svc.members}}
     server {{sys.ip}}:{{../cfg.port}}
 {{/each}}
 ```
@@ -55,9 +55,9 @@ if
   Here's an example that will only write out configuration for the unixsocket tunable if a value was set by the user:
 
   ```handlebars
-  {{#if cfg.unixsocket ~}}
+  {{#if cfg.unixsocket}}
     unixsocket {{cfg.unixsocket}}
-  {{/if ~}}
+  {{/if}}
   ```
 
 {{< note >}}
@@ -78,39 +78,39 @@ disable-tcp-nodelay = no
 When writing your template, you can use the `with` helper to reduce duplication:
 
 ```handlebars
-{{#with cfg.repl ~}}
+{{#with cfg.repl}}
   repl-backlog-size {{backlog-size}}
   repl-backlog-ttl {{backlog-ttl}}
   repl-disable-tcp-nodelay {{disable-tcp-nodelay}}
-{{/with ~}}
+{{/with}}
 ```
 
 Helpers can also be nested and used together in block expressions. Here is another example from the redis.config file where the `if` and `with` helpers are used together to set up `core/redis` Chef Habitat services in a leader-follower topology.
 
   ```handlebars
-  {{#if svc.me.follower ~}}
+  {{#if svc.me.follower}}
     replicaof {{svc.leader.sys.ip}} {{svc.leader.cfg.port}}
-  {/if ~}}
+  {/if}}
   ```
 
 each
 : Here's an example using each to render multiple server entries:
 
   ```handlebars
-  {{#each cfg.servers as |server| ~}}
+  {{#each cfg.servers as |server|}}
   server {
     host {{server.host}}
     port {{server.port}}
   }
-  {{/each ~}}
+  {{/each}}
   ```
 
   You can also use each with `@key` and `this`. Here is an example that takes the `[env]` section of your default.toml and makes an env file you can source from your run hook:
 
   ```handlebars
-  {{#each cfg.env ~}}
+  {{#each cfg.env}}
     export {{toUppercase @key}}={{this}}
-  {{/each ~}}
+  {{/each}}
   ```
 
   You would specify the corresponding values in a TOML file using an [array of tables](https://github.com/toml-lang/toml#array-of-tables) like this:
@@ -129,12 +129,12 @@ each
 
   ```handlebars
   "mongo": {
-    {{#each bind.database.members as |member| ~}}
-      {{#if @first ~}}
+    {{#each bind.database.members as |member|}}
+      {{#if @first}
         "host" : "{{member.sys.ip}}",
         "port" : "{{member.cfg.port}}"
-      {{/if ~}}
-    {{/each ~}}
+      {{/if}}
+    {{/each}}
   }
   ```
 
@@ -148,13 +148,13 @@ unless
 : For `unless`, using `@last` can also be helpful when you need to optionally include delimiters. In the example below, the IP addresses of the alive members returned by the `servers` binding is comma-separated. The logic check `{{#unless @last}}, {{/unless}}` at the end ensures that the comma is written after each element except the last element.
 
   ```handlebars
-  {{#eachAlive bind.servers.members as |member| ~}}
+  {{#eachAlive bind.servers.members as |member|}}
     "{{member.sys.ip}}"
-    {{#unless @last ~}}, {{/unless ~}}
-  {{/eachAlive ~}}]
+    {{#unless @last}}, {{/unless }}
+  {{/eachAlive}}]
   ```
 
-## Plan Helpers
+## Plan helpers
 
 Chef Habitat's templating flavour includes a number of custom helpers for writing configuration and hook files.
 
@@ -206,9 +206,9 @@ eachAlive
 : Iterates over a collection of members and renders the template for members that are marked alive.
 
   ```handlebars
-  {{~#eachAlive bind.backend.members as |member|}}
+  {{#eachAlive bind.backend.members as |member|}}
   server ip {{member.sys.ip}}:{{member.cfg.port}}
-  {{~/eachAlive}}
+  {{/eachAlive}}
   ```
 
 toJson
@@ -317,3 +317,73 @@ strConcat
 : The `concat` helper can be used to connect multiple strings into one string without a separator. For example, `{{strConcat "foo" "bar" "baz"}}` would return `"foobarbaz"`.\
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
+
+## Trimming whitespace
+
+The Handlebars templating language allows you to use tildes (`~`) inside double opening and closing braces to control whitespace. If you're familiar with the Go programming language, the Handlebars syntax `{{~` and `~}}` is similar to `{{-` and `-}}` in Go. For more details, see the [Handlebars documentation](https://handlebarsjs.com/guide/). The following examples demonstrate how this works.
+
+Consider this Handlebars template:
+
+```handlebars
+<!--comment-->
+{{#if items}}
+<ul>
+  {{#each items}}
+    <li> {{item}} </li>
+  {{/each}}
+</ul>
+{{/if}}
+<!--comment-->
+```
+
+With this context:
+
+```json
+{
+    "items": [
+        { "item": "one" },
+        { "item": "two" },
+        { "item": "three" }
+    ]
+}
+```
+
+The output preserves the whitespace around each statement:
+
+```html
+<!--comment-->
+<ul>
+    <li> one </li>
+    <li> two </li>
+    <li> three </li>
+</ul>
+<!--comment-->
+```
+
+If you add the `~` character to both sides of each mustache statement:
+
+```handlebars
+<!--comment-->
+{{~#if items~}}
+<ul>
+  {{~#each items~}}
+    <li> {{~item~}} </li>
+  {{~/each~}}
+</ul>
+{{~/if~}}
+<!--comment-->
+```
+
+The whitespace is removed, and the rendered output collapses to a single line:
+
+```html
+<!--comment--><ul><li>one</li><li>two</li><li>three</li></ul><!--comment-->
+```
+
+Whitespace control in Handlebars templates is a powerful feature that requires careful use. In this example, the only consequence is reduced human readability of the rendered output. However, in contexts where whitespace is significant, improper use can result in invalid output.
+
+For more information, see:
+
+- [Habitat 2 upgrade documentation](/upgrade#update-whitespace-trimming-in-templates)
+- [Handlebars whitespace control documentation](https://handlebarsjs.com/guide/expressions.html#whitespace-control)
+- [Handlebars playground](https://handlebarsjs.com/playground.html)

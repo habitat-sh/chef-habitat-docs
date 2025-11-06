@@ -7,7 +7,7 @@
 #             Menus are defined in the /config/_default/menu.toml file
 #######
 
-menuOrder = ["about", "install", "saas", "origins", "packages", "plans", "services", "sup", "studio", "reference", "containers", "release_notes"]
+menuOrder = ["about", "install", "upgrade", "builder", "origins", "packages", "plans", "services", "sup", "studio", "troubleshooting", "reference", "containers", "release_notes"]
 
 #######
 # robots = The default robots config applied to each page in the robots meta tag.
@@ -30,6 +30,15 @@ breadcrumbs = true
 [[breadcrumb_base]]
 breadcrumb = "Documentation"
 url = "https://docs.chef.io"
+
+#######
+# gh_path = The GitHub path to the content repository.
+#            This is used to create "Edit this page on GitHub" links on each page.
+#            This should point to the "content/" folder in the GitHub repository.
+#######
+
+[chef-habitat-docs]
+gh_path = "https://github.com/habitat-sh/chef-habitat-docs/tree/main/content/"
 
 #######
 #
@@ -99,13 +108,13 @@ errorLevel = 'warning'
 #
 #######
 
-[versions.this_version]
-# swiftype_search_products = [ "chef-habitat-1.6" ]
-# release_date = ""
+# [versions.this_version]
+# swiftype_search_products = [ "chef-habitat-<VERSION>" ]
+# release_date = "YYYY-MM-DD"
 
-[versions.version_selector]
+# [versions.version_selector]
 # enabled = true
-# this_version_text = "Chef Habitat 1.6"
+# this_version_text = "Chef Habitat 2.0"
 
 # [[versions.version_selector.versions]]
 # link_text = "Chef Habitat v 2.0"

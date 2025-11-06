@@ -9,7 +9,7 @@ description = "Example code for Chef Habitat plans and more!"
     identifier = "pattern_library"
     parent = "reference"
 +++
-## Chef Habitat Pattern Library
+## Chef Habitat pattern library
 
 The Chef Habitat Pattern Library is an evolving set of design patterns to use as starting-points. These patterns are examples and require configuration and customization for your unique situation.
 
@@ -18,11 +18,11 @@ For help with Chef Habitat and these patterns, ask:
 - Your customer support agent
 - In the [Chef Discourse](https://discourse.chef.io/c/habitat/)
 
-## Kubernetes Bastion Ring Pattern
+## Kubernetes bastion ring pattern
 
 A _bastion ring_ is a robust type of Supervisor network in which a small number of Supervisors are set up as permanent peers and that are dedicated to anchoring Supervisor network communication. These Supervisors are designated solely for communication between Supervisor and _don't run services_. These solely to anchor the entire Supervisor network. See [Supervisor Networks](../sup/sup_networks.md) for more information. The following examples demonstrate running a bastion ring in Kubernetes.
 
-### Kubernetes Bastion Ring Plan
+### Kubernetes bastion ring plan
 
 ```bash
 pkg_name=hab_bastion
@@ -42,7 +42,7 @@ do_install() {
 }
 ```
 
-### Kubernetes Bastion Ring Producer Pattern
+### Kubernetes bastion ring producer pattern
 
 ```yaml
 ---
@@ -126,7 +126,7 @@ spec:
           storage: 10Gi
 ```
 
-### Kubernetes Bastion Ring Consumer Pattern
+### Kubernetes bastion ring consumer pattern
 
 ```yaml
   apiVersion: apps/v1
@@ -180,7 +180,7 @@ spec:
           storage: 10Gi
 ```
 
-## hab pkg download Patterns
+## Hab pkg download patterns
 
 The `hab pkg download` command can be used to download individual
 packages (along with their dependencies and keys) from Builder,
@@ -192,7 +192,7 @@ While you can download packages one-at-a-time, it can be more
 convenient to use a file to specify your packages. Two formats are
 recognized: plain text and TOML.
 
-### Plain Text Download Descriptors
+### Plain text download descriptors
 
 The simplest thing you can do is create a plain text file with a
 package identifier on each line, like so:
@@ -217,7 +217,7 @@ Alternatively, you can specify a directory using the `--download-directory` opti
 
 (You can also specify `--channel` and `--target` to further control which specific packages you download; run `hab pkg download --help` for more).
 
-### TOML Download Descriptors
+### TOML download descriptors
 
 Plain text is fine for simple cases, but has drawbacks.
 For instance, all packages will come from the same channel and will be for the same platform target.
