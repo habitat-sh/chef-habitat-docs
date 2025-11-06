@@ -101,7 +101,7 @@ errorLevel = 'warning'
 
 [versions.this_version]
 swiftype_search_products = [ "chef-habitat-1.6" ]
-#release_date = ""
+release_date = "2025-11-06"
 
 [versions.version_selector]
 enabled = true
