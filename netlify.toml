@@ -42,7 +42,7 @@
 
 # Custom page 404 handling
 # https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling
-[[redirects]]
-  from = "/habitat/2.0/*"
-  to = "/habitat/2.0/404.html"
-  status = 404
+# [[redirects]]
+#   from = "/habitat/2.0/*"
+#   to = "/habitat/2.0/404.html"
+#   status = 404

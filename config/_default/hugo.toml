@@ -39,7 +39,7 @@ timeZone = 'America/New_York'
     [markup.goldmark.renderer]
       hardWraps = false
       unsafe = true
-      xHTML = false
+      xhtml = false
   [markup.highlight]
     codeFences = true
     guessSyntax = false

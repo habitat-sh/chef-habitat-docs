@@ -4,6 +4,7 @@ linkTitle = "Chef Habitat"
 
 [cascade]
   breadcrumbs = true
+  gh_repo = "chef-habitat-docs"
 
 [menu.about]
   title = "About Chef Habitat"
