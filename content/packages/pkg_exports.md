@@ -14,7 +14,7 @@ Chef Habitat Artifacts--`.hart` files--can be exported in a number of different 
 
 You can export packages into several different external, immutable runtime formats. Currently there are exports for: docker, mesos, tar, and cloudfoundry.
 
-The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide](../reference/habitat_cli.md#hab-pkg-export) for more CLI information.
+The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See the [Chef Habitat CLI Reference Guide](../reference/habitat_cli/#hab-pkg-export) for more CLI information.
 
 {{< note >}}
 

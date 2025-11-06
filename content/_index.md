@@ -4,7 +4,6 @@ linkTitle = "Chef Habitat"
 
 [cascade]
   breadcrumbs = true
-  product = ['chef-habitat-1.6']
 
 [menu.about]
   title = "About Chef Habitat"
@@ -27,7 +26,7 @@ Services can be joined together in a service group, which is a collection of ser
 
 {{< readfile file="content/reusable/md/habitat_builder_overview.md" >}}
 
-For more information, see the [Chef Habitat Builder](saas_builder) documentation.
+For more information, see the [Chef Habitat Builder](https://docs.chef.io/habitat/builder/saas/) documentation.
 
 ### Habitat Package
 
@@ -72,7 +71,7 @@ You can also develop your application if you are unsure of the infrastructure yo
 ## Next Steps
 
 - [Download and install the Chef Habitat CLI](/install/).
-- [Create an account](/saas_builder/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
+- [Create an account](https://docs.chef.io/habitat/builder/saas/builder_account) on the [Habitat Builder SaaS](https://bldr.habitat.sh).
 
 ## Additional Resources
 

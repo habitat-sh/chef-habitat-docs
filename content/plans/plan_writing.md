@@ -51,7 +51,7 @@ It has the name of the software, the version, where to download it, a checksum t
 
 {{< note >}}
 
-The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](saas_builder/builder_origins/)
+The `core` prefix is the origin of those dependencies. For more information, see [Create an Origin](https://docs.chef.io/habitat/builder/saas/builder_origins/)
 
 {{< /note >}}
 
@@ -101,7 +101,7 @@ All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. T
        hab plan init yourplan
     ```
 
-     See [hab plan init](../reference/habitat_cli.md#hab-plan-init) for more information on how to use this subcommand.
+     See [hab plan init](../reference/habitat_cli/#hab-plan-init) for more information on how to use this subcommand.
 
 4. Now that you have stubbed out your plan file in your plan context, open it and begin modifying it to suit your needs.
 

@@ -180,7 +180,7 @@ spec:
 
 ## Bare Kubernetes
 
-If your packages don't require communication with the Chef Habitat Supervisor ring, such as binds, secrets, etc., then you can execute your packages directly on the cluster. You can deploy Chef Habitat packages exported as containers to Kubernetes with the [`kubectl` command](http://kubernetes.io/docs/user-guide/pods/single-container/). Using the [Docker exporter](../packages/pkg_exports.md#exporting-to-docker) to create a containerized application, you can launch the container like this example:
+If your packages don't require communication with the Chef Habitat Supervisor ring, such as binds, secrets, etc., then you can execute your packages directly on the cluster. You can deploy Chef Habitat packages exported as containers to Kubernetes with the [`kubectl` command](http://kubernetes.io/docs/user-guide/pods/single-container/). Using the [Docker exporter](../packages/pkg_exports/#exporting-to-docker) to create a containerized application, you can launch the container like this example:
 
 ```shell
 kubectl run mytutorial --image=myorigin/mytutorial --port=8080
