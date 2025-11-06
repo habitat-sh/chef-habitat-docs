@@ -10,7 +10,7 @@ redirect_url = "https://docs.chef.io/habitat/saas_builder/"
 
 [menu.builder]
     title = "SaaS Builder"
-    identifier = "builder/saas/about"
-    parent = "builder/saas"
+    identifier = "builder/saas"
+    parent = "builder"
     weight = 10
 +++
