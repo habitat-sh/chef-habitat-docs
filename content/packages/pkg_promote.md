@@ -1,10 +1,10 @@
 +++
-title = "Promote Packages"
+title = "Promote packages"
 description = "Best practices for promoting packages in channels for building and testing code changes as part of continuous deployment with channel tags"
 
 
 [menu.packages]
-    title = "Promoting Packages"
+    title = "Promoting packages"
     identifier = "packages/promote Promoting Packages"
     parent = "packages"
     weight = 20
@@ -13,7 +13,7 @@ description = "Best practices for promoting packages in channels for building an
 
 Continuous deployment is a well-known software development practice of building and testing code changes in preparation for a release to a production environment.
 
-## Continuous Deployment Using Channels
+## Continuous deployment using channels
 
 Chef Habitat supports continuous deployment workflows through the use of channels. A channel is a tag for a package that the Supervisors in a service group can subscribe to. Channels are useful in CI/CD scenarios where you want to gate a package before making it the default version of the package that users should consume. You can think of this split as the difference between test and production, or nightly releases versus stable releases of products.
 
@@ -39,7 +39,7 @@ If you have already uploaded your package to a channel and wish to promote it to
 hab pkg promote -z <TOKEN> <ORIGIN>/<PACKAGE>/<VERSION>/<RELEASE> stable
 ```
 
-### Combining an Update Strategy with Channels
+### Combining an update strategy with channels
 
 By using both channels and either the `at-once` or `rolling` [update strategies](#combining-an-update-strategy-with-channels), you can automatically update packages in a given channel as shown below:
 
@@ -62,7 +62,7 @@ hab svc load <ORIGIN>/<PACKAGE> --strategy rolling --channel test
 
 While that service is running, update your package, rebuild it, and then promote it to the same channel that the previous release of that service is currently running in (for example `test`). Those running instances should now update according to their update strategy.
 
-### Demoting a Package from a Channel
+### Demoting a package from a channel
 
 If you need to un-associate a channel from a specific package release, you can do so using the `hab pkg demote` subcommand. Packages can be demoted from all channels except `unstable`.
 

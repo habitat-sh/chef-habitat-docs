@@ -1,10 +1,10 @@
 +++
-title = "Service Group Updates"
-description = "Update service groups with supervisor configuration"
+title = "Service group updates"
+description = "Update service groups with Supervisor configuration"
 
 
 [menu.services]
-    title = "Service Group Updates"
+    title = "Service group updates"
     identifier = "services/Service Group Updates"
     parent = "services"
     weight = 50
@@ -17,7 +17,7 @@ respond when a new version of a package is available.
 To use an update strategy, configure the Supervisor to subscribe to Chef Habitat
 Builder, and more specifically, a channel for new versions.
 
-## Configuring an Update Strategy
+## Configuring an update strategy
 
 Chef Habitat supports three update strategies: `none`, `rolling`, and `at-once`.
 
@@ -29,13 +29,13 @@ hab sup run --strategy rolling --url https://bldr.habitat.sh
 hab svc load <ORIGIN>/<NAME>
 ```
 
-### None Strategy
+### None strategy
 
 This strategy means your package won't automatically be updated when a newer
 version is available. By default, Supervisors start with their update strategy
 set to `none` unless explicitly set to one of the other two update strategies.
 
-### Rolling Strategy
+### Rolling strategy
 
 This strategy requires Supervisors to update to a newer version of their package
 one at a time in their service group. An update leader is elected which all Supervisors
@@ -57,7 +57,7 @@ It's important to note that because we must perform a leader election to determi
 an update leader, _you must have at least 3 Supervisors running a service group
 to take advantage of the rolling update strategy_.
 
-### At-Once Strategy
+### At-once strategy
 
 This strategy does no peer coordination with other Supervisors in the service group;
 it merely updates the underlying Chef Habitat package whenever it detects that a

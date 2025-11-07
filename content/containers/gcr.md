@@ -34,6 +34,6 @@ docker tag habskp/hab-gcr-demo:latest eu.gcr.io/user-project/hab-gcr-demo:latest
 docker push eu.gcr.io/user-project/hab-gcr-demo:latest
 ```
 
-## Related Reading
+## Related reading
 
 * [Google Container Registry](https://cloud.google.com/container-registry/)

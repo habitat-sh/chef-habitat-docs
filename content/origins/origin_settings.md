@@ -1,11 +1,11 @@
 +++
-title = "Origin Settings"
+title = "Origin settings"
 date = 2020-10-12T14:02:01-07:00
 draft = false
 
 
 [menu.origins]
-    title = "Origin Settings"
+    title = "Origin settings"
     identifier = "origins/origin-settings Origin Settings"
     parent = "origins"
     weight = 40
@@ -28,7 +28,7 @@ Everyone with origin membership can see the _Settings_ tab, but only origin admi
 
 ![The administrator or owner's view of the origin settings tab with a public default package setting and a saved origin secret](/images/habitat/origin-secrets.png)
 
-## Default Package Settings
+## Default package settings
 
 The _Default Package Settings_ define the visibility of build artifacts (.hart files). Everyone with origin membership can view the origin settings, but only origin administrators and owners can add, update, or delete settings.
 
@@ -37,18 +37,18 @@ The _Default Package Settings_ define the visibility of build artifacts (.hart f
 
 Change the default setting for an origin by switching from **Public Packages** to **Private Packages**. The default setting is required for each origin. Packages can have different default visibility settings than the origin to which they belong. You can change the default visibility setting in for an individual packages in the package setting tab (Builder > Origin > Package > Settings).
 
-## Origin Secrets
+## Origin secrets
 
 Everyone with origin membership can view origin secrets, but only origin administrators and owners can add, update, or delete settings. _Origin Secrets_ are located at the bottom of the _Settings_ tab (Builder > Origin > Settings > Origin Secrets) and they let you encrypt and store secrets as environment variables. Origin secrets are useful for plans that require access to protected resources at build time, such as private source-code repositories and cloud storage providers.
 
 Only Chef Habitat Builder can read encrypted origin secrets. The origin secrets in your local environment are encrypted with an origin encryption key. Origin secrets are retained by the origin and are available for any of its packages.
 
-### Manage Origin Secrets with the Chef Habitat CLI
+### Manage origin secrets with the Chef Habitat CLI
 
 You can view the list of origin secrets and delete them in Chef Habitat Builder.
 However, the primary way of interacting with origin secrets is with the Chef Habitat CLI.
 
-#### List Secrets
+#### List secrets
 
 To list all of the secrets in an origin, use:
 
@@ -56,7 +56,7 @@ To list all of the secrets in an origin, use:
 hab origin secret list --origin <ORIGIN>
 ```
 
-#### Set Origin Secrets as Environment Variables
+#### Set origin secrets as environment variables
 
 Add your origin secrets as environment variables in your local environment:
 
@@ -66,7 +66,7 @@ export HAB_AUTH_TOKEN=<TOKEN>
 hab origin secret list
 ```
 
-#### Save an Origin Secret
+#### Save an origin secret
 
 To save an origin secret give the secret a name and the key value:
 
@@ -88,7 +88,7 @@ $ hab origin secret upload AWS_ACCESS_KEY_ID 1234567890EXAMPLE
 ✓ Uploaded secret for AWS_ACCESS_KEY_ID.
 ```
 
-#### Delete an Origin Secret
+#### Delete an origin secret
 
 To delete an origin secret from an origin with the CLI
 

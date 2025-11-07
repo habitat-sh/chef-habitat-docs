@@ -12,15 +12,15 @@ description = "Apache Mesos and DC/OS"
 
 [Apache Mesos](https://mesos.apache.org/) is an open source distributed systems kernel and the distributed systems kernel for [Mesosphere's DC/OS](https://dcos.io) distributed platform.
 
-## Mesos Containerizers
+## Mesos containerizers
 
 Mesos has support for [containerizers](https://mesos.apache.org/documentation/latest/containerizers/) for running commands and applications within isolated containers. Mesos supports Docker and its own [Mesos containerizer](https://mesos.apache.org/documentation/latest/mesos-containerizer/) format. The Mesos containerizer provides lightweight containerization with `cgroups/namespaces` isolation without actual isolation. The `hab pkg export mesos` command creates a mostly empty base filesystem with the application and the Chef Habitat Supervisor and packages it into a compressed tarball.
 
-## Marathon Applications
+## Marathon applications
 
 [Marathon](https://mesosphere.github.io/marathon/) is a container orchestration platform for Mesos and DC/OS, handling the scheduling and deployment of applications. [Marathon applications](https://mesosphere.github.io/marathon/docs/application-basics.html) support Docker and the Mesos container formats, wrapping them in JSON metadata describing the resources needed to deploy the application. Once the application has been deployed to Marathon, it schedules it across the Mesos cluster and ensures the application is running optimally.
 
-### Export to a Mesos Container and Marathon Application
+### Export to a Mesos container and Marathon application
 
 You can create native Mesos containers from Chef Habitat packages by following these steps:
 
@@ -75,7 +75,7 @@ You can create native Mesos containers from Chef Habitat packages by following t
 You can get to the output from the running application by clicking on the "Marathon" service from the DC/OS "Services" tab. Select the application and the "Log Viewer" and choose either the "Error" or "Output" to see `stderr` and `stdout` respectively. If you have SSH access into the nodes, the Mesos container directories are beneath `/var/lib/mesos/slave/slaves`.
     ![Screen shot of Debugging a Running Application](/images/habitat/mesos5-debugging.png)
 
-## Future Enhancements
+## Future enhancements
 
 This is a basic integration, there are many improvements yet to be made. Here are a few examples:
 

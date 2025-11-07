@@ -1,10 +1,10 @@
 +++
-title = "Supervisor Log Configuration"
+title = "Supervisor log configuration"
 description = "Dynamically adjust the logging configuration of a running Supervisor"
 
 
 [menu.sup]
-    title = "Supervisor Log Configuration"
+    title = "Supervisor log configuration"
     identifier = "supervisors/sup-log-configuration"
     parent = "supervisors"
     weight = 90
@@ -12,19 +12,19 @@ description = "Dynamically adjust the logging configuration of a running Supervi
 
 With the 0.83.0 release of the Chef Habitat Supervisor, it's possible to have greater control over logging output, including the ability to dynamically adjust the logging configuration of a running Supervisor. The two main ways of configuring logging are using environment variables and using a configuration file. Each has its own strengths and weaknesses.
 
-## Environment Variable Configuration
+## Environment variable configuration
 
 It's still possible to configure logging with the `RUST_LOG` environment variable. This approach is often useful for quickly re-configuring logging (requiring a restart), or for easily configuring logging in container-based deployments.
 
 The configuration scheme is essentially the same as that described in the documentation of the Rust [env_logger](https://docs.rs/env_logger/0.6.1/env_logger/#enabling-logging) crate, with the exception that we don't allow additional regular expression-based filtering. The configuration values the Supervisor recognizes are described below:
 
-## Simple Logging Levels
+## Simple logging levels
 
 The recognized values are, in increasing verbosity (or, equivalently, in decreasing severity): `error`, `warn`, `info`, `debug`, and `trace`.
 
 Setting `RUST_LOG` to one of these values will cause all log messages at that verbosity and below (equivalently, that severity and above) to be printed. This includes log messages from Habitat, as well as any libraries that it uses.
 
-## Rust Logging Levels
+## Rust logging levels
 
 This is much finer grained than the simple logging levels above, and to fully leverage it requires some knowledge of both the internal code structure of Habitat itself, as well as of how Rust code is organized generally. Despite this, it allows you to target specific subsystems, which can be very helpful for troubleshooting.
 
@@ -38,7 +38,7 @@ Multiple logging specifiers can be submitted, separated by commas. A simple logg
 
 For example, `RUST_LOG=info,habitat_sup::manager=debug,tokio_reactor=error` will limit logs generally to the `info` level, while additionally allowing `debug` messages coming from the `habitat_sup::manager` module hierarchy, and restricting log messages from the `tokio_reactor` library to only `error`.
 
-## Dynamic, File-based Configuration
+## Dynamic, file-based configuration
 
 For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. The `log4rs` configuration documentation can be found [here](https://docs.rs/log4rs/0.8.3/log4rs/#configuration).
 

@@ -1,10 +1,10 @@
 +++
-title = "Monitoring Services"
-description = "Monitoring Services"
+title = "Monitoring services"
+description = "Monitoring services"
 
 
 [menu.services]
-    title = "Monitoring Services"
+    title = "Monitoring services"
     identifier = "services/service-monitor"
     parent = "services"
     weight = 70

@@ -1,10 +1,10 @@
 +++
-title = "Service Group Topologies"
-description = "Service Group Topologies"
+title = "Service group topologies"
+description = "Service group topologies"
 
 
 [menu.services]
-    title = "Service Group Topologies"
+    title = "Service group topologies"
     identifier = "services/Service Group Topologies"
     parent = "services"
     weight = 30
@@ -22,7 +22,7 @@ when starting the Supervisor. The standalone topology means that the service gro
 members don't have any defined relationship with one another, other than sharing
 the same configuration.
 
-## Leader-follower Topology
+## Leader-follower topology
 
 In a leader-follower topology, one of the members of the service group is elected
 the leader, and the other members of that service group become the followers of
@@ -57,7 +57,7 @@ Once you have quorum, one member is elected a leader, the Supervisors in the ser
 group update the service's configuration in concordance with the policy defined
 at package build time, and the service group starts up.
 
-### Defining Leader and Follower Behavior in Plans
+### Defining leader and follower behavior in plans
 
 Chef Habitat allows you to use the same immutable package in different deployment
 scenarios. In this example, a configuration template with conditional logic
@@ -78,7 +78,7 @@ discovery through the ring. However, if this peer is the leader, the entire list
 of statements here evaluate to empty text---meaning that the peer starts up as
 the leader.
 
-## Robustness, Network Boundaries and Recovering from Partitions
+## Robustness, network boundaries and recovering from partitions
 
 Within a leader-follower topology, it's possible to get into a partitioned state
 where nodes are unable to achieve quorum. To solve this, use a permanent peer to

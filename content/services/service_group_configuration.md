@@ -1,16 +1,16 @@
 +++
-title = "Service Group Configuration"
-description = "Update Services with File Uploads"
+title = "Service group configuration"
+description = "Update services with file uploads"
 
 
 [menu.services]
-    title = "Service Group Configuration"
+    title = "Service group configuration"
     identifier = "services/Service Group Configuration"
     parent = "services"
     weight = 40
 +++
 
-## Uploading Files to a Service Group
+## Uploading files to a service group
 
 In addition to [configuration updates](service_updates), you can
 upload files to a service group. Keep these small---we recommend 4 KB or less for each

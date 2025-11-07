@@ -1,10 +1,10 @@
 +++
-title = "Control Supervisors Remotely"
-description = "Controlling Supervisors Remotely"
+title = "Control Supervisors remotely"
+description = "Controlling Supervisors remotely"
 
 
 [menu.sup]
-    title = "Remote Control"
+    title = "Remote control"
     identifier = "supervisors/sup-remote-control"
     parent = "supervisors"
     weight = 120
@@ -14,7 +14,7 @@ Since the 0.56.0 Supervisor release, it's possible to command and control one or
 
 Here, we'll discuss how this is implemented, how it can be enabled in your Chef Habitat deployments, and how it can be used.
 
-## Remote Command and Control Overview
+## Remote command and control overview
 
 The Chef Habitat Supervisor uses a defined TCP protocol for all interactions; the `hab` CLI tool is the client for this protocol, and the Supervisor is the server. Interactions are authenticated using a shared secret.
 
@@ -33,15 +33,15 @@ hab svc load core/redis --remote-sup=hab1.mycompany.com:9632
 
 No direct host access is necessary, and multiple Supervisors can be controlled from one central location.
 
-### Remote Control is Optional
+### Remote control is optional
 
 Operating Chef Habitat Supervisors remotely is purely optional; you must take positive action to enable this behavior. If you prefer, you can continue to manage Supervisors through on-the-box direct action, as before, and likely without any changes to your current procedures. Read on for further details about how to enable this ability, and how local interaction continues to operate through a new implementation.
 
-## Managing Shared Supervisor Secrets
+## Managing shared Supervisor secrets
 
 Authentication between client (`hab` CLI) and server (Supervisor) is achieved using a shared secret. The `hab` CLI receives its secret from a configuration file (`~/.hab/config/cli.toml`) or from an environment variable (`HAB_CTL_SECRET`). The Supervisor reads its secret from its `CTL_SECRET` file, located at `/hab/sup/default/CTL_SECRET`. When the value used by `hab` matches the one used by the Supervisor, the requested command is carried out.
 
-### Create a Secret
+### Create a secret
 
 Shared secrets are created in one of two ways.
 
@@ -60,7 +60,7 @@ If you have a pre-existing fleet of Supervisors which have already been started 
 
 If you are using a raw container-based deployment (not a managed platform like Kubernetes), you will want to mount an appropriate `CTL_SECRET` file into the container.
 
-### Configure the Hab Cli with Your Secret
+### Configure the Hab CLI with your secret
 
 Once you have a secret, you can add it to your local `hab` configuration file, preferably by running `hab cli setup` and following the interactive prompts. Alternatively, you can export it into your environment:
 
@@ -76,7 +76,7 @@ HAB_CTL_SECRET=${secret_for_supervisor_2} hab svc load ... --remote-sup=${addres
 # etc.
 ```
 
-## Configuring Supervisors for Remote Command and Control
+## Configuring Supervisors for remote command and control
 
 As stated earlier, the Supervisor reads its secret from its `/hab/sup/default/CTL_SECRET` file, the contents of which you can control using `hab sup secret generate` and your chosen provisioner / deployment tooling. This ensures that the shared secret is in place, but one more step must be taken to fully enable the feature.
 
@@ -88,17 +88,17 @@ hab sup run --listen-ctl=0.0.0.0:9632
 
 This Supervisor would now be able to be controlled with any network interface (provided the request used the appropriate shared secret, of course). As always, be sure to use the appropriate interface values for your specific situation (for example, pass an internal network-facing interface rather than a publicly-exposed interface).
 
-## Targeting a Remote Supervisor
+## Targeting a remote Supervisor
 
 Throughout this documentation are numerous examples of interacting with a Supervisor; commands like `hab svc load`, `hab svc start`, `hab svc stop`, etc. all generate requests using the Supervisor's defined interaction protocol. They all operate over TCP, even in the default case of interacting with a Supervisor on the same host.
 
 In order to target a remote Supervisor, you must have the appropriate shared secret available, as described above (either in the environment or in the `hab` CLI configuration file), and you must also specify the specific Supervisor using the `--remote-sup` option. The value for this option should correspond to the value of `--listen-ctl` the Supervisor was started with; it's the address and port at which the Supervisor's control gateway may be reached. All Supervisor interaction commands accept a `--remote-sup` option for such targeting.
 
-## Local Supervisor Interactions
+## Local Supervisor interactions
 
 Without specifying `--remote-sup`, the `hab` CLI will always try to connect to a Supervisor running on the current host. It must still use the correct shared secret, however. As a last resort, if no secret is found in either a configuration file or an environment variable, the `hab` CLI will attempt to read one from `/hab/sup/default/CTL_SECRET`. In this way, it will use the same secret that the local Supervisor is using, enabling the request to proceed.
 
-## Protocol Versioning and `hab` Versions
+## Protocol versioning and `Hab` versions
 
 Before the 0.56.0 release of Chef Habitat, the interaction between `hab` and the Supervisor wasn't formally defined, and relied on making changes to files on disk. As a result, it was often possible to continue interacting with a newer Supervisor using an older version of the `hab` CLI. This was particularly noticeable when the Supervisor was configured to automatically update itself; the Supervisor would continue upgrading over time, while the `hab` CLI binary remained at whatever version it was when it was originally installed, because each of the two executable were distributed in separate packages.
 

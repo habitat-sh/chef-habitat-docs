@@ -1,10 +1,10 @@
 +++
-title = "Plan Variables"
+title = "Plan variables"
 description = "Set package, service, and cache paths, compiler options, install location and context with plan variables"
 
 
 [menu.reference]
-    title = "Plan Variables"
+    title = "Plan variables"
     identifier = "reference/plan-variables"
     parent = "reference"
 +++

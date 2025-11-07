@@ -1,10 +1,10 @@
 +++
-title = "Package Identifiers"
+title = "Package identifiers"
 description = "How to call a package in Chef Habitat Builder, Studio, and plan files"
 
 
 [menu.reference]
-    title = "Package Identifiers"
+    title = "Package identifiers"
     identifier = "reference/pkg_ids Package ID"
     parent = "reference"
 +++
@@ -16,7 +16,7 @@ When referring to Chef Habitat artifacts from either Builder or the Studio, you 
 - Fully-qualified package identifier (FQPI) - Uses four components in the following format: `origin/name/version/release`. For example, `core/glibc/2.22/20160310192356`.
 - Short package identifier - Uses two components in the following format `origin/name`. For example, `core/redis` or `core/openssl`. Use the three-component form `origin/name/version`, such as `core/redis/5.0.4`, when you need a specific version of an artifact.
 
-## Package Identifier Components
+## Package identifier components
 
 `origin`
 : A name that defines a set of related Chef Habitat packages and the artifacts they generate. For example, `sample`, `core`, or `company_name`.
@@ -30,7 +30,7 @@ When referring to Chef Habitat artifacts from either Builder or the Studio, you 
 `Release`
 : The unique Chef Habitat id for a given version based on the timestamp pattern _YYYYMMDDhhmmss_. For example,`20160204220358` would be a Chef Habitat artifact built at 22:03:58 on February 4th, 2016.
 
-## Package Lookup
+## Package lookup
 
 If the Chef Habitat artifact identifier isn't fully qualified (having fewer than four components), and exactly one artifact is required, then the missing components are assumed to be the most recent values. For example:
 
