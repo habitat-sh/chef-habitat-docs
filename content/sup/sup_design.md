@@ -1,12 +1,12 @@
 +++
-title = "Supervisor Design"
+title = "Supervisor design"
 
 date = 2020-10-26T18:55:28-07:00
 draft = false
 
 
 [menu.sup]
-    title = "Supervisor Design"
+    title = "Supervisor design"
     identifier = "supervisors/Supervisor Design"
     parent = "supervisors"
     weight = 30
@@ -129,7 +129,7 @@ What's good about this system:
 - Messages are sent over TCP, giving them some durability guarantees.
 - In common use, the gossip protocol becomes inactive; if there are no rumors to send to a given member, nothing is sent.
 
-## Butterfly and SWIM
+## Butterfly and swim
 
 The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) for membership and failure detection (over UDP), and a ZeroMQ based variant of [Newscast](https://www.cs.unibo.it/bison/publications/ap2pc03.pdf) for gossip. Butterfly differs from SWIM in the following ways:
 

@@ -1,10 +1,10 @@
 +++
-title = "Building Packages"
-description = "Building Packages in the Studio"
+title = "Building packages"
+description = "Building packages in the Studio"
 
 
 [menu.packages]
-    title = "Building Packages"
+    title = "Building packages"
     identifier = "packages/pkg-build Build your Package"
     parent = "packages"
     weight = 10

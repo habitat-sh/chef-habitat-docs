@@ -1,10 +1,10 @@
 +++
-title = "Service Group Updates"
-description = "Update service groups with supervisor configuration"
+title = "Service group updates"
+description = "Update service groups with Supervisor configuration"
 
 
 [menu.services]
-    title = "Service Group Updates"
+    title = "Service group updates"
     identifier = "services/Service Group Updates"
     parent = "services"
     weight = 50
