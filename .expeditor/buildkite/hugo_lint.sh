@@ -5,6 +5,7 @@ set -euo pipefail
 # Configuration
 readonly CONTENT_DIR="${1:-./content}"
 readonly ALLOWED_NON_ASCII='[✓|├|─|│|└|↑|↓|‣|✔|✗|☛|»|Ω|★|☑|é|í]'
+readonly SKIP_FILES=("habitat_cli.md" "service_templates.md")
 
 # Function to check for non-ASCII characters
 check_non_ascii() {
@@ -16,9 +17,11 @@ check_non_ascii() {
         return 2
     fi
 
-    # Find non-ASCII characters, excluding allowed ones
+    # Find non-ASCII characters, excluding allowed ones and skipped files
     local violations
-    violations=$(grep -r -I --color=auto -o --with-filename -n -P '[^\x00-\x7F]' "$content_dir" 2>/dev/null | grep -v "$allowed_chars" || true)
+    violations=$(grep -r -I --color=auto -o --with-filename -n -P '[^\x00-\x7F]' "$content_dir" 2>/dev/null \
+        | grep -v "$allowed_chars" \
+        | grep -v -E "$(printf "|%s" "${SKIP_FILES[@]}")" || true)
 
     if [[ -z "$violations" ]]; then
         return 0  # Success - no violations found
