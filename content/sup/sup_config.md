@@ -1,12 +1,12 @@
 +++
-title = "Supervisor Configuration File"
-description = "Service Change Rollback"
+title = "Supervisor configuration file"
+description = "Service change rollback"
 date = 2020-10-26T17:32:36-07:00
 draft = false
 
 
 [menu.sup]
-    title = "Supervisor Configuration File"
+    title = "Supervisor configuration file"
     identifier = "supervisors/sup_config How to Rollback"
     parent = "supervisors"
     weight = 85

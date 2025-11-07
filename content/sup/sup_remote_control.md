@@ -1,10 +1,10 @@
 +++
-title = "Control Supervisors Remotely"
-description = "Controlling Supervisors Remotely"
+title = "Control Supervisors remotely"
+description = "Controlling Supervisors remotely"
 
 
 [menu.sup]
-    title = "Remote Control"
+    title = "Remote Supervisor control"
     identifier = "supervisors/sup-remote-control"
     parent = "supervisors"
     weight = 120
@@ -98,7 +98,7 @@ In order to target a remote Supervisor, you must have the appropriate shared sec
 
 Without specifying `--remote-sup`, the `hab` CLI will always try to connect to a Supervisor running on the current host. It must still use the correct shared secret, however. As a last resort, if no secret is found in either a configuration file or an environment variable, the `hab` CLI will attempt to read one from `/hab/sup/default/CTL_SECRET`. In this way, it will use the same secret that the local Supervisor is using, enabling the request to proceed.
 
-## Protocol versioning and `hab` versions
+## Protocol versioning and `Hab` versions
 
 Before the 0.56.0 release of Chef Habitat, the interaction between `hab` and the Supervisor wasn't formally defined, and relied on making changes to files on disk. As a result, it was often possible to continue interacting with a newer Supervisor using an older version of the `hab` CLI. This was particularly noticeable when the Supervisor was configured to automatically update itself; the Supervisor would continue upgrading over time, while the `hab` CLI binary remained at whatever version it was when it was originally installed, because each of the two executable were distributed in separate packages.
 

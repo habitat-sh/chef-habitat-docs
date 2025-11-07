@@ -1,12 +1,12 @@
 +++
-title = "Writing Plans"
+title = "Writing plans"
 description = "Documentation for writing Chef Habitat plan files including configuration templates, binds, and exporting"
 summary = "How to write Chef Habitat plans, including configuration templates, binds, exporting, and multi-platform support."
 
 
 
 [menu.plans]
-    title = "Plan Writing"
+    title = "Plan writing"
     identifier = "plans/plan-writing Chef Habitat plan Overview"
     parent = "plans"
     weight = 10

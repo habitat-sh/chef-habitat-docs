@@ -1,10 +1,10 @@
 +++
-title = "Supervisor Networks"
-description = "Robust Supervisor Networks"
+title = "Supervisor networks"
+description = "Robust Supervisor networks"
 
 
 [menu.sup]
-    title = "Supervisor Networks"
+    title = "Supervisor networks"
     identifier = "supervisors/sup-networks Supervisor Networks Explained"
     parent = "supervisors"
     weight = 60
@@ -30,7 +30,7 @@ hab sup run --peer=192.168.0.1 --peer=192.168.0.2 --peer=192.168.0.3
 
 It should be noted that peering is symmetric. Even though our first Supervisor above didn't start out peered with any other Supervisors, it can still become part of a Supervisor network if some other Supervisor declares it to be a peer.
 
-## Managing membership with SWIM
+## Managing membership with swim
 
 In order for Chef Habitat's network functionality to work, the Supervisors must first know which other Supervisors they can communicate with. This is a problem of maintaining membership lists, and is achieved using the membership protocol known as _SWIM_. As detailed above, we must first "seed" a Supervisor's membership list with at least one "peer"; that is, another Supervisor that it can communicate with.
 
@@ -56,7 +56,7 @@ Defining a few Supervisors to be "permanent peers" _will_ provide a robust netwo
 
 If your permanent peer Supervisors aren't running any services, they will be less subject to the pressures that would cause service-running Supervisors to come and go. They can exist solely to anchor the entire Supervisor network.
 
-## Pulling it all together: A robust Supervisor network
+## Pulling it all together: a robust Supervisor network
 
 With all this, we can come up with a robust Chef Habitat network architecture. In fact, this is the same architecture the Chef Habitat team uses to run the public [Builder service](https://bldr.habitat.sh).
 

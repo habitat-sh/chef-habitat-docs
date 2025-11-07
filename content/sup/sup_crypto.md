@@ -1,11 +1,11 @@
 +++
-title = "Supervisor Cryptography"
+title = "Supervisor cryptography"
 date = 2020-10-26T19:09:25-07:00
 draft = false
 
 
 [menu.sup]
-    title = "Supervisor Cryptography"
+    title = "Supervisor cryptography"
     identifier = "supervisors/Supervisor Cryptography"
     parent = "supervisors"
     weight = 70

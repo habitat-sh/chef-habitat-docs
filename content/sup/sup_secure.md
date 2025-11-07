@@ -1,10 +1,10 @@
 +++
-title = "Securing Supervisor Networks"
-description = "Securing Supervisor Networks"
+title = "Securing Supervisor networks"
+description = "Securing Supervisor networks"
 
 
 [menu.sup]
-    title = "Securing Networks"
+    title = "Securing networks"
     identifier = "supervisors/using-encryption"
     parent = "supervisors"
     weight = 80

@@ -1,10 +1,10 @@
 +++
-title = "Service Group Configuration"
-description = "Update Services with File Uploads"
+title = "Service group configuration"
+description = "Update services with file uploads"
 
 
 [menu.services]
-    title = "Service Group Configuration"
+    title = "Service group configuration"
     identifier = "services/Service Group Configuration"
     parent = "services"
     weight = 40
