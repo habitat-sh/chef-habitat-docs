@@ -5,6 +5,8 @@ set -euo pipefail
 # Configuration
 readonly CONTENT_DIR="${1:-./content}"
 readonly ALLOWED_NON_ASCII='[✓|├|─|│|└|↑|↓|‣|✔|✗|☛|»|Ω|★|☑|é|í]'
+
+# Skip auto-generated files
 readonly SKIP_FILES=("habitat_cli.md" "service_templates.md")
 
 # Function to check for non-ASCII characters
