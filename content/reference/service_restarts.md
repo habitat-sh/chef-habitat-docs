@@ -1,9 +1,9 @@
 +++
-title = "Service Restarts"
+title = "Service restarts"
 
 
 [menu.reference]
-    title = "Service Restarts"
+    title = "Service restarts"
     identifier = "reference/service-restarts Service Restarts"
     parent = "reference"
 +++
@@ -53,7 +53,7 @@ You can't change the backoff algorithm. However, if you wish to have a simple fi
 
 {{< /note >}}
 
-## Service Failure Detection
+## Service failure detection
 
 Adding restart backoff behavior requires the ability to detect when a service has successfully started to reset the backoff period.
 Unfortunately, there is no clean way to differentiate between a service failure and a service taking too long to startup. A health-check hook would enable the detection of successful service startups; however, if a health check is absent, there is no way to know if the service started up. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.

@@ -13,7 +13,7 @@ description = "Updating the Supervisor"
 
 Each new Chef Habitat release brings a new Supervisor that includes all bug fixes and enhancements since the last release. It's a good idea to stay relatively up to date with your running Supervisors. When updating Supervisors in production, you usually won't want to shut down all of your running services while you perform the update. That could incur an outage or require a maintenance window. Chef Habitat provides a couple of ways for you to update a Supervisor without stopping your running services.
 
-## Manual Update
+## Manual update
 
 While an older version of the Supervisor is running, install the newer Supervisor into your local Chef Habitat package repository:
 
@@ -29,7 +29,7 @@ hab sup restart
 
 This won't restart the running services; it will only restart the supervisor service.
 
-## Automatic Update
+## Automatic update
 
 You can configure the Supervisor to automatically update itself when new Supervisor releases become available. This is done by adding the `--auto-update` flag to `hab sup run` or by setting `auto_update` to `true` in `/hab/sup/default/config/sup.toml`. By default, the Supervisor will check for updates every 60 seconds. This can be adjusted by changing the `--auto-update-period` to a different number of seconds.
 

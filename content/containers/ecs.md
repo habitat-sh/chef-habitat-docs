@@ -1,20 +1,20 @@
 +++
-title = "Amazon ECS"
+title = "Amazon Elastic Container Service (ECS)"
 description = "Amazon ECS registry service and Chef Habitat"
 
 
 [menu.containers]
-    title = "Amazon Container Services"
+    title = "Amazon ECS"
     identifier = "containers/ecs EC2 Container Service"
     parent = "containers"
     weight = 50
 +++
 
-Amazon Web Services provides a container management service called [EC2 Container Service (ECS)](https://aws.amazon.com/ecs/). ECS provides a Docker registry, container hosting and tooling to make deploying Docker-based containers fairly straightforward. ECS will schedule and deploy  your Docker containers within a Task while Chef Habitat manages the applications.
+Amazon Web Services provides a container management service called [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/). ECS provides a Docker registry, container hosting and tooling to make deploying Docker-based containers fairly straightforward. ECS will schedule and deploy  your Docker containers within a Task while Chef Habitat manages the applications.
 
-## EC2 Container Registry
+## Elastic Container Registry
 
-[EC2 Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with ```hab pkg export docker``` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building ```core/mongodb``` containers you would use the following command:
+[Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with ```hab pkg export docker``` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building ```core/mongodb``` containers you would use the following command:
 
 ```bash
 aws ecr create-repository --repository-name core/mongodb
@@ -27,7 +27,7 @@ docker tag core/mongodb:latest aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.c
 docker push aws_account_id.dkr.ecr.ap-southeast-2.amazonaws.com/core/mongodb:latest
 ```
 
-## EC2 Compute Service
+## Elastic Container Service
 
 Once Docker images are pushed to ECR, they may be run on Amazon's ECS within a [Task Definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) which may be expressed as a [Docker Compose file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose.html). Here is an example of a Tomcat application using a Mongo database demonstrating using Chef Habitat-managed containers:
 
@@ -50,7 +50,7 @@ From the example, the `mongo` and `national-parks` services use the Docker image
 
 The `command` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to `--peer` to the `mongo` gossip ring and `--bind` applies `database` entries to its Mongo configuration.
 
-## Related Reading
+## Related reading
 
 * [A Journey with Chef Habitat on Amazon ECS, Part 1](https://www.chef.io/blog/a-journey-with-habitat-on-amazon-ecs-part-1)
 * [A Journey with Chef Habitat on Amazon ECS, Part 2](https://www.chef.io/blog/a-journey-with-habitat-on-amazon-ecs-part-2)

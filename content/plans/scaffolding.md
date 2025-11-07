@@ -13,7 +13,7 @@ linkTitle = "Scaffolding"
 
 Chef Habitat scaffoldings are standardized plans for automated building and running your application. Each scaffolding is tuned to the way your application was built, which allows it to create the appropriate [Application Lifecycle Hooks](../reference/application_lifecycle_hooks.md) and add in the correct runtime dependencies when building the package for your application. Scaffoldings also provide some default health check hooks where appropriate to ensure your application is functioning reliably. Customized Scaffolding can be created to facilitate re-usability of common patterns in your organization for developing, building, and running your applications.
 
-## Automated Scaffolding
+## Automated scaffolding
 
 While we're targeting many platforms for automated scaffolding we currently support Ruby, Node.js and Gradle.
 
@@ -25,23 +25,23 @@ While we're targeting many platforms for automated scaffolding we currently supp
 
 Scaffolding provides certain customizable variables for language-specific behavior. Please see the appropriate scaffolding documentation for details.
 
-### Overriding Scaffolding Callbacks
+### Overriding scaffolding callbacks
 
 If you want to override phases of a scaffold's build in your plans, make sure to override the main `do_xxx` phase, not the callback directly. ex override `do_install()` instead of `do_default_install` or `do_node_install`.
 
-### Scaffolding Internals
+### Scaffolding internals
 
 A language or framework scaffolding is shipped as a Chef Habitat package, which means that each scaffolding runtime dependency becomes a build dependency for the application being built.
 
-## `lib/scaffolding.sh` File
+## `lib/scaffolding.sh` file
 
 To create scaffolding, a package must contain a `lib/scaffolding.sh` file which gets sourced by the build program running Bash.
 
-## `scaffolding_load()` Function
+## `scaffolding_load()` function
 
 A optional function named `scaffolding_load()` may be created in `lib/scaffolding.sh` which will be called early in the build program which allows a Scaffolding author to control and augment the `pkg_deps` and `pkg_build_deps` arrays. At this point, no other build or run dependencies have been resolved so the code in this function can only rely on what the build program provides or software pulled in with the Scaffolding's Plan.
 
-## Default Build Phases Implementations
+## Default build phases implementations
 
 The remainder of the `lib/scaffolding.sh` contains one or more default implementations for the build phases. These include, but aren't limited to:
 

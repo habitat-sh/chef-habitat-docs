@@ -1,11 +1,11 @@
 +++
-title = "Binary Wrapper Packages"
+title = "Binary wrapper packages"
 description = "Tips and tricks for managing hardcoded library dependencies in binaries"
 summary = "Tips for creating Chef Habitat plans for binary-only applications, including handling hardcoded dependencies and fixing interpreters."
 
 
 [menu.plans]
-    title = "Binary Wrapper Packages"
+    title = "Binary wrapper packages"
     identifier = "plans/binary-wrapper"
     parent = "plans"
 
@@ -15,7 +15,7 @@ While Chef Habitat provides the best behavior for applications that can be compi
 
 You can write plans to package up these binary artifacts with minimal special handling. This article covers some tips and tricks for getting this software into Chef Habitat.
 
-## Override The Build Phases You Don't Need
+## Override the build phases you don't need
 
 A Chef Habitat package build proceeds in phases: download, verification, unpacking (where you would also patch source code, if you had it), build, and finally installation. Each of these phases has [default behavior](../reference/build_phase_callbacks.md) within the build system.
 
@@ -35,7 +35,7 @@ do_install() {
 }
 ```
 
-## Relocate Hard-Coded Library Dependencies If Possible
+## Relocate hard-coded library dependencies if possible
 
 On Linux, many binaries hardcode library dependencies to `/lib` or `/lib64` inside their ELF symbol table. Unfortunately, this means that Chef Habitat is unable to provide dependency isolation guarantees if packages are dependent on any operating system's libraries in those directories. These Chef Habitat packages will also fail to run in minimal environments like containers built using `hab-pkg-export-docker`, because there won't be a `glibc` inside `/lib` or `/lib64`.
 

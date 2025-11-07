@@ -1,11 +1,11 @@
 +++
-title = "Download and Install FAQ"
-description = "Download and Install FAQ"
+title = "Download and install FAQ"
+description = "Download and install FAQ"
 draft = false
 
 
 [menu.install]
-    title = "Download and Install FAQ"
+    title = "Download and install FAQ"
     identifier = "install/install-faq Install Frequently Asked Questions FAQ"
     parent = "install"
     weight = 30

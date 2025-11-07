@@ -1,11 +1,11 @@
 +++
-title = "Origin Membership & RBAC"
+title = "Origin membership & RBAC"
 date = 2020-10-12T13:53:50-07:00
 draft = false
 
 
 [menu.origins]
-    title = "Origin Membership & RBAC"
+    title = "Origin membership & RBAC"
     identifier = "origins/origin-rbac Builder RBAC"
     parent = "origins"
     weight = 30
@@ -19,7 +19,7 @@ Prerequisites:
 - [Create an origin](origins#create-origin" >}}) or accept an [invitation](#manage-origin-membership-with-hab-origin-invitations) to an existing origin
 - [Get origin keys](origins#origin-keys" >}})
 
-## Role-Based Access Control (RBAC) for Chef Habitat Builder (SaaS and on-prem)
+## Role-based access control (RBAC) for Chef Habitat Builder (SaaS and on-prem)
 
 Role-Based Access Control (RBAC) membership is a token-based authentication process that works at the origin level. RBAC improves operational safety by letting you enable specific levels of access to each user of an origin. The membership role defines the level of access to resources within an origin. When you first join or create an origin, Chef Habitat Builder identifies your personal access token and assigns a membership role to it for that origin. By default, when you join an origin you're assigned the "read-only" role and when you create an an origin you're assigned the 'owner' role. Role access is cumulative and progressive--each RBAC role includes all of the privileges of the previous roles and adds new access privileges.
 
@@ -40,7 +40,7 @@ Administrator
 Owner
 : The origin 'Owner' has full read and write access to all aspects of the origin. Only Owners can delete the origin or transfer ownership to another member.
 
-## Comparison of RBAC Membership Roles and Actions
+## Comparison of RBAC membership roles and actions
 
 | Action                           | Read-Only | Member | Maintainer | Administrator | Owner |
 | -------------------------------- | --------- | ------ | ---------- | ------------- | ----- |
@@ -78,13 +78,13 @@ Owner
 | Transfer Origin                  | N         | N      | N          | N             | Y     |
 | Delete Origin                    | N         | N      | N          | N             | Y     |
 
-## Manage Origin Membership
+## Manage origin membership
 
 The `hab` CLI supports RBAC. You need to use the CLI to manage origin roles, you can't manage origin roles from the Chef Habitat Builder site.
 
 ![Manage origin membership](/images/habitat/origin-members.png)
 
-### Manage origin membership with `hab origin invitations`
+### Manage origin membership with `Hab origin invitations`
 
 Use the [hab origin invitations](habitat_cli#hab-origin-invitations" >}}) command to invite users to join your origin and to respond to invitations. Origin Administrators and Owners can use this command to manage invitations.
 
@@ -132,7 +132,7 @@ Origin owners can transfer origin ownership to another member:
 hab origin transfer [OPTIONS] <ORIGIN> <NEW_OWNER_ACCOUNT>
 ```
 
-### Manage membership roles with `hab origin rbac`
+### Manage membership roles with `Hab origin RBAC`
 
 Use the [hab origin rbac](habitat_cli#hab-origin-rbac" >}}) command to see and set role based access control (RBAC) from the command line.
 An origin `MEMBER_ACCOUNT` is the name used to sign in to Chef Habitat builder. You can find the list of user names on an origin's _Members Tab_. (Builder > Origin > Members)

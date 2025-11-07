@@ -1,5 +1,5 @@
 +++
-title = "Download and Install the Chef Habitat CLI Tool"
+title = "Download and install the Chef Habitat CLI tool"
 description = "Install the Chef Habitat CLI and configure your workstation for Chef Habitat development"
 linkTitle = "Install"
 
@@ -24,7 +24,7 @@ Once you have downloaded the package, extract the hab binary with tar to `/usr/l
 
 [Download Chef Habitat for Linux](https://www.chef.io/downloads)
 
-### Install Chef Habitat from the Command Line
+### Install Chef Habitat from the command line
 
 Alternatively, you can install Chef Habitat with the command line by downloading and running the installation script:
 
@@ -32,7 +32,7 @@ Alternatively, you can install Chef Habitat with the command line by downloading
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 1.6.1245
 ```
 
-### Install Chef Habitat for Linux Kernel 2.x from the Command Line
+### Install Chef Habitat for Linux kernel 2.x from the command line
 
 Please note that support for Linux Kernel 2.x is limited. Not all core plans are available for Kernel 2.x, nor are there plans to backport all of the existing core plans to Kernel 2.x. Kernel 2.x is legacy technology by definition, and its use should be viewed as a stop-gap to provide interim solutions for old systems, as they're upgraded to more recent versions of the Linux kernel.
 

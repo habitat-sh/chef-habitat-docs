@@ -1,10 +1,10 @@
 +++
-title = "Container Orchestration"
-description = "Container Orchestration with Chef Habitat"
+title = "Container orchestration"
+description = "Container orchestration with Chef Habitat"
 
 
 [menu.containers]
-    title = "Container Orchestration"
+    title = "Container orchestration"
     identifier = "containers/container-orchestration"
     parent = "containers"
     weight = 20

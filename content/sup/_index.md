@@ -12,7 +12,7 @@ linkTitle = "Supervisors"
 
 The Supervisor is a process manager that has two primary responsibilities. First, it starts and monitors child services defined in the plan it's running. Second, it receives and acts upon information from the other Supervisors to which it's connected. A service will be reconfigured through application lifecycle hooks if its configuration has changed.
 
-## The Supervisor Ring
+## The Supervisor ring
 
 Supervisors typically run in a network, which we refer to as a *ring* (although it's more like a peer-to-peer network rather than a circular ring). The ring can be very large; it could contain hundreds or thousands of supervisors. The membership list of this ring is maintained independently by each Supervisor and is known as the *census*.
 
@@ -28,7 +28,7 @@ An example is leader election: it's handled here by having a consistent (and sim
 
 The Chef Habitat Supervisor provides a HTTP API to expose cluster metadata, statistics, and general diagnostic information useful for monitoring and support in the form of a JSON document. It also provides detailed information about the Chef Habitat package that it's supervising, including metadata such as the build and runtime dependencies and their versions.
 
-## Control Gateway
+## Control gateway
 
 The Supervisor control gateway is used to issue commands to a remote Supervisor. When a new Supervisor is created, a key for the `HAB_CTL_SECRET` environment variable is generated for it by default, if one isn't already present; this key is used to authenticate requests that are made with the control gateway.
 See the [control gateway](sup_remote_control) documentation for more details.

@@ -1,10 +1,10 @@
 +++
-title = "Securing Supervisor Networks"
-description = "Securing Supervisor Networks"
+title = "Securing Supervisor networks"
+description = "Securing Supervisor networks"
 
 
 [menu.sup]
-    title = "Securing Networks"
+    title = "Securing networks"
     identifier = "supervisors/using-encryption"
     parent = "supervisors"
     weight = 80
@@ -18,11 +18,11 @@ Use following security measures in a Supervisor network:
 * Wire encryption of inter-Supervisor traffic
 * Trust relationships between supervisors and users
 
-## Wire Encryption
+## Wire encryption
 
 Supervisors running in a ring can be configured to encrypt all traffic between them. This is accomplished by generating a _ring key_, which is a symmetric shared secret placed into the Supervisor environment prior to starting it.
 
-### Generating a Ring Key
+### Generating a ring key
 
 1. Generate a ring key using the `hab` command-line tool. This can be done on your workstation. The generated key has the `.sym.key` extension, indicating that it's a symmetric pre-shared key, and is stored in the `$HOME/.hab/cache/keys` directory.
 
@@ -46,13 +46,13 @@ Supervisors running in a ring can be configured to encrypt all traffic between t
     hab svc load <ORIGIN>/<NAME>
     ```
 
-## Service Group Encryption
+## Service group encryption
 
 Supervisors in a service group can be configured to require key-based authorization prior to allowing configuration changes. In this scenario, the Supervisor in a named service group starts up with a key for that group bound to an _organization_. This allows for multiple service groups with the same name in different organizations.
 
 As explained in the [security overview](sup_crypto), this process also requires the generation of a user key for every user making configuration updates to the Supervisor network.
 
-### Generating Service Group Keys
+### Generating service group keys
 
 1. Generate a service group key using the `hab` command-line tool. This can be done on your workstation. Because asymmetric encryption is being used, two files will be generated: a file with a `.box.key` extension, which is the service group's private key, and a file with a `.pub` extension, which is the service group's public key.
 
@@ -70,20 +70,20 @@ As explained in the [security overview](sup_crypto), this process also requires 
 
 4. Only users whose public keys that the Supervisor already has in its cache will be allowed to reconfigure this service group. If you need to generate a user key pair, see the next section.
 
-### Generating User Keys
+### Generating user keys
 
 The user key is used to encrypt configuration data targeted for a particular service group.
 
 1. Generate a user key using the `hab` command-line tool. This can be done on your workstation. Because asymmetric encryption is being used, two files will be generated: a file with a `.box.key` extension, which is the user's private key, and a file with a `.pub` extension, which is the user's public key.
 2. Distribute the user's public key to any Supervisor that needs it, into the `/hab/cache/keys` directory. The user will be able to reconfigure that Supervisor, provided they encrypted the configuration update using the service group's public key.
 
-## Apply Configuration Changes
+## Apply configuration changes
 
 The `hab config apply` and `hab file upload` commands will work as usual when user/service group trust relationships are set up in this way.
 
 If a running Supervisor can't decrypt a secret due to a missing key, it will retry with exponential backoff starting with a one-second interval. This allows an administrator to provide the Supervisor with the key to resume normal operations, without taking down the Supervisor.
 
-## Identifying Key Types
+## Identifying key types
 
 To aid the user in the visual identification of the many varieties of keys in use by Chef Habitat, a key itself is in cleartext and contains a header on the first line indicating what its key type. The file extension and, in some situations, the format of the file name, provide additional guidance to the user in identifying the type of key.
 

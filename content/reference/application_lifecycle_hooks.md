@@ -1,10 +1,10 @@
 +++
-title = "Application Lifecycle Hooks"
+title = "Application lifecycle hooks"
 description = "Control service runtime actions with application lifecycle hooks"
 
 
 [menu.reference]
-    title = "Application Lifecycle Hooks"
+    title = "Application lifecycle hooks"
     identifier = "reference/application-lifecycle-hooks plan Lifecycle Hooks"
     parent = "reference"
 
@@ -20,7 +20,7 @@ Optionally you may add an extension to the hook file. For example, you might cre
 You can't block the thread in a hook unless it's in the `run` hook. Never call `hab` or `sleep` in a hook that isn't the `run` hook.
 {{< /warning >}}
 
-## Runtime Settings
+## Runtime settings
 
 [Chef Habitat's runtime configuration settings](service_templates) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
 

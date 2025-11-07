@@ -1,10 +1,10 @@
 +++
-title = "Exporting Packages"
-description = "Export Chef Habitat packages to Docker, Kubernetes, Helm, Mesos, DC/OS, Cloud Foundry, or as a tarball "
+title = "Exporting packages"
+description = "Export Chef Habitat packages to Docker, Kubernetes, Helm, Mesos, DC/OS, Cloud Foundry, or as a tarball"
 
 
 [menu.packages]
-    title = "Exporting Packages"
+    title = "Exporting packages"
     identifier = "packages/pkg-exports Export Chef Habitat Packages"
     parent = "packages"
     weight = 40
@@ -58,7 +58,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. Please note that when you run this docker container, you will need to pass the `HAB_LICENSE` environment variable into the container in order to accept the Habitat license. If you don't, your container will abort at a license acceptance prompt. One way to do this would be `docker run --env HAB_LICENSE=accept-no-persist IMAGE`. Alternatively, if you use a scheduler to run these docker containers, you should add that environment variable to your scheduler configuration.
 
-## Exporting to a Tarball
+## Exporting to a tarball
 
 1. Enter the Chef Habitat studio by using `hab studio enter`.
 
@@ -153,7 +153,7 @@ To do so, make sure you have done the following:
 cf enable-feature-flag diego_docker
 ```
 
-### Creating a Mapping File
+### Creating a mapping file
 
 The mapping file is a TOML file that can add Bash-interpolated variables and scripts. The Bash code will have access to:
 
@@ -182,7 +182,7 @@ The helper methods are designed to extract information from the standard Cloud F
 * `service <service-name> <jq-expression>` will extract the JSON associated with the given service-name from the `VCAP_SERVICES` environment variable and apply the jq-expression to it.
 * `application <jq-expression>` will apply the jq-expression to the `VCAP_APPLICATION` environment variable
 
-## Exporting and Pushing to a Cloud Foundry Endpoint
+## Exporting and pushing to a Cloud Foundry endpoint
 
 1. Create a mapping.toml file using the format specified above and place that file in your local project repo.
 

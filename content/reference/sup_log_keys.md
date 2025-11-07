@@ -1,10 +1,10 @@
 +++
-title = "Supervisor Log Codes"
+title = "Supervisor log codes"
 description = "Supervisor log code key reference"
 
 
 [menu.reference]
-    title = "Supervisor Log Codes"
+    title = "Supervisor log codes"
     identifier = "reference/sup-log-key"
     parent = "reference"
 +++
