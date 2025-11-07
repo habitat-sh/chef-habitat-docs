@@ -1,10 +1,10 @@
 +++
-title = "Plan Settings"
+title = "Plan settings"
 description = "Define basic metadata about your artifact with plan settings"
 
 
 [menu.reference]
-    title = "Plan Settings"
+    title = "Plan settings"
     identifier = "reference/plan-settings"
     parent = "reference"
 +++

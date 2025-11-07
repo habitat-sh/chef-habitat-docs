@@ -1,11 +1,11 @@
 +++
-title = "Origin Settings"
+title = "Origin settings"
 date = 2020-10-12T14:02:01-07:00
 draft = false
 
 
 [menu.origins]
-    title = "Origin Settings"
+    title = "Origin settings"
     identifier = "origins/origin-settings Origin Settings"
     parent = "origins"
     weight = 40

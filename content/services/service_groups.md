@@ -1,10 +1,10 @@
 +++
-title = "Service Groups"
-description = "Service Groups"
+title = "Service groups"
+description = "Service groups"
 
 
 [menu.services]
-    title = "Service Groups"
+    title = "Service groups"
     identifier = "services/Service Groups"
     parent = "services"
     weight = 20

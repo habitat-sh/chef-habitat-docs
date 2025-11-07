@@ -1,10 +1,10 @@
 +++
-title = "Supervisor Log Configuration"
+title = "Supervisor log configuration"
 description = "Dynamically adjust the logging configuration of a running Supervisor"
 
 
 [menu.sup]
-    title = "Supervisor Log Configuration"
+    title = "Supervisor log configuration"
     identifier = "supervisors/sup-log-configuration"
     parent = "supervisors"
     weight = 90

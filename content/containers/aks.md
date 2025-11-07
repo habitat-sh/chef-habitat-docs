@@ -1,17 +1,17 @@
 +++
-title = "Azure Container Services (AKS)"
+title = "Azure Kubernetes Service (AKS)"
 description = "Azure and Kubernetes K8"
-linkTitle = "Azure Container Services"
+linkTitle = "Azure Kubernetes Service"
 summary = "Use Habitat with AKS, including setting up Azure Container Registry (ACR) and connecting it to AKS."
 
 [menu.containers]
-    title = "Azure Container Services"
+    title = "Azure Kubernetes Service"
     identifier = "containers/aks Chef Habitat Azure Kubernetes"
     parent = "containers"
     weight = 40
 +++
 
-[Azure Container Services (AKS)](https://azure.microsoft.com/services/container-service/)
+[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service/)
 is a fully managed Kubernetes service running on the Azure platform.
 
 ## Azure Container Registry (ACR)
@@ -69,4 +69,4 @@ az role assignment create --assignee $CLIENT_ID --role Reader --scope $ACR_ID
 
 ## Related reading
 
-* [Authenticate with Azure Container Registry from Azure Container Service](https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks#grant-aks-access-to-acr)
+* [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks)

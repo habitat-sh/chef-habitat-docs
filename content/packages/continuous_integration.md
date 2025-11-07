@@ -1,11 +1,11 @@
 +++
-title = "Chef Habitat and Continuous Integration"
-description = "Chef Habitat and Continuous Integration"
+title = "Chef Habitat and continuous integration"
+description = "Chef Habitat and continuous integration"
 summary = "How Habitat integrates with CI tools like Jenkins and TravisCI, simplifying builds, testing, and package promotion."
 
 
 [menu.packages]
-    title = "Continuous Integration"
+    title = "Continuous integration"
     identifier = "packages/habitat-and-continuous-integration"
     parent = "packages"
     weight = 200
