@@ -3,7 +3,7 @@ languageCode = 'en-us'
 title = 'Chef Habitat Documentation'
 
 enableGitInfo = true
-disableKinds = ["taxonomy", "term", "RSS"]
+disableKinds = ["taxonomy", "term", "rss"]
 timeZone = 'America/New_York'
 
 ####
@@ -39,7 +39,7 @@ timeZone = 'America/New_York'
     [markup.goldmark.renderer]
       hardWraps = false
       unsafe = true
-      xHTML = false
+      xhtml = false
   [markup.highlight]
     codeFences = true
     guessSyntax = false
