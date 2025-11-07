@@ -1,10 +1,10 @@
 +++
-title = "Exporting Packages"
-description = "Export Chef Habitat packages to Docker or as a tarball "
+title = "Exporting packages"
+description = "Export Chef Habitat packages to Docker or as a tarball"
 
 
 [menu.packages]
-    title = "Exporting Packages"
+    title = "Exporting packages"
     identifier = "packages/pkg-exports Export Chef Habitat Packages"
     parent = "packages"
     weight = 40

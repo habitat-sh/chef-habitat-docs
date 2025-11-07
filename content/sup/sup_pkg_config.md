@@ -1,10 +1,10 @@
 +++
-title = "Supervisor Configuration"
+title = "Supervisor configuration"
 description = "Configure the Supervisor for faster package development"
 
 
 [menu.sup]
-    title = "Supervisor Package Configuration"
+    title = "Supervisor package configuration"
     identifier = "supervisors/sup-pkg-config"
     parent = "supervisors"
     weight = 100

@@ -1,10 +1,10 @@
 +++
-title = "Build Phase Callbacks"
+title = "Build phase callbacks"
 description = "Override default buildtime behavior with build phase callbacks"
 
 
 [menu.reference]
-    title = "Build Phase Callbacks"
+    title = "Build phase callbacks"
     identifier = "reference/build-phase-callbacks"
     parent = "reference"
 +++

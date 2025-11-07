@@ -1,10 +1,10 @@
 +++
-title = "Runtime Binds"
+title = "Runtime binds"
 description = "Define runtime binds in your plan file"
 
 
 [menu.packages]
-    title = "Runtime Binds"
+    title = "Runtime binds"
     identifier = "packages/pkg-binds"
     parent = "packages"
 

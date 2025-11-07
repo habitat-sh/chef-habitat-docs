@@ -1,12 +1,12 @@
 +++
-title = "Origin Keys"
+title = "Origin keys"
 
 date = 2020-10-12T13:59:46-07:00
 draft = false
 
 
 [menu.origins]
-    title = "Origin Keys"
+    title = "Origin keys"
     identifier = "origins/origin-keys Origin Keys"
     parent = "origins"
     weight = 20

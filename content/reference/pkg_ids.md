@@ -1,10 +1,10 @@
 +++
-title = "Package Identifiers"
+title = "Package identifiers"
 description = "How to call a package in Chef Habitat Builder, Studio, and plan files"
 
 
 [menu.reference]
-    title = "Package Identifiers"
+    title = "Package identifiers"
     identifier = "reference/pkg_ids Package ID"
     parent = "reference"
 +++

@@ -1,5 +1,5 @@
 +++
-title = "Chef Habitat Troubleshooting"
+title = "Chef Habitat troubleshooting"
 description = "Troubleshooting common issues with Chef Habitat"
 
 [menu.troubleshooting]

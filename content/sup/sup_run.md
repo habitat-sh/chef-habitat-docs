@@ -1,6 +1,6 @@
 +++
 title = "Running Chef Habitat Supervisors"
-description = "Running Chef Habitat Packages"
+description = "Running Chef Habitat packages"
 
 
 [menu.sup]

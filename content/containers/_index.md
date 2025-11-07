@@ -1,11 +1,11 @@
 +++
-title = "Chef Habitat and Containers"
-description = "Chef Habitat and Containers"
+title = "Chef Habitat and containers"
+description = "Chef Habitat and containers"
 linkTitle = "Containers"
 list_pages = true
 
 [menu.containers]
-    title = "Chef Habitat and Containers"
+    title = "Chef Habitat and containers"
     identifier = "containers/containers"
     parent = "containers"
     weight = 10

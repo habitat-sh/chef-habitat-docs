@@ -1,15 +1,14 @@
 +++
-title = "Pattern Library Introduction"
+title = "Chef Habitat pattern library"
 description = "Example code for Chef Habitat plans and more!"
 
 
 
 [menu.reference]
-    title = "Pattern Library"
+    title = "Pattern library"
     identifier = "pattern_library"
     parent = "reference"
 +++
-## Chef Habitat pattern library
 
 The Chef Habitat Pattern Library is an evolving set of design patterns to use as starting-points. These patterns are examples and require configuration and customization for your unique situation.
 
