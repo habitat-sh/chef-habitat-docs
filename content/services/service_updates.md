@@ -1,10 +1,10 @@
 +++
-title = "Single Service Updates"
+title = "Single service updates"
 description = "Update single services at runtime or dynamically"
 
 
 [menu.services]
-    title = "Single Service Updates"
+    title = "Single service updates"
     identifier = "services/service-updates Individual Configuration Updates"
     parent = "services"
     weight = 40

@@ -1,10 +1,10 @@
 +++
-title = "Custom Certificates"
+title = "Custom certificates"
 description = "Handling custom (CA) certificates"
 
 
 [menu.reference]
-    title = "Custom Certificates"
+    title = "Custom certificates"
     identifier = "reference/certs-custom Custom Certs"
     parent = "reference"
 +++

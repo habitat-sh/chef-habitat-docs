@@ -1,9 +1,9 @@
 +++
-title = "Service Restarts"
+title = "Service restarts"
 
 
 [menu.reference]
-    title = "Service Restarts"
+    title = "Service restarts"
     identifier = "reference/service-restarts Service Restarts"
     parent = "reference"
 +++

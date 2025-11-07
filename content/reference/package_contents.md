@@ -1,10 +1,10 @@
 +++
-title = "Package Contents"
-description = "Package Contents"
+title = "Package contents"
+description = "Package contents"
 
 
 [menu.reference]
-    title = "Package Contents"
+    title = "Package contents"
     identifier = "reference/package-contents"
     parent = "reference"
 +++

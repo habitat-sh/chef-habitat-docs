@@ -1,6 +1,6 @@
 +++
 title = "Keys"
-description = "Chef Habitat Security"
+description = "Chef Habitat security"
 
 
 [menu.reference]

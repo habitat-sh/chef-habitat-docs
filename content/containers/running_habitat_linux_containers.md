@@ -1,10 +1,10 @@
 +++
-title = "Running Chef Habitat Linux Containers"
-description = "Running Chef Habitat Linux Containers"
+title = "Running Chef Habitat Linux containers"
+description = "Running Chef Habitat Linux containers"
 
 
 [menu.containers]
-    title = "Running Chef Habitat Linux Containers"
+    title = "Running Chef Habitat Linux containers"
     identifier = "containers/running-habitat-linux-containers Linux Containers"
     parent = "containers"
     weight = 70

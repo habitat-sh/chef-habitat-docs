@@ -1,10 +1,10 @@
 +++
-title = "Application Lifecycle Hooks"
+title = "Application lifecycle hooks"
 description = "Control service runtime actions with application lifecycle hooks"
 
 
 [menu.reference]
-    title = "Application Lifecycle Hooks"
+    title = "Application lifecycle hooks"
     identifier = "reference/application-lifecycle-hooks plan Lifecycle Hooks"
     parent = "reference"
 

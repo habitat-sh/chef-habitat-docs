@@ -1,10 +1,10 @@
 +++
-title = "Promote Packages"
+title = "Promote packages"
 description = "Best practices for promoting packages in channels for building and testing code changes as part of continuous deployment with channel tags"
 
 
 [menu.packages]
-    title = "Promoting Packages"
+    title = "Promoting packages"
     identifier = "packages/promote Promoting Packages"
     parent = "packages"
     weight = 20

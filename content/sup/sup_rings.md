@@ -1,10 +1,10 @@
 +++
-title = "Setting Up a Ring"
-description = "Setting Up a Ring"
+title = "Setting up a ring"
+description = "Setting up a ring"
 
 
 [menu.sup]
-    title = "Setting Up a Ring"
+    title = "Setting up a ring"
     identifier = "supervisors/sup-rings"
     parent = "supervisors"
     weight = 50

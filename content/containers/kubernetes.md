@@ -1,6 +1,6 @@
 +++
 title = "Kubernetes"
-description = "Export your Chef Habitat package as a Docker and run it on a Kubernetes Pod"
+description = "Export your Chef Habitat package as a Docker and run it on a Kubernetes pod"
 
 
 [menu.containers]

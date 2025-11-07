@@ -1,11 +1,11 @@
 +++
-title = "Origin Membership & RBAC"
+title = "Origin membership & RBAC"
 date = 2020-10-12T13:53:50-07:00
 draft = false
 
 
 [menu.origins]
-    title = "Origin Membership & RBAC"
+    title = "Origin membership & RBAC"
     identifier = "origins/origin-rbac Builder RBAC"
     parent = "origins"
     weight = 30
