@@ -22,7 +22,7 @@ The two types of Windows containers run under a different level of kernel isolat
 
 ### Windows server containers
 
-These containers, like their Linux counterparts, share the host's kernel. You can expect these containers to start pretty quickly and this is the default container type on Windows Server 2016 hosts.
+These containers, like their Linux counterparts, share the host's kernel. You can expect these containers to start pretty quickly and this is the default container type on Windows Server hosts.
 
 ### Hyper-V containers
 
