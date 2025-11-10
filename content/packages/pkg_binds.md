@@ -78,7 +78,7 @@ The following are scenarios where optional binds may be useful:
 
 ## Service start-up behavior
 
-By default, if the service group that you bind to is not present in the Supervisor network census, or has no live members, your service will not start until the group is present with live members. While this can be desirable behavior in some cases, as with running certain legacy applications, it isn't always desirable, particularly for modern microservice applications, which should be able to gracefully cope with the absence of their networked dependencies.
+By default, if the service group that you bind to isn't present in the Supervisor network census, or has no live members, your service won't start until the group is present with live members. While this can be desirable behavior in some cases, as with running certain legacy applications, it isn't always desirable, particularly for modern microservice applications, which should be able to gracefully cope with the absence of their networked dependencies.
 
 This behavior can be modified using the runtime service option `--binding-mode`. By setting `--binding-mode=relaxed` when loading a service, that service can start immediately, whether there are any members of a bound service group present or not. (Setting `--binding-mode=strict` will give you the previous, start-only-after-all-bound-groups-are-present behavior. This is also the current default. Such a service should have configuration and lifecycle hook templates written in such a way that the service can remain operational (though perhaps with reduced functionality) when there are no live members of a bound service group present in the network census.
 
