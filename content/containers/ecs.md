@@ -14,7 +14,7 @@ Amazon Web Services provides a container management service called [Elastic Cont
 
 ## Elastic Container Registry (ECR)
 
-[Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with `hab pkg export docker` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building `core/mongodb` containers you would use the following command:
+[Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed Docker registry provided by Amazon Web Services. Applications exported to Docker with `hab pkg export container` put the containers into namespaced repositories, so you will need to create these within ECR. For example, if you were building `core/mongodb` containers you would use the following command:
 
 ```bash
 aws ecr create-repository --repository-name core/mongodb
