@@ -78,9 +78,9 @@ The following are scenarios where optional binds may be useful:
 
 ## Service start-up behavior
 
-Prior to Chef Habitat 0.56.0, if the service group that you bound to wasn't present in the Supervisor network census, or had no live members, your service would not start until the group was present with live members. While this can be desirable behavior in some cases, as with running certain legacy applications, it isn't always desirable, particularly for modern microservice applications, which should be able to gracefully cope with the absence of their networked dependencies.
+By default, if the service group that you bind to is not present in the Supervisor network census, or has no live members, your service will not start until the group is present with live members. While this can be desirable behavior in some cases, as with running certain legacy applications, it isn't always desirable, particularly for modern microservice applications, which should be able to gracefully cope with the absence of their networked dependencies.
 
-With 0.56.0, however, this behavior can be modified using the new runtime service option `--binding-mode`. By setting `--binding-mode=relaxed` when loading a service, that service can start immediately, whether there are any members of a bound service group present or not. (Setting `--binding-mode=strict` will give you the previous, start-only-after-all-bound-groups-are-present behavior. This is also the current default, though `relaxed` will be the eventual default for Chef Habitat 1.0.0.). Such a service should have configuration and lifecycle hook templates written in such a way that the service can remain operational (though perhaps with reduced functionality) when there are no live members of a bound service group present in the network census.
+This behavior can be modified using the runtime service option `--binding-mode`. By setting `--binding-mode=relaxed` when loading a service, that service can start immediately, whether there are any members of a bound service group present or not. (Setting `--binding-mode=strict` will give you the previous, start-only-after-all-bound-groups-are-present behavior. This is also the current default. Such a service should have configuration and lifecycle hook templates written in such a way that the service can remain operational (though perhaps with reduced functionality) when there are no live members of a bound service group present in the network census.
 
 ### The difference between required binds, optional binds, and binding mode
 
@@ -100,8 +100,6 @@ Once you've defined both ends of the contract, you can leverage the bind in any 
   ```
 
 Here, `bind.<BINDING_NAME>` will be "truthy" (and can thus be used in boolean expressions) only if the bind has been satisfied, and `bind.<BINDING_NAME>.members` will be an array of only active members.
-
-(Prior to Chef Habitat 0.56.0, `bind.<BINDING_NAME>` was always present, and `bind.<BINDING_NAME>.members` had *all* members, even ones that had left the Supervisor network long ago. This necessitated using the `eachAlive` helper function, instead of just `each`.)
 
 ## Starting a consumer service
 
