@@ -20,7 +20,7 @@ While you can download packages one-at-a-time, it can be more
 convenient to use a file to specify your packages. Two formats are
 recognized: plain text and TOML.
 
-### Plain text download descriptors
+## Plain text download descriptors
 
 The simplest thing you can do is create a plain text file with a
 package identifier on each line, like so:
@@ -45,7 +45,7 @@ Alternatively, you can specify a directory using the `--download-directory` opti
 
 (You can also specify `--channel` and `--target` to further control which specific packages you download; run `hab pkg download --help` for more).
 
-### TOML download descriptors
+## TOML download descriptors
 
 Plain text is fine for simple cases, but has drawbacks.
 For instance, all packages will come from the same channel and will be for the same platform target.
