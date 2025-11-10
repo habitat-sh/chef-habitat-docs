@@ -8,7 +8,7 @@ title = "Service restarts"
     parent = "reference"
 +++
 
-Starting with Chef Habitat 1.6.491, you can configure a service restart backoff period to control how quickly a service is restarted following the failure of an init or run hook. Before this release, if there was a failure of the init or run hook, the supervisor would attempt to restart the service immediately, potentially leading to excessive load on external APIs similar to a denial-of-service attack.
+You can configure a service restart backoff period to control how quickly a service is restarted following the failure of an init or run hook.
 
 ## Overview
 

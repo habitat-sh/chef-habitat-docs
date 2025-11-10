@@ -24,12 +24,6 @@ You can't block the thread in a hook unless it's in the `run` hook. Never call `
 
 [Chef Habitat's runtime configuration settings](service_templates) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
 
-{{< note >}}
-
-In Chef Habitat 0.68.0 and less, some hooks used `_` in their names. This is now deprecated; if you used them, please use `-` instead.
-
-{{< /note >}}
-
 ### file-updated
 
 File location: `<plan>/hooks/file-updated`. This hook is run whenever a configuration file that isn't related to a user or about the state of the service instances is updated.
