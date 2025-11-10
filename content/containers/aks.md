@@ -16,7 +16,7 @@ is a fully managed Kubernetes service running on the Azure platform.
 
 ## Azure Container Registry (ACR)
 
-Azure Container Registry is a managed Docker container registry service used for storing private Docker container images. It's a fully managed Azure resource and gives you local, network-close storage of your container images when deploying to AKS. Chef Habitat Builder has native integration with this service so you can publish your packages directly to Azure Container Registry.
+Azure Container Registry is a managed Docker container registry service used for storing private Docker container images. It's a fully managed Azure resource and gives you local, network-close storage of your container images when deploying to AKS.
 
 In order to do this you need to create an Azure Service Principal that has `Owner` rights
 on your ACR instance. You can do this with the following script, changing the environment

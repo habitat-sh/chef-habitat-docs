@@ -29,7 +29,7 @@ After a successful Chef Habitat package build, images can be pushed to the Conta
 follows: `[HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]`, more details at [this link](https://cloud.google.com/container-registry/docs/pushing-and-pulling):
 
 ```bash
-hab pkg export docker ./results/habskp-hab-gcr-demo-0.1.0-20180710145742-x86_64-linux.hart
+hab pkg export container ./results/habskp-hab-gcr-demo-0.1.0-20180710145742-x86_64-linux.hart
 docker tag habskp/hab-gcr-demo:latest eu.gcr.io/user-project/hab-gcr-demo:latest
 docker push eu.gcr.io/user-project/hab-gcr-demo:latest
 ```
