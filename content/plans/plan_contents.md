@@ -23,7 +23,7 @@ Each package plan should contain a value adhering to the guidelines for each of 
 - `pkg_license` (in [SPDX format](https://spdx.org/licenses/))
 - `pkg_maintainer` in the format of "The Chef Habitat Maintainers <humans@habitat.sh>"
 - `pkg_name` see the section of this document on "Package Name Conventions"
-- `pkg_origin` must be set to `core`
+- `pkg_origin` must be set to the origin that owns the package
 - `pkg_source`
 - `pkg_upstream_url`
 - `pkg_version` must be the complete version number of the software

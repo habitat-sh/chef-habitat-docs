@@ -111,7 +111,7 @@ When writing a plan, it's important to understand that you are defining both how
 
 You may want to create a plan for an application that can run on multiple platform targets. You can create target specific folders beneath either the root of your project or a top level `habitat` folder. Then save the plan, hooks, and configuration templates specific to a single platform all inside of that target specific folder.
 
-For example, an application targeting linux, Linux kernel 2, and Windows may have the following structure:
+For example, an application targeting linux, linux on ARM, and Windows may have the following structure:
 
 ```plain
 app_root/
@@ -119,7 +119,7 @@ app_root/
 |   |   plan.sh
 |   └── hooks/
 |           run
-├── x86_64-linux-kernel2/
+├── aarch64-linux/
 |   |   plan.sh
 |   └── hooks/
 |           run
@@ -153,7 +153,7 @@ Place all plan files inside of a `habitat` parent folder to allow for clean sepa
 
 {{< /note >}}
 
-On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux kernel 2. If your application requires different plans for Linux and Linux Kernel 2, even without hooks and configuration templates, you will need to use target folders for each platform.
+On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux on ARM. If your application requires different plans for Linux and Linux on ARM, even without hooks and configuration templates, you will need to use target folders for each platform.
 
 ### Buildtime workflow
 
@@ -171,7 +171,7 @@ The following sections describe each of these steps in more detail.
 
 #### Create your package identifier
 
-The origin is a place for you to set default privacy rules, store your packages, and collaborate with teammates. For example, the "core" origin is where the core maintainers of Chef Habitat share packages that are foundational to building other packages. If you would like to browse them, they're located in the [core-plans repo](https://github.com/habitat-sh/core-plans), and on [Chef Habitat Builder's Core Origin](https://bldr.habitat.sh/#/pkgs/core).
+The origin is a place for you to set default privacy rules, store your packages, and collaborate with teammates. For example, the "core" origin is where the core maintainers of Chef Habitat share packages that are foundational to building other packages. If you would like to browse them, they're located on [Chef Habitat Builder's Core Origin](https://bldr.habitat.sh/#/pkgs/core).
 
 Creating artifacts for a specific origin requires that you have access to the that origin's private key. The private origin key will be used to sign the artifact when it's built by the `hab plan build` command. Origin keys are kept in `$HOME/.hab/cache/keys` on the host machine when running `hab` as a non-root user and `/hab/cache/keys` when running as root (including in the studio). For more information on origin keys, see [Keys](../reference/keys.md).
 
