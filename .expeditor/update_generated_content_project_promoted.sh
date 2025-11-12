@@ -24,25 +24,33 @@ set -eoux pipefail
 product_key="habitat"
 manifest="https://packages.chef.io/files/${EXPEDITOR_TARGET_CHANNEL}/habitat/latest/manifest.json"
 git_sha="$(curl -s $manifest | jq -r -c ".sha")"
-version="$(curl -s $manifest | jq -r -c ".version")"
 
 # Checkout a new branch
 
 branch="expeditor/update_docs_${product_key}_${git_sha}"
 git checkout -b "$branch"
 
-# Extract generated documentation.
+###
+# Manage Habitat generated pages
+###
+
+# Habitat has two generated files (habitat_cli.md and service_templates.md) that
+# are made during the release pipeline.
+# Those two pages are generated and then pushed up to
+# https://packages.chef.io/files/stable/habitat/latest/generated-documentation.tar.gz
+
+# To add these files to chef-web-docs and doc.chef.io, this script uses curl to pull down the
+# generated-documentation.tar.gz file, and then overwrite the blank pages pulled
+# in by Hugo from github.com/habitat-sh/habitat
+
+# See:
+# - https://github.com/habitat-sh/habitat/pull/7993
+# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/habitat_cli.md
+# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/service_templates.md
 
 curl --silent --output generated-documentation.tar.gz https://packages.chef.io/files/${EXPEDITOR_TARGET_CHANNEL}/habitat/latest/generated-documentation.tar.gz
 tar xvzf generated-documentation.tar.gz --strip-components 1 -C content/reference
 rm generated-documentation.tar.gz
-
-# We use product version numbers for release notes.
-# There's no list of Habitat versions on packages.chef.io, so we store one in assets/habitat-release-versions.json
-# This file is updated every time there's a new release of Habitat.
-
-version_data="$(jq --arg version "$version" 'if index($version) then . else . + [$version] | unique end' assets/habitat-release-versions.json)" && \
-printf "%s" "${version_data}" > assets/habitat-release-versions.json
 
 # Submit a pull request
 
