@@ -44,9 +44,3 @@ A: Yes, you can download packages for offline installation:
 1. Download the appropriate package from [our downloads page](https://www.chef.io/downloads)
 2. Transfer to your air-gapped environment
 3. Install manually following the platform-specific instructions
-
-## Platform integrations
-
-**Q: Does Chef Habitat work with container orchestrators?**
-
-A: Chef Habitat can be used with Kubernetes. See our [Kubernetes documentation](/containers/kubernetes/) for more information.
