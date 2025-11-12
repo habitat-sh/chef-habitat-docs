@@ -63,6 +63,20 @@ identifier = "upgrade"
 title = "Builder"
 identifier = "builder"
 
+    [[builder]]
+    title = "On-Prem Builder"
+    identifier  = "builder/on-prem"
+    parent = "builder"
+    url = "https://docs.chef.io/habitat/on_prem_builder/"
+    weight = "10"
+
+    [[builder]]
+    title = "SaaS Builder"
+    identifier  = "builder/saas"
+    parent = "builder"
+    url = "https://docs.chef.io/habitat/builder_overview/"
+    weight = "20"
+
 [[origins]]
 title = "Origins"
 identifier = "origins"

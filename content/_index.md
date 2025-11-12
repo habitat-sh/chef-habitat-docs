@@ -1,6 +1,6 @@
 +++
 title = "About Chef Habitat"
-linkTitle = "Chef Habitat"
+linkTitle = "Habitat"
 
 [cascade]
   breadcrumbs = true
