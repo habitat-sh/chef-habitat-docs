@@ -3,7 +3,7 @@
 set -eoux pipefail
 
 ###
-# Manage Habitat generated documentation
+# Manage Habitat generated pages
 ###
 
 # Habitat has two generated files (habitat_cli.md and service_templates.md) that
@@ -11,13 +11,17 @@ set -eoux pipefail
 # Those two pages are generated and then pushed up to
 # https://packages.chef.io/files/stable/habitat/latest/generated-documentation.tar.gz
 
-# To add these files to this documentation, this script uses curl to pull down the
-# generated-documentation.tar.gz file, and then extract and overwrite the existing pages in this repo.
+# This script fetches these files and adds them to a PR against the main branch
+# so that the documentation site is kept up to date with the latest Habitat release.
 
 # See:
 # - https://github.com/habitat-sh/habitat/pull/7993
-# - https://github.com/habitat-sh/chef-habitat-docs/blob/main/content/reference/habitat_cli.md
-# - https://github.com/habitat-sh/chef-habitat-docs/blob/main/content/reference/service_templates.md
+# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/habitat_cli.md
+# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/service_templates.md
+# - https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/update_documentation.sh
+# - https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-cli-docs.js
+# - https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-template-reference.js
+# - https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/finish_release/update_api_docs.sh
 
 # Define variables
 
@@ -30,23 +34,7 @@ git_sha="$(curl -s $manifest | jq -r -c ".sha")"
 branch="expeditor/update_docs_${product_key}_${git_sha}"
 git checkout -b "$branch"
 
-###
-# Manage Habitat generated pages
-###
-
-# Habitat has two generated files (habitat_cli.md and service_templates.md) that
-# are made during the release pipeline.
-# Those two pages are generated and then pushed up to
-# https://packages.chef.io/files/stable/habitat/latest/generated-documentation.tar.gz
-
-# To add these files to chef-web-docs and doc.chef.io, this script uses curl to pull down the
-# generated-documentation.tar.gz file, and then overwrite the blank pages pulled
-# in by Hugo from github.com/habitat-sh/habitat
-
-# See:
-# - https://github.com/habitat-sh/habitat/pull/7993
-# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/habitat_cli.md
-# - https://github.com/chef/chef-web-docs/blob/main/content/habitat/service_templates.md
+# Download and extract the generated documentation files
 
 curl --silent --output generated-documentation.tar.gz https://packages.chef.io/files/${EXPEDITOR_TARGET_CHANNEL}/habitat/latest/generated-documentation.tar.gz
 tar xvzf generated-documentation.tar.gz --strip-components 1 -C content/reference
