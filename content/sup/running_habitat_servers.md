@@ -49,5 +49,5 @@ As with Linux, you must first [install Chef Habitat](/install/) on the machine. 
 On Windows, you can run the Supervisor as a Windows Service. You can use the `windows-service` Chef Habitat package to host the Supervisor inside the Windows Service Control Manager:
 
 ```powershell
-hab pkg install core/windows-service
+hab pkg install chef/windows-service
 ```

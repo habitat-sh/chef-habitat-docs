@@ -10,7 +10,7 @@ description = "Controlling Supervisors remotely"
     weight = 120
 +++
 
-Since the 0.56.0 Supervisor release, it's possible to command and control one or more Supervisors from a remote location. Before this, the only way to interact with a Supervisor was by taking action directly on machine on which the Supervisor was running. While that's still an option (and is indeed the default behavior), remote command and control opens up more possibilities for using and managing Chef Habitat.
+It's possible to command and control one or more Supervisors from a remote location. The default way to interact with a Supervisor is by taking action directly on the machine on which the Supervisor is running. Remote command and control opens up more possibilities for using and managing Chef Habitat.
 
 Here, we'll discuss how this is implemented, how it can be enabled in your Chef Habitat deployments, and how it can be used.
 
@@ -97,11 +97,3 @@ In order to target a remote Supervisor, you must have the appropriate shared sec
 ## Local Supervisor interactions
 
 Without specifying `--remote-sup`, the `hab` CLI will always try to connect to a Supervisor running on the current host. It must still use the correct shared secret, however. As a last resort, if no secret is found in either a configuration file or an environment variable, the `hab` CLI will attempt to read one from `/hab/sup/default/CTL_SECRET`. In this way, it will use the same secret that the local Supervisor is using, enabling the request to proceed.
-
-## Protocol versioning and `Hab` versions
-
-Before the 0.56.0 release of Chef Habitat, the interaction between `hab` and the Supervisor wasn't formally defined, and relied on making changes to files on disk. As a result, it was often possible to continue interacting with a newer Supervisor using an older version of the `hab` CLI. This was particularly noticeable when the Supervisor was configured to automatically update itself; the Supervisor would continue upgrading over time, while the `hab` CLI binary remained at whatever version it was when it was originally installed, because each of the two executable were distributed in separate packages.
-
-For the near term, `hab` and the Supervisor are still distributed separately, as `core/hab` and `core/hab-sup`, respectively. To interact with 0.56.0 or later Supervisors, users will need to use an 0.56.0 or later `hab` binary, even if they wish to continue interacting with their Supervisors only locally. This may require a manual upgrade for the `hab` binary, which can be done by running `hab pkg install core/hab -b -f`. In the near future, we hope to consolidate all of Chef Habitat's functionality into a single package (if not a single binary), which will make it easier to manage going forward.
-
-The interaction protocol is defined using Google's [Protocol Buffers](https://developers.google.com/protocol-buffers/); it's our explicit goal that all future changes to the protocol will happen in a backward-compatible way.
