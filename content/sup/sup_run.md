@@ -121,12 +121,6 @@ To resume running a service which has been loaded but stopped (with the `hab svc
 hab svc start core/redis
 ```
 
-{{< note >}}
-
-In Chef Habitat versions prior to 0.56.0, `hab svc start` could also be used to load up a service if it wasn't already loaded. In 0.56.0 and later, however, this has changed; `hab svc start` can only operate on services that have previously been loaded.
-
-{{< /note >}}
-
 ## Querying the Supervisor for service status
 
 You can query all services currently loaded or running under the local Supervisor using the `hab svc status` command. This command will list all services loaded by the Supervisor along with their current state. The `status` command includes the version and release of the service and for services that are running, it will include the `PID` of the running service.

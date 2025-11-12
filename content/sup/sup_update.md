@@ -28,7 +28,7 @@ Chef Habitat provides a couple of ways to update a Supervisor without stopping y
 While an older version of the Supervisor is running, install the newer Supervisor into your local Chef Habitat package repository:
 
 ```bash
-hab pkg install core/hab-sup
+hab pkg install chef/hab-sup
 ```
 
 This doesn't update the running Supervisor.
