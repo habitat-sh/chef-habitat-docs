@@ -1,9 +1,9 @@
 +++
-title = "About Services"
+title = "About Chef Habitat services"
 LinkTitle = "Services"
 
 [menu.services]
-    title = "About Services"
+    title = "About services"
     identifier = "services/About Services"
     parent = "services"
     weight = 10

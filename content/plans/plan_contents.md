@@ -1,11 +1,11 @@
 +++
-title = "Plan Contents"
-description = "Best Practices for Plans"
+title = "Plan contents"
+description = "Best practices for plans"
 summary = "Best practices for writing production-quality Chef Habitat plans, including metadata, naming conventions, callbacks, and lifecycle hooks."
 
 
 [menu.plans]
-    title = "Plan Contents"
+    title = "Plan contents"
     identifier = "plans/plan-contents"
     parent = "plans"
     weight = 30
@@ -23,7 +23,7 @@ Each package plan should contain a value adhering to the guidelines for each of 
 - `pkg_license` (in [SPDX format](https://spdx.org/licenses/))
 - `pkg_maintainer` in the format of "The Chef Habitat Maintainers <humans@habitat.sh>"
 - `pkg_name` see the section of this document on "Package Name Conventions"
-- `pkg_origin` must be set to `core`
+- `pkg_origin` must be set to the origin that owns the package
 - `pkg_source`
 - `pkg_upstream_url`
 - `pkg_version` must be the complete version number of the software
@@ -101,7 +101,7 @@ The Supervisor dynamically invokes hooks at run-time, triggered by an applicatio
 - Don't edit anything in `/hab/` directly.
 - Don't write to anything in `/hab/` directly.
 
-## README.md
+## Readme.md
 
 All plans need a `README.md`. Items to strongly consider including:
 

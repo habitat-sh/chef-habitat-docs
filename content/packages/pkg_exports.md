@@ -1,10 +1,10 @@
 +++
-title = "Exporting Packages"
-description = "Export Chef Habitat packages to Docker or as a tarball "
+title = "Exporting packages"
+description = "Export Chef Habitat packages to Docker or as a tarball"
 
 
 [menu.packages]
-    title = "Exporting Packages"
+    title = "Exporting packages"
     identifier = "packages/pkg-exports Export Chef Habitat Packages"
     parent = "packages"
     weight = 40
@@ -41,12 +41,12 @@ You can create a Docker container image for any package by performing the follow
 1. [Build](pkg_build) the Chef Habitat package from which you want to create a Docker container image and then run the Docker exporter on the package.
 
     ```bash
-    hab pkg export docker ./results/<hart-filename>.hart
+    hab pkg export container ./results/<hart-filename>.hart
     ```
 
     {{< note >}}
 
-    The command above is for local testing only. If you have uploaded your package to Builder, you can export it by calling `hab pkg export docker origin/package`. The default is to use the latest stable release; however, you can override that by specifying a different channel in an optional flag.
+    The command above is for local testing only. If you have uploaded your package to Builder, you can export it by calling `hab pkg export container origin/package`. The default is to use the latest stable release; however, you can override that by specifying a different channel in an optional flag.
 
     On Linux, exporting your Chef Habitat artifact to a Docker image requires the Docker Engine supplied by Docker. Packages from distribution-specific or otherwise alternative providers are currently not supported.
 

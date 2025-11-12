@@ -1,6 +1,6 @@
 +++
 title = "Running Chef Habitat Supervisors"
-description = "Running Chef Habitat Packages"
+description = "Running Chef Habitat packages"
 
 
 [menu.sup]
@@ -120,12 +120,6 @@ To resume running a service which has been loaded but stopped (with the `hab svc
 ```bash
 hab svc start core/redis
 ```
-
-{{< note >}}
-
-In Chef Habitat versions prior to 0.56.0, `hab svc start` could also be used to load up a service if it wasn't already loaded. In 0.56.0 and later, however, this has changed; `hab svc start` can only operate on services that have previously been loaded.
-
-{{< /note >}}
 
 ## Querying the Supervisor for service status
 

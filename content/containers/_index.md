@@ -1,11 +1,11 @@
 +++
-title = "Chef Habitat and Containers"
-description = "Chef Habitat and Containers"
+title = "Chef Habitat and containers"
+description = "Chef Habitat and containers"
 linkTitle = "Containers"
 list_pages = true
 
 [menu.containers]
-    title = "Chef Habitat and Containers"
+    title = "Chef Habitat and containers"
     identifier = "containers/containers"
     parent = "containers"
     weight = 10
@@ -24,4 +24,4 @@ Finally, [Chef Habitat's HTTP API](../services/monitor_services) allows all of y
 
 If a brand new vulnerability is revealed, [Chef Habitat's HTTP API](../services/monitor_services) makes it easy to programmatically inspect and audit the entire toolchain of your runtime environment without needing to worry about how your containers got built in the first place.
 
-If your situation requires it, Chef Habitat makes it simple to switch from containerized to non-containerized workloads. This is because Chef Habitat packages only have a requirement on the kernel version of your operating system. (Linux: kernel 2.6.32 or later, Windows: Windows Server 2008 R2 or later and Windows 7 64-bit or later). You can take the same `.hart` file you use to export to a Docker container and run it on a virtual machine or bare metal. By only requiring the kernel, Chef Habitat gives you the ability to switch container formats or to switch to non-containerized workloads without significant rework.
+If your situation requires it, Chef Habitat makes it simple to switch from containerized to non-containerized workloads. This is because Chef Habitat packages only have a requirement on the kernel version of your operating system. You can take the same `.hart` file you use to export to a Docker container and run it on a virtual machine or bare metal. By only requiring the kernel, Chef Habitat gives you the ability to switch container formats or to switch to non-containerized workloads without significant rework.

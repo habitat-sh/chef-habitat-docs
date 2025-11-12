@@ -1,16 +1,16 @@
 +++
-title = "Supervisor Log Configuration"
+title = "Supervisor log configuration"
 description = "Dynamically adjust the logging configuration of a running Supervisor"
 
 
 [menu.sup]
-    title = "Supervisor Log Configuration"
+    title = "Supervisor log configuration"
     identifier = "supervisors/sup-log-configuration"
     parent = "supervisors"
     weight = 90
 +++
 
-With the 0.83.0 release of the Chef Habitat Supervisor, it's possible to have greater control over logging output, including the ability to dynamically adjust the logging configuration of a running Supervisor. The two main ways of configuring logging are using environment variables and using a configuration file. Each has its own strengths and weaknesses.
+The two main ways of configuring logging are using environment variables and using a configuration file. Each has its own strengths and weaknesses.
 
 ## Environment variable configuration
 
@@ -40,7 +40,7 @@ For example, `RUST_LOG=info,habitat_sup::manager=debug,tokio_reactor=error` will
 
 ## Dynamic, file-based configuration
 
-For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. The `log4rs` configuration documentation can be found [here](https://docs.rs/log4rs/0.8.3/log4rs/#configuration).
+For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. The `log4rs` configuration documentation can be found [here](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).
 
 Place an appropriate YAML configuration file at `/hab/sup/default/config/log.yml` when the Supervisor starts up if you wish to take advantage of this style of configuration. Note that if such a file is present, it will take priority over any `RUST_LOG` environment variable that may also be present.
 
@@ -58,7 +58,7 @@ appenders:
   stdout:
     kind: console
     encoder:
-      # See https://docs.rs/log4rs/0.8.3/log4rs/#configuration for
+      # See https://docs.rs/log4rs/1.4.0/log4rs/#configuration for
       # formatting options
       pattern: "[{d(%Y-%m-%dT%H:%M:%SZ)(utc)} {l} {module}] {message}{n}"
 
@@ -84,4 +84,4 @@ loggers:
 
 Here, `loggers` is a map of maps. Map keys are module paths (as described above in the `RUST_LOG` environment variable documentation), while the values are maps with additional configuration. Here, we're only setting the logging level, but more advanced configurations are possible.
 
-Users are encouraged to read the [log4rs configuration documentation](https://docs.rs/log4rs/0.8.3/log4rs/#configuration) for further details.
+Users are encouraged to read the [log4rs configuration documentation](https://docs.rs/log4rs/1.4.0/log4rs/#configuration) for further details.

@@ -1,11 +1,11 @@
 +++
-title = "Leader Elections"
+title = "Leader elections"
 date = 2020-10-26T19:05:42-07:00
 draft = false
 
 
 [menu.sup]
-    title = "Leader Elections"
+    title = "Leader elections"
     identifier = "supervisors/Leader Elections"
     parent = "supervisors"
     weight = 40

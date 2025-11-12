@@ -63,19 +63,6 @@ identifier = "upgrade"
 title = "Builder"
 identifier = "builder"
 
-    [[builder]]
-    title = "SaaS Builder"
-    identifier = "builder/saas"
-    parent = "builder"
-    weight = "20"
-
-        [[builder]]
-        title = "Builder API"
-        identifier = "builder/saas/api"
-        parent = "builder/saas"
-        weight = "900"
-        url = "/reference/builder_api"
-
 [[origins]]
 title = "Origins"
 identifier = "origins"
@@ -113,3 +100,4 @@ identifier = "containers"
 [[release_notes]]
 title = "Release notes"
 identifier = "release_notes"
+url = "https://docs.chef.io/release_notes_habitat/"

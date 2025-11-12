@@ -1,11 +1,11 @@
 +++
-title = "Binary Wrapper Packages"
+title = "Binary wrapper packages"
 description = "Tips and tricks for managing hardcoded library dependencies in binaries"
 summary = "Tips for creating Chef Habitat plans for binary-only applications, including handling hardcoded dependencies and fixing interpreters."
 
 
 [menu.plans]
-    title = "Binary Wrapper Packages"
+    title = "Binary wrapper packages"
     identifier = "plans/binary-wrapper"
     parent = "plans"
 

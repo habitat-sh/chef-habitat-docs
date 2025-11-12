@@ -1,10 +1,10 @@
 +++
-title = "Configuration Helpers"
+title = "Configuration helpers"
 description = "Define dynamic plan configuration settings with plan helpers"
 
 
 [menu.reference]
-    title = "Plan Configuration Helpers"
+    title = "Plan configuration helpers"
     identifier = "reference/plan-helpers plan Tuning"
     parent = "reference"
 +++

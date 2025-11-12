@@ -1,10 +1,10 @@
 +++
-title = "Application Lifecycle Hooks"
+title = "Application lifecycle hooks"
 description = "Control service runtime actions with application lifecycle hooks"
 
 
 [menu.reference]
-    title = "Application Lifecycle Hooks"
+    title = "Application lifecycle hooks"
     identifier = "reference/application-lifecycle-hooks plan Lifecycle Hooks"
     parent = "reference"
 
@@ -23,12 +23,6 @@ You can't block the thread in a hook unless it's in the `run` hook. Never call `
 ## Runtime settings
 
 [Chef Habitat's runtime configuration settings](service_templates) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
-
-{{< note >}}
-
-In Chef Habitat 0.68.0 and less, some hooks used `_` in their names. This is now deprecated; if you used them, please use `-` instead.
-
-{{< /note >}}
 
 ### file-updated
 

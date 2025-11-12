@@ -1,10 +1,10 @@
 +++
-title = "Service Group Topologies"
-description = "Service Group Topologies"
+title = "Service group topologies"
+description = "Service group topologies"
 
 
 [menu.services]
-    title = "Service Group Topologies"
+    title = "Service group topologies"
     identifier = "services/Service Group Topologies"
     parent = "services"
     weight = 30
