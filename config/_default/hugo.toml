@@ -33,9 +33,9 @@ timeZone = 'America/New_York'
         title = true
     [markup.goldmark.renderHooks]
       [markup.goldmark.renderHooks.image]
-        enableDefault = true
+        useEmbedded = "fallback"
       [markup.goldmark.renderHooks.link]
-        enableDefault = false
+        useEmbedded = "never"
     [markup.goldmark.renderer]
       hardWraps = false
       unsafe = true
