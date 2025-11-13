@@ -59,6 +59,8 @@ The multi-channel package refresh approach manages Habitat package updates and l
 
 Chef maintains the following origins and release channels:
 
+<!-- markdownlint-disable MD006 MD007 -->
+
 core
 : The core origin has packages for common dependencies and compilers and is maintained by Progress Chef.
 
