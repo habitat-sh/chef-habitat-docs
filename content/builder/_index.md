@@ -3,9 +3,6 @@ title = "About Chef Habitat Builder"
 description = "Chef Habitat Builder is Chef's Application Delivery Enterprise hub"
 linkTitle = "Builder"
 
-layout = "redirect"
-redirect_url = "https://docs.chef.io/habitat/builder_overview/"
-
 [menu.builder]
     title = "About Habitat Builder"
     identifier = "builder/about"

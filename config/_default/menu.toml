@@ -67,15 +67,43 @@ identifier = "builder"
     title = "On-Prem Builder"
     identifier  = "builder/on-prem"
     parent = "builder"
-    url = "https://docs.chef.io/habitat/on_prem_builder/"
-    weight = "10"
+    weight = "20"
+
+        [[builder]]
+        title = "Install"
+        identifier  = "builder/on-prem/install"
+        parent = "builder/on-prem"
+        weight = "20"
+
+        [[builder]]
+        title = "Configure"
+        identifier  = "builder/on-prem/configure"
+        parent = "builder/on-prem"
+        weight = "30"
+
+        [[builder]]
+        title = "Manage"
+        identifier  = "builder/on-prem/manage"
+        parent = "builder/on-prem"
+        weight = "40"
+
+        [[builder]]
+        title = "Origins"
+        identifier  = "builder/on-prem/origins"
+        parent = "builder/on-prem"
+        weight = "50"
+
+        [[builder]]
+        title = "Packages"
+        identifier  = "builder/on-prem/packages"
+        parent = "builder/on-prem"
+        weight = "50"
 
     [[builder]]
     title = "SaaS Builder"
     identifier  = "builder/saas"
     parent = "builder"
-    url = "https://docs.chef.io/habitat/builder_overview/"
-    weight = "20"
+    weight = "30"
 
 [[origins]]
 title = "Origins"
@@ -110,6 +138,10 @@ identifier = "reference"
 [[containers]]
 title = "Containers"
 identifier = "containers"
+
+[[sup_packages]]
+title = "Supported packages"
+identifier = "sup_packages"
 
 [[release_notes]]
 title = "Release notes"
