@@ -40,7 +40,7 @@ For example, `RUST_LOG=info,habitat_sup::manager=debug,tokio_reactor=error` will
 
 ## Dynamic, file-based configuration
 
-For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. The `log4rs` configuration documentation can be found [here](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).
+For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. See the [`log4rs` configuration documentation](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).
 
 Place an appropriate YAML configuration file at `/hab/sup/default/config/log.yml` when the Supervisor starts up if you wish to take advantage of this style of configuration. Note that if such a file is present, it will take priority over any `RUST_LOG` environment variable that may also be present.
 
