@@ -22,7 +22,7 @@ This is a list of all environment variables that can be used to modify the opera
 | `HAB_BLDR_URL` | build system, Supervisor | `https://bldr.habitat.sh` | Sets an alternate default endpoint for communicating with Builder. Used by the Chef Habitat build system and the Supervisor |
 | `HAB_DOCKER_OPTS` | build system | no default | When running a Studio on a platform that uses Docker (macOS), additional command line options to pass to the `docker` command. |
 | `HAB_LICENSE` | build system, Supervisor, exporters | no default | Used to accept the [Chef EULA](https://docs.chef.io/licensing/accept/#accept-the-chef-eula). See [Accepting the Chef License](https://docs.chef.io/licensing/accept/) for valid values. |
-| `HAB_LISTEN_CTL` | Supervisor | 127.0.0.1:9632 | The listen address for the Control Gateway. This also affects `hab` commands that interact with the Supervisor with the Control Gateway, for example: `hab sup status`. |
+| `HAB_LISTEN_CTL` | Supervisor | 127.0.0.1:9632 | The listen address for the Control Gateway. This also affects `hab` commands that interact with the Supervisor with the Control Gateway, for example: `hab svc status`. |
 | `HAB_LISTEN_GOSSIP` | Supervisor | 0.0.0.0:9638 | The listen address for the Gossip System Gateway |
 | `HAB_LISTEN_HTTP` | Supervisor | 0.0.0.0:9631 | The listen address for the HTTP Gateway |
 | `HAB_NOCOLORING` | build system | no default | If set to the lowercase string `"true"` this environment variable will unconditionally disable text coloring where possible |
