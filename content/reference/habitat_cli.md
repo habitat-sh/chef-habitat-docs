@@ -2117,7 +2117,6 @@ hab sup <COMMAND>
 | [hab sup depart](#hab-sup-depart) | Depart a Supervisor from the gossip ring; kicking and banning the target from joining again with the same member-id |
 | [hab sup restart](#hab-sup-restart) | Restart a Supervisor without restarting its services |
 | [hab sup secret](#hab-sup-secret) | Commands relating to a Habitat Supervisor's Control Gateway secret |
-| [hab sup status](#hab-sup-status) | Query the status of Habitat services |
 | [hab sup sh](#hab-sup-sh) | Start an interactive Bourne-like shell |
 | [hab sup bash](#hab-sup-bash) | Start an interactive Bash-like shell |
 | [hab sup term](#hab-sup-term) | Gracefully terminate the Habitat Supervisor and all of its running services |
@@ -2221,29 +2220,6 @@ Commands relating to a Habitat Supervisor's Control Gateway secret
 
 ```
 [path]  The directory to store the generated private key and certificate [default: hab/cache/keys/ctl]
-```
-
-
-
----
-
-### hab sup status
-
-Query the status of Habitat services
-
-
-
-**OPTIONS**
-
-```
--r, --remote-sup <REMOTE_SUP>  Address to a remote Supervisor's Control Gateway [default: 127.0.0.1:9632]
--h, --help                     Print help
-```
-
-**ARGUMENTS**
-
-```
-[PKG_IDENT]  A package identifier (ex: core/redis, core/busybox-static/1.42.2)
 ```
 
 
