@@ -87,10 +87,6 @@ The exit code returned from an `install` hook will be remembered. If a previousl
 
 An `install` hook, unlike other hooks, won't have access to any census data exposed with binds or the `svc` namespace. Also, configuration in `svc_config_path`isn't accessible to an `install` hook. If an `install` hook needs to use templated configuration files, templates located in the `svc_config_install_path` may be referenced. This location will contain rendered templates in a package's `config_install` folder. Finally, any configuration updates made during a service's runtime that would alter an `install` hook or any configuration template in `svc_config_install_path` won't cause a service to reload.
 
-### reload
-
-File location: `<plan>/hooks/reload`. This hook is now deprecated; you should use `reconfigure` instead (see below). To provide backward compatibility, if a `reload` hook is provided, the service will restart in response to configuration changes.
-
 ### reconfigure
 
 File location: `<plan>/hooks/reconfigure`. A `reconfigure` hook can be written for services that can respond to changes in `<plan>/config` without requiring a restart. This hook will execute **instead** of the default behavior of restarting the process. `{{pkg.svc_pid_file}}` can be used to get the `PID` of the service.
