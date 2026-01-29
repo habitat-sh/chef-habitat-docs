@@ -25,14 +25,9 @@ Role-Based Access Control (RBAC) membership is a token-based authentication proc
 
 RBAC Origin Member Roles:
 
-Read-Only
-: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users can't add to, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
-
-Member
-: In addition to 'Read-Only' access, an origin 'Member' can upload and build packages in the 'unstable' channel, but they can't promote packages to other channels.
-
-Maintainer
-: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but can't add, update or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they can't otherwise change origin membership--their own or anybody else's. 'Maintainers' can neither read nor write origin secrets.
+- Read-Only: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users can't add, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
+- Member: In addition to 'Read-Only' access, an origin 'Member' can upload and build packages in the 'unstable' channel, but they can't promote packages to other channels.
+- Maintainer: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but can't add, update, or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they can't otherwise change origin membership (their own or anybody else's). 'Maintainers' can neither read nor write origin secrets.
 
 Administrator
 : In addition to 'Maintainer' access, the 'Administrator' role has write access to origin keys and can add, update, and delete origin membership. An 'Administrator' can read and write origin secrets.
@@ -80,7 +75,7 @@ Owner
 
 ## Manage origin membership
 
-The `hab` CLI supports RBAC. You need to use the CLI to manage origin roles, you can't manage origin roles from the Chef Habitat Builder site.
+The `hab` CLI supports RBAC. You must use the CLI to manage origin roles. You can't manage origin roles from the Chef Habitat Builder site.
 
 ![Manage origin membership](/images/habitat/origin-members.png)
 
