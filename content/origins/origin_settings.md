@@ -13,7 +13,7 @@ draft = false
 
 The _Origin Settings_ tab contains the default package settings for all packages in the origin.
 
-Everyone with origin membership can see the _Settings_ tab, but only origin administrators and owners can add, update, or delete settings content.
+Everyone with origin membership can see the _Settings_ tab, but only origin administrators and owners can add, update, or delete settings.
 
 | Settings Actions           | Read-Only | Member | Maintainer | Administrator | Owner |
 | -------------------------- | --------- | ------ | ---------- | ------------- | ----- |
@@ -32,4 +32,4 @@ The _Default Package Settings_ define the visibility of build artifacts (.hart f
 * Public packages are visible in search results and can be used by every Chef Habitat Builder user
 * Private artifacts don't appear in search results and are available only to users with origin membership
 
-Change the default setting for an origin by switching from **Public Packages** to **Private Packages**. The default setting is required for each origin. Packages can have different default visibility settings than the origin to which they belong. You can change the default visibility setting in for an individual packages in the package setting tab (Builder > Origin > Package > Settings).
+Change the default setting for an origin by switching from **Public Packages** to **Private Packages**. The default setting is required for each origin. Packages can have different default visibility settings than the origin to which they belong. You can change the default visibility setting for an individual package in the package setting tab (Builder > Origin > Package > Settings).

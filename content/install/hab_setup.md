@@ -19,9 +19,9 @@ The `hab cli setup` command guides you through the essential configuration steps
 hab cli setup
 ```
 
-During the setup process, you will be prompted for the following:
+During the setup process, you're prompted for the following:
 
-- A Habitat [origin](/origins/), which is a unique namespace for your packages. Origins organize packages in [Chef Habitat Builder](https://docs.chef.io/habitat/builder/saas/). You can use your GitHub username or organization name for your origin. The origin name will prefix all the packages you create.
+- A Habitat [origin](/origins/), which is a unique namespace for your packages. Origins organize packages in [Chef Habitat Builder](https://docs.chef.io/habitat/builder/saas/). You can use your GitHub username or organization name for your origin. The origin name prefixes all the packages you create.
 
 - A cryptographic key pair for your origin:
 

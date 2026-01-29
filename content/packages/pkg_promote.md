@@ -48,9 +48,9 @@ By using both channels and either the `at-once` or `rolling` [update strategies]
 Using the infographic as a guide, a typical continuous deployment scenario would be as follows:
 
 1. You build a new version of your package either through Builder or through a local Studio environment and then upload it to Builder.
-2. When you are ready to roll out a new version of the package, you promote that package to the channel corresponding to the intended environment (for example `dev`). You can have multiple service groups in the same environment pointing to different channels, or the same channel.
+2. When you're ready to roll out a new version of the package, you promote that package to the channel corresponding to the intended environment, for example, `dev`. You can have multiple service groups in the same environment pointing to different channels, or the same channel.
 3. An existing set of running Supervisors in that service group see that the channel they're subscribed to has an update, so they update their underlying Chef Habitat package, coordinating with one another according to their update strategy, and restart their service.
-4. When you are ready, you then promote that version of your package to a new channel (for example `acceptance`). The running Supervisors in that group see the update and perform the same service update as in step 3. You repeat steps 3 and 4 until your package makes its way through your continuous deployment pipeline.
+4. When you're ready, you then promote that version of your package to a new channel, for example, `acceptance`. The running Supervisors in that group see the update and perform the same service update as in step 3. You repeat steps 3 and 4 until your package makes its way through your continuous deployment pipeline.
 
 Configuring a Supervisor's update strategy to point to a channel ensures that new versions of the application don't get deployed until the channel is updated, thereby preventing unstable versions from reaching environments for which they aren't intended.
 
@@ -60,7 +60,7 @@ To start a service with an update strategy and pointing to a channel, specify th
 hab svc load <ORIGIN>/<PACKAGE> --strategy rolling --channel test
 ```
 
-While that service is running, update your package, rebuild it, and then promote it to the same channel that the previous release of that service is currently running in (for example `test`). Those running instances should now update according to their update strategy.
+While that service is running, update your package, rebuild it, and then promote it to the same channel that the previous release of that service is currently running in, for example, `test`. Those running instances should now update according to their update strategy.
 
 ### Demoting a package from a channel
 
@@ -70,9 +70,7 @@ If you need to un-associate a channel from a specific package release, you can d
 hab pkg demote -z <TOKEN> <ORIGIN>/<PACKAGE>/<VERSION>/<RELEASE> test
 ```
 
-The Builder UI for that package release and `hab pkg channels` will both reflect the removal of that channel.
-
-If you are running a package in a specific channel and demote
+The Builder UI for that package release and `hab pkg channels` both reflect the removal of that channel.
 
 {{< note >}}
 

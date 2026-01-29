@@ -12,9 +12,9 @@ description = "Building packages in the Studio"
 
 When you've finished creating your plan and call `build` in Chef Habitat Studio, the build script does following steps:
 
-1. Checks that Studio has the private origin key is available to sign the artifact.
+1. Checks that Studio has the private origin key available to sign the artifact.
 1. Downloads the source code from the location in `pkg_source`, if specified
-1. Validates checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
+1. Validates the checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
 1. Extracts the source into a temporary cache.
 1. Builds and installs the binary or library using `make` and `make install` for Linux-based builds.
 
@@ -141,7 +141,7 @@ By default, when Habitat builds a plan, it pulls all `core` origin dependencies 
 
 {{< note >}}
 
-The default channel for non-`core` origin dependencies is the `stable` channel. You can changes this channel using the `HAB_BLDR_CHANNEL` environment variable.
+The default channel for non-`core` origin dependencies is the `stable` channel. You can change this channel using the `HAB_BLDR_CHANNEL` environment variable.
 
 {{< /note >}}
 
@@ -170,7 +170,7 @@ hab studio enter
 build yourapp
 ```
 
-The build system will proceed until the point where the `attach` function is invoked, and then drop you into a limited shell:
+The build system proceeds until the point where the `attach` function is invoked, and then drops you into a limited shell:
 
 ```bash
 # Attaching to debugging session

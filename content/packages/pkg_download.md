@@ -40,7 +40,7 @@ To download these packages (and their dependencies), save that to a file named `
 hab pkg download --file=supervisor.txt
 ```
 
-This will download the packages into your existing Habitat cache directory.
+This downloads the packages into your existing Habitat cache directory.
 Alternatively, you can specify a directory using the `--download-directory` option.
 
 (You can also specify `--channel` and `--target` to further control which specific packages you download; run `hab pkg download --help` for more).
@@ -101,5 +101,5 @@ packages = [
 
 This format allows us to specify multiple subsets of packages from different channels and for different architectures.
 Here, we're pulling down all the core service packages, which run on Linux, but are also pulling down the platform-specific versions of the cli and supervisor packages.
-Without this format, we would have to invoke `hab pkg download` multiple times with different parameters.
+Without this format, we would need to invoke `hab pkg download` multiple times with different parameters.
 The file allows us to capture our full intention in one place.

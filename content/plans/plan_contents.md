@@ -66,7 +66,7 @@ You can read more about [basic plan settings](plan_writing) here. The minimum re
 
 ## Callbacks
 
-You can read more about [callbacks](../reference/build_phase_callbacks.md) here. The minimum requirement for a core plan are:
+You can read more about [callbacks](../reference/build_phase_callbacks.md) here. The minimum requirements for a core plan are:
 
 ### Callback do's
 
@@ -78,7 +78,7 @@ You can read more about [callbacks](../reference/build_phase_callbacks.md) here.
 - Don't call `exit` within a build phase. In a `plan.sh`, you should instead return an exit code such as `return 1` for failure, and `return 0` for success. In a `plan.ps1` you should call `Write-Exception` or `throw` an exception upon failure.
 - Don't use `pkg_source` unless you are downloading something as a third party.
 - Don't shell out to `hab` from inside of a callback. If you think you want to, you should use a [utility function](../reference/plan_helpers.md) instead.
-- Don't call any functions or helper sthat begin with an underscore, for example `_dont_call_this_function()`. Those are internal for internal builder functions and aren't supported for external use. They will break your plan if you call them.
+- Don't call any functions or helpers that begin with an underscore, for example, `_dont_call_this_function()`. Those are internal for internal builder functions and aren't supported for external use. They will break your plan if you call them.
 - Don't run any code or run anything outside of a build phase or a function.
 
 ## Application lifecycle hooks
@@ -87,7 +87,7 @@ The Supervisor dynamically invokes hooks at run-time, triggered by an applicatio
 
 ### Lifecycle hook do's
 
-- Do redirect `stderr` to `stdout` (for example with `exec 2>&1` at the start of the hook)
+- Do redirect `stderr` to `stdout`, for example, with `exec 2>&1` at the start of the hook
 - Do call the command to execute with `exec <command> <options>` rather than running the command directly in a Linux targeted hook. This ensures the command is executed in the same process and that the service will restart correctly on configuration changes.
 - You can write to the `/var/`, `/static/`, and `/data/` directories. Access these with your `runtime configuration setting` variable.
 

@@ -14,7 +14,7 @@ This section covers frequently asked questions about downloading and installing 
 
 ## General questions
 
-**Q: Can I just download a GitHub release of Chef Habitat?**
+**Q: Can I download a GitHub release of Chef Habitat?**
 
 A: While we do publish releases on GitHub as part of our release process, those archives contain source code that requires compilation. Since the `hab` CLI is written in Rust, you would need to compile the source for your platform. We recommend using our pre-compiled packages instead.
 

@@ -10,7 +10,7 @@ description = "Define runtime binds in your plan file"
 
 +++
 
-*Runtime binding* in Chef Habitat refers to the ability for one service group to connect to another, forming a producer-consumer relationship where the consumer service can use the producer service's current configuration in order to configure itself at runtime. When the producer's configuration change, the consumer is notified and can reconfigure itself as needed.
+*Runtime binding* in Chef Habitat refers to the ability for one service group to connect to another, forming a producer-consumer relationship where the consumer service can use the producer service's current configuration to configure itself at runtime. When the producer's configuration changes, the consumer is notified and can reconfigure itself as needed.
 
 With runtime binding, a consumer service can use a "binding name" of their choosing in their configuration and lifecycle hook templates as a kind of handle to refer to the configuration values they need from the producer service. This name isn't inherently tied to any particular package or service group name. Instead, when the service is run, users associate a service group with that binding name, which gives Chef Habitat all the information it needs to wire the producer and consumer services together.
 
@@ -36,7 +36,7 @@ $pkg_exports=@{
 }
 ```
 
-This will export the runtime values of its `network.port` and `network.ssl.port` configuration entries publicly as `port` and `ssl-port`, respectively. All configuration entries in `pkg_exports` must have a default value in `default.toml`, but the actual exported values will change at runtime to reflect the producer's current configuration. When values change (for example, by `hab config apply`), the consumer service will be notified that its producer service configuration has changed. We'll see how to use this on the consumer in the sections below.
+This will export the runtime values of its `network.port` and `network.ssl.port` configuration entries publicly as `port` and `ssl-port`, respectively. All configuration entries in `pkg_exports` must have a default value in `default.toml`, but the actual exported values change at runtime to reflect the producer's current configuration. When values change, for example, by `hab config apply`, the consumer service is notified that its producer service configuration has changed. We'll see how to use this on the consumer in the sections below.
 
 Producer services export only the *subset* of their configuration that's defined through `pkg_exports` and not the entire thing. Consumer services see only what the producer service exports, and nothing more. This is important, because it means that configuration that must remain secret--such as passwords--aren't shared *unless* they're explicitly defined in `pkg_exports`.
 
@@ -44,7 +44,7 @@ Additionally, the internal structure of the producer's configuration is independ
 
 ## Defining the consumer contract
 
-The consumer service defines a "binding name" as a handle to refer to a service group from which it receives configuration data. However, it must do more than just name the bind, it must also state the configuration values it expects from the service group. Chef Habitat will make sure that whatever service group is bound actually exports the expected values to the consumer service.
+The consumer service defines a "binding name" as a handle to refer to a service group from which it receives configuration data. However, it must do more than just name the bind, it must also state the configuration values it expects from the service group. Chef Habitat ensures that whatever service group is bound actually exports the expected values to the consumer service.
 
 For example, with an application server called `session-server` that needs to connect to a database service and needs both a port and an SSL port to make that connection, you can describe this relationship in the `plan.sh` file like so:
 
@@ -58,23 +58,23 @@ Here, `pkg_binds` is an associative array. The key ("database") is the binding n
 
 A bound service group may export additional values, but they can't export less and still satisfy the contract.
 
-Chef Habitat only matches services up at the syntactic, not semantic, level of this contract. If you bind to a service that exports a port, Chef Habitat only knows that the service exports something called "port"; it could be the port for a PostgreSQL database, or it could be the port of an application server. You will need to ensure that you connect the correct services together; Chef Habitat's binds provide the means by which you express these relationships. You are, however, free to create bind names and export names that are meaningful for you.
+Chef Habitat only matches services up at the syntactic, not semantic, level of this contract. If you bind to a service that exports a port, Chef Habitat only knows that the service exports something called "port"; it could be the port for a PostgreSQL database, or it could be the port of an application server. You need to ensure that you connect the correct services together; Chef Habitat's binds provide the means by which you express these relationships. You are, however, free to create bind names and export names that are meaningful for you.
 
 ### The difference between `pkg_binds` and `pkg_binds_optional`
 
 In addition to the `pkg_binds` array, Plan authors may also specify `pkg_binds_optional`. It has exactly the same structure as `pkg_binds`, but, as the name implies, these bindings are *optional*; however, it's worth examining exactly what's meant by "optional" in this case.
 
-In order to load a service into the Supervisor, each bind defined in `pkg_binds` *must* be mapped to a service group; if any of these binds aren't mapped, then the Supervisor will refuse to load the service.
+To load a service into the Supervisor, each bind defined in `pkg_binds` *must* be mapped to a service group; if any of these binds aren't mapped, then the Supervisor refuses to load the service.
 
-Binds defined in `pkg_binds_optional`, on the other hand, *may* be mapped when loading a service. If a service group mapping isn't defined at load time, the Supervisor will load the service without question. As an extreme example, a service could have no `pkg_binds` entries, and five `pkg_binds_optional` entries; such a service could be loaded with no binds mapped, one bind mapped, all the way to mapping all five binds.
+Binds defined in `pkg_binds_optional`, on the other hand, *may* be mapped when loading a service. If a service group mapping isn't defined at load time, the Supervisor loads the service without question. As an extreme example, a service could have no `pkg_binds` entries, and five `pkg_binds_optional` entries; such a service could be loaded with no binds mapped, one bind mapped, all the way to mapping all five binds.
 
 The following are scenarios where optional binds may be useful:
 
 * A service may have some default functionality which may be overridden at load-time by mapping an optional binding. Perhaps you have some kind of artifact repository service that, in the absence of a "remote-store" bind stores data on the local filesystem. However, if `remote-store` is bound to an appropriate S3 API-compatible service, such as [Minio](https://www.minio.io), it could modify its behavior to store data remotely.
 
-* A service can be optionally bind to a service to unlock additional features. For example, say you have an application that may run with or without a caching layer. You can model this using an optional bind named, for example, `cache`. If you wish to run without the caching functionality enabled, you can start the service without specifying a service group mapping for the `cache` bind. Since the bind is optional, it isn't needed for Chef Habitat to run your service. However, if you do wish to run with the caching enabled, you can specify a service group mapping, for example `hab svc load acme/my-app --bind=cache:redis.prod`. In this scenario, your service's configuration can pull configuration values from the `redis.prod` service group, enabling it to use Redis as a caching layer.
+* A service can optionally bind to a service to unlock additional features. For example, say you have an application that may run with or without a caching layer. You can model this using an optional bind named, for example, `cache`. If you wish to run without the caching functionality enabled, you can start the service without specifying a service group mapping for the `cache` bind. Since the bind is optional, it isn't needed for Chef Habitat to run your service. However, if you do wish to run with the caching enabled, you can specify a service group mapping, for example `hab svc load acme/my-app --bind=cache:redis.prod`. In this scenario, your service's configuration can pull configuration values from the `redis.prod` service group, enabling it to use Redis as a caching layer.
 
-* A service may can optionally bind one of several services; if bind "X" is mapped, operate *this* way; if "Y" is mapped, operate *that* way. An application that could use either a Redis backend or a PostgreSQL backend, depending on the deployment scenario, could declare optional "redis" and "postgresql" bindings, and pick which one to map at service load-time. If this is your use case, Chef Habitat doesn't have a way to encode the fact that one and only one of these optional bindings should be mapped, so you will have to manage that on your own.
+* A service can optionally bind one of several services; if bind "X" is mapped, operate *this* way; if "Y" is mapped, operate *that* way. An application that could use either a Redis backend or a PostgreSQL backend, depending on the deployment scenario, could declare optional "redis" and "postgresql" bindings, and pick which one to map at service load-time. If this is your use case, Chef Habitat doesn't have a way to encode the fact that one and only one of these optional bindings should be mapped, so you have to manage that on your own.
 
 ## Service start-up behavior
 

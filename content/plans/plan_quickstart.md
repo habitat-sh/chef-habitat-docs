@@ -11,22 +11,22 @@ summary = "A quickstart guide for creating Chef Habitat plans, including using t
     weight = 20
 +++
 
-All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file will be used by the `hab-plan-build` command to build your package. To create a plan, do the following:
+All plans must have a `plan.sh` or `plan.ps1` at the root of the plan context. They may even include both if a package is targeting both Windows and Linux platforms. This file is used by the `hab-plan-build` command to build your package. To create a plan, do the following:
 
 1. If you haven't done so already, [download the `hab` CLI](/install/) and install it according to the instructions on the download page.
 
 2. Run `hab cli setup` and follow the instructions in the setup script.
 
-3. The easiest way to create a plan is to use the `hab plan init` subcommand. This subcommand will create a directory, known as the plan context, that contains your plan file and any runtime hooks and/or templated configuration data.
+3. The easiest way to create a plan is to use the `hab plan init` subcommand. This subcommand creates a directory, known as the plan context, that contains your plan file and any runtime hooks and/or templated configuration data.
 
-    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It will create a new `habitat` sub-directory with a `plan.sh` (or `plan.ps1` on Windows) based on the name of the parent directory, and include a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
+    To use `hab plan init` as part of your project repo, navigate to the root of your project repo and run `hab plan init`. It creates a new `habitat` sub-directory with a `plan.sh` (or `plan.ps1` on Windows) based on the name of the parent directory, and includes a `default.toml` file as well as `config` and `hooks` directories for you to populate as needed. For example:
 
     ```bash
     cd /path/to/<reponame>
     hab plan init
     ```
 
-    will result in a new `habitat` directory located at `/path/to/<reponame>/habitat`. A plan file will be created and the `pkg_name` variable will be set to _\<reponame\>_. Also, any environment variables that you have previously set (such as `HAB_ORIGIN`) will be used to populate the respective `pkg_*` variables.
+    will result in a new `habitat` directory located at `/path/to/<reponame>/habitat`. A plan file is created and the `pkg_name` variable is set to _\<reponame\>_. Also, any environment variables that you have previously set, such as `HAB_ORIGIN`, are used to populate the respective `pkg_*` variables.
 
     If you want to auto-populate more of the `pkg_*` variables, you also have the option of setting them when calling `hab plan init`, as shown in the following example:
 

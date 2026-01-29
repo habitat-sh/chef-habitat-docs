@@ -47,7 +47,7 @@ To install Chef Habitat with the install script, run the following command:
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for example:
 
 ```sh
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
@@ -58,7 +58,7 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 1. [Download Chef Habitat for Linux](https://www.chef.io/downloads)
 
-1. Extract the `hab.tgz` binary to `/usr/local/bin` or add its location to your `PATH`. For example:
+1. Extract the `hab.tgz` binary to `/usr/local/bin` or add its location to your `PATH`, for example:
 
    ```sh
    tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1
@@ -76,7 +76,7 @@ To install Chef Habitat with the install script, run the following command:
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-You can install a specific Habitat version with `-v <HABITAT_VERSION>`. For example:
+You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for example:
 
 ```sh
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
@@ -96,7 +96,7 @@ brew install hab
 
 1. [Download Chef Habitat for macOS](https://www.chef.io/downloads)
 
-1. Unzip Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
+1. Unzip the Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
 
 ## Install on Windows
 
@@ -119,7 +119,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
-You can install a specific Habitat version with `-Version <HABITAT_VERSION>`. For example:
+You can install a specific Habitat version with `-Version <HABITAT_VERSION>`, for example:
 
 ```ps1
 iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 1.6.1245"
@@ -131,7 +131,7 @@ iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/compone
 
 1. Unzip the Habitat binary on your computer to `C:\habitat` so that the full path to Chef Habitat is similar to `C:\habitat\hab-<HABITAT_VERSION>-<YYYYMMDDHHMMSS>-x86_64-windows`
 
-    For example: `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`.
+    For example, `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`.
 
 1. Add that directory to your `PATH` variable:
 
@@ -141,7 +141,7 @@ iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/compone
 
 ## Verify installation
 
-To verify that Habitat is installed, you can run the following commands:
+To verify that Habitat is installed, run the following commands:
 
 ```bash
 hab --version
