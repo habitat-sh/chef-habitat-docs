@@ -16,11 +16,9 @@ is a fully managed Kubernetes service running on the Azure platform.
 
 ## Azure Container Registry (ACR)
 
-Azure Container Registry is a managed Docker container registry service used for storing private Docker container images. It's a fully managed Azure resource and gives you local, network-close storage of your container images when deploying to AKS.
+Azure Container Registry is a managed Docker container registry service for storing private Docker container images. It's a fully managed Azure resource and provides local, network-close storage of your container images when deploying to AKS.
 
-In order to do this you need to create an Azure Service Principal that has `Owner` rights
-on your ACR instance. You can do this with the following script, changing the environment
-variable values to match your environment.
+To do this, create an Azure Service Principal that has `Owner` rights on your ACR instance. You can do this with the following script, changing the environment variable values to match your environment.
 
 ```sh
   !/bin/bash
@@ -43,9 +41,9 @@ echo "  Password : $BLDR_PRINCIPAL_PASSWORD"
 Note: The unique Service Principal Name (the UUID) should be provided in the Chef Habitat Builder
 configuration.
 
-## Connecting ACR and AKS
+## Connect ACR and AKS
 
-Since ACR is a private Docker registry, AKS must be authorized to pull images from it. The best way is to create a role assignment on the Service Principal that's automatically created for AKS, granting it `Reader` access on your ACR instance.
+Since ACR is a private Docker registry, AKS must be authorized to pull images from it. To do this, create a role assignment on the Service Principal that's automatically created for AKS, granting it `Reader` access on your ACR instance.
 
 To do this you can use the following script, changing the environment variable values to match your configuration.
 
