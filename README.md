@@ -108,5 +108,6 @@ Submit an issue to the [Habitat repo](https://github.com/habitat-sh/chef-habitat
 for "important" documentation bugs that may need visibility among a larger group,
 especially in situations where a doc bug may also surface a product bug.
 
-# Copyright
+## Copyright
+
 See [COPYRIGHT.md](./COPYRIGHT.md).
