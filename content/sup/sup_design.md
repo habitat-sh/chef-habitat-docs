@@ -14,7 +14,7 @@ draft = false
 
 This section will dive into the implementation details of important Chef Habitat components. These topics are for advanced users. It isn't necessary to learn these concepts in order to use Chef Habitat.
 
-The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](http://smarden.org/runit/) or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, ensures that children processes terminate cleanly.
+The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](http://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
 
 Because the basic functionality of process supervision is well-known, this document doesn't discuss those details. Instead, this document focuses strictly on the internals of the feature that makes the Chef Habitat Supervisor special: the fact that each Supervisor is connected to others in a peer-to-peer network which we refer to as a _ring_. This allows Supervisors to share configuration data with one another and adapt to changing conditions in the ring by modifying their own configuration.
 
@@ -33,17 +33,17 @@ Rumor
 : A piece of data shared with all the members of a ring; examples are election, membership, services, or configuration.
 
 Heat
-: How many times a given rumor has been shared with a given member
+: How many times a given rumor has been shared with a given member.
 
 Ring
-: All the members connected to one another form a Ring
+: All members connected to one another form a ring.
 
 Incarnation
-: A counter used to determine which message is "newer"
+: A counter used to determine which message is "newer".
 
 ## Supervisor internals
 
-The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](http://smarden.org/runit/) or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, ensures that children processes terminate cleanly.
+The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](http://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
 
 Because the basic functionality of process supervision is well-known, this document doesn't discuss those details. Instead, this document focuses strictly on the internals of the feature that makes the Chef Habitat Supervisor special: the fact that each Supervisor is connected to others in a peer-to-peer network which we refer to as a _ring_. This allows Supervisors to share configuration data with one another and adapt to changing conditions in the ring by modifying their own configuration.
 
@@ -51,7 +51,7 @@ Because the basic functionality of process supervision is well-known, this docum
 
 Supervisors are configured to form a network by using the `--peer` argument and pointing them at peers that already exist. In a real-life deployment scenario, Supervisors in a network may also have a shared encryption key, so that inter-Supervisor traffic is encrypted. (See the [security](../reference/keys) documentation for more details.)
 
-Supervisor rings can be very large, comprising thousands of supervisors. The Supervisor communication protocol is low-bandwidth and designed to not interfere with your application's actual production traffic.
+Supervisor rings can be very large, comprising thousands of Supervisors. The Supervisor communication protocol is low-bandwidth and designed not to interfere with your application's production traffic.
 
 Rings are divided into _service groups_, each of which has a name. All Supervisors within a service group share the same configuration and topology.
 
@@ -67,9 +67,9 @@ Supervisors communicate with each other using UDP and TCP, both using port 9638.
 
 ### Information security
 
-Butterfly encrypts traffic on the wire using Curve25519 and a symmetric key. If a ring is configured to use transport level encryption, only members with a matching key are allowed to communicate.
+Butterfly encrypts traffic on the wire using Curve25519 and a symmetric key. If a ring is configured to use transport-level encryption, only members with a matching key are allowed to communicate.
 
-Service Configuration and Files can both be encrypted with public keys.
+Service configuration and files can both be encrypted with public keys.
 
 ### Membership and failure detection
 
@@ -86,7 +86,7 @@ Suspect
 : This member has stopped responding to our health check, and will be marked confirmed if we don't receive proof it's still alive soon.
 
 Confirmed
-: This member has been un-responsive long enough that we can cease attempting to check its health.
+: This member has been unresponsive long enough that we can stop attempting to check its health.
 
 Departed
 : This member has been intentionally kicked out of the ring for behavior unbecoming of a Supervisor, and is prevented from rejoining. This is accomplished with `hab` CLI commands.
@@ -100,7 +100,7 @@ The essential flow for detecting a failure is:
 1. If we receive an "ACK" message before 1 second elapses, the member remains Alive.
 1. If we don't receive an "ACK" in 1 second, choose 5 peers (the "PINGREQ targets"), and send them a "PINGREQ(member)" message for the member who failed the PING.
 1. If any of our PINGREQ targets receive an ACK, they forward it to us, and the member remains Alive.
-1. If we don't receive an ACK with PINGREQ with 2.1 seconds, we mark the member as Suspect, and set an expiration timer of 9.3 seconds.
+1. If we don't receive an ACK with PINGREQ within 2.1 seconds, we mark the member as Suspect, and set an expiration timer of 9.3 seconds.
 1. If we don't receive an Alive status for the member within the 9.3 second suspicion expiration window, the member is marked as Confirmed.
 1. Move on to the next member, until the list is exhausted; start the process again.
 
@@ -131,7 +131,7 @@ What's good about this system:
 
 ## Butterfly and swim
 
-The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) for membership and failure detection (over UDP), and a ZeroMQ based variant of [Newscast](https://www.cs.unibo.it/bison/publications/ap2pc03.pdf) for gossip. Butterfly differs from SWIM in the following ways:
+The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) for membership and failure detection (over UDP), and a ZeroMQ-based variant of [Newscast](https://www.cs.unibo.it/bison/publications/ap2pc03.pdf) for gossip. Butterfly differs from SWIM in the following ways:
 
 - Rather than sending messages to update member state, we send the entire member.
 - We support encryption on the wire.

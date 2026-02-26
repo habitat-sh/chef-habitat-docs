@@ -9,9 +9,9 @@ description = "Override default buildtime behavior with build phase callbacks"
     parent = "reference"
 +++
 
-When defining your plan, you can override the default behavior of Chef Habitat in each build phase through a callback. To define a callback, create a shell function of the same name in your plan file and then write your script. If you don't want to use the default callback behavior, you must override the callback and `return 0` in the function definition or provide no implementation in a `plan.ps1`.
+When defining your plan, you can override Chef Habitat's default behavior in each build phase through a callback. To define a callback, create a shell function of the same name in your plan file, and then write your script. If you don't want to use the default callback behavior, you must override the callback and `return 0` in the function definition, or provide no implementation in a `plan.ps1`.
 
-These callbacks are listed in the order that they executed by the package build script.
+These callbacks are listed in the order they're executed by the package build script.
 
 {{< note >}}
 
@@ -19,18 +19,18 @@ Bash callbacks are prefixed with `do_` and use an underscore convention. PowerSh
 
 {{< /note >}}
 
-You can also use [plan variables](plan_variables) in your plans to place binaries, libraries, and files into their correct locations during package compilation or when running as a service.
+You can also use [plan variables](plan_variables) in your plans to place binaries, libraries, and files in their correct locations during package compilation or when running as a service.
 
-Additionally, [plan helper functions](build_helpers) can be useful in your plan to help you build your package correctly. They're mostly used for building packages - attach() is used for debugging.
+Additionally, [plan helper functions](build_helpers) can help you build your package correctly. They're mostly used for package builds, while `attach()` is used for debugging.
 
 do_begin()/Invoke-Begin
-: Used to execute arbitrary commands before anything else happens. Note that at this phase of the build, no dependencies are resolved, the `$PATH` and environment isn't set, and no external source has been downloaded. For a phase that's more completely set up, see the `do_before()` phase.
+: Used to execute arbitrary commands before anything else happens. At this phase of the build, no dependencies are resolved, the `$PATH` and environment aren't set, and no external source has been downloaded. For a phase that's more fully set up, see the `do_before()` phase.
 
 do_begin_default()/Invoke-BeginDefault
 : There's an empty default implementation of this callback.
 
 do_setup_environment()/Invoke-SetupEnvironment
-: Use this to declare buildtime and runtime environment variables that overwrite or are in addition to the default environment variables created by Chef Habitat during the build process. Examples of common environment variables you might wish to add or modify are those such as `JAVA_HOME` or `GEM_PATH`.
+: Use this to declare build-time and runtime environment variables that overwrite or add to the default environment variables created by Chef Habitat during the build process. Common variables you might add or modify include `JAVA_HOME` and `GEM_PATH`.
 
 {{< note >}}
 
@@ -40,13 +40,13 @@ You don't have to override this callback if you don't wish to modify your enviro
 
 Runtime environments of dependencies are layered together in the order they're declared in your `pkg_deps` array, followed by modifications made in this callback. In turn, these computed values will be made available to packages that use the current package as a dependency.
 
-The buildtime environment is assembled by processing the *runtime* environments of your `pkg_build_deps` dependencies (because they will be running in your build) in a similar manner. The final environment in which your package will be built consists of:
+The build-time environment is assembled by processing the *runtime* environments of your `pkg_build_deps` dependencies (because they run in your build) in a similar manner. The final environment in which your package is built consists of:
 
-* The system environment of your Studio as the base layer
-* The assembled runtime environment of your package on top of the base
-* Any buildtime environment information on top of the assembled runtime environment
+- The system environment of your Studio as the base layer
+- The assembled runtime environment of your package on top of the base
+- Any build-time environment information on top of the assembled runtime environment
 
-Only the runtime portion of this combined buildtime environment is made available to your package when it's running in a Supervisor (or when it's being used as a dependency of another Chef Habitat package).
+Only the runtime portion of this combined build-time environment is made available to your package when it's running in a Supervisor (or when it's used as a dependency of another Chef Habitat package).
 
 To add or modify your environment variables, there are special functions to call within this callback to ensure that the variables are set up appropriately.
 
@@ -75,19 +75,19 @@ To add or modify your environment variables, there are special functions to call
   {{< /foundation_tabs_panel >}}
 {{< /foundation_tabs_panels >}}
 
-In PowerShell plans, if your variable contains values that are file paths pointing inside the Chef Habitat `/hab` directory, you can use the `-IsPath` flag to ensure that the path remains portable accross different Chef Habitat environments. For example in a local (non-Docker) Windows Studio, the following line:
+In PowerShell plans, if your variable contains file paths pointing inside the Chef Habitat `/hab` directory, you can use the `-IsPath` flag to ensure the path remains portable across different Chef Habitat environments. For example, in a local (non-Docker) Windows Studio, the following line:
 
 ```powershell
 Set-RuntimeEnv SSL_CERT_FILE "$(Get-HabPackagePath cacerts)/ssl/cert.pem"
 ```
 
-will set `SSL_CERT_FILE` to the `ssl/cert.pem` file inside of the `cacerts` package path. This path will be located inside of `c:/hab/studios` which won't be valid inside of a non-Studio Supervisor or inside of a Docker Studio. Instead, use the following code:
+sets `SSL_CERT_FILE` to the `ssl/cert.pem` file inside the `cacerts` package path. This path is located inside `c:/hab/studios`, which won't be valid in a non-Studio Supervisor or in a Docker Studio. Instead, use the following code:
 
 ```powershell
 Set-RuntimeEnv SSL_CERT_FILE "$(Get-HabPackagePath cacerts)/ssl/cert.pem" -IsPath
 ```
 
-This will hint to the packaging system that this path should be properly rooted inside of the Chef Habitat filesystem of the current running environment.
+This hints to the packaging system that this path should be properly rooted inside the Chef Habitat filesystem of the current running environment.
 
 These functions allow you to *set* an environment variable's value. If one of your dependencies has already declared a value for this, it will result in a build failure, protecting you from inadvertently breaking anything. If you really do want to replace the value, you can supply the `-f` or `-force` flag.
 
@@ -165,32 +165,32 @@ do_download()/Invoke-Download
 : If `$pkg_source` is being used, download the software and place it in `$HAB_CACHE_SRC_PATH/$pkg_filename`. If the source already exists in the cache, verify that the checksum is what we expect, and skip the download. Delegates most of the implementation to the `do_default_download()` function.
 
 do_download_default()/Invoke-DownloadDefault
-: The default implementation is that the software specified in `$pkg_source` is downloaded, checksum-verified, and placed in `$HAB_CACHE_SRC_PATH/$pkg_filename`, which resolves to a path like `/hab/cache/src/filename.tar.gz`. You should override this behavior if you need to change how your binary source is downloaded, if you aren't downloading any source code at all, or if you are cloning from git. If you do clone a repo from git, you must override do_verify() to return 0.
+: The default implementation downloads the software specified in `$pkg_source`, verifies its checksum, and places it in `$HAB_CACHE_SRC_PATH/$pkg_filename`, which resolves to a path like `/hab/cache/src/filename.tar.gz`. You should override this behavior if you need to change how your binary source is downloaded, if you aren't downloading any source code, or if you are cloning from Git. If you clone a repo from Git, you must override `do_verify()` to return 0.
 
 do_verify()/Invoke-Verify
-: If `$pkg_source` is being used, verify that the package in `$HAB_CACHE_SRC_PATH/$pkg_filename` has the `$pkg_shasum` we expect. Delegates most of the implementation to the `do_default_verify()` function.
+: If `$pkg_source` is being used, verify that the package in `$HAB_CACHE_SRC_PATH/$pkg_filename` has the expected `$pkg_shasum`. Delegates most of the implementation to the `do_default_verify()` function.
 
-  If you do clone a repo from git, you must override do_verify() to return 0.
+  If you clone a repo from Git, you must override `do_verify()` to return 0.
 
 do_verify_default()/Invoke-VerifyDefault
 : The default implementation tries to verify the checksum specified in the plan against the computed checksum after downloading the source tarball to disk. If the specified checksum doesn't match the computed checksum, then an error and a message specifying the mismatch will be printed to stderr. You shouldn't need to override this behavior unless your package doesn't download any files.
 
-do_clean()Invoke-Clean
-: Clean up the remnants of any previous build job, ensuring it can't pollute out new output. Delegates most of the implementation to the `do_default_clean()` function.
+do_clean()/Invoke-Clean
+: Cleans up remnants of any previous build job, ensuring they can't pollute new output. Delegates most of the implementation to the `do_default_clean()` function.
 
 do_default_clean()/Invoke-DefaultClean
 : The default implementation removes the `HAB_CACHE_SRC_PATH/$pkg_dirname` folder in case there was a previously-built version of your package installed on disk. This ensures you start with a clean build environment.
 
 do_unpack()/Invoke-Unpack
-: If `$pkg_source` is being used, we take the `$HAB_CACHE_SRC_PATH/$pkg_filename` from the download step and unpack it,as long as the method of extraction can be determined. This takes place in the $HAB_CACHE_SRC_PATH directory. Delegates most of the implementation to the `do_default_unpack()` function.
+: If `$pkg_source` is being used, this phase takes `$HAB_CACHE_SRC_PATH/$pkg_filename` from the download step and unpacks it, as long as the extraction method can be determined. This takes place in the `$HAB_CACHE_SRC_PATH` directory. Delegates most of the implementation to the `do_default_unpack()` function.
 
 do_default_unpack()/Invoke-DefaultUnpack
-: The default implementation extracts your tarball source file into `HAB_CACHE_SRC_PATH`. The supported archive extensions on Linux are: .tar, .tar.bz2, .tar.gz, .tar.xz, .rar, .zip, .Z, .7z. Only .zip is supported on Windows. If the file archive couldn't be found or has an unsupported extension, then a message will be printed to stderr with additional information.
+: The default implementation extracts your tarball source file into `$HAB_CACHE_SRC_PATH`. The supported archive extensions on Linux are: `.tar`, `.tar.bz2`, `.tar.gz`, `.tar.xz`, `.rar`, `.zip`, `.Z`, and `.7z`. Only `.zip` is supported on Windows. If the file archive can't be found or has an unsupported extension, a message is printed to stderr with additional information.
 
 do_prepare()/Invoke-Prepare
-: There's no default implementation of this callback. At this point in the build process, the tarball source has been downloaded, unpacked, and the build environment variables have been set, so you can use this callback to perform any actions before the package starts building, such as exporting variables or adding symlinks.
+: There's no default implementation of this callback. At this point in the build process, the tarball source has been downloaded and unpacked, and build environment variables have been set, so you can use this callback to perform actions before the package starts building, such as exporting variables or adding symlinks.
 
-  A step that exists to be overridden. Do what you need to do before we actually run the build steps.
+  This step exists to be overridden. Use it to do what you need before running build steps.
 
 do_default_prepare()/Invoke-DefaultPrepare
 : There's an empty default implementation of this callback.
@@ -202,9 +202,9 @@ do_default_build()/Invoke-DefaultBuild
 : The default implementation is to update the prefix path for the configure script to use `$pkg_prefix` and then run `make` to compile the downloaded source. This means the script in the default implementation does `./configure --prefix=$pkg_prefix && make`.
 
 do_check()/Invoke-Check
-: Will run post-compile tests and checks, provided 2 conditions are true:
+: Runs post-compile tests and checks, provided two conditions are true:
 
-1. A `do_check()` function has been declared. By default, no such function exists, so the  plan author must add one explicitly--there's no reasonably good default here.
+1. A `do_check()` function has been declared. By default, no such function exists, so the plan author must add one explicitly---there's no reasonably good default here.
 1. A `$DO_CHECK` environment variable is set to some non-empty value. As tests can dramatically inflate the build time of a plan, this has been left as an opt-in option.
 
    Here's an example of a vanilla plan such as `sed`:
@@ -220,10 +220,10 @@ do_check()/Invoke-Check
    ```
 
 do_install()/Invoke-Install
-:  Installs the software. Delegates most of the implementation to the `do_default_install()` function. You should override this behavior if you need to perform custom installation steps, such as copying files from `HAB_CACHE_SRC_PATH` to specific directories in your package, or installing pre-built binaries into your package.
+: Installs the software. Delegates most of the implementation to the `do_default_install()` function. You should override this behavior if you need to perform custom installation steps, such as copying files from `HAB_CACHE_SRC_PATH` to specific directories in your package, or installing pre-built binaries into your package.
 
 do_default_install()/Invoke-DefaultInstall
-: The default implementation is to run `make install` on the source files and place the compiled binaries or libraries in `HAB_CACHE_SRC_PATH/$pkg_dirname`, which resolves to a path like `/hab/cache/src/packagename-version/`. It uses this location because of do_build() using the `--prefix` option when calling the configure script.
+: The default implementation runs `make install` on source files and places compiled binaries or libraries in `HAB_CACHE_SRC_PATH/$pkg_dirname`, which resolves to a path like `/hab/cache/src/packagename-version/`. It uses this location because `do_build()` uses the `--prefix` option when calling the configure script.
 
 do_build_config()/Invoke-BuildConfig
 : Copy the `./config` directory, relative to the Plan, to `$pkg_prefix/config`. Do the same with `default.toml`. Delegates most of the implementation to the `do_default_build_config()` function.
@@ -234,9 +234,9 @@ do_default_build_config()/Invoke-DefaultBuildConfig
 : Default implementation for the `do_build_config()` phase.
 
 do_build_service()/Invoke-BuildService
-: Write out the `$pkg_prefix/run` file. If a file named `hooks/run` exists, we skip this step. Otherwise, we look for `$pkg_svc_run`, and use that. We assume that the binary used in the `$pkg_svc_run` command is set in the $PATH.
+: Writes the `$pkg_prefix/run` file. If a file named `hooks/run` exists, this step is skipped. Otherwise, it looks for `$pkg_svc_run` and uses that. This assumes that the binary used in the `$pkg_svc_run` command is set in `$PATH`.
 
-  This will write a `run` script that uses `chpst` to run the command as the `$pkg_svc_user` and `$pkg_svc_group`. These are `hab` by default.
+  This writes a `run` script that uses `chpst` to run the command as `$pkg_svc_user` and `$pkg_svc_group`. These are `hab` by default.
 
   Delegates most of the implementation to the `do_default_build_server()` function.
 
@@ -247,22 +247,22 @@ do_strip()
 : `plan.sh` only. You should override this behavior if you want to change how the binaries are stripped, which additional binaries located in subdirectories might also need to be stripped, or whether you don't want the binaries stripped at all.
 
 do_default_strip()
-: `plan.sh` only. The default implementation is to strip any binaries in `$pkg_prefix` of their debugging symbols. Goal of this step is to reduce our total size.
+: `plan.sh` only. The default implementation strips debugging symbols from binaries in `$pkg_prefix`. The goal of this step is to reduce total size.
 
 do_after()/Invoke-After
-: At this phase, the package has been built, installed, stripped, but before the package metadata is written and the artifact is created and signed.
+: At this phase, the package has been built, installed, and stripped, but package metadata hasn't been written yet and the artifact hasn't been created or signed.
 
 do_default_after()/Invoke-DefaultAfter
 : There's an empty default implementation of this callback.
 
 do_end()/Invoke-End
-: A function for cleaning up after yourself, this is called after the package artifact has been created. You can use this callback to remove any temporary files or perform other post-build clean-up actions.
+: A function for cleanup that's called after the package artifact is created. You can use this callback to remove temporary files or perform other post-build cleanup actions.
 
 do_default_end()/Invoke-DefaultEnd
 : There's an empty default implementation of this callback.
 
 do_after_success()
-: `plan.sh` only. A function that's called at the absolute end of a successful build process. This can be used to provide integration points with external systems, among other things, particularly if you aren't using Builder (a Notifications feature is coming to Builder in H2 2018). Failure of this callback won't fail your build, nor will it trigger a `do_after_failure` call.
+: `plan.sh` only. A function called at the end of a successful build process. You can use this to provide integration points with external systems, among other uses, particularly if you aren't using Builder. Failure of this callback won't fail your build, nor will it trigger a `do_after_failure` call.
 
 do_after_failure()
-: `plan.sh` only. A function that's called at the absolute end of a failed build process. This can be used to provide integration points with external systems, among other things, particularly if you aren't using Builder (a Notifications feature is coming to Builder in H2 2018). The result of this callback can't affect the disposition of the overall build; once the build has failed, it's failed. Keep in mind that since a build could potentially fail at any time, certain variables or data structures may not be present or initialized when this callback is called, so code accordingly.
+: `plan.sh` only. A function called at the end of a failed build process. You can use this to provide integration points with external systems, among other uses, particularly if you aren't using Builder. The result of this callback can't affect the overall build result; once the build has failed, it's failed. Keep in mind that because a build can fail at any time, certain variables or data structures may not be present or initialized when this callback is called, so code accordingly.

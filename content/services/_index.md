@@ -23,14 +23,11 @@ group, it's assigned to the default group for the name of that package. For exam
 
 ## Topology
 
-Chef Habitat allows you to define the topology of your service groups, which bakes
-in certain behaviors.
+Chef Habitat allows you to define the topology of your service groups, which bakes in specific behaviors.
 
 ### Standalone
 
-This is the default topology, useful for services inside a group that are completely
-independent from one another. Note that this still means they can share the same
-configuration.
+This is the default topology, useful for services inside a group that are completely independent of one another. Note that this still means they can share the same configuration.
 
 ### Leader / follower
 
@@ -40,5 +37,4 @@ leader election algorithm, and followers are restarted to reflect a configuratio
 that follows the new leader. Subsequent elections due to leader failure will update
 both leader and follower configuration data.
 
-You can read more about the internals behind the elections in our [advanced developer
-documentation](../sup/sup_crypto.md).
+You can read more about the internals of elections in our [advanced developer documentation](../sup/sup_crypto.md).

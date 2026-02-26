@@ -26,7 +26,7 @@ hab sup run --generate-config
 hab sup run --generate-config > config.toml
 ```
 
-The Supervisor settings look-up order:
+The Supervisor settings lookup order:
 
 1. The fixed config file location `/hab/sup/default/config/sup.toml` on the Supervisor
 2. Files passed with the command, `hab sup run --config-files /config/file1.toml /config/file2.toml`, where
@@ -87,7 +87,7 @@ cert_file = "/path/to/file"
 
 ### The CA certificate for HTTP Gateway TLS encryption
 ###
-### Read the CA certificate from CA_CERT_FILE. This should contain PEM-format certificate that can be used to validate client requests
+### Read the CA certificate from CA_CERT_FILE. This should contain a PEM-format certificate that can be used to validate client requests.
 ca_cert_file = "/path/to/file"
 
 ### Load a Habitat package as part of the Supervisor startup
@@ -108,7 +108,7 @@ json_logging = false
 
 ### The IPv4 address to use as the `sys.ip` template variable
 ###
-### If this argument isn't set, the supervisor tries to dynamically determine an IP address. If that fails, the supervisor defaults to using `127.0.0.1`.
+### If this argument isn't set, the Supervisor tries to dynamically determine an IP address. If that fails, the Supervisor defaults to using `127.0.0.1`.
 sys_ip_address = "1.2.3.4"
 
 ### The name of the application for event stream purposes
@@ -128,7 +128,7 @@ event_stream_connect_timeout = 60
 
 ### The event stream connection url used to send events to Chef Automate
 ###
-### This enables the event stream and requires EVENT_STREAM_APPLICATION, EVENT_STREAM_ENVIRONMENT, and EVENT_STREAM_TOKEN also be set.
+### This enables the event stream and also requires EVENT_STREAM_APPLICATION, EVENT_STREAM_ENVIRONMENT, and EVENT_STREAM_TOKEN to be set.
 event_stream_url = "nats://127.0.0.1:4222"
 
 ### The name of the site where this Supervisor is running for event stream purposes
@@ -145,7 +145,7 @@ event_meta = ["my-key1=my-val1", "my-key2=my-val2", "abc=123"]
 ### The certificate should be in PEM format.
 event_stream_server_certificate = "/path/to/file"
 
-### Automatically cleanup old packages
+### Automatically clean up old packages
 ###
 ### The Supervisor will automatically cleanup old packages only keeping the KEEP_LATEST_PACKAGES latest packages. If this argument isn't specified, no automatic package cleanup is performed.
 keep_latest_packages = 1
@@ -172,7 +172,7 @@ strategy = "at-once"
 ### track-channel: Always run what is at the head of a given channel. This enables service rollback where demoting a package from a channel will cause the package to rollback to an older version of the package. A ramification of enabling this condition is packages newer than the package at the head of the channel will be automatically uninstalled during a service rollback.
 update_condition = "track-channel"
 
-### The minimum duration in seconds to wait before restarting a service due to a init / run hook failure.
+### The minimum duration in seconds to wait before restarting a service due to an init/run hook failure.
 ###
 ### The default value if this config is absent is 0 seconds to preserve legacy supervisor behavior.
 service_min_backoff_period = 10
@@ -185,7 +185,7 @@ service_max_backoff_period = 180
 ### The duration of time in seconds to wait before resetting the current backoff duration to the 'service_min_backoff_period'.
 ### This is important because it ensures that the supervisor handles potential failures during restart correctly.
 ### If the cooldown period isn't long enough, a slow service may still be restarting after the cooldown period has passed.
-### If a service fails during restart but after the cooldown period has passed, the service won't backoff correctly before the following restart.
+### If a service fails during restart but after the cooldown period has passed, the service won't back off correctly before the following restart.
 ###
 ### The default value if this config is absent is 300 seconds.
 service_restart_cooldown_period = 300

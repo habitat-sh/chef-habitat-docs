@@ -129,7 +129,7 @@ hab bldr channel create [OPTIONS] <CHANNEL>
 
 ```
 -u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
--o, --origin <ORIGIN>    Sets the origin to which the channel will belong. Default is from HAB_ORIGIN' or cli.toml
+-o, --origin <ORIGIN>    Sets the origin to which the channel will belong. Default is from HAB_ORIGIN or cli.toml
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -h, --help               Print help
 -V, --version            Print version
@@ -160,7 +160,7 @@ hab bldr channel destroy [OPTIONS] <CHANNEL>
 
 ```
 -u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
--o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
+-o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN or cli.toml
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -h, --help               Print help
 -V, --version            Print version
@@ -199,7 +199,7 @@ hab bldr channel list [OPTIONS] [ORIGIN]
 **ARGUMENTS**
 
 ```
-[ORIGIN]  Sets the origin to which the channel belongs. Default is from 'HAB_ORIGIN' or cli.toml
+[ORIGIN]  Sets the origin to which the channel belongs. Default is from HAB_ORIGIN or cli.toml
 ```
 
 
@@ -221,8 +221,8 @@ hab bldr channel promote [OPTIONS] <SOURCE_CHANNEL> <TARGET_CHANNEL>
 
 ```
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
--o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN or cli.toml
 -h, --help               Print help
 -V, --version            Print version
 ```
@@ -253,8 +253,8 @@ hab bldr channel demote [OPTIONS] <SOURCE_CHANNEL> <TARGET_CHANNEL>
 
 ```
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
--o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN or cli.toml
 -h, --help               Print help
 -V, --version            Print version
 ```
@@ -1479,8 +1479,8 @@ Exports the package to the specified format
 -G, --registry-url <REGISTRY_URL> Remote registry url
     --rm-image Remove local image from engine after build and/or push (default: no)
 -m, --memory <MEMORY_LIMIT> Memory limit passed to docker build's --memory arg (ex: 2gb)
-    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This will allow for reusable layers, reducing storage and network transmission costs. If the resulting image can't be built because there are too many layers, re-build without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
-    --engine <ENGINE> The name of the container creation engine to use. [env: HAB_PKG_EXPORT_CONTAINER_ENGINE=] default: docker] [possible values: docker, buildah]
+    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This allows reusable layers and reduces storage and network transmission costs. If the resulting image can't be built because there are too many layers, rebuild without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
+    --engine <ENGINE> The name of the container creation engine to use. [env: HAB_PKG_EXPORT_CONTAINER_ENGINE=] [default: docker] [possible values: docker, buildah]
 -h, --help Print help (see more with '--help')
 -V, --version Print version
 ```
@@ -2314,7 +2314,7 @@ Run the supervisor (load config and start services)
     --ctl-server-certificate [<CTL_SERVER_CERTIFICATE>...] The control gateway server’s TLS certificate
     --ctl-server-key [<CTL_SERVER_KEY>...] The control gateway server’s private key
     --ctl-client-ca-certificate [<CTL_CLIENT_CA_CERTIFICATE>...] Enable client authentication for the control gateway and set the certificate authority to use when authenticating the client
-    --org <ORGANIZATION> Organization the Supervisor and it's services are part of
+    --org <ORGANIZATION> Organization the Supervisor and its services are part of
 -I, --permanent-peer Mark the Supervisor as a permanent peer
     --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
 -r, --ring <RING> The name of the ring used by the Supervisor when running with wire encryption [env: HAB_RING=]

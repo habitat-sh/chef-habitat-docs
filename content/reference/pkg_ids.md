@@ -9,12 +9,12 @@ description = "How to call a package in Chef Habitat Builder, Studio, and plan f
     parent = "reference"
 +++
 
-A Chef Habitat artifact the binary distribution for a given package built with Chef Habitat. A Chef Habitat artifact is a signed tarball with a `.hart` file extension. Chef Habitat artifacts are composed of a software library or application, the configuration information for that software, and lifecycle hooks. They're created from a the plan file, a `plan.sh` on Linux systems or a `plan.ps1` on Windows systems, and are built with Chef Habitat tools. Chef Habitat artifacts can be exported to a specific format, such as when creating a Docker image.
+A Chef Habitat artifact is the binary distribution for a package built with Chef Habitat. A Chef Habitat artifact is a signed tarball with a `.hart` file extension. Chef Habitat artifacts are composed of a software library or application, configuration information for that software, and lifecycle hooks. They're created from a plan file---`plan.sh` on Linux systems or `plan.ps1` on Windows systems---and are built with Chef Habitat tools. Chef Habitat artifacts can be exported to specific formats, such as Docker images.
 
 When referring to Chef Habitat artifacts from either Builder or the Studio, you can refer to them in two ways:
 
 - Fully-qualified package identifier (FQPI) - Uses four components in the following format: `origin/name/version/release`. For example, `core/glibc/2.22/20160310192356`.
-- Short package identifier - Uses two components in the following format `origin/name`. For example, `core/redis` or `core/openssl`. Use the three-component form `origin/name/version`, such as `core/redis/5.0.4`, when you need a specific version of an artifact.
+- Short package identifier - Uses two components in the following format: `origin/name`. For example, `core/redis` or `core/openssl`. Use the three-component form `origin/name/version`, such as `core/redis/5.0.4`, when you need a specific artifact version.
 
 ## Package identifier components
 
@@ -28,12 +28,12 @@ When referring to Chef Habitat artifacts from either Builder or the Studio, you 
 : The version number defined by the application or service authors. For example, `3.1.1`, or `20160118`.
 
 `Release`
-: The unique Chef Habitat id for a given version based on the timestamp pattern _YYYYMMDDhhmmss_. For example,`20160204220358` would be a Chef Habitat artifact built at 22:03:58 on February 4th, 2016.
+: The unique Chef Habitat ID for a given version based on the timestamp pattern _YYYYMMDDhhmmss_. For example, `20160204220358` is a Chef Habitat artifact built at 22:03:58 on February 4, 2016.
 
 ## Package lookup
 
-If the Chef Habitat artifact identifier isn't fully qualified (having fewer than four components), and exactly one artifact is required, then the missing components are assumed to be the most recent values. For example:
+If the Chef Habitat artifact identifier isn't fully qualified (has fewer than four components), and exactly one artifact is required, the missing components are assumed to be the most recent values. For example:
 
-- `core/glibc` assumes that version and release values are for the latest version of core/glibc.
-- `core/glibc/2.22` assumes that the version of core/glibc is 2.22 and that the release is for the most recent value of core/glibc/2.22.
-- `core/glibc/2.22/20160310192356` refers to the specific Chef Habitat artifact 20160310192356.
+- `core/glibc` assumes that version and release values are the latest for `core/glibc`.
+- `core/glibc/2.22` assumes that the version of `core/glibc` is `2.22` and that the release is the most recent release for `core/glibc/2.22`.
+- `core/glibc/2.22/20160310192356` refers to the specific Chef Habitat artifact `20160310192356`.

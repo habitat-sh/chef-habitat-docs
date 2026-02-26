@@ -14,29 +14,25 @@ Use the HTTP API to monitor services. When a service starts, the [Supervisor](..
 
 ## Authentication
 
-The Supervisor currently supports simple HTTP authentication using Bearer tokens.
-By default, no authentication is used. If you would like to require authentication,
-export the `HAB_SUP_GATEWAY_AUTH_TOKEN` environment variable before starting the
-Supervisor. All HTTP requests will then require that same token to be present in
-an Authorization header, or they will receive a 401 Unauthorized response.
+The Supervisor currently supports simple HTTP authentication using Bearer tokens. By default, no authentication is used. If you want to require authentication, export the `HAB_SUP_GATEWAY_AUTH_TOKEN` environment variable before starting the Supervisor. All HTTP requests will then require that same token to be present in an `Authorization` header, or they will receive a `401 Unauthorized` response.
 
 ## Endpoints
 
 The HTTP API provides information on the following endpoints:
 
-* `/butterfly` - Debug information about the rumors stored with Butterfly.
-* `/census` - Returns the current Census of Services on the Ring (roughly what you see as a service in config.toml).
-* `/services` - Returns an array of all the services running under this Supervisor.
-* `/services/{name}/{group}` - Returns the information of a single loaded service.
-* `/services/{name}/{group}/config` - Returns this service group's current configuration.
-* `/services/{name}/{group}/health` - Returns the current health check for this service.
-* `/services/{name}/{group}/{organization}` - Returns information of a single loaded service scoped to an organization
-* `/services/{name}/{group}/{organization}/config` - Returns the service group's current configuration, but includes the organization.
-* `/services/{name}/{group}/{organization}/health` - Same as above, but includes the organization.
+- `/butterfly` - Debug information about the rumors stored with Butterfly.
+- `/census` - Returns the current Census of Services on the Ring (roughly what you see as a service in `config.toml`).
+- `/services` - Returns an array of all services running under this Supervisor.
+- `/services/{name}/{group}` - Returns information for a single loaded service.
+- `/services/{name}/{group}/config` - Returns this service group's current configuration.
+- `/services/{name}/{group}/health` - Returns the current health check for this service.
+- `/services/{name}/{group}/{organization}` - Returns information for a single loaded service scoped to an organization.
+- `/services/{name}/{group}/{organization}/config` - Returns the service group's current configuration, including the organization.
+- `/services/{name}/{group}/{organization}/health` - Same as above, but includes the organization.
 
 ### Errors
 
-Most of the HTTP API endpoint return these errors:
+Most HTTP API endpoints return these errors:
 
 | Error | Description |
 | ----- | ----------- |
@@ -53,7 +49,7 @@ The `/health` endpoints return:
 
 ## Usage
 
-Connect to the Supervisor of the running service using the following syntax. This example uses `curl` to do the GET request.
+Connect to the Supervisor of the running service by using the following syntax. This example uses `curl` to make the GET request.
 
 ```bash
 curl http://172.17.0.2:9631/services

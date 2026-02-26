@@ -1,4 +1,4 @@
-A plan is the set of instructions, templates, and configuration files that define how you download, configure, make, install, and manage the lifecycle of the application artifact. The plan is defined in the `habitat` directory at the root of your project repository.
+A plan is the set of instructions, templates, and configuration files that define how you download, configure, build, install, and manage the lifecycle of an application artifact. The plan is defined in the `habitat` directory at the root of your project repository.
 
 The `habitat` directory includes:
 

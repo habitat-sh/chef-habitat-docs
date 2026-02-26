@@ -22,12 +22,12 @@ The restart backoff behavior is set by three parameters:
 
 The restart cooldown period is important because it ensures that the supervisor handles potential failures during restart correctly.
 If the cooldown period isn't long enough, a slow service may still be restarting after the cooldown period has passed.
-If a service fails during a restart in that scenario, the service won't backoff correctly before the following restart.
+If a service fails during a restart in that scenario, the service won't back off correctly before the following restart.
 We recommend setting the restart cooldown period to be at least double your expected startup time to be safe.
 
 {{< /note >}}
 
-Enable these values using the [`sup run`](habitat_cli#hab-sup) command by passing in the number of seconds to the following parameters:
+Enable these values by using the [`sup run`](habitat_cli#hab-sup-run) command and passing the number of seconds to the following parameters:
 
 - `service-min-backoff-period`
 - `service-max-backoff-period`
@@ -55,13 +55,13 @@ You can't change the backoff algorithm. However, if you wish to have a simple fi
 
 ## Service failure detection
 
-Adding restart backoff behavior requires the ability to detect when a service has successfully started to reset the backoff period.
-Unfortunately, there is no clean way to differentiate between a service failure and a service taking too long to startup. A health-check hook would enable the detection of successful service startups; however, if a health check is absent, there is no way to know if the service started up. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.
+Adding restart backoff behavior requires the ability to detect when a service has successfully started so the backoff period can be reset.
+Unfortunately, there is no clean way to differentiate between a service failure and a service taking too long to start up. A health-check hook would enable detection of successful service startups; however, if a health check is absent, there is no way to know if the service started successfully. There may also be cases where the initial health check succeeds, but the service goes down shortly afterward.
 
-We attempt to solve this problem by using a restart cooldown period. The cooldown period is a continuous duration of time without a restart, after which we assume a service has started up successfully. It's important to configure this correctly to ensure the backoff period doesn't get reset prematurely.
+We attempt to solve this problem by using a restart cooldown period. The cooldown period is a continuous duration without a restart, after which we assume a service has started successfully. It's important to configure this correctly to ensure the backoff period doesn't get reset prematurely.
 We recommend setting the `service-restart-cooldown-period` to be at least double your expected startup time to be safe. In general, a longer cooldown won't have an adverse effect; however, a shorter one may prevent the backoff behavior completely.
 
-See the examples below to more properly understand this.
+See the following examples.
 
 ## Examples
 
@@ -74,10 +74,10 @@ hab sup run --service-min-backoff-period 5 --service-max-backoff-period 20 --ser
 In the event of a failure during startup with the above configuration, the service will continue to restart after 5 seconds because the service crashes again after the short restart cooldown period has passed, potentially leading to excessive load on external APIs:
 
 1. T = 0, service starts up
-1. T = 30, service crashes, will be restarted after 5 secs
+1. T = 30, service crashes and will be restarted after 5 seconds
 1. T = 35, service is restarted
-1. T = 45, service backoff period is reset to 5 secs because 10 secs has elapsed since the last restart
-1. T = 65, service crashes again, it will now be restarted after 5 secs due to the backoff period resetting at T=45
+1. T = 45, service backoff period is reset to 5 seconds because 10 seconds have elapsed since the last restart
+1. T = 65, service crashes again and is restarted after 5 seconds due to the backoff period resetting at T = 45
 1. T = 70, service is restarted again
 
 **Slow service with a _correct_ configuration**
@@ -86,11 +86,11 @@ In the event of a failure during startup with the above configuration, the servi
 hab sup run --service-min-backoff-period 5 --service-max-backoff-period 20 --service-restart-cooldown-period 60  ORG_NAME/SERVICE_NAME
 ```
 
-In the event of a failure during startup with the above configuration, the service will restart at a random time (15 seconds in this example) which would reduce the load on external APIs:
+In the event of a failure during startup with the above configuration, the service restarts at a random time (15 seconds in this example), which reduces the load on external APIs:
 
 1. T = 0, service starts up
-1. T = 30, service crashes, will be restarted after 5 secs
+1. T = 30, service crashes and will be restarted after 5 seconds
 1. T = 35, service is restarted
-1. T = 65, service crashes again, it will restart after a random duration between 5 and 20 secs, let's assume 15.
+1. T = 65, service crashes again and restarts after a random duration between 5 and 20 seconds; for this example, assume 15
 1. T = 80, service is restarted again, notice that the backoff period hasn't been reset.
-1. T = 140, service backoff period is reset to 5 secs because 60 secs has elapsed since the last restart
+1. T = 140, service backoff period is reset to 5 seconds because 60 seconds have elapsed since the last restart

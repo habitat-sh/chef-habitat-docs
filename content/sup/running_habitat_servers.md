@@ -10,7 +10,7 @@ description = "Running Chef Habitat on servers (Linux and Windows)"
     weight = 25
 +++
 
-Chef Habitat can be run on bare metal servers, as well as virtual machines. Currently, Chef Habitat can run on Linux and Windows platforms, and in all cases, running a Supervisor boils down to running `hab sup run`. How that happens depends on which platform you choose to use.
+Chef Habitat can run on bare metal servers, as well as virtual machines. Currently, Chef Habitat runs on Linux and Windows platforms, and in all cases, running a Supervisor comes down to running `hab sup run`. How that happens depends on the platform you use.
 
 ## Running Chef Habitat on Linux
 
@@ -23,7 +23,7 @@ sudo groupadd hab
 sudo useradd -g hab hab
 ```
 
-Finally, you will need to wire Chef Habitat up to your systems init system. This may be SysVinit, systemd, runit, etc. The details will be different for each system, but in the end, you must call `hab sup run`.
+Finally, you need to wire Chef Habitat to your system's init system. This may be SysVinit, systemd, runit, and so on. The details differ for each system, but in the end, you must call `hab sup run`.
 
 ### Running under systemd
 
@@ -40,7 +40,7 @@ A basic systemd unit file for Chef Habitat might look like this. This assumes th
     WantedBy=default.target
 ```
 
-Depending on your needs and deployment, you will want to modify the options passed to `hab sup run`. In particular, if you wish to participate in larger Supervisor networks, you will need to pass at least one `--peer` option.
+Depending on your needs and deployment, you may want to modify the options passed to `hab sup run`. In particular, if you want to participate in larger Supervisor networks, you need to pass at least one `--peer` option.
 
 ## Running Chef Habitat on Windows
 

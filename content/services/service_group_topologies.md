@@ -16,30 +16,20 @@ The leader-follower topology employs [leader election](../sup/sup_crypto) to def
 
 ## Standalone
 
-The standalone topology is what a Supervisor starts with by default if no topology
-is specified, or if the topology is explicitly specified with `--topology standalone`
-when starting the Supervisor. The standalone topology means that the service group
-members don't have any defined relationship with one another, other than sharing
-the same configuration.
+The standalone topology is what a Supervisor starts with by default if no topology is specified, or if the topology is explicitly specified with `--topology standalone` when starting the Supervisor. The standalone topology means that service group members don't have any defined relationship with one another, other than sharing the same configuration.
 
 ## Leader-follower topology
 
-In a leader-follower topology, one of the members of the service group is elected
-the leader, and the other members of that service group become the followers of
-that leader. This topology is common for database systems like MySQL or PostgreSQL,
-where applications send writes to one member, and those writes are replicated to
-one or more read replicas.
+In a leader-follower topology, one member of the service group is elected leader, and the other members become followers of that leader. This topology is common for database systems like MySQL or PostgreSQL, where applications send writes to one member, and those writes are replicated to one or more read replicas.
 
-As with any topology using leader election, you must start at least three peers
-using the `--topology leader` flag to the Supervisor.
+As with any topology using leader election, you must start at least three peers using the `--topology leader` flag for the Supervisor.
 
 ```bash
 hab sup run --topology leader --group production
 hab svc load <ORIGIN>/<NAME>
 ```
 
-The first Supervisor will block until it has quorum. You would start additional
-members by pointing them at the ring, using the `--peer` argument:
+The first Supervisor blocks until it has quorum. Start additional members by pointing them at the ring with the `--peer` argument:
 
 ```bash
 hab sup run --topology leader --group production --peer 192.168.5.4
@@ -48,21 +38,15 @@ hab svc load <ORIGIN>/<NAME>
 
 {{< note >}}
 
-The `--peer` service doesn't need a peer that's in the same service group;
-it merely needs to be in the same ring with the other members.
+The `--peer` service doesn't need a peer in the same service group; it only needs to be in the same ring as the other members.
 
 {{< /note >}}
 
-Once you have quorum, one member is elected a leader, the Supervisors in the service
-group update the service's configuration in concordance with the policy defined
-at package build time, and the service group starts up.
+Once you have quorum, one member is elected leader, the Supervisors in the service group update the service's configuration according to the policy defined at package build time, and the service group starts up.
 
 ### Defining leader and follower behavior in plans
 
-Chef Habitat allows you to use the same immutable package in different deployment
-scenarios. In this example, a configuration template with conditional logic
-will make the running application to behave differently based on whether
-it's a leader or a follower:
+Chef Habitat allows you to use the same immutable package in different deployment scenarios. In this example, a configuration template with conditional logic makes the running application behave differently based on whether it's a leader or a follower:
 
 ```handlebars
 {{#if svc.me.follower}}
@@ -72,29 +56,20 @@ it's a leader or a follower:
 {{/if}}
 ```
 
-This logic says that if this peer is a follower, it will become a read replica of
-the IP and port of service leader (`svc.leader`), which is found by service
-discovery through the ring. However, if this peer is the leader, the entire list
-of statements here evaluate to empty text---meaning that the peer starts up as
-the leader.
+This logic says that if this peer is a follower, it becomes a read replica of the IP and port of the service leader (`svc.leader`), which is found through service discovery in the ring. However, if this peer is the leader, the entire list of statements evaluates to empty text---meaning that the peer starts up as the leader.
 
 ## Robustness, network boundaries and recovering from partitions
 
-Within a leader-follower topology, it's possible to get into a partitioned state
-where nodes are unable to achieve quorum. To solve this, use a permanent peer to
-heal the netsplit. Pass the `--permanent-peer` option, or it's short form `-I`,
-to make a Supervisor act as a permanent peer.
+Within a leader-follower topology, it's possible to get into a partitioned state where nodes are unable to achieve quorum. To solve this, use a permanent peer to heal the netsplit. Pass the `--permanent-peer` option, or its short form `-I`, to make a Supervisor act as a permanent peer.
 
 ```bash
 hab sup run --topology leader --group production --permanent-peer
 hab svc load <ORIGIN>/<NAME>
 ```
 
-When a Supervisor is instructed to act as a permanent peer, the other Supervisors
-will attempt to connect with the permanent peer and achieve quorum
-even if the permanent peer is confirmed to be dead.
+When a Supervisor is instructed to act as a permanent peer, the other Supervisors attempt to connect with the permanent peer and achieve quorum, even if the permanent peer is confirmed to be dead.
 
-The notion of a permanent peer is an extension to the original
+The notion of a permanent peer is an extension of the original
 [SWIM](http://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
-gossip protocol. It can add robustness provided everyone has a permanent member
+gossip protocol. It can add robustness, provided everyone has a permanent member
 on both sides of the split.
