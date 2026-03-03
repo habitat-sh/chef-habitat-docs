@@ -19,11 +19,11 @@ Chef Habitat 2.x includes the following feature changes:
 To update to Chef Habitat 2.x:
 
 - review your Habitat templates to verify that they're compatible with Habitat 2
-- run migration script to update your Habitat Supervisors
+- run the migration script to update your Habitat Supervisors
 
 ## Update handlebars in Habitat templates
 
-For Chef Habitat 2, we updated the [handlebars implementation](https://crates.io/crates/handlebars) used to input variables into templates.
+For Chef Habitat 2, we updated the [Handlebars implementation](https://crates.io/crates/handlebars) used to insert variables into templates.
 You may need to update your templates as described in the following sections.
 
 ### Update object access syntax
@@ -47,14 +47,14 @@ For more information, see:
 
 ### Update whitespace trimming in templates
 
-Before Chef Habitat 2.x, the `~` character added to a set of braces in a mustache statement (for example `{{~#if items~}}`) didn't trim whitespace around the statement and was effectively a noop. In Habitat 2 and later, the `~` character [trims whitespace](https://handlebarsjs.com/guide/expressions.html#whitespace-control) as expected and may result in errors.
+Before Chef Habitat 2.x, the `~` character added to a set of braces in a mustache statement (for example `{{~#if items~}}`) didn't trim whitespace around the statement and was effectively a no-op. In Habitat 2 and later, the `~` character [trims whitespace](https://handlebarsjs.com/guide/expressions.html#whitespace-control) as expected and may result in errors.
 
 In one case, we found that a templated `nginx.conf` file output an `nginx.conf` file that was poorly formatted but syntactically valid and parsable by Nginx.
 
 However, in another case, the `~` character in a template concatenated two lines that should be separate in a generated PostgreSQL `pg_hba.conf` file.
 The Habitat plan built as expected, but PostgreSQL couldn't parse the `pg_hba.conf` file.
 
-For more on how to use the `~` character in a mustache statement to control whitespace, see the [Habitat plan helpers documentation](../reference/plan_helpers/#trimming-whitespace) or the [Handlebars website](https://handlebarsjs.com/guide/expressions.html#whitespace-control).
+For more information on using the `~` character in a mustache statement to control whitespace, see the [Habitat plan helpers documentation](../reference/plan_helpers/#trimming-whitespace) or the [Handlebars website](https://handlebarsjs.com/guide/expressions.html#whitespace-control).
 
 #### Find whitespace trimming in your templates
 

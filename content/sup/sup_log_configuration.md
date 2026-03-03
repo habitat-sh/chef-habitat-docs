@@ -10,13 +10,13 @@ description = "Dynamically adjust the logging configuration of a running Supervi
     weight = 90
 +++
 
-The two main ways of configuring logging are using environment variables and using a configuration file. Each has its own strengths and weaknesses.
+The two main ways to configure logging are with environment variables and with a configuration file. Each has its own strengths and weaknesses.
 
 ## Environment variable configuration
 
-It's still possible to configure logging with the `RUST_LOG` environment variable. This approach is often useful for quickly re-configuring logging (requiring a restart), or for easily configuring logging in container-based deployments.
+You can still configure logging with the `RUST_LOG` environment variable. This approach is often useful for quickly reconfiguring logging (which requires a restart), or for easily configuring logging in container-based deployments.
 
-The configuration scheme is essentially the same as that described in the documentation of the Rust [env_logger](https://docs.rs/env_logger/0.6.1/env_logger/#enabling-logging) crate, with the exception that we don't allow additional regular expression-based filtering. The configuration values the Supervisor recognizes are described below:
+The configuration scheme is essentially the same as the one described in the Rust [env_logger](https://docs.rs/env_logger/0.6.1/env_logger/#enabling-logging) crate documentation, except that additional regular expression-based filtering isn't supported. The configuration values the Supervisor recognizes are described below:
 
 ## Simple logging levels
 
@@ -26,7 +26,7 @@ Setting `RUST_LOG` to one of these values will cause all log messages at that ve
 
 ## Rust logging levels
 
-This is much finer grained than the simple logging levels above, and to fully leverage it requires some knowledge of both the internal code structure of Habitat itself, as well as of how Rust code is organized generally. Despite this, it allows you to target specific subsystems, which can be very helpful for troubleshooting.
+This is much finer-grained than the simple logging levels above, and fully using it requires some knowledge of Habitat's internal code structure and how Rust code is organized. Even so, it lets you target specific subsystems, which can be very helpful for troubleshooting.
 
 For example, `RUST_LOG=habitat_sup::manager=info` will cause all log messages at the `info` level or more severe (`error`, `warn`, and `info`) originating anywhere in the module hierarchy rooted at `habitat_sup::manager`.
 
@@ -34,17 +34,17 @@ Note that Rust modules are identified first by the crate (or library) they come 
 
 ## Variations
 
-Multiple logging specifiers can be submitted, separated by commas. A simple logging level will act as the default, with additional module-targeted levels serving to refine the logging for the target code. If you supply multiple simple logging levels, only the last one will count. Any number of targeted logging levels are allowed, however.
+You can specify multiple logging specifiers, separated by commas. A simple logging level acts as the default, and additional module-targeted levels refine logging for specific code. If you supply multiple simple logging levels, only the last one applies. You can include any number of targeted logging levels.
 
 For example, `RUST_LOG=info,habitat_sup::manager=debug,tokio_reactor=error` will limit logs generally to the `info` level, while additionally allowing `debug` messages coming from the `habitat_sup::manager` module hierarchy, and restricting log messages from the `tokio_reactor` library to only `error`.
 
 ## Dynamic, file-based configuration
 
-For further control over logging output, as well as the ability to change the configuration of a running Supervisor, a configuration file is needed. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate, and shares many of the same concepts as the Log4J logging system of the Java ecosystem. The `log4rs` configuration documentation can be found [here](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).
+For more control over logging output, and to change the configuration of a running Supervisor, use a configuration file. This file is processed by the [log4rs](https://docs.rs/log4rs/) crate and shares many concepts with the Log4J logging system in the Java ecosystem. You can find `log4rs` configuration documentation [here](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).
 
-Place an appropriate YAML configuration file at `/hab/sup/default/config/log.yml` when the Supervisor starts up if you wish to take advantage of this style of configuration. Note that if such a file is present, it will take priority over any `RUST_LOG` environment variable that may also be present.
+To use this configuration style, place an appropriate YAML configuration file at `/hab/sup/default/config/log.yml` when the Supervisor starts. If this file is present, it takes priority over any `RUST_LOG` environment variable that is also set.
 
-Here is an example configuration file that mimics the default logging configuration of the Supervisor. It emits UTC timestamped message lines to standard output at the `error` level.
+Here is an example configuration file that mimics the default Supervisor logging configuration. It emits UTC-timestamped message lines to standard output at the `error` level.
 
 ```yaml
 # ALWAYS keep this key in the configuration; removing it means changes
@@ -68,9 +68,9 @@ root:
     - stdout
 ```
 
-The `refresh_rate` configuration is very important. If it's present when the Supervisor starts, the file will be checked periodically for updates (according to the value of `refresh_rate`; in the above example, the file will be checked every 5 seconds). If the file changes, then the current content of the file becomes the active configuration. This allows you to, for example, increase the logging level of a running supervisor if you suspect you are running into problems.
+The `refresh_rate` configuration is very important. If it's present when the Supervisor starts, the file is checked periodically for updates (according to the value of `refresh_rate`; in the above example, the file is checked every 5 seconds). If the file changes, its current content becomes the active configuration. This allows you to, for example, increase the logging level of a running Supervisor if you suspect problems.
 
-This dynamism also has a catch, though: you can change the refresh rate as well, and even remove it entirely. If you remove it, however, the Supervisor will stop checking for updates to the file. Any subsequent changes you might make would require a Supervisor restart to be recognized. Work is planned to make this more flexible, however.
+This dynamism has a catch: you can also change the refresh rate, or remove it entirely. If you remove it, the Supervisor stops checking the file for updates. Any later changes require a Supervisor restart to be recognized. Work is planned to make this behavior more flexible.
 
 You can also target individual module hierarchies with this configuration scheme, just as you can with the `RUST_LOG` environment variable. For this, you will need to add a new top-level `loggers` key to the file, like so:
 
@@ -82,6 +82,6 @@ loggers:
     level: error
 ```
 
-Here, `loggers` is a map of maps. Map keys are module paths (as described above in the `RUST_LOG` environment variable documentation), while the values are maps with additional configuration. Here, we're only setting the logging level, but more advanced configurations are possible.
+Here, `loggers` is a map of maps. Map keys are module paths (as described above in the `RUST_LOG` environment variable documentation), while the values are maps with additional configuration. In this example, only the logging level is set, but more advanced configurations are possible.
 
-Users are encouraged to read the [log4rs configuration documentation](https://docs.rs/log4rs/1.4.0/log4rs/#configuration) for further details.
+For more details, review the [log4rs configuration documentation](https://docs.rs/log4rs/1.4.0/log4rs/#configuration).

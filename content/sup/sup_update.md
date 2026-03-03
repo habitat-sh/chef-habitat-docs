@@ -11,8 +11,8 @@ description = "Updating the Supervisor"
 
 +++
 
-Each new Chef Habitat release brings a new Supervisor that includes bug fixes and enhancements.
-You should stay up to date with your running Supervisors.
+Each new Chef Habitat release includes a new Supervisor with bug fixes and enhancements.
+You should keep your running Supervisors up to date.
 
 ## Update a Chef Habitat Supervisor from version 1.6 to 2.x
 
@@ -20,7 +20,7 @@ To update a Chef Habitat Supervisor from Habitat 1.6 to 2.x, see the [upgrade do
 
 ## Update a Chef Habitat Supervisor minor version
 
-When you update Supervisors in production, you usually won't want to shut down your running services while you perform the update because it can cause an outage or require a maintenance window.
+When you update Supervisors in production, you usually won't want to shut down running services during the update because that can cause an outage or require a maintenance window.
 Chef Habitat provides a couple of ways to update a Supervisor without stopping your running services.
 
 ### Manual updates
@@ -32,14 +32,14 @@ hab pkg install chef/hab-sup
 ```
 
 This doesn't update the running Supervisor.
-It downloads the new Supervisor and stores it in your `/hab/pkgs` store.
+It downloads the new Supervisor and stores it in your `/hab/pkgs` directory.
 To update the running Supervisor, restart it:
 
 ```bash
 hab sup restart
 ```
 
-This command restarts the Supervisor service, but doesn't restart the running services.
+This command restarts the Supervisor service, but it doesn't restart running services.
 
 ### Automatic updates
 
@@ -50,9 +50,9 @@ You can configure the Supervisor to automatically update itself using the Habita
 To configure automatic updates with the `hab` CLI, add the `--auto-update` flag to [`hab sup run`](/reference/habitat_cli/#hab-sup-run).
 
 By default, the Supervisor checks for updates every 60 seconds.
-You can adjust this interval by setting the `--auto-update-period` to a different number of seconds.
+You can adjust this interval by setting `--auto-update-period` to a different number of seconds.
 
-To look for updated Supervisor releases in an on-premises depot or in a channel other than `stable`, use the `--url` and `--channel` arguments with `hab sup run` to specify the Builder address and release channel.
+To look for updated Supervisor releases in an on-premises depot or in a channel other than `stable`, use the `--url` and `--channel` arguments with `hab sup run` to specify the Builder URL and release channel.
 
 #### Supervisor config file
 
