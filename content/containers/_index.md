@@ -22,6 +22,6 @@ By eliminating the need for a large operating system, you also avoid including b
 Visit the [Running Chef Habitat Containers](running_habitat_linux_containers) section for more details about how containers are built with Chef Habitat.
 Finally, [Chef Habitat's HTTP API](../services/monitor_services) allows all of your application's runtime dependencies to be audited at any time.
 
-If a brand-new vulnerability is revealed, Chef Habitat's HTTP API makes it easy to programmatically inspect and audit the entire toolchain of your runtime environment without needing to worry about how your containers were built.
+If a brand-new vulnerability is revealed, [Chef Habitat's HTTP API](../services/monitor_services) makes it easy to programmatically inspect and audit the entire toolchain of your runtime environment without needing to worry about how your containers were built.
 
 If your situation requires it, Chef Habitat makes it simple to switch from containerized to non-containerized workloads. This is because Chef Habitat packages only have a requirement on the kernel version of your operating system. You can take the same `.hart` file you use to export to a Docker container and run it on a virtual machine or bare metal. By only requiring the kernel, Chef Habitat lets you switch container formats or switch to non-containerized workloads without significant rework.
