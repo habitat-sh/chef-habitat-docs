@@ -22,7 +22,7 @@ Before you can push or pull images you must configure Docker to use the gcloud c
 gcloud auth configure-docker
 ```
 
-Further access control information is available here: [Access control with IAM](https://cloud.google.com/container-registry/docs/access-control).
+Further access control information is available here: [Access control with IAM](https://docs.cloud.google.com/artifact-registry/docs/access-control).
 
 After a successful Chef Habitat package build, images can be pushed to the Container Registry using the registry URI. The format is: `[HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]`. For more details, see [Pushing and pulling images](https://cloud.google.com/container-registry/docs/pushing-and-pulling).
 
