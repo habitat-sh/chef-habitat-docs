@@ -9,19 +9,19 @@ description = "Define basic metadata about your artifact with plan settings"
     parent = "reference"
 +++
 
-Habitat reserves some names for internal use. You can set all of these values in your plan and use them as variables in your Habitat code.
+Chef Habitat reserves some names for internal use. You can set all of these values in your plan and use them as variables in your Habitat code.
 
 For example:
 
 ```bash plan.sh
-# Set the packag name
+# Set the package name
 pkg_name=two-tier-app
 # Call the package by name
 ${pkg_name}
 ```
 
 ```powershell plan.ps1
-# Set the packag name
+# Set the package name
 pkg_name=two-tier-app
 # Call the package by name
 ${"pkg_name"}
@@ -60,7 +60,7 @@ pkg_name
 {{< /foundation_tabs_panels >}}
 
 pkg_origin
-: The name of the origin for this package. Can contain upper and lowercase letters, numbers, dashes, and underscores. The `HAB_ORIGIN` environment variable overrides the `pkg_origin` Type: string. _Required_.
+: The name of the origin for this package. Can contain upper and lowercase letters, numbers, dashes, and underscores. The `HAB_ORIGIN` environment variable overrides `pkg_origin`. Type: string. _Required_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel1" >}}
   {{< foundation_tab active="true" panel-link="bash-panel1" tab-text="Bash">}}
@@ -86,7 +86,7 @@ pkg_origin
 {{< /foundation_tabs_panels >}}
 
 pkg_version
-: Sets the version of the package By default, Chef Habitat uses `pkg_name`, `pkg_origin`, and `pkg_version` to create the fully-qualified package name. You can set the value through the `pkg_version()` function. Type: string. _Required_.
+: Sets the version of the package. By default, Chef Habitat uses `pkg_name`, `pkg_origin`, and `pkg_version` to create the fully-qualified package name. You can set the value through the `pkg_version()` function. Type: string. _Required_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel2" >}}
   {{< foundation_tab active="true" panel-link="bash-panel2" tab-text="Bash">}}
@@ -112,7 +112,7 @@ pkg_version
 {{< /foundation_tabs_panels >}}
 
 {{< note >}}
-Habitat uses the guidelines of the semantic versioning specification to determine version order (see <https://semver.org/>). Keep in mind that including a hyphen in your version indicates that the package is a pre-release that will be given lower precedence to other versions.
+Habitat uses the guidelines of the semantic versioning specification to determine version order (see <https://semver.org/>). Keep in mind that including a hyphen in your version indicates that the package is a pre-release that will be given lower precedence than other versions.
 {{< /note >}}
 
 pkg_maintainer
@@ -172,7 +172,7 @@ If your package has a custom license, use a string literal matching the title of
 {{< /note >}}
 
 pkg_source
-: A URL that specifies the location from which to download an external source. Any valid `wget` url will work. Typically, the relative path for the URL typically contains the `pkg_name` and `pkg_version` values. Type: URL. _Optional_.
+: A URL that specifies the location from which to download an external source. Any valid `wget` URL will work. Typically, the relative path for the URL typically contains the `pkg_name` and `pkg_version` values. Type: URL. _Optional_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel5" >}}
   {{< foundation_tab active="true" panel-link="bash-panel5" tab-text="Bash">}}
@@ -198,7 +198,7 @@ pkg_source
 {{< /foundation_tabs_panels >}}
 
 pkg_filename
-: The filename for the finished artifact. By default, Chef Habitat ] constructs this from `pkg_name` and `pkg_version`. Type: string. _Optional_.
+: The filename for the finished artifact. By default, Chef Habitat constructs this from `pkg_name` and `pkg_version`. Type: string. _Optional_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel6" >}}
   {{< foundation_tab active="true" panel-link="bash-panel6" tab-text="Bash">}}
@@ -224,7 +224,7 @@ pkg_filename
 {{< /foundation_tabs_panels >}}
 
 pkg_shasum
-: The sha-256 sum of the downloaded `pkg_source`. If you don't have the checksum, generate it by downloading the source and using the `sha256sum` or `gsha256sum` tools. Override with `do_verify()`. When the value is unset or incorrect and you don't override it with `do_verify()`, then the build output of your package will show the expected value. Type: varchar(64) or char(64). _Required_ when providing a valid URL is provided for `pkg_source`, but is otherwise _Optional_.
+: The sha-256 sum of the downloaded `pkg_source`. If you don't have the checksum, generate it by downloading the source and using the `sha256sum` or `gsha256sum` tools. Override with `do_verify()`. When the value is unset or incorrect and you don't override it with `do_verify()`, the build output of your package shows the expected value. Type: varchar(64) or char(64). _Required_ when a valid URL is provided for `pkg_source`, but otherwise _Optional_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel7" >}}
   {{< foundation_tab active="true" panel-link="bash-panel7" tab-text="Bash">}}
@@ -250,7 +250,7 @@ pkg_shasum
 {{< /foundation_tabs_panels >}}
 
 pkg_deps
-: The dependencies that your packages needs at runtime. Refer to packages at three levels of specificity: origin/package, origin/package/version, or origin/package/version/release. Type: array. _Optional_.
+: The dependencies your package needs at runtime. Refer to packages at three levels of specificity: origin/package, origin/package/version, or origin/package/version/release. Type: array. _Optional_.
 
 {{< foundation_tabs tabs-id="bash-powershell-panel8" >}}
   {{< foundation_tab active="true" panel-link="bash-panel8" tab-text="Bash">}}
@@ -330,7 +330,7 @@ pkg_pconfig_dirs=(lib/pkgconfig)
 ```
 
 pkg_svc_run
-: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs`  to place package binaries in the path. If your package hs complex start-up behaviors, use a [run hook](application_lifecycle_hooks) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor. _Optional_.
+: The command for the Supervisor to execute when starting a service. This setting requires `pkg_bin_dirs` to place package binaries in the path. If your package has complex start-up behaviors, use a [run hook](application_lifecycle_hooks) instead. Omit this setting for packages that are designed for consumption by other packages instead of being run directly by a Supervisor. _Optional_.
 
 ```bash
 pkg_svc_run="haproxy -f $pkg_svc_config_path/haproxy.conf"
@@ -388,7 +388,7 @@ pkg_binds_optional=(
 ```
 
 pkg_interpreters
-: An array of interpreters used in [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) lines for scripts. Specify the subdirectory where the binary is relative to the package, for example, `bin/bash` or `libexec/neverland`, since binaries can be located in directories besides `bin`. This list of interpreters will be written to the metadata INTERPRETERS file, located inside a package, with their fully-qualified path. Then these can be used with the fix_interpreter function. For more information on declaring shebangs in Chef Habitat, see [Plan hooks](application_lifecycle_hooks), and for more information on the fix_interpreter function, see [Plan utility functions](plan_helpers). _Optional_.
+: An array of interpreters used in [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) lines for scripts. Specify the subdirectory where the binary is relative to the package, for example, `bin/bash` or `libexec/neverland`, since binaries can be located in directories besides `bin`. This list of interpreters is written to the metadata `INTERPRETERS` file, located inside a package, with their fully-qualified paths. These can then be used with the `fix_interpreter` function. For more information on declaring shebangs in Chef Habitat, see [Plan hooks](application_lifecycle_hooks), and for more information on the `fix_interpreter` function, see [Plan utility functions](plan_helpers). _Optional_.
 
 ```bash
 pkg_interpreters=(bin/bash)
@@ -409,21 +409,21 @@ pkg_svc_group=$pkg_svc_user
 ```
 
 pkg_shutdown_signal
-: The signal to send the service to shutdown. **Not used in a `plan.ps1`.** Default: `TERM`. _Optional_.
+: The signal to send to the service to shut down. **Not used in a `plan.ps1`.** Default: `TERM`. _Optional_.
 
 ```bash
 pkg_shutdown_signal=HUP
 ```
 
 pkg_shutdown_timeout_sec
-: The number of seconds to wait for a service to shutdown. After this interval the service will forcibly be killed. **Not used in a `plan.ps1`.** Default: `8`. _Optional_.
+: The number of seconds to wait for a service to shut down. After this interval, the service is forcibly killed. **Not used in a `plan.ps1`.** Default: `8`. _Optional_.
 
 ```bash
 pkg_shutdown_timeout_sec=$pkg_shutdown_timeout_sec
 ```
 
 pkg_description
-: A short description of the package. It can be a simple string, or you can create a multi-line description using markdown to provide a rich description of your package. This description will be displayed on the Web app when users search for or browse to your package. Type: Text._Required_ for [core](https://github.com/habitat-sh/core-plans) plans, but otherwise _Optional_.
+: A short description of the package. It can be a simple string, or you can create a multi-line description using Markdown to provide a rich description of your package. This description is displayed on the web app when users search for or browse to your package. Type: text. _Required_ for [core](https://github.com/habitat-sh/core-plans) plans, but otherwise _Optional_.
 
 ```bash
 pkg_description=$(cat << EOF

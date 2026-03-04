@@ -9,11 +9,11 @@ description = "Define dynamic plan configuration settings with plan helpers"
     parent = "reference"
 +++
 
-Chef Habitat allows you to use [Handlebars-based](https://handlebarsjs.com/) tuneables in your plan, and you can also use both built-in Handlebars helpers and Chef Habitat-specific helpers in defining your configuration logic.
+Chef Habitat allows you to use [Handlebars-based](https://handlebarsjs.com/) tunables in your plan, and you can use both built-in Handlebars helpers and Chef Habitat-specific helpers to define your configuration logic.
 
 ## Built-in helpers
 
-You can use block expressions to add basic logic to your template such as checking if a value exists or iterating through a list of items.
+You can use block expressions to add basic logic to your template, such as checking whether a value exists or iterating through a list of items.
 
 Block expressions use a helper function to perform the logic.
 The syntax is the same for all block expressions and looks like this:
@@ -52,7 +52,7 @@ if
 : The `if` helper evaluates conditional statements. The values `false`,
   0, "", as well as undefined values all evaluate to false in `if` blocks.
 
-  Here's an example that will only write out configuration for the unixsocket tunable if a value was set by the user:
+  Here's an example that only writes configuration for the `unixsocket` tunable if a user sets a value:
 
   ```handlebars
   {{#if cfg.unixsocket}}
@@ -66,7 +66,7 @@ The `~` indicates that whitespace should be omitted when rendering.
 
 {{< /note >}}
 
-TOML allows you to create sections (called [TOML tables](https://github.com/toml-lang/toml#table)) to better organize your configuration variables. For example, your `default.toml` or user defined TOML could have a `[repl]` section for variables controlling replication behavior. Here's what that looks like:
+TOML allows you to create sections (called [TOML tables](https://github.com/toml-lang/toml#table)) to better organize your configuration variables. For example, your `default.toml` or user-defined TOML could have a `[repl]` section for variables that control replication behavior. Here's what that looks like:
 
 ```toml
 [repl]
@@ -90,11 +90,11 @@ Helpers can also be nested and used together in block expressions. Here is anoth
   ```handlebars
   {{#if svc.me.follower}}
     replicaof {{svc.leader.sys.ip}} {{svc.leader.cfg.port}}
-  {/if}}
+  {{/if}}
   ```
 
 each
-: Here's an example using each to render multiple server entries:
+: Here's an example using `each` to render multiple server entries:
 
   ```handlebars
   {{#each cfg.servers as |server|}}
@@ -105,7 +105,7 @@ each
   {{/each}}
   ```
 
-  You can also use each with `@key` and `this`. Here is an example that takes the `[env]` section of your default.toml and makes an env file you can source from your run hook:
+  You can also use `each` with `@key` and `this`. Here is an example that takes the `[env]` section of your `default.toml` and creates an env file you can source from your `run` hook:
 
   ```handlebars
   {{#each cfg.env}}
@@ -145,18 +145,18 @@ each
   {{< /note >}}
 
 unless
-: For `unless`, using `@last` can also be helpful when you need to optionally include delimiters. In the example below, the IP addresses of the alive members returned by the `servers` binding is comma-separated. The logic check `{{#unless @last}}, {{/unless}}` at the end ensures that the comma is written after each element except the last element.
+: For `unless`, using `@last` can also be helpful when you need to optionally include delimiters. In the example below, the IP addresses of alive members returned by the `servers` binding are comma-separated. The logic check `{{#unless @last}}, {{/unless}}` at the end ensures that a comma is written after each element except the last element.
 
   ```handlebars
   {{#eachAlive bind.servers.members as |member|}}
     "{{member.sys.ip}}"
     {{#unless @last}}, {{/unless }}
-  {{/eachAlive}}]
+  {{/eachAlive}}
   ```
 
 ## Plan helpers
 
-Chef Habitat's templating flavour includes a number of custom helpers for writing configuration and hook files.
+Chef Habitat's templating flavor includes custom helpers for writing configuration and hook files.
 
 toLowercase
 : Returns the lowercase equivalent of the given string literal.
@@ -182,21 +182,21 @@ strReplace
   This sets `my_value` to `this is new`.
 
 pkgPathFor
-: Returns the absolute filepath to the package directory of the package best resolved from the given package identifier. The named package must exist in the `pkg_deps` of the plan from which the template resides. The helper will return a nil string if the named package isn't listed in the `pkg_deps`. As result, you will always get what you expect and the template won't leak to other packages on the system.
+: Returns the absolute file path to the package directory best resolved from the given package identifier. The named package must exist in the `pkg_deps` of the plan where the template resides. The helper returns a nil string if the named package isn't listed in `pkg_deps`. As a result, you always get the expected value, and the template won't leak to other packages on the system.
 
-  Example plan Contents:
+  Example plan contents:
 
   ```bash
   pkg_deps=("core/jre8")
   ```
 
-  Example Template:
+  Example template:
 
   ```handlebars
   export JAVA_HOME={{pkgPathFor "core/jre8"}}
   ```
 
-  Example pointing to specific file in <code>core/nginx</code> package on disk:
+  Example pointing to a specific file in the `core/nginx` package on disk:
 
   ```handlebars
   {{pkgPathFor "core/nginx"}}/config/fastcgi.conf
@@ -309,12 +309,12 @@ toYaml
   The helper outputs a YAML document (with a line beginning with `+++`), so it must be used to create complete documents: you can't insert a section of YAML into an existing YAML document with this helper.
 
 strJoin
-: The `join` helper can be used to create a string with the variables in a list with a separator specified by you. For example, where `list: ["foo", "bar", "baz"]`, `{{strJoin list ","}}` would return `"foo,bar,baz"`.
+: The `strJoin` helper can be used to create a string from variables in a list, with a separator you specify. For example, where `list: ["foo", "bar", "baz"]`, `{{strJoin list ","}}` returns `"foo,bar,baz"`.
 
   You can't join an object (for example `{{strJoin web}}`), but you could join the variables in an object (for example `{{strJoin web.list "/"}}`).
 
 strConcat
-: The `concat` helper can be used to connect multiple strings into one string without a separator. For example, `{{strConcat "foo" "bar" "baz"}}` would return `"foobarbaz"`.\
+: The `strConcat` helper can be used to connect multiple strings into one string without a separator. For example, `{{strConcat "foo" "bar" "baz"}}` returns `"foobarbaz"`.
 
   You can't concatenate an object (for example `{{strConcat web}}`), but you could concatenate the variables in an object (for example `{{strConcat web.list}}`).
 

@@ -20,7 +20,7 @@ Progress Chef maintains the following origins:
 - **chef-platform**: Hosts packages for Chef 360 Platform skills.
 - **habitat**: Hosts packages required for an on-prem Habitat Builder deployment.
 
-## Where can I create an origin
+## Origin creation locations
 
 You can create origins in an on-prem Habitat Builder deployment.
 [Chef's public Habitat Builder](https://bldr.habitat.sh) doesn't support creating new origins.
@@ -33,4 +33,4 @@ You can create origins in an on-prem Habitat Builder deployment.
 
 {{< readfile file="/reusable/md/create_origins_cli.md" >}}
 
-To create key pair for your origin, see the [origin keys](/origins/origin_keys/#generate-origin-keys) documentation.
+To create a key pair for your origin, see the [origin keys](/origins/origin_keys/#generate-origin-keys) documentation.

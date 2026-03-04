@@ -13,7 +13,7 @@ draft = false
 
 Chef Habitat implements cryptography using a Rust [implementation](https://github.com/jedisct1/libsodium) of [NaCl](https://nacl.cr.yp.to/) called `libsodium`. `libsodium` provides a fast, modern framework for encryption, decryption, signing, and verification.
 
-Chef Habitat uses both symmetric encryption (for wire encryption) and asymmetric encryption (for everything else). If you aren't familiar with the difference between the two, please consult [this article](https://support.microsoft.com/en-us/topic/a082a391-dee8-6265-9ce6-77c7f07c48dd).
+Chef Habitat uses both symmetric encryption (for wire encryption) and asymmetric encryption (for everything else). If you aren't familiar with the difference between the two, see [this article](https://support.microsoft.com/en-us/topic/a082a391-dee8-6265-9ce6-77c7f07c48dd).
 
 ## Message encryption
 
@@ -21,7 +21,7 @@ When you have either wire encryption or service group encryption turned on, the 
 
 ## Package signing
 
-Chef Habitat packages are signed using [BLAKE2b](https://blake2.net/) checksums. BLAKE2b is a cryptographic hash function faster than MD5, SHA-1, SHA-2 and SHA3, yet provides at least as much security as the latest standard SHA-3.
+Chef Habitat packages are signed using [BLAKE2b](https://blake2.net/) checksums. BLAKE2b is a cryptographic hash function that's faster than MD5, SHA-1, SHA-2, and SHA-3, yet provides at least as much security as the latest SHA-3 standard.
 
 You can examine the first four lines of a `.hart` file to extract the signature from it, because it's an `xz`-compressed tarball with a metadata header. The `hab pkg header` command will do this for you.
 

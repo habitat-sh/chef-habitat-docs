@@ -9,9 +9,7 @@ description = "Set package, service, and cache paths, compiler options, install 
     parent = "reference"
 +++
 
-The following variables can be used in your plans to help get binaries and libraries
-to build and install in the correct locations in your package. The values for the
-variables listed below are default values or read-only values.
+The following variables can be used in your plans to help binaries and libraries build and install in the correct locations in your package. The values listed below are default values or read-only values.
 
 pkg_prefix
 : The absolute path for your package.
@@ -19,7 +17,7 @@ pkg_prefix
 pkg_dirname
 : The directory created when Habitat extracts an archive.
 
-  If a .tar file extracts to a directory that's different from the filename, then you would need to override this value to match the directory name created during extraction.
+  If a `.tar` file extracts to a directory that's different from the filename, you need to override this value to match the directory name created during extraction.
 
   Default value: `${pkg_name}-${pkg_version}`
 
@@ -74,7 +72,7 @@ HAB_PKG_PATH
   Read-only value: `${HAB_ROOT_PATH}/pkgs`
 
 PLAN_CONTEXT
-: The location on your local dev machine for the files in your plan directory.
+: The location on your local development machine for files in your plan directory.
 
 CFLAGS
 : C compiler options.
@@ -86,4 +84,4 @@ PREFIX
 : Where to install the software; same as `pkg_prefix`.
 
 LD_RUN_PATH
-: Where to find the binaries at run time.
+: Where to find binaries at runtime.
