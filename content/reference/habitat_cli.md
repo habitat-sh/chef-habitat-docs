@@ -19,7 +19,7 @@ The commands for the Chef Habitat CLI (`hab`) are listed below.
 
 | Applies to Version | Last Updated |
 | ------- | ------------ |
-| hab 2.0.293/20251016114829 (linux) | 17 Oct 2025 |
+| hab 2.0.450/20260303225314 (linux) | 4 Mar 2026 |
 
 ## hab
 
@@ -128,7 +128,7 @@ hab bldr channel create [OPTIONS] <CHANNEL>
 **OPTIONS**
 
 ```
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=https://bldr.habitat.sh] [default: https://bldr.habitat.sh]
 -o, --origin <ORIGIN>    Sets the origin to which the channel will belong. Default is from HAB_ORIGIN' or cli.toml
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -h, --help               Print help
@@ -159,7 +159,7 @@ hab bldr channel destroy [OPTIONS] <CHANNEL>
 **OPTIONS**
 
 ```
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL=https://bldr.habitat.sh] [default: https://bldr.habitat.sh]
 -o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -h, --help               Print help
@@ -191,7 +191,7 @@ hab bldr channel list [OPTIONS] [ORIGIN]
 
 ```
 -s, --sandbox         Include sandbox channels for the origin
--u, --url <BLDR_URL>  Specify an alternate Builder endpoint [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-u, --url <BLDR_URL>  Specify an alternate Builder endpoint [env: HAB_BLDR_URL=https://bldr.habitat.sh] [default: https://bldr.habitat.sh]
 -h, --help            Print help
 -V, --version         Print version
 ```
@@ -221,7 +221,7 @@ hab bldr channel promote [OPTIONS] <SOURCE_CHANNEL> <TARGET_CHANNEL>
 
 ```
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=https://bldr.habitat.sh] default: https://bldr.habitat.sh]
 -o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
 -h, --help               Print help
 -V, --version            Print version
@@ -253,7 +253,7 @@ hab bldr channel demote [OPTIONS] <SOURCE_CHANNEL> <TARGET_CHANNEL>
 
 ```
 -z, --auth <AUTH_TOKEN>  Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
--u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=] [default: https://bldr.habitat.sh]
+-u, --url <BLDR_URL>     Specify an alternate Builder endpoint [env: HAB_BLDR_URL] [default: https://bldr.habitat.sh] [env: HAB_BLDR_URL=https://bldr.habitat.sh] default: https://bldr.habitat.sh]
 -o, --origin <ORIGIN>    Sets the origin to which the channel belongs. Default is from HAB_ORIGIN' or cli.toml
 -h, --help               Print help
 -V, --version            Print version
@@ -312,7 +312,7 @@ hab cli setup [OPTIONS]
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -383,7 +383,7 @@ Apply a configuration to a running service
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -r, --remote-sup <REMOTE_SUP> Address to a remote Supervisor's Control Gateway [default: 127.0.0.1:9632]
 -u, --user <USER> Name of a user key to use for encryption
 -h, --help Print help
@@ -462,7 +462,7 @@ Uploads a file to be shared between members of a Service Group
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -r, --remote-sup <REMOTE_SUP> Address to a remote Supervisor's Control Gateway [default: 127.0.0.1:9632]
 -u, --user <USER> Name of the user key
 -h, --help Print help
@@ -850,7 +850,7 @@ Commands relating to Habitat origin key maintenance
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -u, --url <BLDR_URL> Specify an alternate Builder endpoint. If not specified, the value will be taken from the HAB_BLDR_URL environment variable or from the config file if specified
 -z, --auth <AUTH_TOKEN> Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -s, --secret Download origin private key instead of origin public key
@@ -879,7 +879,7 @@ Commands relating to Habitat origin key maintenance
 
 ```
 -t, --type <KEY_TYPE> Export either the 'public' or 'secret' key. The 'secret' key is the origin private key
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 ```
 
@@ -902,7 +902,7 @@ Commands relating to Habitat origin key maintenance
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 ```
 
@@ -925,7 +925,7 @@ Commands relating to Habitat origin key maintenance
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 ```
 
@@ -944,7 +944,7 @@ Commands relating to Habitat origin key maintenance
 
 ```
 --pubfile <PUBLIC_FILE> Path to a local public origin key file on disk
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -s, --secret Upload origin private key in addition to the public key
     --secfile <SECRET_FILE> Path to a local origin private key file on disk
 -u, --url <BLDR_URL> Specify an alternate Builder endpoint. If not specified, the value will be taken from the HAB_BLDR_URL environment variable or from the config file if specified
@@ -1170,11 +1170,11 @@ Builds a plan using Habitat Studio
 -k, --keys <HAB_ORIGIN_KEYS> Installs secret origin keys (ex: "unicorn", "acme,other,acme-ops")
 -r, --root <HAB_STUDIO_ROOT> Sets the Studio root (default: /hab/studios/<DIR_NAME>)
 -s, --src <SRC_PATH> Sets the source path [default: $PWD]
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -N, --native-package Build a native package on the host system without a studio
 -R, --reuse Reuses a previous Studio for the build (default: clean up before building)
 -D, --docker Uses a Dockerized Studio for the build
--f, --refresh-channel <REFRESH_CHANNEL> Channel used to retrieve plan dependencies for Chef supported origins [env: HAB_REFRESH_CHANNEL=] [default: base]
+-f, --refresh-channel <REFRESH_CHANNEL> Channel used to retrieve plan dependencies for Chef supported origins. The value is determined in the following precedence order: (1) CLI argument (--refresh-channel or f). (2) HAB_REFRESH_CHANNEL environment variable. (3) cli.toml config file. (4) Defaults to "base" if none of the above are set
 -h, --help Print help
 -V, --version Print version
 ```
@@ -1479,7 +1479,7 @@ Exports the package to the specified format
 -G, --registry-url <REGISTRY_URL> Remote registry url
     --rm-image Remove local image from engine after build and/or push (default: no)
 -m, --memory <MEMORY_LIMIT> Memory limit passed to docker build's --memory arg (ex: 2gb)
-    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This will allow for reusable layers, reducing storage and network transmission costs. If the resulting image can't be built because there are too many layers, re-build without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
+    --multi-layer If specified, creates an image where each Habitat package is added in its own layer, in dependency order (that is, low-level dependencies are added first, with user packages added last). This will allow for reusable layers, reducing storage and network transmission costs. If the resulting image cannot be built because there are too many layers, re-build without specifying this option to add all Habitat packages in a single layer (which is the default behavior).
     --engine <ENGINE> The name of the container creation engine to use. [env: HAB_PKG_EXPORT_CONTAINER_ENGINE=] default: docker] [possible values: docker, buildah]
 -h, --help Print help (see more with '--help')
 -V, --version Print version
@@ -1614,7 +1614,7 @@ Installs a Habitat package from Builder or locally from a Habitat Artifact
 -f, --force                      Overwrite existing binlinks
 -z, --auth <AUTH_TOKEN>          Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
     --ignore-install-hook        Do not run any install hooks
-    --ignore-local               Do not use locally-installed packages when a corresponding package can't be installed from Builder
+    --ignore-local               Do not use locally-installed packages when a corresponding package cannot be installed from Builder
 -h, --help                       Print help
 -V, --version                    Print version
 ```
@@ -1765,7 +1765,7 @@ Signs an archive with an origin key, generating a Habitat Artifact
 
 ```
 --origin <ORIGIN> Origin key used to create signature
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -1822,7 +1822,7 @@ Uploads a local Habitat Artifact to Builder
 -z, --auth <AUTH_TOKEN> Authentication token for Builder. Uses value from the HAB_AUTH_TOKEN env variable if set or from the config file if specified
 -c, --channel <CHANNEL> Optional additional release channel to upload package to. Packages are always uploaded to unstable, regardless of the value of this option
     --force Skips checking availability of package and force uploads, potentially overwriting a stored copy of a package. (default: false)
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -1846,7 +1846,7 @@ Verifies a Habitat Artifact with an origin key
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -2010,7 +2010,7 @@ hab ring key export [OPTIONS] <RING>
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -2039,7 +2039,7 @@ hab ring key import [OPTIONS]
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -2063,7 +2063,7 @@ hab ring key generate [OPTIONS] <RING>
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -2311,12 +2311,12 @@ Run the supervisor (load config and start services)
     --listen-http <LISTEN_HTTP> The listen address for the HTTP Gateway [env: HAB_LISTEN_HTTP=] [default: 0.0.0.0:9631]
 -D, --http-disable Disable the HTTP Gateway
     --listen-ctl <LISTEN_CTL> The listen address for the Control Gateway [env: HAB_LISTEN_CTL=] [default: 127.0.0.1:9632]
-    --ctl-server-certificate [<CTL_SERVER_CERTIFICATE>...] The control gateway server’s TLS certificate
-    --ctl-server-key [<CTL_SERVER_KEY>...] The control gateway server’s private key
+    --ctl-server-certificate [<CTL_SERVER_CERTIFICATE>...] The control gateway server's TLS certificate
+    --ctl-server-key [<CTL_SERVER_KEY>...] The control gateway server's private key
     --ctl-client-ca-certificate [<CTL_CLIENT_CA_CERTIFICATE>...] Enable client authentication for the control gateway and set the certificate authority to use when authenticating the client
     --org <ORGANIZATION> Organization the Supervisor and it's services are part of
 -I, --permanent-peer Mark the Supervisor as a permanent peer
-    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+    --cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -r, --ring <RING> The name of the ring used by the Supervisor when running with wire encryption [env: HAB_RING=]
 -A, --auto-update Enable automatic updates for the Supervisor itself
     --auto-update-period <AUTO_UPDATE_PERIOD> Time (seconds) between Supervisor update checks [default: 60]
@@ -2453,7 +2453,7 @@ hab svc <COMMAND>
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
@@ -2704,7 +2704,7 @@ hab user key generate [OPTIONS] <USER>
 **OPTIONS**
 
 ```
---cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: home/admin/.hab/cache/keys]
+--cache-key-path <CACHE_KEY_PATH> Cache for creating and searching for encryption keys [env: HAB_CACHE_KEY_PATH=] [default: hab/cache/keys]
 -h, --help Print help
 -V, --version Print version
 ```
