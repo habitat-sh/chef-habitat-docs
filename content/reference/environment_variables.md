@@ -40,11 +40,11 @@ This page lists environment variables you can use to modify the behavior of the 
 | `HAB_STUDIO_NOSTUDIORC` | build system | no default | When set to a non-empty value, a `.studiorc` won't be sourced when entering an interactive Studio with `hab studio enter`. |
 | `HAB_STUDIO_SUP` | build system | no default | Used to customize the arguments passed to an automatically launched Supervisor, or to disable the automatic launching by setting it to `false`, `no`, or `0`. |
 | `HAB_GLYPH_STYLE` | build system | `full` (`limited` on Windows) | Used to customize the rendering of unicode glyphs in UI messages. Valid values are `full`, `limited`, or `ascii`. |
-| `HAB_SUP_UPDATE_MS` | Supervisor | 60000 | Interval in milliseconds governing how often to check for Supervisor updates when running with the [`--auto-update`](habitat_cli/#hab-sup-run) flag. Note: This variable has been deprecated. Users should instead use the [`--auto-update-period`](habitat_cli/#hab-sup-run) flag. |
-| `HAB_UPDATE_STRATEGY_FREQUENCY_MS` | Supervisor | 60000 | Interval in milliseconds governing how often to check for service updates when running with an [update strategy](../services/service_updates). Note: This variable has been deprecated. Users should instead use the [--service-update-period](habitat_cli/#hab-sup-run) flag. |
-| `HAB_USER` | Supervisor | no default | User key to use when running with [service group encryption](/sup/sup_secure). |
-| `http_proxy` | build system, Supervisor | no default | URL of a local HTTP proxy server, optionally supporting basic authentication. |
-| `https_proxy` | build system, Supervisor | no default | URL of a local HTTPS proxy server, optionally supporting basic authentication. |
-| `NO_INSTALL_DEPS` | build system | no default | Set this variable to prevent dependency installation during builds. |
-| `no_proxy` | build system, Supervisor | no default | Comma-separated list of domain exclusions for the `http_proxy` and `https_proxy` environment variables. |
+| `HAB_SUP_UPDATE_MS` | Supervisor | 60000 | Interval in milliseconds governing how often to check for Supervisor updates when running with the [`--auto-update`](habitat_cli/#hab-sup-run) flag. Note: This variable overrides the [`--auto-update-period`](habitat_cli/#hab-sup-run) flag. |
+| `HAB_UPDATE_STRATEGY_PERIOD_MS` | Supervisor | 60000 | Interval in milliseconds governing how often to check for service updates when running with an [update strategy](../services/service_updates). Note: This variable overrides the [--service-update-period](habitat_cli/#hab-sup-run) flag. |
+| `HAB_USER` | Supervisor | no default | User key to use when running with [service group encryption](/sup/sup_secure) |
+| `http_proxy` | build system, Supervisor | no default | A URL of a local HTTP proxy server optionally supporting basic authentication |
+| `https_proxy` | build system, Supervisor | no default | A URL of a local HTTPS proxy server optionally supporting basic authentication |
+| `NO_INSTALL_DEPS` | build system | no default | Set this variable to prevent dependencies install during build |
+| `no_proxy` | build system, Supervisor | no default | A comma-separated list of domain exclusions for the `http_proxy` and `https_proxy` environment variables |
 | `SSL_CERT_FILE` | system | no default | Standard OpenSSL environment variable to override the system certificate file. This is particularly important for the secure HTTPS connection with a Builder instance. Can be used to help you navigate corporate firewalls. |

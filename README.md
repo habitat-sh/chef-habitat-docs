@@ -107,3 +107,7 @@ support email address. If you need support, contact [Chef Support](https://www.c
 Submit an issue to the [Habitat repo](https://github.com/habitat-sh/chef-habitat-docs/issues)
 for "important" documentation bugs that may need visibility among a larger group,
 especially in situations where a doc bug may also surface a product bug.
+
+## Copyright
+
+See [COPYRIGHT.md](./COPYRIGHT.md).
