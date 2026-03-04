@@ -2719,17 +2719,3 @@ hab user key generate [OPTIONS] <USER>
 
 ---
 
-elp Print help
--V, --version Print version
-```
-
-**ARGUMENTS**
-
-```
-<USER>  Name of the user key
-```
-
-
-
----
-
