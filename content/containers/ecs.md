@@ -34,7 +34,7 @@ In the previous commands, replace the following:
 
 ## Elastic Container Service (ECS)
 
-Once Docker images are pushed to ECR, you can run them on Amazon ECS within a [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html) that can be expressed as a [Docker Compose file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose.html).
+Once Docker images are pushed to ECR, you can run them on Amazon ECS within a [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) that can be expressed as a [Docker Compose file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose.html).
 
 Here is an example of a Tomcat application using a Mongo database demonstrating using Chef Habitat-managed containers:
 
@@ -53,7 +53,7 @@ services:
     command: --peer mongodb --bind database:mongodb.default
 ```
 
-From the example, the `mongo` and `national-parks` services use the Docker images from Amazon ECR. The `links` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file), `links` creates `/etc/hosts` entries. This doesn't currently work with ECS, so we assign the `hostname: "mongodb"`.
+From the example, the `mongo` and `national-parks` services use the Docker images from Amazon ECR. The `links` entry manages the deployment order of the container and according to the [Docker Compose documentation](https://docs.docker.com/engine/network/links/), `links` creates `/etc/hosts` entries. This doesn't currently work with ECS, so we assign the `hostname: "mongodb"`.
 
 The `command` entry for the National Parks Tomcat application allows the Chef Habitat Supervisor to `--peer` to the `mongo` gossip ring and `--bind` applies `database` entries to its Mongo configuration.
 

@@ -70,6 +70,6 @@ hab svc load <ORIGIN>/<NAME>
 When a Supervisor is instructed to act as a permanent peer, the other Supervisors attempt to connect with the permanent peer and achieve quorum, even if the permanent peer is confirmed to be dead.
 
 The notion of a permanent peer is an extension of the original
-[SWIM](http://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
+[SWIM](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
 gossip protocol. It can add robustness, provided everyone has a permanent member
 on both sides of the split.

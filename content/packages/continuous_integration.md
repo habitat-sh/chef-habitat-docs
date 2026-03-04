@@ -12,7 +12,7 @@ summary = "How Habitat integrates with CI tools like Jenkins and TravisCI, simpl
 
 +++
 
-**Examples: [Jenkins](https://jenkins.io/), [TravisCI](https://travis-ci.org/), and [Drone](https://drone.io/)**
+**Examples: [Jenkins](https://www.jenkins.io/), [TravisCI](https://www.travis-ci.com/), and [Drone](https://www.drone.io/)**
 
 Continuous integration allows you to build, test, and deploy your code by using CLI tools and plugins. Chef Habitat includes the [Chef Habitat Studio](pkg_build) which lets you do interactive builds on your developer workstation, or non-interactive builds with your continuous integration server. Your continuous integration server can also call the Chef Habitat CLI to promote your Chef Habitat packages to different channels, enabling your applications to update themselves. Chef Habitat isn't a continuous integration server and can make builds and promotion processes done by your continuous integration server easier.
 

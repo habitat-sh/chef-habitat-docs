@@ -12,7 +12,7 @@ Summary = "Use Habitat with Google Container Registry, including configuring Doc
 
 +++
 
-[Google Container Registry](https://cloud.google.com/container-registry/) is a private Docker repository that
+[Google Container Registry](https://docs.cloud.google.com/artifact-registry/docs) is a private Docker repository that
 works with popular continuous delivery systems. It runs on GCP to provide consistent uptime on an infrastructure
 protected by Google's security. The registry service hosts your private images in Cloud Storage under your GCP project.
 
@@ -24,7 +24,7 @@ gcloud auth configure-docker
 
 Further access control information is available here: [Access control with IAM](https://docs.cloud.google.com/artifact-registry/docs/access-control).
 
-After a successful Chef Habitat package build, images can be pushed to the Container Registry using the registry URI. The format is: `[HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]`. For more details, see [Pushing and pulling images](https://cloud.google.com/container-registry/docs/pushing-and-pulling).
+After a successful Chef Habitat package build, images can be pushed to the Container Registry using the registry URI. The format is: `[HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]`. For more details, see [Pushing and pulling images](https://docs.cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling).
 
 ```bash
 hab pkg export container ./results/habskp-hab-gcr-demo-0.1.0-20180710145742-x86_64-linux.hart
@@ -34,4 +34,4 @@ docker push eu.gcr.io/user-project/hab-gcr-demo:latest
 
 ## Related reading
 
-* [Google Container Registry](https://cloud.google.com/container-registry/)
+* [Google Container Registry](https://docs.cloud.google.com/artifact-registry/docs)

@@ -67,4 +67,4 @@ az role assignment create --assignee $CLIENT_ID --role Reader --scope $ACR_ID
 
 ## Related reading
 
-* [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks)
+* [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration)

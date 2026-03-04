@@ -14,7 +14,7 @@ draft = false
 
 The following settings can be used during a Chef Habitat service's lifecycle. This means that you can use these settings in any of the plan hooks, such as `init`, or `run`, and also in any templatized configuration file for your application or service.
 
-These configuration settings are referenced using the [Handlebars.js](https://github.com/wycats/handlebars.js/) version of [Mustache-style](https://mustache.github.io/mustache.5.html) tags.
+These configuration settings are referenced using the [Handlebars.js](https://github.com/handlebars-lang/handlebars.js) version of [Mustache-style](https://mustache.github.io/mustache.5.html) tags.
 
 ## sys
 
