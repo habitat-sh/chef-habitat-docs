@@ -52,4 +52,39 @@ The path to this directory is available at build time in the plan as the variabl
 All templates located in a package's `config_install` folder are rendered to a config_install directory, `/hab/svc/<pkg_name>/config_install`. These templates are only accessible to the execution of an `install` hook and any changes to the values referenced by these templates at runtime won't result in re-rendering the template.
 The path to this directory is available at build time in the plan as the variable `$pkg_svc_config_install_path` and available at runtime in templates and `install` hooks as `{{pkg.svc_config_install_path}}`.
 
+### The config_install directory
+
+The `config_install/` directory is specifically designed for templates needed by `install` and `uninstall` hooks. Because these hooks run during package installation—outside of the Supervisor's service lifecycle—they don't have access to the regular `config/` templates or census data (`svc`, `bind`).
+
+Key differences between `config/` and `config_install/`:
+
+| Feature | `config/` | `config_install/` |
+|---------|-----------|-------------------|
+| Rendered when | Service starts and on config changes | Package installation only |
+| Available to | All service lifecycle hooks | `install` and `uninstall` hooks only |
+| Re-rendered on config change | Yes | No |
+| Has access to census/bind data | Yes | No |
+| Rendered path | `/hab/svc/<name>/config/` | `/hab/svc/<name>/config_install/` |
+
+Use `config_install/` when your `install` hook needs templated values. For example:
+
+```toml default.toml
+data_dir = "/var/lib/myapp"
+log_dir = "/var/log/myapp"
+```
+
+```plain config_install/setup.conf
+DATA_DIR="{{cfg.data_dir}}"
+LOG_DIR="{{cfg.log_dir}}"
+```
+
+```bash hooks/install
+#!/bin/bash
+exec 2>&1
+source {{pkg.svc_config_install_path}}/setup.conf
+mkdir -p "$DATA_DIR" "$LOG_DIR"
+```
+
+For a comprehensive guide on how plans, hooks, and configuration work together, see [Plans, hooks, and configuration guide](../plans/plans_hooks_config_guide.md).
+
 Chef Habitat not only allows you to use Handlebars-based tunables in your plan, but you can also use both built-in Handlebars helpers as well as Chef Habitat-specific helpers to define your configuration logic. See [Reference](build_helpers) for more information.
