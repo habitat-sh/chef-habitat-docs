@@ -20,6 +20,56 @@ Optionally you may add an extension to the hook file. For example, you might cre
 You can't block the thread in a hook unless it's in the `run` hook. Never call `hab` or `sleep` in a hook that isn't the `run` hook.
 {{< /warning >}}
 
+## Hooks and templates
+
+All hooks are [Handlebars](https://handlebarsjs.com/) templates, rendered with configuration data before execution. You can use template variables like `{{cfg.port}}`, `{{pkg.svc_data_path}}`, and `{{sys.ip}}` in your hooks. See [Service template data](service_templates) for the full list of available template variables.
+
+Most hooks have access to the complete set of template data (`cfg`, `pkg`, `sys`, `svc`, `bind`). The exceptions are the `install` and `uninstall` hooks, which don't have access to `sys`, `svc`, or `bind` data because they run outside of the Supervisor's service lifecycle.
+
+## Platform-specific hooks
+
+To create different hooks for different platforms (e.g., Linux vs. Windows, or x86_64 vs. aarch64), place each platform's hooks inside a target-specific directory structure:
+
+```plain
+my-app/
+├── x86_64-linux/
+│   ├── plan.sh
+│   └── hooks/
+│       ├── init
+│       └── run
+├── aarch64-linux/
+│   ├── plan.sh
+│   └── hooks/
+│       ├── init
+│       └── run
+└── x86_64-windows/
+    ├── plan.ps1
+    └── hooks/
+        ├── init
+        └── run
+```
+
+Each target directory is self-contained with its own plan file, hooks, config, and `default.toml`. See [Writing a plan for multiple platform targets](../plans/plan_writing.md#writing-a-plan-for-multiple-platform-targets) for full details on directory layout and build resolution order.
+
+## Hook summary
+
+The following table lists all available hooks in the order they typically execute during a service's lifecycle:
+
+| Hook | File name | When it runs | Can block? |
+|------|-----------|--------------|------------|
+| [install](#install) | `hooks/install` | Package installation | No |
+| [init](#init) | `hooks/init` | Service start (one-time setup) | No |
+| [run](#run) | `hooks/run` | After init; main service process | **Yes** |
+| [post-run](#post-run) | `hooks/post-run` | After run hook starts | No |
+| [reconfigure](#reconfigure) | `hooks/reconfigure` | On config change (replaces restart) | No |
+| [file-updated](#file-updated) | `hooks/file-updated` | Non-service config file changes | No |
+| [health-check](#health-check) | `hooks/health-check` | Periodically (default: 30s) | No |
+| [suitability](#suitability) | `hooks/suitability` | During leader elections | No |
+| [post-stop](#post-stop) | `hooks/post-stop` | After service stops | No |
+| [uninstall](#uninstall) | `hooks/uninstall` | Last version of package removed | No |
+
+For a comprehensive guide that ties plans, hooks, and configuration together, see [Plans, hooks, and configuration guide](../plans/plans_hooks_config_guide.md).
+
 ## Runtime settings
 
 [Chef Habitat's runtime configuration settings](service_templates) can be used in any of the plan hooks and also in any templatized configuration file for your application or service.
@@ -87,6 +137,28 @@ The exit code returned from an `install` hook will be remembered. If a previousl
 
 An `install` hook, unlike other hooks, won't have access to any census data exposed with binds or the `svc` namespace. Also, configuration in `svc_config_path`isn't accessible to an `install` hook. If an `install` hook needs to use templated configuration files, templates located in the `svc_config_install_path` may be referenced. This location will contain rendered templates in a package's `config_install` folder. Finally, any configuration updates made during a service's runtime that would alter an `install` hook or any configuration template in `svc_config_install_path` won't cause a service to reload.
 
+An `install` hook can use the following as a template:
+
+```bash hooks/install
+#!/bin/bash
+
+exec 2>&1
+echo "Installing {{pkg.name}}"
+
+# Create required system directories
+mkdir -p /var/log/{{pkg.name}}
+chown {{pkg.svc_user}}:{{pkg.svc_group}} /var/log/{{pkg.name}}
+
+# Use config_install templates for install-time configuration
+if [ -f "{{pkg.svc_config_install_path}}/setup.conf" ]; then
+  source "{{pkg.svc_config_install_path}}/setup.conf"
+fi
+```
+
+{{< note >}}
+The exit code of the install hook is written to an `INSTALL_HOOK_STATUS` file in the package directory. This file is checked on subsequent installs to determine whether the hook needs to re-run.
+{{< /note >}}
+
 ### reconfigure
 
 File location: `<plan>/hooks/reconfigure`. A `reconfigure` hook can be written for services that can respond to changes in `<plan>/config` without requiring a restart. This hook will execute **instead** of the default behavior of restarting the process. `{{pkg.svc_pid_file}}` can be used to get the `PID` of the service.
@@ -143,9 +215,44 @@ was returned by the hook.
 
 File location: `<plan>/hooks/post-run`. The post run hook will get executed after initial startup. For many data services creation of specific users / roles or datastores is required. This needs to happen once the service has already started.
 
+If the `post-run` hook returns a non-zero exit code, it will be retried.
+
+A `post-run` hook can use the following as a template:
+
+```bash hooks/post-run
+#!/bin/bash
+
+exec 2>&1
+echo "Running post-start tasks for {{pkg.name}}"
+
+# Wait for the service to become available
+for i in $(seq 1 30); do
+  if curl -s http://127.0.0.1:{{cfg.port}}/health > /dev/null 2>&1; then
+    break
+  fi
+  sleep 1
+done
+
+# Create default database/user if needed
+{{pkg.path}}/bin/my-app-cli setup --defaults
+```
+
 ### post-stop
 
 File location: `<plan>/hooks/post-stop`. The post-stop hook will get executed after service has been stopped successfully. You may use this hook to undo what the `init` hook has done.
+
+A `post-stop` hook can use the following as a template:
+
+```bash hooks/post-stop
+#!/bin/bash
+
+exec 2>&1
+echo "Cleaning up after {{pkg.name}}"
+
+# Remove PID files and temporary state
+rm -f {{pkg.svc_var_path}}/run/*.pid
+rm -rf {{pkg.svc_var_path}}/tmp
+```
 
 ### uninstall
 
@@ -154,3 +261,15 @@ File location: `<plan>/hooks/uninstall`. This hook is run when a package is unin
 The `uninstall` hook runs when the last package of an `origin/package` is uninstalled. If there are other versions or revisions installed for the package, the `uninstall` hook is skipped. When more than one revision of an origin are uninstalled at the same time, the process removes them from oldest to newest. This ensures that the uninstall hook of the latest revision is the version that runs.
 
 Like the `install` hook, the `uninstall` hook isn't limited to packages that are loaded as services into a Supervisor. Also like the `install` hook, configuration in `svc_config_path`isn't accessible to an `uninstall` hook. If an `uninstall` hook needs to use templated configuration files, templates located in the `svc_config_install_path` may be referenced. This location will contain rendered templates in a package's `config_install` folder. Finally, any configuration updates made during a service's runtime that would alter an `uninstall` hook or any configuration template in `svc_config_install_path` won't cause a service to reload.
+
+An `uninstall` hook can use the following as a template:
+
+```bash hooks/uninstall
+#!/bin/bash
+
+exec 2>&1
+echo "Uninstalling {{pkg.name}}"
+
+# Clean up directories created by the install hook
+rm -rf /var/log/{{pkg.name}}
+```
