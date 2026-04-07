@@ -52,7 +52,7 @@ The path to this directory is available at build time in the plan as the variabl
 All templates located in a package's `config_install` folder are rendered to a config_install directory, `/hab/svc/<pkg_name>/config_install`. These templates are only accessible to the execution of an `install` hook and any changes to the values referenced by these templates at runtime won't result in re-rendering the template.
 The path to this directory is available at build time in the plan as the variable `$pkg_svc_config_install_path` and available at runtime in templates and `install` hooks as `{{pkg.svc_config_install_path}}`.
 
-### The config_install directory
+## The config_install directory
 
 The `config_install/` directory is specifically designed for templates needed by `install` and `uninstall` hooks. Because these hooks run during package installation—outside of the Supervisor's service lifecycle—they don't have access to the regular `config/` templates or census data (`svc`, `bind`).
 
