@@ -76,7 +76,7 @@ You can upload origin keys that you generate on the command line to Chef Habitat
 
 Run Chef Habitat CLI commands from your local environment or from within the Chef Habitat Studio.
 
-See the CLI documentation for more information on the [`hab origin key`](habitat_cli/#hab-origin-key" >}}) commands.
+See the CLI documentation for more information on the [`hab origin key`](/reference/habitat_cli/#hab-origin-key) commands.
 
 ### Find your origin keys
 
