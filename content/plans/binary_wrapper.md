@@ -41,7 +41,7 @@ On Linux, many binaries hardcode library dependencies to `/lib` or `/lib64` insi
 
 {{< note >}}
 
-On Windows, library dependency locations aren't maintained in a binary file's headers. See [this MSDN article](https://msdn.microsoft.com/library/windows/desktop/ms682586(v=vs.85).aspx) for a complete explanation of how Windows binaries are located. However, it's typically sufficient to ensure that the dependent binaries are on the `PATH`. You should make sure to include all dependencies in the `pkg_deps` of a `plan.ps1` to ensure all of their respective `DLL`s are accessible by your application.
+On Windows, library dependency locations aren't maintained in a binary file's headers. See [this MSDN article](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order?redirectedfrom=MSDN) for a complete explanation of how Windows binaries are located. However, it's typically sufficient to ensure that the dependent binaries are on the `PATH`. You should make sure to include all dependencies in the `pkg_deps` of a `plan.ps1` to ensure all of their respective `DLL`s are accessible by your application.
 
 {{< /note >}}
 
@@ -63,7 +63,7 @@ Most binaries compiled in a full Linux environment have a hard dependency on `/l
       --set-rpath ${LD_RUN_PATH} "${pkg_prefix}/bin/java"
     ```
 
-1. For more information, please see the [patchelf](https://nixos.org/patchelf.html) documentation.
+1. For more information, please see the [patchelf](https://github.com/NixOS/patchelf) documentation.
 
 ## Relocating library dependencies
 

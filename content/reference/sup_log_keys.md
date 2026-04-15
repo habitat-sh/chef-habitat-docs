@@ -9,7 +9,7 @@ description = "Supervisor log code key reference"
     parent = "reference"
 +++
 
-When running services with the Chef Habitat Supervisor you'll see log output similar to this:
+When running services with the Chef Habitat Supervisor, you'll see log output similar to this:
 
 ```output
 redis.default(SR): Initializing
@@ -17,9 +17,9 @@ redis.default(SV): Starting
 redis.default(O):
 ```
 
-The letters in parentheses are called "log keys" and signify what type of log message is being shown. This can be useful for log filtering.
+The letters in parentheses are called "log keys" and indicate what type of log message is being shown. This can be useful for log filtering.
 
-They're mostly organized by the part of the Chef Habitat Supervisor code base that they're running from, so they often are of value to somebody troubleshooting problems in the Chef Habitat Supervisor source code.
+They're mostly organized by the part of the Chef Habitat Supervisor codebase they come from, so they're often useful for someone troubleshooting issues in the Chef Habitat Supervisor source code.
 
 The meanings of the keys are as follows:
 
@@ -45,7 +45,7 @@ The meanings of the keys are as follows:
 | SR | Service runtime |
 | SU | Service updater |
 | SV | Supervisor |
-| SY | "sys" utility |
+| SY | `sys` utility |
 | UCW | User-config watcher |
 | UR | Users utility |
 | UT | Utilities |

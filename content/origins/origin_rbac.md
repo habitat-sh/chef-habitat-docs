@@ -15,9 +15,9 @@ Prerequisites:
 
 - [Download the Chef Habitat CLI](/install/)
 - [Create a Chef Habitat Builder account](https://docs.chef.io/habitat/builder/saas/builder_account)
-- [Generate a personal access token](https://docs.chef.io/habitat/builder/saas/builder_profile.md#create-a-personal-access-token)
-- [Create an origin](origins#create-origin" >}}) or accept an [invitation](#manage-origin-membership-with-hab-origin-invitations) to an existing origin
-- [Get origin keys](origins#origin-keys" >}})
+- [Generate a personal access token](https://docs.chef.io/habitat/builder/saas/builder_profile/#create-a-personal-access-token)
+- [Create an origin](/origins/#create-an-origin) or accept an [invitation](#manage-origin-membership-with-hab-origin-invitations) to an existing origin
+- [Get origin keys](/origins/origin_keys/)
 
 ## Role-based access control (RBAC) for Chef Habitat Builder (SaaS and on-prem)
 
@@ -26,13 +26,13 @@ Role-Based Access Control (RBAC) membership is a token-based authentication proc
 RBAC Origin Member Roles:
 
 Read-Only
-: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users can't add to, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
+: The default membership role for any user joining an origin. 'Read-Only' users can read an origin's packages, channels, origin membership, jobs, keys, integrations, invitations, roles, and settings. 'Read-Only' users can't add, change, or delete anything in the origin, including uploading packages and inviting users to the origin.
 
 Member
 : In addition to 'Read-Only' access, an origin 'Member' can upload and build packages in the 'unstable' channel, but they can't promote packages to other channels.
 
 Maintainer
-: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but can't add, update or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they can't otherwise change origin membership--their own or anybody else's. 'Maintainers' can neither read nor write origin secrets.
+: In addition to 'Member' access, 'Maintainers' can write to packages, origin membership, jobs, integrations, invitations, and promote packages from 'unstable' to other channels. Maintainers can read origin keys and settings, but can't add, update, or delete them. Origin 'Maintainers' can read origin membership roles and see and send invitations, but they can't otherwise change origin membership (their own or anybody else's). 'Maintainers' can neither read nor write origin secrets.
 
 Administrator
 : In addition to 'Maintainer' access, the 'Administrator' role has write access to origin keys and can add, update, and delete origin membership. An 'Administrator' can read and write origin secrets.
@@ -80,13 +80,13 @@ Owner
 
 ## Manage origin membership
 
-The `hab` CLI supports RBAC. You need to use the CLI to manage origin roles, you can't manage origin roles from the Chef Habitat Builder site.
+The `hab` CLI supports RBAC. You must use the CLI to manage origin roles. You can't manage origin roles from the Chef Habitat Builder site.
 
 ![Manage origin membership](/images/habitat/origin-members.png)
 
 ### Manage origin membership with `hab origin invitations`
 
-Use the [hab origin invitations](habitat_cli#hab-origin-invitations" >}}) command to invite users to join your origin and to respond to invitations. Origin Administrators and Owners can use this command to manage invitations.
+Use the [hab origin invitations](/reference/habitat_cli/#hab-origin-invitations) command to invite users to join your origin and to respond to invitations. Origin Administrators and Owners can use this command to manage invitations.
 
 All Chef Habitat Builder users can accept, ignore, and see invitations for their accounts.
 
@@ -134,7 +134,7 @@ hab origin transfer [OPTIONS] <ORIGIN> <NEW_OWNER_ACCOUNT>
 
 ### Manage membership roles with `hab origin rbac`
 
-Use the [hab origin rbac](habitat_cli#hab-origin-rbac" >}}) command to see and set role based access control (RBAC) from the command line.
+Use the [hab origin rbac](/reference/habitat_cli/#hab-origin-rbac) command to see and set role based access control (RBAC) from the command line.
 An origin `MEMBER_ACCOUNT` is the name used to sign in to Chef Habitat builder. You can find the list of user names on an origin's _Members Tab_. (Builder > Origin > Members)
 
 The RBAC command syntax is:
