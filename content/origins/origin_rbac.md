@@ -15,7 +15,7 @@ Prerequisites:
 
 - [Download the Chef Habitat CLI](/install/)
 - [Create a Chef Habitat Builder account](https://docs.chef.io/habitat/builder/saas/builder_account)
-- [Generate a personal access token](https://docs.chef.io/habitat/builder/saas/builder_profile.md#create-a-personal-access-token)
+- [Generate a personal access token](https://docs.chef.io/habitat/builder/saas/builder_profile/#create-a-personal-access-token)
 - [Create an origin](origins#create-origin" >}}) or accept an [invitation](#manage-origin-membership-with-hab-origin-invitations) to an existing origin
 - [Get origin keys](origins#origin-keys" >}})
 

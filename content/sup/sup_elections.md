@@ -31,4 +31,4 @@ An election ends when candidate peer X receives a rumor from the ring stating th
 
 ## Related reading
 
-- For more information about the bully algorithm, see [Elections in a Distributed Computing System](http://dl.acm.org/citation.cfm?id=1309451) by Héctor García-Molina.
+- For more information about the bully algorithm, see [Elections in a Distributed Computing System](https://dl.acm.org/doi/10.1109/TC.1982.1675885) by Héctor García-Molina.

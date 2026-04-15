@@ -13,7 +13,7 @@ draft = false
 
 Chef Habitat implements cryptography using a Rust [implementation](https://github.com/jedisct1/libsodium) of [NaCl](https://nacl.cr.yp.to/) called `libsodium`. `libsodium` provides a fast, modern framework for encryption, decryption, signing, and verification.
 
-Chef Habitat uses both symmetric encryption (for wire encryption) and asymmetric encryption (for everything else). If you aren't familiar with the difference between the two, see [this article](https://support.microsoft.com/en-us/topic/a082a391-dee8-6265-9ce6-77c7f07c48dd).
+Chef Habitat uses both symmetric encryption (for wire encryption) and asymmetric encryption (for everything else). If you aren't familiar with the difference between the two, see [this article](https://www.cloudflare.com/learning/ssl/what-is-asymmetric-encryption/).
 
 ## Message encryption
 

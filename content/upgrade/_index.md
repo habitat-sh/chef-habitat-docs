@@ -98,5 +98,5 @@ To upgrade a Supervisor from Habitat 1.6 to 2:
 - On Windows, run:
 
   ```ps1
-  iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"
+  iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"
   ```

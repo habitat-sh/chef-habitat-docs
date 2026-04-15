@@ -143,4 +143,4 @@ The Butterfly protocol is a variant of [SWIM](https://prakhar.me/articles/swim) 
 
 - [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership
 Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf) by Abhinandan Das, Indranil Gupta, and Ashish Motivala.
-- [A Robust and Scalable Peer-to-Peer Gossiping Protocol](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.8773&rep=rep1&type=pdf) by Spyros Voulgaris, Mark Jelasity, and Maarten van Steen.
+- [A Robust and Scalable Peer-to-Peer Gossiping Protocol](https://research.vu.nl/en/publications/a-robust-and-scalable-peer-to-peer-gossiping-protocol/) by Spyros Voulgaris, Mark Jelasity, and Maarten van Steen.

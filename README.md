@@ -17,7 +17,7 @@ your name and email address, like this:
 
 `Signed-off-by: Julia Child <juliachild@chef.io>`
 
-See our [blog post](https://blog.chef.io/introducing-developer-certificate-of-origin/)
+See our [blog post](https://www.chef.io/blog/introducing-developer-certificate-of-origin)
 for more information about the DCO and why we require it.
 
 After you've added your DCO signoff, add a comment about your proposed change,
@@ -32,8 +32,8 @@ few days. The important part is submitting your change.
 
 ## Local development environment
 
-We use [Hugo](https://gohugo.io/), [Go](https://golang.org/), [NPM](https://www.npmjs.com/),
-[go-swagger](https://goswagger.io/go-swagger/install/), and [jq](https://stedolan.github.io/jq/).
+We use [Hugo](https://gohugo.io/), [Go](https://go.dev/), [NPM](https://www.npmjs.com/),
+[go-swagger](https://goswagger.io/go-swagger/install/), and [jq](https://jqlang.org/).
 You will need Hugo 0.146 or higher installed and running to build and view our documentation properly.
 
 To install Hugo, NPM, and Go on Windows and macOS:

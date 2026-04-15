@@ -12,7 +12,7 @@ summary = "This page explains how Chef Habitat complements configuration managem
 
 +++
 
-Configuration management tools (for example, [Ansible](https://www.ansible.com/), [Chef](https://www.chef.io/products/chef-infra), [Puppet](https://puppet.com/), and [Salt](https://saltstack.com/)) let you write configuration files in a declarative language to manage a server.
+Configuration management tools (for example, [Ansible](https://www.ansible.com/), [Chef](https://www.chef.io/products/chef-infra), [Puppet](https://puppet.com/), and [Salt](https://saltproject.io/)) let you write configuration files in a declarative language to manage a server.
 These tools focus on building working servers by installing and configuring system settings, system libraries, and application libraries before an application is installed on the server.
 Chef Habitat focuses on the application first instead of the server.
 Chef Habitat builds and packages your application's entire binary toolchain, including the system libraries, application libraries, and runtime dependencies necessary for your application to function.
