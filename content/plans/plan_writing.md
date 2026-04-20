@@ -116,18 +116,38 @@ For example, an application targeting Linux, Linux on ARM, and Windows may have 
 ```plain
 app_root/
 ├── x86_64-linux/
-|   |   plan.sh
-|   └── hooks/
-|           run
+│   ├── plan.sh
+│   ├── default.toml
+│   ├── config/
+│   │   └── app.conf
+│   ├── config_install/
+│   │   └── setup.conf
+│   └── hooks/
+│       ├── install
+│       ├── init
+│       ├── run
+│       └── health-check
 ├── aarch64-linux/
-|   |   plan.sh
-|   └── hooks/
-|           run
+│   ├── plan.sh
+│   ├── default.toml
+│   ├── config/
+│   │   └── app.conf
+│   └── hooks/
+│       ├── init
+│       ├── run
+│       └── health-check
 └── x86_64-windows/
-    |   plan.ps1
+    ├── plan.ps1
+    ├── default.toml
+    ├── config/
+    │   └── app.conf
     └── hooks/
-            run
+        ├── init
+        ├── run
+        └── health-check
 ```
+
+Each target directory is **self-contained**—it includes its own plan file, hooks, configuration templates, and `default.toml`. This means you can have completely different hooks, dependencies, and build logic per platform. For example, a Linux `install` hook might create system directories, while a Windows `install` hook might configure Windows services.
 
 The build script will look for the base of your plan in the following locations:
 
@@ -318,6 +338,7 @@ Once you are done writing your plan, use the studio to [build your package](../p
 ### Related resources
 
 - [Write plans](#writing-plans): Describes what a plan is and how to create one.
+- [Plans, hooks, and configuration guide](plans_hooks_config_guide.md): A comprehensive guide covering plans, all lifecycle hooks (including `install` and `uninstall`), platform-specific plans, and configuration templates in one place.
 - [Add configuration to plans](../reference/config_templates.md): Learn how to make your running service configurable by templatizing configuration files in your plan.
 - [Binary-only packages](binary_wrapper.md): Learn how to create packages from software that comes only in binary form, like off-the-shelf or legacy programs.
 
