@@ -19,7 +19,7 @@ The commands for the Chef Habitat CLI (`hab`) are listed below.
 
 | Applies to Version | Last Updated |
 | ------- | ------------ |
-| hab 2.0.488/20260330215356 (linux) | 30 Mar 2026 |
+| hab 2.0.504/20260416191833 (linux) | 16 Apr 2026 |
 
 ## hab
 
