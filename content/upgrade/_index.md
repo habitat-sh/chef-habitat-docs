@@ -23,7 +23,7 @@ To update to Chef Habitat 2.x:
 
 ## Update handlebars in Habitat templates
 
-For Chef Habitat 2, we updated the [Handlebars implementation](https://crates.io/crates/handlebars) used to insert variables into templates.
+For Chef Habitat 2, we updated the [Handlebars implementation](https://docs.rs/handlebars/latest/handlebars/) used to insert variables into templates.
 You may need to update your templates as described in the following sections.
 
 ### Update object access syntax

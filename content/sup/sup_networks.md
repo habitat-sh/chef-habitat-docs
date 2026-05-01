@@ -107,4 +107,4 @@ If you prefer a concise summary, the advice above can be reduced to:
 If you want additional details, the following technical journal articles describe the algorithms that form the basis of Chef Habitat's gossip system:
 
 - [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf) by Abhinandan Das, Indranil Gupta, Ashish Motivala.
-- [A Robust and Scalable Peer-to-Peer Gossiping Protocol](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.8773&rep=rep1&type=pdf) by Spyros Voulgaris, Mark Jelasity, and Maarten van Steen.
+- [A Robust and Scalable Peer-to-Peer Gossiping Protocol](https://doi.org/10.1007/978-3-540-25840-7_6) by Spyros Voulgaris, Mark Jelasity, and Maarten van Steen.

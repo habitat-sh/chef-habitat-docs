@@ -49,4 +49,4 @@ A: Yes, you can download packages for offline installation:
 
 **Q: Does Chef Habitat work with container orchestrators?**
 
-A: Chef Habitat can be used with Kubernetes. See our [Kubernetes documentation](/containers/kubernetes/) for more information.
+A: Yes. Chef Habitat supports running containers on [Azure Kubernetes Service (AKS)](/containers/aks/) and [Amazon Elastic Container Service (ECS)](/containers/ecs/).

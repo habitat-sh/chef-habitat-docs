@@ -14,7 +14,7 @@ draft = false
 
 This section will dive into the implementation details of important Chef Habitat components. These topics are for advanced users. It isn't necessary to learn these concepts in order to use Chef Habitat.
 
-The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](https://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
+The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://systemd.io/), [runit](https://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
 
 Because the basic functionality of process supervision is well-known, this document doesn't discuss those details. Instead, this document focuses strictly on the internals of the feature that makes the Chef Habitat Supervisor special: the fact that each Supervisor is connected to others in a peer-to-peer network which we refer to as a _ring_. This allows Supervisors to share configuration data with one another and adapt to changing conditions in the ring by modifying their own configuration.
 
@@ -43,7 +43,7 @@ Incarnation
 
 ## Supervisor internals
 
-The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [runit](https://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
+The Chef Habitat Supervisor is similar in some ways to well-known process supervisors like [systemd](https://systemd.io/), [runit](https://smarden.org/runit/), or [smf](https://en.wikipedia.org/wiki/Service_Management_Facility). It accepts and passes POSIX signals to its child processes, restarts child processes if and when they fail, and ensures that child processes terminate cleanly.
 
 Because the basic functionality of process supervision is well-known, this document doesn't discuss those details. Instead, this document focuses strictly on the internals of the feature that makes the Chef Habitat Supervisor special: the fact that each Supervisor is connected to others in a peer-to-peer network which we refer to as a _ring_. This allows Supervisors to share configuration data with one another and adapt to changing conditions in the ring by modifying their own configuration.
 
