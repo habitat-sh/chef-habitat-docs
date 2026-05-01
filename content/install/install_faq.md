@@ -14,7 +14,7 @@ This section covers frequently asked questions about downloading and installing 
 
 ## General questions
 
-**Q: Can I just download a GitHub release of Chef Habitat?**
+**Q: Can I download a GitHub release of Chef Habitat?**
 
 A: While we do publish releases on GitHub as part of our release process, those archives contain source code that requires compilation. Since the `hab` CLI is written in Rust, you would need to compile the source for your platform. We recommend using our pre-compiled packages instead.
 
@@ -49,4 +49,4 @@ A: Yes, you can download packages for offline installation:
 
 **Q: Does Chef Habitat work with container orchestrators?**
 
-A: Chef Habitat can be used with Kubernetes. See our [Kubernetes documentation](/containers/kubernetes/) for more information.
+A: Yes. Chef Habitat supports running containers on [Azure Kubernetes Service (AKS)](/containers/aks/) and [Amazon Elastic Container Service (ECS)](/containers/ecs/).

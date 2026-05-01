@@ -57,7 +57,7 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 : Prints help information
 
 `-v VERSION`
-: Specifies a Habitat version. For example: `1.6.1245` or `1.6.1245/20250905140900`.
+: Specifies a Habitat version, for example, `1.6.1245` or `1.6.1245/20250905140900`.
 
 `-t TARGET`
 : Specifies the target architecture of the 'hab' program to download.
@@ -85,9 +85,9 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-Unpacking this a bit, `curl -sSfL` is equivalent to `curl --silent --show-error --fail --location` meaning that `curl` minimizes output, fails fast, shows any error that occurs while following any redirects.
+The `curl -sSfL` command is equivalent to `curl --silent --show-error --fail --location`. This means `curl` minimizes output, fails fast, shows any error that occurs, and follows any redirects.
 
-Alternatively, you could download the file and run it locally. For example:
+Alternatively, download the file and run it locally, for example:
 
 ```bash
 curl -OL https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh
@@ -230,7 +230,7 @@ After successful installation:
 1. Verify the installation: `hab --version`
 2. Set up your origin: `hab origin key generate YOUR_ORIGIN`
 3. Review the [CLI setup guide](../install/hab_setup.md) for initial configuration
-4. Take the [Chef Habitat tutorial](https://www.chef.io/training/tutorials) available at [Chef Training](https://www.chef.io/training) to learn more about using Habitat.
+4. Take the [Chef Habitat tutorial](https://www.chef.io/training/tutorials) at [Chef Training](https://www.chef.io/training) to learn more about using Habitat.
 
 ## Support
 
@@ -238,4 +238,4 @@ If you have issues with the install script:
 
 - See the [troubleshooting guide](/troubleshooting/)
 - Visit the [Habitat community forum](https://discourse.chef.io/c/habitat)
-- Review known or file new issues in the [Habitat GitHub repository](https://github.com/habitat-sh/habitat/issues)
+- Review known issues or file issues in the [Habitat GitHub repository](https://github.com/habitat-sh/habitat/issues)
