@@ -15,74 +15,74 @@ Packages are installed in the `/hab/pkgs/` directory, and then further organized
 
 ## Contents of a Chef Habitat package
 
-BUILD_DEPS
+`BUILD_DEPS`
 : Fully-qualified package identifiers of any build dependencies your package depends on. These are listed in the root `plan.sh` file of your plan directory.
 
-BUILD_TDEPS
+`BUILD_TDEPS`
 : Fully-qualified package identifiers of any runtime dependencies that your project's build dependencies depend on. This is essentially a flattened dependency tree up to the root dependency (`linux-headers` in most cases).
 
-BUILDTIME_ENVIRONMENT
+`BUILDTIME_ENVIRONMENT`
 : A file that contains information similar to the `RUNTIME_ENVIRONMENT` file, but is constructed from a package's build-time dependencies instead of its runtime dependencies. This file isn't currently consumed by other software in the Chef Habitat ecosystem, but it can be useful for troubleshooting and information.
 
-BUILDTIME_ENVIRONMENT_PROVENANCE
+`BUILDTIME_ENVIRONMENT_PROVENANCE`
 : A file that provides information about which specific dependencies influenced the final value of a given variable in the `BUILDTIME_ENVIRONMENT` file. This file isn't currently consumed by other software in the Chef Habitat ecosystem, but it can be useful for troubleshooting and information.
 
-CFLAGS
+`CFLAGS`
 : Additional switches to be passed to the compiler when this package is used as a build dependency.
 
-DEPS
+`DEPS`
 : Runtime dependencies for your package. These dependencies are processed by Chef Habitat and their corresponding environment variables (such as `PATH` and `LD_LIBRARY_PATH`) are added to the current environment.
 
-FILES
+`FILES`
 : List of all files in this package along with their blake2b checksums. The FILES file itself is signed using `hab pkg sign` to provide an assurance that its contents haven't been tampered with.
 
-IDENT
+`IDENT`
 : The fully-qualified identifier for the package. The format is `origin/name/version/release`.
 
-INTERPRETERS
+`INTERPRETERS`
 : If `pkg_interpreters` is specified in your `plan.sh`, this file is generated and contains a list of absolute paths to any interpreters a package can provide. Code in a `plan.sh` can use the `fix_interpreter` function to replace hard-coded interpreter paths, such as `/bin/env`. Interpreter paths in Chef Habitat are nested under `/hab/pkgs/`. For more information on interpreters, see the `fix_interpreter` description in [Plan helper functions](build_helpers).
 
-LDFLAGS
+`LDFLAGS`
 : Additional switches to be passed to the compiler when this package is used as a build dependency.
 
-LD_RUN_PATH
+`LD_RUN_PATH`
 : Additional switches to be passed to the compiler when this package is used as a build dependency.
 
-MANIFEST
+`MANIFEST`
 : A file containing package information, such as checksum, maintainer, build variables, and other metadata specified in `plan.sh`, as well as the contents of `plan.sh` itself.
 
-PATH
+`PATH`
 : A file that contains all directories in the package which contain program binaries. The directories are separated with the target platform's path separator character (either `:` or `;`).
 
-RUNTIME_ENVIRONMENT
+`RUNTIME_ENVIRONMENT`
 : A file containing the result of layering the current package's runtime environment variables on top of those of its dependencies. The build process consults this file when processing dependencies, and the Supervisor consults it together with `RUNTIME_PATH` when generating the full set of environment variables that should be added before running a supervised process.
 
-RUNTIME_ENVIRONMENT_PROVENANCE
+`RUNTIME_ENVIRONMENT_PROVENANCE`
 : A file that provides information about which specific dependencies influenced the final value of a given variable in the `RUNTIME_ENVIRONMENT` file. This file isn't currently consumed by other software in the Chef Habitat ecosystem, but it can be useful for troubleshooting and information.
 
-RUNTIME_PATH
+`RUNTIME_PATH`
 : A file that contains all directories that need to be prepended to an environment's `$PATH` before a program in this package can be expected to run correctly. The order of the elements is precise and meaningful, so it shouldn't be altered. This file is used with `RUNTIME_ENVIRONMENT` to compute the full set of environment variables that should be added before running a program in this package.
 
-TARGET
+`TARGET`
 : The CPU architecture and platform for the package. The format is `architecture-platform`. For example, `x86_64-linux`.
 
-TDEPS
+`TDEPS`
 : Fully-qualified package identifiers of any runtime dependencies that your project's runtime dependencies depend on. This is essentially a flattened dependency tree up to the root dependency (`linux-headers` in most cases).
 
-SVC_GROUP
+`SVC_GROUP`
 : The value of `pkg_svc_group` from a plan. The Chef Habitat Supervisor will try to start a service with this group if it exists.
 
-SVC_USER
+`SVC_USER`
 : The value of `pkg_svc_user` from a plan. The Chef Habitat Supervisor will try to start a service with this user if it exists.
 
-default.toml
+`default.toml`
 : If you have defined a `default.toml` file in the root of your plan, it's included in the same relative location within the installed package directory. For more information on configuration and the `default.toml` file, see [Configuration updates](../services/service_updates.md).
 
-config directory
-: If you have defined a `config` subdirectory with a templated configuration file in your plan, it is included in the same relative location within the installed package directory. For more information on templated configuration files, see [Add configuration to plans](config_templates).
+`config` directory`
+: If you have defined a `config` subdirectory with a templated configuration file in your plan, it's included in the same relative location within the installed package directory. For more information on templated configuration files, see [Add configuration to plans](config_templates).
 
-config_install directory
-: If you have defined a `config_install` subdirectory with a templated configuration file in your plan, it is included in the same relative location within the installed package directory. For more information on templated configuration files, see [Add configuration to plans](config_templates).
+`config_install` directory
+: If you have defined a `config_install` subdirectory with a templated configuration file in your plan, it's included in the same relative location within the installed package directory. For more information on templated configuration files, see [Add configuration to plans](config_templates).
 
-hooks directory
+`hooks` directory
 : If you have defined a `hooks` subdirectory with hook scripts in your plan, those scripts are included in the same relative location within the installed package directory. Read more about [Application lifecycle hooks](application_lifecycle_hooks).
