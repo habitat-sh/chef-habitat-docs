@@ -9,6 +9,8 @@ description = "Override default buildtime behavior with build phase callbacks"
     parent = "reference"
 +++
 
+<!-- markdownlint-disable MD007 MD006 -->
+
 When defining your plan, you can override Chef Habitat's default behavior in each build phase through a callback. To define a callback, create a shell function of the same name in your plan file, and then write your script. If you don't want to use the default callback behavior, you must override the callback and `return 0` in the function definition, or provide no implementation in a `plan.ps1`.
 
 These callbacks are listed in the order they're executed by the package build script.
@@ -56,23 +58,23 @@ Additionally, [plan helper functions](build_helpers) can help you build your pac
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
 
-    ```bash
-    set_runtime_env [-f] VARIABLE_NAME VALUE
-    set_buildtime_env [-f] VARIABLE_NAME VALUE
-    ```
+  ```bash
+  set_runtime_env [-f] VARIABLE_NAME VALUE
+  set_buildtime_env [-f] VARIABLE_NAME VALUE
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
 
-    ```powershell
-    Set-RuntimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
-    Set-BuildtimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
-    ```
+  ```powershell
+  Set-RuntimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
+  Set-BuildtimeEnv VARIABLE_NAME VALUE [-force] [-IsPath]
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   In PowerShell plans, if your variable contains file paths pointing inside the Chef Habitat `/hab` directory, you can use the `-IsPath` flag to ensure the path remains portable across different Chef Habitat environments. For example, in a local (non-Docker) Windows Studio, the following line:
@@ -99,23 +101,23 @@ Additionally, [plan helper functions](build_helpers) can help you build your pac
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
 
-    ```bash
-    push_runtime_env VARIABLE_NAME VALUE
-    push_buildtime_env VARIABLE_NAME VALUE
-    ```
+  ```bash
+  push_runtime_env VARIABLE_NAME VALUE
+  push_buildtime_env VARIABLE_NAME VALUE
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
 
-    ```powershell
-    Push-RuntimeEnv VARIABLE_NAME VALUE [-IsPath]
-    Push-BuildtimeEnv VARIABLE_NAME VALUE [-IsPath]
-    ```
+  ```powershell
+  Push-RuntimeEnv VARIABLE_NAME VALUE [-IsPath]
+  Push-BuildtimeEnv VARIABLE_NAME VALUE [-IsPath]
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   These functions allow you to push a new value onto a multi-valued environment variable without overwriting the existing values. These multi-valued variables are referred to as "aggregate" variables in Chef Habitat. Single-value environment variables are known as "primitive" variables.
@@ -128,21 +130,21 @@ Additionally, [plan helper functions](build_helpers) can help you build your pac
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel3" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
 
-    ```bash
-    export HAB_ENV_FOO_TYPE=aggregate
-    ```
+  ```bash
+  export HAB_ENV_FOO_TYPE=aggregate
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
 
-    ```powershell
-    $env:HAB_ENV_FOO_TYPE="aggregate"
-    ```
+  ```powershell
+  $env:HAB_ENV_FOO_TYPE="aggregate"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   Similarly, Chef Habitat defaults to using the colon (`:`) as a separator for aggregate variables on Linux. If the hypothetical `FOO` variable uses a semicolon (`;`) as a separator instead, then you must add `export HAB_ENV_FOO_SEPARATOR=;` at the top level of the plan. On Windows, `;` is the default separator.

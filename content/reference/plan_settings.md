@@ -9,6 +9,8 @@ description = "Define basic metadata about your artifact with plan settings"
     parent = "reference"
 +++
 
+<!-- markdownlint-ignore MD007 MD006 -->
+
 Chef Habitat reserves some names for internal use. You can set all of these values in your plan and use them as variables in your Habitat code.
 
 For example:
@@ -38,21 +40,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel" >}}
 
-    ```bash
-    pkg_name=zlib
-    ```
+  ```bash
+  pkg_name=zlib
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel" >}}
 
-    ```powershell
-    $pkg_name="zlib"
-    ```
+  ```powershell
+  $pkg_name="zlib"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_origin`
@@ -64,21 +66,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
 
-    ```bash
-    pkg_origin=Habitat
-    ```
+  ```bash
+  pkg_origin=Habitat
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
 
-    ```powershell
-    $pkg_origin="Habitat"
-    ```
+  ```powershell
+  $pkg_origin="Habitat"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_version`
@@ -90,21 +92,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
 
-    ```bash
-    pkg_version=1.2.8
-    ```
+  ```bash
+  pkg_version=1.2.8
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
 
-    ```powershell
-    $pkg_version="1.2.8"
-    ```
+  ```powershell
+  $pkg_version="1.2.8"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   {{< note >}}
@@ -120,21 +122,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel3" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel3" >}}
 
-    ```bash
-    pkg_maintainer="Your Name <someone@example.com>"
-    ```
+  ```bash
+  pkg_maintainer="Your Name <someone@example.com>"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel3" >}}
 
-    ```powershell
-    $pkg_maintainer="Your Name <someone@example.com>"
-    ```
+  ```powershell
+  $pkg_maintainer="Your Name <someone@example.com>"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_license`
@@ -146,21 +148,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel4" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel4" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel4" >}}
 
-    ```bash
-    pkg_license=('Apache-2.0')
-    ```
+  ```bash
+  pkg_license=('Apache-2.0')
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel4" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel4" >}}
 
-    ```powershell
-    $pkg_license=("'Apache-2.0'")
-    ```
+  ```powershell
+  $pkg_license=("'Apache-2.0'")
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   {{< note >}}
@@ -176,21 +178,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel5" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel5" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel5" >}}
 
-    ```bash
-    pkg_source=http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz
-    ```
+  ```bash
+  pkg_source=http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel5" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel5" >}}
 
-    ```powershell
-    $pkg_source="http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz"
-    ```
+  ```powershell
+  $pkg_source="http://downloads.sourceforge.net/project/libpng/$pkg_name/${pkg_version}/${pkg_name}-${pkg_version}.tar.gz"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_filename`
@@ -202,21 +204,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel6" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel6" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel6" >}}
 
-    ```bash
-    pkg_filename=${pkg_name}-${pkg_version}.tar.gz
-    ```
+  ```bash
+  pkg_filename=${pkg_name}-${pkg_version}.tar.gz
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel6" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel6" >}}
 
-    ```powershell
-    $pkg_filename="${pkg_name}-${pkg_version}.tar.gz"
-    ```
+  ```powershell
+  $pkg_filename="${pkg_name}-${pkg_version}.tar.gz"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_shasum`
@@ -228,21 +230,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel7" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel7" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel7" >}}
 
-    ```bash
-    pkg_shasum=36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d
-    ```
+  ```bash
+  pkg_shasum=36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel7" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel7" >}}
 
-    ```powershell
-    $pkg_shasum="36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d"
-    ```
+  ```powershell
+  $pkg_shasum="36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_deps`
@@ -254,21 +256,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel8" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel8" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel8" >}}
 
-    ```bash
-    pkg_deps=(core/glibc core/pcre core/openssl core/zlib)
-    ```
+  ```bash
+  pkg_deps=(core/glibc core/pcre core/openssl core/zlib)
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel8" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel8" >}}
 
-    ```powershell
-    $pkg_deps="(core/glibc core/pcre core/openssl core/zlib)"
-    ```
+  ```powershell
+  $pkg_deps="(core/glibc core/pcre core/openssl core/zlib)"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_build_deps`
@@ -280,21 +282,21 @@ ${"pkg_name"}
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel9" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel9" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel9" >}}
 
-    ```bash
-    pkg_build_deps=(core/gcc core/linux-headers)
-    ```
+  ```bash
+  pkg_build_deps=(core/gcc core/linux-headers)
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel9" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel9" >}}
 
-    ```powershell
-    $pkg_build_deps="(core/gcc core/linux-headers)"
-    ```
+  ```powershell
+  $pkg_build_deps="(core/gcc core/linux-headers)"
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `pkg_lib_dirs`

@@ -122,35 +122,35 @@ Most of the following helper functions aren't available in PowerShell plans (`pl
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel1" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel1" >}}
 
-    ```bash
-    pkg_version() {
-    cat "$SRC_PATH/version.txt"
-    }
+  ```bash
+  pkg_version() {
+  cat "$SRC_PATH/version.txt"
+  }
 
-    do_before() {
-    do_default_before
-    update_pkg_version
-    }
-    ```
+  do_before() {
+  do_default_before
+  update_pkg_version
+  }
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
 
-    {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
+  {{< foundation_tabs_panel panel-id="powershell-panel1" >}}
 
-    ```powershell
-    function pkg_version {
-    Get-Content "$SRC_PATH/version.txt"
-    }
+  ```powershell
+  function pkg_version {
+  Get-Content "$SRC_PATH/version.txt"
+  }
 
-    Invoke-Before {
-    Invoke-DefaultBefore
-    Set-PkgVersion
-    }
-    ```
+  Invoke-Before {
+  Invoke-DefaultBefore
+  Set-PkgVersion
+  }
+  ```
 
-    {{< /foundation_tabs_panel >}}
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
   The `pkg_version` function in this plan dynamically creates a version with a date stamp and outputs the final version string to standard output.
@@ -162,50 +162,50 @@ Most of the following helper functions aren't available in PowerShell plans (`pl
   {{< /foundation_tabs >}}
 
   {{< foundation_tabs_panels tabs-id="bash-powershell-panel2" >}}
-    {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
+  {{< foundation_tabs_panel active="true" panel-id="bash-panel2" >}}
 
-    ```bash
-    pkg_version() {
-    local build_date
+  ```bash
+  pkg_version() {
+  local build_date
 
+  # Extract the build date of the certificates file
+  build_date=$(cat $HAB_CACHE_SRC_PATH/$pkg_filename \
+    | grep 'Certificate data from Mozilla' \
+    | sed 's/^## Certificate data from Mozilla as of: //')
+
+  date --date="$build_date" "+%Y.%m.%d"
+  }
+
+  do_download() {
+  do_default_download
+  update_pkg_version
+  }
+  ```
+
+  {{< /foundation_tabs_panel >}}
+
+  {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
+
+  ```powershell
+  function pkg_version {
     # Extract the build date of the certificates file
-    build_date=$(cat $HAB_CACHE_SRC_PATH/$pkg_filename \
-      | grep 'Certificate data from Mozilla' \
-      | sed 's/^## Certificate data from Mozilla as of: //')
-
-    date --date="$build_date" "+%Y.%m.%d"
-    }
-
-    do_download() {
-    do_default_download
-    update_pkg_version
-    }
-    ```
-
-    {{< /foundation_tabs_panel >}}
-
-    {{< foundation_tabs_panel panel-id="powershell-panel2" >}}
-
-    ```powershell
-    function pkg_version {
-      # Extract the build date of the certificates file
-      $matchStr = "## Certificate data from Mozilla as of: "
-      foreach($line in (Get-Content "$HAB_CACHE_SRC_PATH/$pkg_filename")) {
-        if($line.StartsWith($matchStr)) {
-          $build_date = $line.Substring($matchStr.Length)
-        }
+    $matchStr = "## Certificate data from Mozilla as of: "
+    foreach($line in (Get-Content "$HAB_CACHE_SRC_PATH/$pkg_filename")) {
+      if($line.StartsWith($matchStr)) {
+        $build_date = $line.Substring($matchStr.Length)
       }
-
-      [DateTime]::Parse($build_date).ToString("yyyy.mm.dd")
     }
 
-    function Invoke-Download {
-      Invoke-DefaultDownload
-      Set-PkgVersion
-    }
-    ```
+    [DateTime]::Parse($build_date).ToString("yyyy.mm.dd")
+  }
 
-    {{< /foundation_tabs_panel >}}
+  function Invoke-Download {
+    Invoke-DefaultDownload
+    Set-PkgVersion
+  }
+  ```
+
+  {{< /foundation_tabs_panel >}}
   {{< /foundation_tabs_panels >}}
 
 `abspath()`
