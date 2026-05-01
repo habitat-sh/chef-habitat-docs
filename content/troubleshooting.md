@@ -7,7 +7,7 @@ description = "Troubleshooting common issues with Chef Habitat"
     identifier = "troubleshooting"
 +++
 
-This page provides solutions to common installation and setup issues with Chef Habitat.
+This page provides solutions to common installation, setup, and runtime issues with Chef Habitat.
 
 ## Installation issues
 
@@ -15,29 +15,29 @@ This page provides solutions to common installation and setup issues with Chef H
 
 #### Problem
 
-The `install.sh` or `install.ps1` script fails to install Chef Habitat on your system.
+The `install.sh` or `install.ps1` script fails to install Chef Habitat.
 
 #### Solution
 
-- Check system requirements
-- Run with elevated privileges if needed
+- Check system requirements.
+- Run with elevated privileges if needed.
 
 Download failures:
 
-- Verify internet connectivity
-- Check if a corporate firewall blocks `packages.chef.io`
-- Set `SSL_CERT_FILE` if using custom certificates
+- Verify internet connectivity.
+- Check if a corporate firewall blocks `packages.chef.io`.
+- Set `SSL_CERT_FILE` if using custom certificates.
 
 Permission errors:
 
-- Ensure you have appropriate privileges (sudo on Linux, admin on macOS)
-- Check that target directories are writable
+- Ensure you have appropriate privileges (`sudo` on Linux, admin on macOS).
+- Check that target directories are writable.
 
 macOS volume creation failures:
 
-- Verify sufficient disk space for the new volume
-- Ensure the root disk has available space
-- Check that FileVault setup is complete if encryption is enabled
+- Verify sufficient disk space for the new volume.
+- Ensure the root disk has available space.
+- Check that FileVault setup is complete if encryption is enabled.
 
 ### Permission errors on Linux or macOS
 
@@ -47,7 +47,7 @@ You get a permission denied error when running installation scripts or accessing
 
 #### Solution
 
-Use one of the following solutions:
+Use one of the following options:
 
 - Use sudo for system-wide installation:
 
@@ -108,7 +108,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 
 #### Solution
 
-1. Ensure that you have write permissions to the hab cache directory.
+1. Ensure that you have write permissions to the Habitat cache directory.
 1. Check that you have available disk space.
 1. Manually generate keys:
 
@@ -191,17 +191,17 @@ $env:PATH += ";C:\habitat\hab-VERSION-x86_64-windows\"
    sudo rm -rf /hab/studios
    ```
 
-## Contact us for help
+## Get help
 
-If you continue to have issues:
+If you continue to have issues, use one of the following options:
 
 1. Check the [Chef Habitat Discourse forum](https://discourse.chef.io/c/habitat/12).
 1. If you have a support contract, contact [Chef Support](https://www.chef.io/support).
 1. File an issue on [GitHub](https://github.com/habitat-sh/habitat/issues).
 
-When reporting issues, include:
+When you report issues, include:
 
-- Your operating system and version
-- Your Chef Habitat version (`hab --version`)
-- Complete error messages
-- Steps to reproduce the problem
+- Your operating system and version.
+- Your Chef Habitat version (`hab --version`).
+- Complete error messages.
+- Steps to reproduce the problem.

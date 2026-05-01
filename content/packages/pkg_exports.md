@@ -18,7 +18,7 @@ The command to export a package is `hab pkg export <FORMAT> <PKG_IDENT>`. See th
 
 {{< note >}}
 
-If you specify an `origin/package` identifier, such as `core/postgresql`, the Chef Habitat CLI will check Builder for the latest stable version of the package and export that.
+If you specify an `origin/package` identifier, such as `core/postgresql`, the Chef Habitat CLI checks Builder for the latest stable version of the package and exports that.
 
 If you wish to export a package that isn't on Builder, create a Chef Habitat artifact by running the `build` command, then point `hab pkg` to the `.hart` file within the `/results` directory:
 
@@ -56,7 +56,7 @@ You can create a Docker container image for any package by performing the follow
 
 1. You may now exit the studio. The new Docker image exists on your computer and can be examined with `docker images` or run with `docker run`.
 
-1. Please note that when you run this docker container, you will need to pass the `HAB_LICENSE` environment variable into the container in order to accept the Habitat license. If you don't, your container will abort at a license acceptance prompt. One way to do this would be `docker run --env HAB_LICENSE=accept-no-persist IMAGE`. Alternatively, if you use a scheduler to run these docker containers, you should add that environment variable to your scheduler configuration.
+1. Please note that when you run this docker container, you need to pass the `HAB_LICENSE` environment variable into the container to accept the Habitat license. If you don't, your container aborts at a license acceptance prompt. One way to do this is `docker run --env HAB_LICENSE=accept-no-persist IMAGE`. Alternatively, if you use a scheduler to run these docker containers, you should add that environment variable to your scheduler configuration.
 
 ## Exporting to a tarball
 

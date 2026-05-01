@@ -10,14 +10,14 @@ The Habitat documentation is deployed on <https://docs.chef.io/habitat/>.
 The fastest way to change the documentation is to edit a page on the
 GitHub website using the GitHub UI.
 
-We also require contributors to include their [DCO signoff](https://github.com/chef/chef/blob/master/CONTRIBUTING.md#developer-certification-of-origin-dco)
+We also require contributors to include their [DCO signoff](https://github.com/chef/chef/blob/main/CONTRIBUTING.md#developer-certification-of-origin-dco)
 in the comment section of every pull request, except for obvious fixes. You can
 add your DCO signoff to the comments by including `Signed-off-by:`, followed by
 your name and email address, like this:
 
 `Signed-off-by: Julia Child <juliachild@chef.io>`
 
-See our [blog post](https://blog.chef.io/introducing-developer-certificate-of-origin/)
+See our [blog post](https://www.chef.io/blog/introducing-developer-certificate-of-origin)
 for more information about the DCO and why we require it.
 
 After you've added your DCO signoff, add a comment about your proposed change,
@@ -32,15 +32,15 @@ few days. The important part is submitting your change.
 
 ## Local development environment
 
-We use [Hugo](https://gohugo.io/), [Go](https://golang.org/), [NPM](https://www.npmjs.com/),
-[go-swagger](https://goswagger.io/install.html), and [jq](https://stedolan.github.io/jq/).
+We use [Hugo](https://gohugo.io/), [Go](https://go.dev/), [NPM](https://www.npmjs.com/),
+[go-swagger](https://goswagger.io/go-swagger/install/), and [jq](https://jqlang.org/).
 You will need Hugo 0.146 or higher installed and running to build and view our documentation properly.
 
 To install Hugo, NPM, and Go on Windows and macOS:
 
 - On macOS run: `brew tap go-swagger/go-swagger && brew install go-swagger hugo node go jq`
 - On Windows run: `choco install hugo nodejs golang jq`
-  - See the Go-Swagger [docs to install go-swagger](https://goswagger.io/install.html)
+  - See the Go-Swagger [docs to install go-swagger](https://goswagger.io/go-swagger/install/)
 
 To install Hugo on Linux, run:
 
@@ -48,9 +48,9 @@ To install Hugo on Linux, run:
 - `sudo apt-get install jq`
 - `snap install node --classic --channel=12`
 - `snap install hugo --channel=extended`
-- See the Go-Swagger [docs](https://goswagger.io/install.html) to install go-swagger
+- See the Go-Swagger [docs](https://goswagger.io/go-swagger/install/) to install go-swagger
 
-1. (Optional) [Install cspell](https://github.com/streetsidesoftware/cspell/tree/master/packages/cspell)
+1. (Optional) [Install cspell](https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell)
 
     To be able to run the optional `make spellcheck` task you'll need to install `cspell`:
 
@@ -85,7 +85,7 @@ To clean your local environment, run `make clean_all`.
 Release notes allow product engineering to communicate the list of features that are shipping in the builds being promoted to `stable`. Remember release notes aren't changelogs! The audience is our end-users, not other engineers. If you need a quick primer on what goes into good release notes, take a look at these excellent articles:
 
 - [The Life-Changing Magic of Writing Release Notes](https://medium.com/@DigitalGov/the-life-changing-magic-of-writing-release-notes-4c460970565)
-- [Let's All Appreciate These Great Release Notes Together](https://www.prodpad.com/blog/writing-release-notes/)
+- [Let's All Appreciate These Great Release Notes Together](https://www.prodpad.com/blog/release-notes/)
 
 Capture the release notes on the [Pending Release Notes wiki page](https://github.com/habitat-sh/chef-habitat-docs/wiki/Pending-Release-Notes). All edits should be completed and reviewed by a member of the Documentation Team before Habitat is promoted to `stable`. It's the responsibility of the _individual development teams_ to ensure the release notes are updated with any features and breaking changes that ship when Habitat is promoted to the `stable` channel. We encourage teams to make updating these release notes part of their weekly rituals. Whatever is in the wiki page at promotion time is what goes out with the release!
 

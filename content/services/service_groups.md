@@ -17,19 +17,13 @@ Updates can also be [encrypted](../sup/sup_secure) so that only members of a spe
 By default, every service joins the `service-name.default` service group unless
 otherwise specified at runtime.
 
-In addition, multiple service groups can reside in the same Supervisor network.
-This allows data exposed by Supervisors to be shared with other members of the
-ring, regardless of which group they're in.
+In addition, multiple service groups can reside in the same Supervisor network. This allows data exposed by Supervisors to be shared with other members of the ring, regardless of which group they're in.
 
 ## Joining a service group
 
-To join services together in a group, they must be running on Supervisors that
-are participating in the same Supervisor gossip network (they're ultimately
-peered together), and they must be using the same group name. To illustrate, we'll
-show two `core/redis` services joining into the same group.
+To join services together in a group, they must run on Supervisors that are participating in the same Supervisor gossip network (they're ultimately peered together), and they must use the same group name. To illustrate, we'll show two `core/redis` services joining the same group.
 
-First, we'll start up two Supervisors on different hosts, peering the second one
-back to the first.
+First, we'll start two Supervisors on different hosts, peering the second one back to the first.
 
 ```bash
 $ hab sup run # on 172.18.0.2 (Supervisor A)
@@ -61,8 +55,7 @@ And here is Supervisor B's output:
 
 Note that they're both listening on the same port.
 
-To prove they're in the same group, we can apply a configuration change; if they
-are in the same group, they should both receive the change.
+To prove they're in the same group, we can apply a configuration change; if they are in the same group, they should both receive the change.
 
 Let's change the port they're running on using the `hab config apply` command, run from Supervisor A.
 
@@ -78,12 +71,6 @@ and Supervisor B's output is:
 
 ![Supervisor B running Redis on a new port](/images/habitat/supervisor_b_after.png)
 
-Note that they have both restarted (as evidenced by the new PID values), and that
-both are now running on port 2112, as we instructed.
+Note that both have restarted (as evidenced by the new PID values), and both are now running on port 2112, as expected.
 
-Had the services been in different groups, the configuration change would not have
-applied to both of them (it was targeted at `redis.prod`). If the Supervisors has
-not been in gossip communication (achieved here through the use of the `--peer`
-option when Supervisor B was started), the configuration rumor (injected into
-Supervisor A's gossip network) would not have made it to `core/redis` service running
-on Supervisor B.
+Had the services been in different groups, the configuration change would not have applied to both of them (it was targeted at `redis.prod`). If the Supervisors had not been in gossip communication (achieved here through the use of the `--peer` option when Supervisor B was started), the configuration rumor (injected into Supervisor A's gossip network) would not have made it to the `core/redis` service running on Supervisor B.
