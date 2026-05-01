@@ -10,7 +10,7 @@ description = "Update single services at runtime or dynamically"
     weight = 40
 +++
 
-One of the key features of Chef Habitat is the ability to define an immutable package with a default configuration which can then be updated dynamically at runtime. You can update service configuration on two levels: individual services (for testing purposes), or a service group.
+One of the key features of Chef Habitat is the ability to define an immutable package with a default configuration that can then be updated dynamically at runtime. You can update service configuration on two levels: individual services (for testing purposes) or a service group.
 
 ## Apply configuration updates to an individual service
 
@@ -18,7 +18,7 @@ When starting a single service, you can provide alternate configuration values t
 
 ### Using a _user.toml_ file
 
-You can supply a `user.toml` containing any configuration data that you want to override default values. This file should be placed in the Chef Habitat `user` directory under the `config` subdirectory of the specific service directory that owns the configuration data. For example, to override the default configuration of the `myservice` service, this `user.toml` would be located at `/hab/user/myservice/config/user.toml`.
+You can supply a `user.toml` file containing any configuration data you want to use to override default values. This file should be placed in the Chef Habitat `user` directory under the `config` subdirectory of the specific service directory that owns the configuration data. For example, to override the default configuration of the `myservice` service, this `user.toml` is located at `/hab/user/myservice/config/user.toml`.
 
 ### Using an environment variable
 
@@ -34,17 +34,17 @@ HAB_MYTUTORIALAPP='{"message":"Chef Habitat rocks!"}' hab run <origin>/<packagen
 
 {{< note >}}
 
-The syntax used for applying configuration through environment variables can be either JSON or TOML, but TOML is preferred. The package name in the environment variable must be uppercase, any dashes must be replaced with underscores.
+The syntax used for applying configuration through environment variables can be either JSON or TOML, but TOML is preferred. The package name in the environment variable must be uppercase, and any dashes must be replaced with underscores.
 
 {{< /note >}}
 
 {{< note >}}
 
-Variables must be set when the Supervisor process starts, not when the service is loaded, which may require a bit of planning on the part of the Chef Habitat user.
+Variables must be set when the Supervisor process starts, not when the service is loaded, which may require some planning.
 
 {{< /note >}}
 
-For multiline environment variables, such as those in a TOML table or nested key value pairs, it can be easier to place your changes in a file and pass the file in. For example:
+For multiline environment variables, such as those in a TOML table or nested key-value pairs, it can be easier to place your changes in a file and pass the file in. For example:
 
 ```bash
 HAB_MYTUTORIALAPP="$(cat my-env-stuff.toml)" hab run
@@ -57,11 +57,11 @@ Or, for [testing scenarios and containerized workflows](../sup/sup_run#starting-
 HAB_MYTUTORIALAPP="$(cat my-env-stuff.toml)" hab run <origin>/mytutorialapp
 ```
 
-The main advantage of applying configuration updates to an individual service through an environment variable is that you can quickly test configuration settings to see how your service behaves at runtime. The disadvantages of this method are that configuration changes have to be applied when the Supervisor itself starts up, and you have to restart a running Supervisor (and thus, all services it may be running) in order to change these settings again.
+The main advantage of applying configuration updates to an individual service through an environment variable is that you can quickly test configuration settings to see how your service behaves at runtime. The disadvantages are that configuration changes must be applied when the Supervisor starts, and you must restart a running Supervisor (and all services it may be running) to change these settings again.
 
 ## Apply configuration updates to all services in a service group
 
-Similar to specifying updates to individual settings at runtime, you can apply multiple configuration changes to an entire service group at runtime. These configuration updates can be sent in the clear or encrypted in gossip messages through [wire encryption](../sup/sup_secure). Configuration updates to a service group will trigger a restart of the services as new changes are applied throughout the group.
+Similar to specifying updates to individual settings at runtime, you can apply multiple configuration changes to an entire service group at runtime. These configuration updates can be sent unencrypted or encrypted in gossip messages through [wire encryption](../sup/sup_secure). Configuration updates to a service group trigger a service restart as new changes are applied throughout the group.
 
 ### Usage
 
@@ -71,11 +71,11 @@ When submitting a configuration update to a service group, you must specify the 
 - the version number of the configuration update
 - the new configuration
 
-Configuration updates can be either TOML passed into stdin, or passed in a TOML file that's referenced in [`hab config apply`](../reference/habitat_cli#hab-config-apply).
+Configuration updates can be provided as TOML through stdin or in a TOML file referenced in [`hab config apply`](../reference/habitat_cli#hab-config-apply).
 
 {{< note >}}
 
-Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and must be incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the changes won't be applied._
+Configuration updates for service groups must be versioned. The version number must be an integer that starts at one and is incremented with every subsequent update to the same service group. _If the version number is less than or equal to the current version number, the changes won't be applied._
 
 {{< /note >}}
 
@@ -102,7 +102,7 @@ Your output would look something like this:
 ★ Applied configuration
 ```
 
-The services in the myapp.prod service group will restart.
+The services in the `myapp.prod` service group will restart.
 
 ```bash
 myapp.prod(SR): Service configuration updated from butterfly: acd2c21580748d38f64a014f964f19a0c1547955e4c86e63bf641a4e142b2200
@@ -120,6 +120,6 @@ As with all Supervisor interaction commands, if you don't specify `--remote-sup`
 
 ### Encryption
 
-Configuration updates can be encrypted for the service group they're intended. To do so, pass the `--user` option with the name of your user key, and the `--org` option with the organization of the service group. If you have the public key for the service group, the data will be encrypted for that key, signed with your user key, and sent to the ring.
+Configuration updates can be encrypted for the service group they're intended for. To do so, pass the `--user` option with the name of your user key, and the `--org` option with the organization of the service group. If you have the public key for the service group, the data is encrypted for that key, signed with your user key, and sent to the ring.
 
 It will then be stored encrypted in memory, and decrypted on disk.

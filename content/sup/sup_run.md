@@ -40,7 +40,7 @@ You can start up a Supervisor with or without specifying a package identifier. I
 
 In most cases, you should always start up a Supervisor explicitly, using `hab sup run` _without_ a package identifier argument, _especially_ in production environments.
 
-The `<PACKAGE_IDENTIFIER>` invocation mixes Supervisor-specific and service-specific options, it can sometimes be difficult to reason about, depending on how complex your usecase is. As a result, that form should be limited to constrained container-based usecases, and perhaps local simple testing or evaluation scenarios. Additionally, since a Supervisor has state---the services it's manages---you may end up starting additional services, depending on what you've done in the past on the same machine. That is, `hab sup run <PACKAGE_IDENTIFIER>` doesn't necessarily run only this single service.
+The `<PACKAGE_IDENTIFIER>` invocation mixes Supervisor-specific and service-specific options, and it can be difficult to reason about depending on how complex your use case is. As a result, that form should be limited to constrained container-based use cases, and perhaps simple local testing or evaluation scenarios. Additionally, since a Supervisor has state---the services it manages---you may end up starting additional services, depending on what you've done in the past on the same machine. That is, `hab sup run <PACKAGE_IDENTIFIER>` doesn't necessarily run only that single service.
 
 For all other uses, it's far preferable to start a Supervisor using the identifier-less `hab sup run` invocation, and manage the population of services it runs using `hab svc load` and other commands.
 
@@ -55,7 +55,7 @@ When entering an interactive studio, a Supervisor is started for you in the back
 1. [Build a package](../packages/pkg_build) inside an interactive studio. Don't exit the studio after it's built.
 2. To start your service in the running Supervisor, type `hab svc load yourorigin/yourname`, substituting the name and origin of the package you built in Step 1. Your service should now be running.
 
-Because the Supervisor is running in the background, you won't see the Supervisor output as you start your service. However you can use the `sup-log` (or `Get-SupervisorLog` on Windows) command that will stream the tail of the Supervisor output (you can also look at the contents of `/hab/sup/default/sup.log`, which is where the Studio directs its Supervisor output).
+Because the Supervisor is running in the background, you won't see Supervisor output as you start your service. However, you can use the `sup-log` (or `Get-SupervisorLog` on Windows) command to stream the tail of the Supervisor output (you can also look at the contents of `/hab/sup/default/sup.log`, which is where the Studio directs its Supervisor output).
 
 If your host machine is running Linux, do the following to run your packages for one-off evaluations (not production uses!):
 
@@ -72,14 +72,14 @@ If your host machine is running Linux, do the following to run your packages for
     sudo hab sup run yourorigin/yourname
     ```
 
-You may use the same `hab run` command on Windows but omit the `sudo` command. However, you should be inside of an elevated shell. Also, note that the `hab` user isn't necessary on Windows. If it's absent, services will run under the identity of the current user. If a `hab` user is present, you will need to provide its password with the`--password` argument:
+You may use the same `hab run` command on Windows, but omit `sudo`. However, you should be in an elevated shell. Also, note that the `hab` user isn't necessary on Windows. If it's absent, services run under the identity of the current user. If a `hab` user is present, you need to provide its password with the `--password` argument:
 
 ```powershell
 PS C:\> $cred = Get-Credential hab
 PS C:\> hab sup run yourorigin/yourname --password $cred.GetNetworkCredential().Password
 ```
 
-In all cases, you may wish to run `hab svc unload <yourorigin>/<yourname>` when you are done working with your package, to remove it from the Supervisor. Otherwise, your Supervisor will try to start your service each time it start up.
+In all cases, you may want to run `hab svc unload <yourorigin>/<yourname>` when you're done working with your package to remove it from the Supervisor. Otherwise, your Supervisor will try to start your service each time it starts up.
 
 For more structured ways of running the Chef Habitat Supervisor on servers, please see [Running Chef Habitat on Servers](running_habitat_servers).
 
@@ -99,7 +99,7 @@ hab svc load core/redis
 
 ## Unloading a service
 
-To remove a service from a Supervisor, you use the `hab svc unload` subcommand. If the service is was running, then it will be stopped first, then removed. This means that the next time the Supervisor is started (or restarted), it won't run this unloaded service. For example, to remove the `yourorigin/yourname` service:
+To remove a service from a Supervisor, use the `hab svc unload` subcommand. If the service is running, the Supervisor stops it first, then removes it. This means that the next time the Supervisor starts (or restarts), it won't run this unloaded service. For example, to remove the `yourorigin/yourname` service:
 
 ```bash
 hab svc unload yourorigin/yourname
@@ -107,7 +107,7 @@ hab svc unload yourorigin/yourname
 
 ## Stopping a running service
 
-Sometimes you need to stop a running service for a period of time, for example during a maintenance outage. Rather than completely removing a service from supervision, you can use the `hab svc stop` subcommand which will shut down the running service and leave it in this state until you start it again with the `hab svc start` subcommand, explained next. This means that all service-related options such as service topology, update strategy, etc. are preserved until the service is started again. For example, to stop the running `core/redis` service:
+Sometimes you need to stop a running service for a period of time, for example during a maintenance outage. Rather than completely removing a service from supervision, you can use the `hab svc stop` subcommand, which shuts down the running service and leaves it in this state until you start it again with the `hab svc start` subcommand, explained next. This means all service-related options such as service topology and update strategy are preserved until the service is started again. For example, to stop the running `core/redis` service:
 
 ```bash
 hab svc stop core/redis
@@ -131,9 +131,9 @@ To retrieve status for an individual service, you can pass the service identifie
 hab svc status core/mysql
 ```
 
-The following exit codes are emitted by the `status` command:
+The `status` command emits the following exit codes:
 
 * `0` - The status command successfully reports status on loaded services
-* `1` - A generic error has occurred calling the `hab` cli
+* `1` - A generic error has occurred while calling the `hab` CLI
 * `2` - A service identifier was passed to `hab svc status` and that service isn't loaded by the Supervisor
 * `3` - There's no local running Supervisor

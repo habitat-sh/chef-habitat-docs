@@ -11,9 +11,9 @@ description = "Securing Supervisor networks"
 
 +++
 
-By default, a Supervisor runs unsecured. It communicates with other Supervisors in cleartext, and it allows any user to apply new configuration without authentication. While this is beneficial for demonstrating the concepts of Chef Habitat, you should provide external security on production deployments of Chef Habitat Supervisor networks.
+By default, a Supervisor runs unsecured. It communicates with other Supervisors in cleartext, and it allows any user to apply new configuration without authentication. While this is useful for demonstrating Chef Habitat concepts, you should provide external security for production deployments of Chef Habitat Supervisor networks.
 
-Use following security measures in a Supervisor network:
+Use the following security measures in a Supervisor network:
 
 * Wire encryption of inter-Supervisor traffic
 * Trust relationships between supervisors and users
@@ -38,7 +38,7 @@ Supervisors running in a ring can be configured to encrypt all traffic between t
     hab svc load <ORIGIN>/<NAME>
     ```
 
-4. The Supervisor becomes part of the named ring `<RING>` and uses the key for network encryption. Other supervisors that now attempt to connect to it without presenting the correct ring key will be rejected.
+4. The Supervisor becomes part of the named ring `<RING>` and uses the key for network encryption. Other Supervisors that attempt to connect to it without presenting the correct ring key are rejected.
 5. It's also possible to set the environment variable `HAB_RING_KEY` to the contents of the ring key; for example:
 
     ```bash
@@ -60,7 +60,7 @@ As explained in the [security overview](sup_crypto), this process also requires 
     hab svc key generate service-group-name.example <ORG>
     ```
 
-2. This generated a service group key for the service group `service-group-name.example` in the organization `<ORG>`. Copy the `.box.key` private key to the environment where the Supervisor will run into the `/hab/cache/keys` directory. Ensure that it has the appropriate permissions so that only the Supervisor can read it.
+2. This command generates a service group key for the service group `service-group-name.example` in the organization `<ORG>`. Copy the `.box.key` private key to the environment where the Supervisor runs, into the `/hab/cache/keys` directory. Ensure that it has appropriate permissions so that only the Supervisor can read it.
 3. Start the Supervisor, specifying both the service group and organization that it belongs to:
 
     ```bash
@@ -68,7 +68,7 @@ As explained in the [security overview](sup_crypto), this process also requires 
     hab svc load <ORIGIN>/<NAME>
     ```
 
-4. Only users whose public keys that the Supervisor already has in its cache will be allowed to reconfigure this service group. If you need to generate a user key pair, see the next section.
+4. Only users whose public keys are already in the Supervisor cache can reconfigure this service group. If you need to generate a user key pair, see the next section.
 
 ### Generating user keys
 
@@ -85,7 +85,7 @@ If a running Supervisor can't decrypt a secret due to a missing key, it will ret
 
 ## Identifying key types
 
-To aid the user in the visual identification of the many varieties of keys in use by Chef Habitat, a key itself is in cleartext and contains a header on the first line indicating what its key type. The file extension and, in some situations, the format of the file name, provide additional guidance to the user in identifying the type of key.
+To help you visually identify the many key varieties used by Chef Habitat, each key is in cleartext and contains a header on the first line indicating its key type. The file extension and, in some situations, the file name format provide additional guidance for identifying the key type.
 
 `YYYYMMDDRRRRRR` denotes the creation time and release identifier of that key.
 

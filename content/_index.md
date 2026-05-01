@@ -11,13 +11,13 @@ linkTitle = "Chef Habitat"
   weight = 1
 +++
 
-Chef Habitat is a workload-packaging, orchestration, and deployment system that allows you to build, package, deploy, and manage applications and services without worrying about which infrastructure your application will be deployed on, and without any rewriting or refactoring the application if you switch to a different infrastructure.
+Chef Habitat is a workload-packaging, orchestration, and deployment system that lets you build, package, deploy, and manage applications and services without worrying about the infrastructure your application runs on, and without rewriting or refactoring the application if you switch infrastructure.
 
-Habitat separates the platform-independent parts of your application---the build dependencies, runtime dependencies, lifecycle events, and application codebase---from the operating system or deployment environment that the application will run on, and bundles it into an immutable Habitat Package.
-The packages are stored on the Chef Habitat Builder (SaaS or on-prem), which acts as a package store like Docker Hub where you can store and download your application's Habitat packages from.
-Habitat Supervisor pulls packages from Habitat Builder, and will start, stop, run, monitor, and update your application based on the [plan](#plans) and lifecycle hooks you define in the package.
+Habitat separates the platform-independent parts of your application---build dependencies, runtime dependencies, lifecycle events, and application codebase---from the operating system or deployment environment where the application runs, and bundles them into an immutable Habitat package.
+Packages are stored in Chef Habitat Builder (SaaS or on-prem), which acts as a package store similar to Docker Hub where you can store and download your application's Habitat packages.
+Habitat Supervisor pulls packages from Habitat Builder and starts, stops, runs, monitors, and updates your application based on the [plan](#plans) and lifecycle hooks you define in the package.
 Habitat Supervisor runs on bare metal, virtual machines, containers, or Platform-as-a-Service environments.
-A package under management by a Supervisor is called a service.
+A package managed by a Supervisor is called a service.
 Services can be joined together in a service group, which is a collection of services with the same package and topology type that are connected together across a Supervisor network.
 
 ## Components
@@ -30,10 +30,10 @@ For more information, see the [Chef Habitat Builder](builder) documentation.
 
 ### Habitat package
 
-A Habitat Package is an artifact that contains the application codebase, lifecycle hooks, and a manifest that defines build and runtime dependencies of the application.
+A Habitat package is an artifact that contains the application codebase, lifecycle hooks, and a manifest that defines the application's build and runtime dependencies.
 The package is bundled into a Habitat Artifact (`.HART`) file, which is a binary distribution of a given package built with Chef Habitat.
-The package is immutable and cryptographically signed with a key so you can verify that the artifact came from the place you expected it to come from.
-Artifacts can be exported to run in a variety of runtimes like containers with zero refactoring or rewriting.
+The package is immutable and cryptographically signed with a key, so you can verify that the artifact came from the expected source.
+Artifacts can be exported to run in a variety of runtimes, such as containers, with no refactoring or rewriting.
 
 ### Plans
 
@@ -61,12 +61,12 @@ See the [Habitat Supervisor documentation](sup) for more information.
 
 ## When should I use Chef Habitat?
 
-Chef Habitat allows you to build and package your applications and deploy them anywhere without having to refactor or rewrite your package for each platform.
-Everything that the application needs to run is defined, without assuming anything about the underlying infrastructure that the application is running on.
+Chef Habitat lets you build and package your applications and deploy them anywhere without refactoring or rewriting your package for each platform.
+Everything the application needs to run is defined without assumptions about the underlying infrastructure.
 
-This will allow you to repackage and modernize legacy workloads in-place to increase their manageability, make them portable, and migrate them to modern operating systems or even cloud-native infrastructure like containers.
+This lets you repackage and modernize legacy workloads in place to increase manageability, improve portability, and migrate to modern operating systems or cloud-native infrastructure such as containers.
 
-You can also develop your new application and use Chef Habitat to manage the deployment if you are unsure of the infrastructure your application will run on, or in the event that business requirements change and you have to switch your application to a different environment.
+You can also build new applications and use Chef Habitat to manage deployment if you're unsure which infrastructure your application will run on, or if business requirements change and you need to move to a different environment.
 
 ## Next steps
 
