@@ -31,9 +31,9 @@ Packages need to be signed with a private origin key at buildtime. Generate an o
 hab origin key generate <ORIGIN>
 ```
 
-The `hab origin key generate` subcommand places the origin key files, `<ORIGIN>-<TIMESTAMP>.sig.key` (the private key) and `<ORIGIN>-<TIMESTAMP>.pub` files (the public key), in the `$HOME/.hab/cache/keys` directory. If you're creating origin keys in the Studio container or you are running as root on a Linux machine, your keys will be stored in `/hab/cache/keys`.
+The `hab origin key generate` subcommand places the origin key files, `<ORIGIN>-<TIMESTAMP>.sig.key` (the private key) and `<ORIGIN>-<TIMESTAMP>.pub` files (the public key), in the `$HOME/.hab/cache/keys` directory. If you're creating origin keys in the Studio container or you are running as root on a Linux machine, your keys will be stored in `/hab/cache/keys` and on a macOS machine they will be stored in `/opt/hab/cache/keys`.
 
-Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory. If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
+Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory (`/opt/hab/cache/keys` on macOS). If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
 
 ## Passing origin keys into the Studio
 
@@ -93,7 +93,7 @@ The directory where your plan is located is known as the plan context.
 Depending on the platform of your host and your Docker configuration, the behavior of `hab studio enter` may vary. Here is the default behavior listed by host platform:
 
 * **Linux** - A local chrooted Linux Studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command.
-* **Mac** - A Docker container based Linux Studio
+* **Mac** - A local macOS Studio leveraging 'sandbox-exec' utility. You can request to use a Docker container based Linux Studio by passing `-D` flag to the `hab studio enter` command.
 * **Windows** - A local Windows studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you wish to enter.
 
 {{< note >}}

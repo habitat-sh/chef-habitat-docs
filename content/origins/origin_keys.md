@@ -80,7 +80,7 @@ See the CLI documentation for more information on the [`hab origin key`](/refere
 
 ### Find your origin keys
 
-Chef Habitat stores your public and private origin keys at `~/.hab/cache/keys` on Linux systems, `C:\hab\cache\keys` on Windows, and at `/hab/cache/keys` inside of the Chef Habitat Studio environment.
+Chef Habitat stores your public and private origin keys at `~/.hab/cache/keys` on Linux, `C:\hab\cache\keys` on Windows, `/opt/hab/cache/keys/` on macOS and at `/hab/cache/keys` inside of the Chef Habitat Studio environment.
 
 #### Find origin keys in a local environment
 
@@ -90,7 +90,7 @@ On Windows:
 Get-ChildItem C:\hab\cache\keys
 ```
 
-On Linux or macOS:
+On Linux and macOS:
 
 ```bash
 ls -la ~/.hab/cache/keys
@@ -104,10 +104,16 @@ On Windows:
 Get-ChildItem C:\hab\cache\keys
 ```
 
-On Linux or macOS:
+On Linux:
 
 ```bash
 ls -la /hab/cache/keys
+```
+
+On macOS:
+
+```bash
+ls -la /opt/hab/cache/keys
 ```
 
 ### Generate origin keys

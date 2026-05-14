@@ -33,9 +33,8 @@ Linux requirements:
 
 macOS requirements:
 
-- `diskutil` for volume management
-- `security` command for keychain operations
-- `launchctl` for daemon management
+- `unzip` for archive extraction
+- `shasum` for checksum verification
 - Administrative privileges for system configuration
 
 ## Usage
@@ -57,7 +56,7 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 : Prints help information
 
 `-v VERSION`
-: Specifies a Habitat version, for example, `1.6.1245` or `1.6.1245/20250905140900`.
+: Specifies a Habitat version, for example, `2.0.504` or `2.0.504/20260505101000`.
 
 `-t TARGET`
 : Specifies the target architecture of the 'hab' program to download.
@@ -68,9 +67,6 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 `-u URL`
 : Specifies a custom Habitat Builder URL.
-
-`-b CHANNEL`
-: Specifies a Habitat Builder channel (for temporary use).
 
 `-o ORIGIN`
 : Specifies the origin.
@@ -98,7 +94,7 @@ chmod u+x install.sh
 ### Install a specific version
 
 ```bash
-curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 1.6.1245
+curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 2.0.504
 ```
 
 ### Install from the unstable channel
@@ -141,21 +137,21 @@ On Linux systems, the script:
 
 ### macOS
 
-macOS installation varies by architecture:
+On macOS the habitat filesystem is rooted at `/opt/hab` instead of `/hab` as newer versions of macOS do not permit creating directories on the root filesystem.
+
+Also, macOS installation varies by architecture:
 
 #### x86-64 (Intel Macs)
 
-- Downloads and installs the hab binary directly to `/usr/local/bin`
-- Uses ZIP archives instead of tar.gz
-- No special volume configuration required
+1. uses a `zip` archive as a hab binary
+1. Downloads and installs the hab binary directly to `/usr/local/bin`
 
 #### AArch64 (Apple Silicon Macs)
 
-- Creates a dedicated APFS volume called "Habitat Store" mounted at `/hab`
-- Configures automatic mounting with the LaunchDaemon
-- Handles FileVault encryption if enabled
-- Updates system configuration files (`/etc/synthetic.conf`, `/etc/fstab`)
-- Uses the full Habitat package installation process
+1. Downloads the hab binary as a `zip` archive
+1. Uses SHA256 checksums for verification
+1. Extracts and temporarily uses the binary to install the full Habitat package
+1. Creates a binlink in `/usr/local/bin/hab` for system-wide access
 
 ## Security and verification
 
@@ -215,12 +211,10 @@ sudo rm -f /bin/hab
 On macOS:
 
 ```bash
-## Remove LaunchDaemon
-sudo rm -f /Library/LaunchDaemons/sh.habitat.bldr.darwin-store.plist
-## Remove volume (if created)
-sudo diskutil apfs deleteVolume "Habitat Store"
-## Remove synthetic.conf entry
-sudo ex /etc/synthetic.conf # manually remove the 'hab' line
+## Remove temporary files
+rm -rf /tmp/hab.*
+## Remove incomplete installation
+sudo rm -f /usr/local/bin/hab
 ```
 
 ## Next steps
