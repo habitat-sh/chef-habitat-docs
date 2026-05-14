@@ -76,7 +76,6 @@ The Windows Docker studio doesn't exist as a component like `core/hab-studio` or
 
 The macOS studio uses `sandbox-exec` mechanism to provide the isolation and providing fine grained access control to the studio environment. However, since this is not a full `chroot` environment, some of the paths in the Habitat filesystem `/opt/hab` are being reused with the Host. It is currently recommended to use macOS native studios inside a VM running on the host, so as to not affect the host Habitat environment.
 
-
 ## Studio platform support
 
 Habitat Studio is implemented in four environments and can be invoked from three different operating systems. This matrix shows which studios can be run on the various operating systems.
