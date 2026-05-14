@@ -18,10 +18,11 @@ Before installing Chef Habitat, ensure your system meets these requirements.
 
 ### Operating system and architecture requirements
 
-- Linux kernel 2.6.32 or later on a 64-bit processor
+- Modern Linux kernels on a 64-bit x86_64 Processor (Intel or AMD)
 - Modern Linux kernels on a 64-bit ARM processor
 - Windows Server 2012 or later, or Windows 8 or later on a 64-bit processor
-- macOS 10.9 or later on a 64-bit processor
+- macOS 14 or later on a 64-bit Apple Silicon
+- macOS 14 or later on a 64-bit Intel
 
 ### Docker requirements
 
@@ -51,7 +52,7 @@ You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for exam
 
 ```sh
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo bash -s -- -v 1.6.1245
+    | sudo bash -s -- -v 2.0.504
 ```
 
 ### Install manually
@@ -80,7 +81,7 @@ You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for exam
 
 ```sh
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo bash -s -- -v 1.6.1245
+    | sudo bash -s -- -v 2.0.504
 ```
 
 ### Install using Homebrew
@@ -122,7 +123,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 You can install a specific Habitat version with `-Version <HABITAT_VERSION>`, for example:
 
 ```ps1
-iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 1.6.1245"
+iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 2.0.504
 ```
 
 ### Install manually

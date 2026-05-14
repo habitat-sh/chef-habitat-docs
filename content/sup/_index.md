@@ -12,6 +12,12 @@ linkTitle = "Supervisors"
 
 The Supervisor is a process manager that has two primary responsibilities. First, it starts and monitors child services defined in the plan it's running. Second, it receives and acts on information from the other Supervisors to which it's connected. A service is reconfigured through application lifecycle hooks if its configuration has changed.
 
+{{< note >}}
+
+Chef Habitat Supervisor and Chef Habitat Services are not supported on macOS.
+
+{{< /note >}}
+
 ## The Supervisor ring
 
 Supervisors typically run in a network, which we refer to as a *ring* (although it's more like a peer-to-peer network than a circular ring). The ring can be very large; it can contain hundreds or thousands of Supervisors. The membership list of this ring is maintained independently by each Supervisor and is known as the *census*.

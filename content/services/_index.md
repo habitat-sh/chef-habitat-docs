@@ -11,6 +11,12 @@ LinkTitle = "Services"
 
 A service is a Chef Habitat package running under a Chef Habitat Supervisor.
 
+{{< note >}}
+
+Chef Habitat Supervisor and Chef Habitat Services are not supported on macOS.
+
+{{< /note >}}
+
 ## Service group
 
 A service group is a set of one or more running services with a shared configuration
