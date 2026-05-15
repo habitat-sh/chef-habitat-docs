@@ -44,6 +44,10 @@ The purpose of the Studio on Windows is fundamentally the same as on Linux. Howe
 
 One other purpose of the Studio on Windows is to provide a known and common PowerShell environment that the Habitat build program is compatible with. The Windows Studio includes a packaged version of PowerShell that is different from the version that ships with the OS. Entering an interactive Windows Studio makes troubleshooting builds easier because you're placed in the same version of PowerShell that builds packages and the same version used by the Habitat Supervisor at runtime.
 
+### Why do we need it (macOS)
+
+The purpose of Studio on macOS is fundamentally the same as on Linux. However, on macOS, we cannot provide the filesystem isolation using `chroot` as the newer versions of macOS have a very basic `chroot` support that is insufficient. On macOS we are instead leveraging `sandbox-exec` based mechanism to provide the isolation with the Host.
+
 ## What kinds of studios are there?
 
 The Habitat Studio, as an abstract concept, is an environment that provides the required guarantees for builds. The `hab studio` command is the interface that performs the required setup before handing control over to a studio implementation. `pkg build` uses the same setup, but instead of creating an interactive process, it invokes `build` directly in a non-interactive environment.
@@ -68,6 +72,10 @@ The Windows studio uses Junction mounts to provide a consistent filesystem view 
 
 The Windows Docker studio doesn't exist as a component like `core/hab-studio` or `rootless_studio` in the Habitat codebase. Instead, it's created in the release pipeline, using a minimal Windows container as the base and layering in the Windows implementation of `core/hab-studio` to build a Docker image. Like the rootless studio, it can be invoked using only the Docker CLI, with the same additional setup required to set the correct options.
 
+### macOS "native" - aka `core/hab-studio`
+
+The macOS studio uses `sandbox-exec` mechanism to provide the isolation and providing fine grained access control to the studio environment. However, since this is not a full `chroot` environment, some of the paths in the Habitat filesystem `/opt/hab` are being reused with the Host. It is currently recommended to use macOS native studios inside a VM running on the host, so as to not affect the host Habitat environment.
+
 ## Studio platform support
 
 Habitat Studio is implemented in four environments and can be invoked from three different operating systems. This matrix shows which studios can be run on the various operating systems.
@@ -78,6 +86,7 @@ Habitat Studio is implemented in four environments and can be invoked from three
 | Linux Docker   | Yes   | Yes   | Yes     |
 | Windows Native | No    | No    | Yes     |
 | Windows Docker | No    | No    | Yes     |
+| macOS Native   | No    | Yes   | No      |
 
 ### Why do we need privileged containers to build (on Linux)?
 
@@ -95,9 +104,9 @@ Today, users can configure agents to run the Docker studio image directly, but t
 
 One question often asked is how to build Windows packages on non-Windows systems. This is often spurred by the ability to build Linux packages on Windows or macOS. However, this isn't a capability provided by the Studio, but by Docker. Docker runs a minimal Linux VM (using Hyper-V on Windows and Hyperkit on macOS) to provide the ability to run Linux containers.
 
-### The "Mac Studio"
+### The "Mac Docker Studio"
 
-Habitat Studio on macOS relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on Mac.
+Habitat Docker Studio on macOS (invoked with `-D` CLI option) relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on Mac.
 
 ### How the Studio is used
 

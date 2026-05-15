@@ -33,12 +33,6 @@ Permission errors:
 - Ensure you have appropriate privileges (`sudo` on Linux, admin on macOS).
 - Check that target directories are writable.
 
-macOS volume creation failures:
-
-- Verify sufficient disk space for the new volume.
-- Ensure the root disk has available space.
-- Check that FileVault setup is complete if encryption is enabled.
-
 ### Permission errors on Linux or macOS
 
 #### Problem
