@@ -145,6 +145,40 @@ The default channel for non-`core` origin dependencies is the `stable` channel. 
 
 {{< /note >}}
 
+## Additional Setup for macOS
+
+### Downloading and Enabling XCode
+
+For macOS the Clang toolkit provided by the XCode is used. This provides the Compilers and Linkers. To ensure that during the build process, these tools are found correctly, following additional setup is required.
+
+1. Download XCode appropriate for your macOS version. [This link](https://xcodereleases.com/) describes XCode versions and supported macOS Releases.
+2. Save the downloaded XCode in your "Applications folder and run the following Commands
+
+```bash
+
+## Default xcode-select -p may show /Library/Developer/CommandLineTools
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+## Accept the xcode license
+sudo xcodebuild -license accept
+
+```
+### Installing Latest Bash
+
+The Habitat Plan files make use of features available in the latest versions of Bash Shell ( version 5 and above). The version of `bash` available on most macOS systems is typically version 3.2 . Latest supported bash can be installed by using the `core/bash` Habitat package. To install and make bash available for building packages perform following steps.
+
+```bash
+# Install core bash
+hab pkg install core/bash --binlink --force
+
+# Make the latest bash available for the build scripts
+export PATH=/usr/local/bin:$PATH
+
+# Make sure that the version of bash is the correct one.
+bash --version # should show 5.2.x version
+
+```
+
 ## Troubleshooting builds
 
 ### Bash plans: `attach`
@@ -243,3 +277,38 @@ At C:\src\habitat\plan.ps1:26 char:23
 ```
 
 You can now call PowerShell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.
+
+### macOS Plans Troubleshooting
+
+In macOS we are using a mechanism called `sandbox-exec` for providing the isolation with the host system. This mechanism is configurable through *sandbox scripts*. The way this mechanism works is we start with everything disabled by default and then we enable piece wise access controls that are required for building the packages. A set of standard rules applicable across all the packages are preconfigured in the Studio's *sandbox configuration*. Since plan files are essentially shell
+scripts, that can invoke external commands, which is not possible to determine beforehand, a mechanism is provided called `buildtime_sandbox`, which is simply a shell function that allows to customize (add more permissions if required) the Studio's *sandbox configuration*. Typically if you are observing permission errors during building the package, it's quite likely that some permissions are missing in the Sandbox environment that need to be enabled. You can debug a Studio session that is building a package by running the following command in a separate terminal and checking for the errors reported. Below is a sample output and explanation of the errors from one Studio session.
+
+```bash
+log stream --predicate 'sender="Sandbox"'
+
+...
+2026-05-15 11:08:24.741500+0530 0x85533    Error       0x0                  0      0    kernel: (Sandbox) Sandbox: git(30931) deny(1) file-read-data /dev/autofs_nowait
+2026-05-15 11:08:24.741542+0530 0x85533    Error       0x0                  0      0    kernel: (Sandbox) Sandbox: git(30931) deny(1) file-read-data /private/var/root/.CFUserTextEncoding
+2026-05-15 11:08:24.741604+0530 0x85533    Error       0x0                  0      0    kernel: (Sandbox) Sandbox: git(30931) deny(1) file-read-data /dev/autofs_nowait
+2026-05-15 11:08:24.741615+0530 0x85533    Error       0x0                  0      0    kernel: (Sandbox) Sandbox: git(30931) deny(1) file-read-data /private/var/root/.CFUserTextEncoding
+2026-05-15 11:08:24.750081+0530 0x85533    Error       0x0                  0      0    kernel: (Sandbox) Sandbox: git(30931) deny(1) file-read-metadata /Users/seq-test
+...
+```
+The above errors indicate that the command `git` is getting perissions denied error while running the Studio. These errors can be corrected by providing a *buildtime* configuration using the `buildtime_sandbox` function in your plan file as follows.
+
+```bash
+# Contents of plan.sh
+
+....
+
+buildtime_sandbox() {
+   echo '(version 1)
+;; Enable read permissions across file-system
+;; It is possible to enable fine grained access control using
+;; (allow file-read-metadata (subpath "/private/var"))
+(allow file-read*)
+'
+}
+...
+
+```
