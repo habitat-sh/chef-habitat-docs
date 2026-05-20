@@ -143,8 +143,9 @@ Also, macOS installation varies by architecture:
 
 #### x86-64 (Intel Macs)
 
-1. uses a `zip` archive as a hab binary
-1. Downloads and installs the hab binary directly to `/usr/local/bin`
+1. Downloads the hab binary as a `zip` archive
+1. Verifies the download using SHA256 checksums
+1. Installs the hab binary directly to `/usr/local/bin`
 
 #### AArch64 (Apple Silicon Macs)
 
@@ -178,12 +179,6 @@ Permission errors:
 
 - Ensure you have appropriate privileges (sudo on Linux, admin on macOS)
 - Check that target directories are writable
-
-macOS volume creation failures:
-
-- Verify sufficient disk space for the new volume
-- Ensure the root disk has available space
-- Check that FileVault setup is complete if encryption is enabled
 
 ### Debug mode
 

@@ -26,7 +26,9 @@ Before installing Chef Habitat, ensure your system meets these requirements.
 
 ### Docker requirements
 
-To run Chef Habitat Studio, you must have Docker Desktop installed:
+Docker Desktop is required only if you want to use the Docker-based Habitat Studio, which you invoke with the `-D` flag.
+
+If you do need Docker Desktop, install it for your platform:
 
 - [Docker Desktop for Linux](https://docs.docker.com/desktop/setup/install/linux/)
 - [Docker Desktop for macOS](https://docs.docker.com/desktop/setup/install/mac-install/)
@@ -66,6 +68,18 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
    ```
 
 ## Install on macOS
+
+The following table summarizes what's supported when running Chef Habitat on macOS:
+
+| Feature | Supported |
+| --- | --- |
+| `hab` CLI | ✅ |
+| `hab pkg install` and package downloads | ✅ |
+| Build packages (native macOS studio) | ✅ |
+| Build Linux packages (Docker studio with `-D` flag) | ✅ (requires Docker Desktop) |
+| Upload packages to Chef Habitat Builder | ✅ |
+| Habitat Supervisor | ❌ |
+| Habitat Services | ❌ |
 
 ### Install from the command line
 

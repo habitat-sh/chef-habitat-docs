@@ -114,7 +114,7 @@ When writing a plan, it's important to understand that you are defining both how
 
 You may want to create a plan for an application that runs on multiple platform targets. You can create target-specific folders beneath either the root of your project or a top-level `habitat` folder. Then, save the plan, hooks, and configuration templates for a single platform in that target-specific folder.
 
-For example, an application targeting Linux, Linux on ARM, and Windows may have the following structure:
+For example, an application targeting Linux, Linux on ARM, macOS (Apple Silicon), and Windows may have the following structure:
 
 ```plain
 app_root/
@@ -123,6 +123,10 @@ app_root/
 |   └── hooks/
 |           run
 ├── aarch64-linux/
+|   |   plan.sh
+|   └── hooks/
+|           run
+├── aarch64-darwin/
 |   |   plan.sh
 |   └── hooks/
 |           run
@@ -157,7 +161,15 @@ Place all plan files inside a `habitat` parent folder to keep a clean separation
 
 {{< /note >}}
 
-On Windows, only a `plan.ps1` will be used and a `plan.sh` will only be used on Linux or Linux on ARM. If your application requires different plans for Linux and Linux on ARM, even without hooks and configuration templates, you will need to use target folders for each platform.
+On Windows, only a `plan.ps1` will be used. A `plan.sh` will be used on Linux, Linux on ARM, and macOS. If your application requires different plans for each of these platforms, even without hooks and configuration templates, you'll need to use target folders for each platform.
+
+{{< note >}}
+
+On macOS, the Habitat native studio uses `sandbox-exec` for isolation rather than the `chroot` mechanism used on Linux.
+This means macOS builds have access to host-system libraries and tools via Xcode and aren't as fully isolated as Linux builds.
+Be explicit about build dependencies in your plan to avoid inadvertently relying on host-provided libraries that won't be available in other environments.
+
+{{< /note >}}
 
 ### Buildtime workflow
 

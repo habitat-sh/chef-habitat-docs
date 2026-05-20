@@ -22,7 +22,7 @@ In order to explain why that is, so that there is a common starting point, my go
 
 ## Customizing Studio
 
-When you enter Chef Habitat Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux or `/src/studio_profile.ps1` on Windows and source it.
+When you enter Chef Habitat Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux and macOS, or `/src/studio_profile.ps1` on Windows, and source it.
 Think `~/.bashrc` or `$PROFILE`.
 This file can be used to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
 
@@ -74,7 +74,17 @@ The Windows Docker studio doesn't exist as a component like `core/hab-studio` or
 
 ### macOS "native" - aka `core/hab-studio`
 
-The macOS studio uses `sandbox-exec` mechanism to provide the isolation and providing fine grained access control to the studio environment. However, since this is not a full `chroot` environment, some of the paths in the Habitat filesystem `/opt/hab` are being reused with the Host. It is currently recommended to use macOS native studios inside a VM running on the host, so as to not affect the host Habitat environment.
+The macOS studio uses `sandbox-exec` to provide isolation and fine-grained access control.
+However, since this isn't a full `chroot` environment, the Habitat filesystem path `/opt/hab` is shared with the host.
+Progress Chef recommends running the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon) to avoid affecting your host Habitat environment.
+
+{{< note >}}
+
+Apple has indicated that `sandbox-exec` is deprecated in recent macOS releases.
+Habitat's macOS studio currently depends on this mechanism.
+Progress Chef is tracking this deprecation and will address it in a future release.
+
+{{< /note >}}
 
 ## Studio platform support
 

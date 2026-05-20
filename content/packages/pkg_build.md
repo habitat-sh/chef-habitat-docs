@@ -93,7 +93,7 @@ The directory where your plan is located is known as the plan context.
 Depending on the platform of your host and your Docker configuration, the behavior of `hab studio enter` may vary. Here is the default behavior listed by host platform:
 
 * **Linux** - A local chrooted Linux Studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command.
-* **Mac** - A local macOS Studio leveraging 'sandbox-exec' utility. You can request to use a Docker container based Linux Studio by passing `-D` flag to the `hab studio enter` command.
+* **Mac** - A local macOS Studio leveraging `sandbox-exec`. You can request to use a Docker container based Linux Studio by passing the `-D` flag to the `hab studio enter` command.
 * **Windows** - A local Windows studio. You can force a Docker based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you wish to enter.
 
 {{< note >}}
@@ -147,38 +147,63 @@ The default channel for non-`core` origin dependencies is the `stable` channel. 
 
 ## Additional Setup for macOS
 
-### Downloading and Enabling XCode
+{{< warning >}}
 
-For macOS the Clang toolkit provided by the XCode is used. This provides the Compilers and Linkers. To ensure that during the build process, these tools are found correctly, following additional setup is required.
+The macOS native studio uses `sandbox-exec` for isolation but shares the `/opt/hab` filesystem with your host.
+Packages installed during a build persist on the host, and builds aren't guaranteed to be clean between sessions the way Linux chroot-based studios are.
+To avoid affecting your host Habitat environment, Progress Chef recommends running the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon).
 
-1. Download XCode appropriate for your macOS version. [This link](https://xcodereleases.com/) describes XCode versions and supported macOS Releases.
-2. Save the downloaded XCode in your "Applications folder and run the following Commands
+{{< /warning >}}
+
+### Download and enable Xcode
+
+The macOS studio uses the Clang compiler and linker toolkit provided by Xcode.
+To ensure these tools are found correctly during builds, you need to complete the following setup.
+
+{{< note >}}
+
+Xcode Command Line Tools alone aren't sufficient.
+The studio requires SDK headers and frameworks that the Command Line Tools package doesn't include, so you need the full Xcode application.
+Xcode 15 or later is required for macOS 14 (Sonoma) and later.
+
+{{< /note >}}
+
+1. Download the Xcode version appropriate for your macOS release.
+   See [xcodereleases.com](https://xcodereleases.com/) for a list of Xcode versions and their supported macOS releases.
+
+1. Save Xcode to your `Applications` folder, then run the following commands:
 
 ```bash
-
-## Default xcode-select -p may show /Library/Developer/CommandLineTools
+# Default xcode-select -p may show /Library/Developer/CommandLineTools
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-## Accept the xcode license
+# Accept the Xcode license
 sudo xcodebuild -license accept
-
 ```
 
-### Installing Latest Bash
+### Install the latest Bash shell
 
-The Habitat Plan files make use of features available in the latest versions of Bash Shell ( version 5 and above). The version of `bash` available on most macOS systems is typically version 3.2 . Latest supported bash can be installed by using the `core/bash` Habitat package. To install and make bash available for building packages perform following steps.
+Habitat plan files use features available in Bash 5.0 and later.
+Most macOS systems ship with Bash 3.2 due to licensing constraints.
+You can install a compatible version using the `core/bash` Habitat package.
+
+Run the following commands in your normal terminal session, outside of the studio:
 
 ```bash
-
-# Install core bash
+# Install core Bash
 hab pkg install core/bash --binlink --force
 
-# Make the latest bash available for the build scripts
+# Make the latest Bash available for build scripts
 export PATH=/usr/local/bin:$PATH
 
-# Make sure that the version of bash is the correct one.
-bash --version # should show 5.2.x version
+# Verify the version---it should show 5.2.x or later
+bash --version
+```
 
+To persist this `PATH` change across terminal sessions, add the following line to your shell profile (typically `~/.zshrc` on macOS):
+
+```bash
+export PATH=/usr/local/bin:$PATH
 ```
 
 ## Troubleshooting builds
@@ -280,10 +305,16 @@ At C:\src\habitat\plan.ps1:26 char:23
 
 You can now call PowerShell commands to inspect variables (like `Get-ChildItem variable:\`) or files to debug your build.
 
-### macOS Plans Troubleshooting
+### Troubleshoot sandbox permission errors on macOS
 
-In macOS we are using a mechanism called `sandbox-exec` for providing the isolation with the host system. This mechanism is configurable through _sandbox scripts_. The way this mechanism works is we start with everything disabled by default and then we enable piece wise access controls that are required for building the packages. A set of standard rules applicable across all the packages are preconfigured in the Studio's _sandbox configuration_. Since plan files are essentially shell
-scripts, that can invoke external commands, which is not possible to determine beforehand, a mechanism is provided called `buildtime_sandbox`, which is simply a shell function that allows to customize (add more permissions if required) the Studio's _sandbox configuration_. Typically if you are observing permission errors during building the package, it's quite likely that some permissions are missing in the Sandbox environment that need to be enabled. You can debug a Studio session that is building a package by running the following command in a separate terminal and checking for the errors reported. Below is a sample output and explanation of the errors from one Studio session.
+On macOS, Habitat uses `sandbox-exec` for isolation.
+This mechanism is configured through _sandbox scripts_ that start with all access disabled and then selectively grant the permissions required for each build.
+A set of standard rules is pre-configured in the studio's _sandbox configuration_.
+Because plan files are shell scripts that can invoke arbitrary external commands, the full set of permissions required isn't known in advance.
+The `buildtime_sandbox` shell function lets you extend the studio's sandbox configuration with additional permissions for your specific plan.
+
+If you observe permission errors during a build, it's likely that the sandbox is blocking access your build needs.
+To diagnose this, run the following command in a separate terminal while your build runs and watch for denied operations:
 
 ```bash
 
@@ -299,10 +330,10 @@ log stream --predicate 'sender="Sandbox"'
 
 ```
 
-The above errors indicate that the command `git` is getting permissions denied error while running the Studio. These errors can be corrected by providing a _buildtime_ configuration using the `buildtime_sandbox` function in your plan file as follows.
+The above errors show that `git` is being denied access while running in the studio.
+You can resolve these errors by providing a buildtime configuration using the `buildtime_sandbox` function in your plan file, as shown in the following example.
 
 ```bash
-
 ## Contents of plan.sh
 
 ....
