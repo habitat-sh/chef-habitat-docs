@@ -14,7 +14,7 @@ The Supervisor is a process manager that has two primary responsibilities. First
 
 {{< note >}}
 
-Chef Habitat Supervisor and Chef Habitat Services are not supported on macOS.
+Chef Habitat Supervisor and Chef Habitat Services aren't supported on macOS.
 
 {{< /note >}}
 

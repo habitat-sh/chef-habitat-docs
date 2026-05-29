@@ -22,9 +22,9 @@ In order to explain why that is, so that there is a common starting point, my go
 
 ## Customizing Studio
 
-When you enter Chef Habitat Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux and macOS, or `/src/studio_profile.ps1` on Windows, and source it.
+When you enter Chef Habitat Studio, Chef Habitat attempts to locate `/src/.studiorc` on Linux and macOS, or `/src/studio_profile.ps1` on Windows, and source it.
 Think `~/.bashrc` or `$PROFILE`.
-This file can be used to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
+Use this file to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
 
 To use this feature, place a `.studiorc` (Linux) or `studio_profile.ps1` (Windows) in the current working directory where you run `hab studio enter`.
 
@@ -36,17 +36,17 @@ Chef Habitat will only source `.studiorc` or `studio_profile.ps1` when you run `
 
 ### Why do we need it (Linux)
 
-The primary purpose of the Studio on Linux is to provide environment and filesystem isolation from the build host during the build process. Many common environment variables can influence the build process, such as `PATH` putting user-installed tools ahead of the desired tool versions. Filesystem isolation is important because many tools use common system paths to autodiscover libraries, putting them ahead of the desired Habitat libraries. The result is a known, minimal environment that's portable and consistent across hosts (from laptop to build farm) and forces users to be explicit about how they build and package software.
+The primary purpose of the Studio on Linux is to provide environment and filesystem isolation from the build host during the build process. Many common environment variables can influence the build process, such as `PATH` putting user-installed tools ahead of the desired tool versions. Filesystem isolation is important because many tools use common system paths to autodiscover libraries, putting them ahead of the desired Habitat libraries. The result is a known, minimal environment that's portable and consistent across hosts (from laptop to build farm) and forces you to be explicit about how you build and package software.
 
 ### Why do we need it (Windows)
 
-The purpose of the Studio on Windows is fundamentally the same as on Linux. However, Windows can't achieve filesystem isolation with the "native" studio in the same way Linux can, but this is also less important on Windows. It does provide similar environment isolation, though there are unique constraints imposed by Windows that require certain system paths to be available. For instance, removing system32 libraries and tools would be unnatural at best and would completely break Windows at worst, but the Studio strips all other `PATH` entries (your ProgramFiles applications, for example) to provide a more isolated environment. Registry isolation is also a concern that's different from Linux, but the native studio doesn't provide this isolation. Note that the Docker Windows Studio mentioned below provides much more thorough isolation.
+The purpose of the Studio on Windows is fundamentally the same as on Linux. However, Windows can't achieve filesystem isolation with the "native" studio in the same way Linux can, but this is also less important on Windows. It does provide similar environment isolation, though Windows imposes unique constraints that require certain system paths to be available. For instance, removing system32 libraries and tools would be unnatural at best and would completely break Windows at worst, but the Studio strips all other `PATH` entries (your ProgramFiles applications, for example) to provide a more isolated environment. Registry isolation is also a concern that's different from Linux, but the native studio doesn't provide this isolation. Note that the Docker Windows Studio mentioned below provides much more thorough isolation.
 
-One other purpose of the Studio on Windows is to provide a known and common PowerShell environment that the Habitat build program is compatible with. The Windows Studio includes a packaged version of PowerShell that is different from the version that ships with the OS. Entering an interactive Windows Studio makes troubleshooting builds easier because you're placed in the same version of PowerShell that builds packages and the same version used by the Habitat Supervisor at runtime.
+One other purpose of the Studio on Windows is to provide a known and common PowerShell environment that the Habitat build program is compatible with. The Windows Studio includes a packaged version of PowerShell that's different from the version that ships with the OS. Entering an interactive Windows Studio makes troubleshooting builds easier because it puts you in the same version of PowerShell that builds packages and the same version used by the Habitat Supervisor at runtime.
 
 ### Why do we need it (macOS)
 
-The purpose of Studio on macOS is fundamentally the same as on Linux. However, on macOS, we cannot provide the filesystem isolation using `chroot` as the newer versions of macOS have a very basic `chroot` support that is insufficient. On macOS we are instead leveraging `sandbox-exec` based mechanism to provide the isolation with the Host.
+The purpose of Studio on macOS is fundamentally the same as on Linux. However, on macOS, we can't provide the filesystem isolation using `chroot` as the newer versions of macOS have a very basic `chroot` support that's insufficient. On macOS, Habitat uses a `sandbox-exec`-based mechanism to provide the isolation with the host.
 
 ## What kinds of studios are there?
 
@@ -80,7 +80,7 @@ Progress Chef recommends running the macOS native studio inside a virtual machin
 
 {{< note >}}
 
-Apple has indicated that `sandbox-exec` is deprecated in recent macOS releases.
+Apple deprecated `sandbox-exec` in recent macOS releases.
 Habitat's macOS studio currently depends on this mechanism.
 Progress Chef is tracking this deprecation and will address it in a future release.
 

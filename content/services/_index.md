@@ -13,7 +13,7 @@ A service is a Chef Habitat package running under a Chef Habitat Supervisor.
 
 {{< note >}}
 
-Chef Habitat Supervisor and Chef Habitat Services are not supported on macOS.
+Chef Habitat Supervisor and Chef Habitat Services aren't supported on macOS.
 
 {{< /note >}}
 

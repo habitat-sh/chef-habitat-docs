@@ -10,23 +10,23 @@ linkTitle = "Install"
     weight = 10
 +++
 
-Chef Habitat provides a command-line interface (CLI) tool called `hab` that you use to build packages, manage services, and interact with Chef Habitat Builder. This section provides installation instructions for Linux, macOS, and Windows.
+Chef Habitat provides a command-line interface (CLI) tool called `hab` that you use to build packages, manage services, and interact with Chef Habitat Builder.
+This section includes installation instructions for Linux, macOS, and Windows.
 
 ## System requirements
 
-Before installing Chef Habitat, ensure your system meets these requirements.
+Before you install Chef Habitat, confirm that your system meets these requirements.
 
 ### Operating system and architecture requirements
 
-- Modern Linux kernels on a 64-bit x86_64 Processor (Intel or AMD)
+- Modern Linux kernels on a 64-bit x86_64 processor (Intel or AMD)
 - Modern Linux kernels on a 64-bit ARM processor
 - Windows Server 2012 or later, or Windows 8 or later on a 64-bit processor
-- macOS 14 or later on a 64-bit Apple Silicon
-- macOS 14 or later on a 64-bit Intel
+- macOS 14 or later on a 64-bit Apple Silicon or Intel processors
 
 ### Docker requirements
 
-Docker Desktop is required only if you want to use the Docker-based Habitat Studio, which you invoke with the `-D` flag.
+You need Docker Desktop only if you want to use the Docker-based Habitat Studio, which you invoke with the `-D` flag.
 
 If you do need Docker Desktop, install it for your platform:
 
@@ -50,9 +50,9 @@ To install Chef Habitat with the install script, run the following command:
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for example:
+You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
 
-```sh
+```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
     | sudo bash -s -- -v 2.0.504
 ```
@@ -63,23 +63,23 @@ curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/in
 
 1. Extract the `hab.tgz` binary to `/usr/local/bin` or add its location to your `PATH`, for example:
 
-   ```sh
-   tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1
-   ```
+    ```shell
+    tar -xvzf hab.tgz -C /usr/local/bin --strip-components 1
+    ```
 
 ## Install on macOS
 
-The following table summarizes what's supported when running Chef Habitat on macOS:
+The following list summarizes what's supported when running Chef Habitat on macOS:
 
-| Feature | Supported |
-| --- | --- |
-| `hab` CLI | ✅ |
-| `hab pkg install` and package downloads | ✅ |
-| Build packages (native macOS studio) | ✅ |
-| Build Linux packages (Docker studio with `-D` flag) | ✅ (requires Docker Desktop) |
-| Upload packages to Chef Habitat Builder | ✅ |
-| Habitat Supervisor | ❌ |
-| Habitat Services | ❌ |
+| Feature                                             | Supported                     |
+| --------------------------------------------------- | ----------------------------- |
+| `hab` CLI                                           | Yes                           |
+| `hab pkg install` and package downloads             | Yes                           |
+| Build packages (native macOS studio)                | Yes                           |
+| Build Linux packages (Docker studio with `-D` flag) | Yes (requires Docker Desktop) |
+| Upload packages to Chef Habitat Builder             | Yes                           |
+| Habitat Supervisor                                  | No                            |
+| Habitat Services                                    | No                            |
 
 ### Install from the command line
 
@@ -91,18 +91,18 @@ To install Chef Habitat with the install script, run the following command:
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
-You can install a specific Habitat version with `-v <HABITAT_VERSION>`, for example:
+You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
 
-```sh
+```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
     | sudo bash -s -- -v 2.0.504
 ```
 
-### Install using Homebrew
+### Install with Homebrew
 
 To install Chef Habitat with Homebrew, run the following commands:
 
-```bash
+```shell
 brew tap habitat-sh/habitat
 brew install hab
 ```
@@ -111,11 +111,11 @@ brew install hab
 
 1. [Download Chef Habitat for macOS](https://www.chef.io/downloads)
 
-1. Unzip the Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
+1. Unzip the Chef Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
 
 ## Install on Windows
 
-### Install using Chocolatey
+### Install with Chocolatey
 
 Progress Chef recommends installing Chef Habitat on Windows with Chocolatey.
 
@@ -134,9 +134,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1'))
 ```
 
-You can install a specific Habitat version with `-Version <HABITAT_VERSION>`, for example:
+You can install a specific Chef Habitat version with `-Version <HABITAT_VERSION>`, for example:
 
-```ps1
+```powershell
 iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.ps1) } -Version 2.0.504
 ```
 
@@ -144,7 +144,7 @@ iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/compone
 
 1. [Download Chef Habitat for Windows](https://www.chef.io/downloads)
 
-1. Unzip the Habitat binary on your computer to `C:\habitat` so that the full path to Chef Habitat is similar to `C:\habitat\hab-<HABITAT_VERSION>-<YYYYMMDDHHMMSS>-x86_64-windows`
+1. Unzip the Chef Habitat binary on your computer to `C:\habitat` so that the full path to Chef Habitat looks like `C:\habitat\hab-<HABITAT_VERSION>-<YYYYMMDDHHMMSS>-x86_64-windows`.
 
     For example, `C:\habitat\hab-0.79.1-20190410221450-x86_64-windows`.
 
@@ -156,9 +156,9 @@ iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/compone
 
 ## Verify installation
 
-To verify that Habitat is installed, run the following commands:
+To verify your installation, run the following commands:
 
-```bash
+```shell
 hab --version
 hab cli setup --help
 ```

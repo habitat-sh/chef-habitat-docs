@@ -171,7 +171,7 @@ $env:PATH += ";C:\habitat\hab-VERSION-x86_64-windows\"
 
 #### Solution
 
-**On macOS (native studio):**
+On macOS (native studio):
 
 1. Verify that Xcode is installed and configured correctly:
 
@@ -193,7 +193,7 @@ $env:PATH += ";C:\habitat\hab-VERSION-x86_64-windows\"
 
    For details on how to resolve sandbox permission errors, see [Troubleshoot sandbox permission errors on macOS](../packages/pkg_build#troubleshoot-sandbox-permission-errors-on-macos).
 
-**On all platforms (Docker studio):**
+On all platforms (Docker studio):
 
 1. Verify that Docker is running.
 1. Check for conflicting containers:
