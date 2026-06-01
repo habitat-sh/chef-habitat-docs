@@ -10,10 +10,20 @@ description = "Build packages in Chef Habitat Studio"
     weight = 10
 +++
 
+A Chef Habitat package artifact is a self-contained, signed artifact that bundles an application or library with everything it needs to run---its binaries, runtime dependencies, libraries, and configuration. The build process transforms a plan (a set of build instructions you write) into a `.hart` file: a compressed, cryptographically signed tarball that Chef Habitat can install, run, and distribute.
+
+## macOS system requirements
+
+To build Habitat packages on macOS, make sure you have the following installed and configured:
+
+- [macOS requirements](/install#additional-setup-to-build-habitat-packages)
+
+## How a package is built
+
 When you've finished creating your plan and call `build` in Chef Habitat Studio, the build script does the following:
 
 1. Checks that Habitat Studio has the private origin key available to sign the artifact.
-1. Downloads the source code from the location in `pkg_source`, if specified
+1. Downloads the source code from the location in `pkg_source`, if specified.
 1. Validates the checksum of the downloaded file using the `pkg_shasum` value, if it's specified.
 1. Extracts the source into a temporary cache.
 1. Builds and installs the binary or library using `make` and `make install` for Linux-based builds.
@@ -25,6 +35,12 @@ When you've finished creating your plan and call `build` in Chef Habitat Studio,
 
 After the build script completes, you can upload your package to Chef Habitat Builder, or install and start your package locally.
 
+## Prerequisites
+
+Before building your packages, create a key pair for your origin and share the private key with the Habitat Studio where you'll build the package.
+
+### Generate an origin key pair
+
 Packages need to be signed with a private origin key at build time.
 Generate an origin key pair manually by running the following command on your host machine:
 
@@ -32,18 +48,20 @@ Generate an origin key pair manually by running the following command on your ho
 hab origin key generate <ORIGIN>
 ```
 
-The `hab origin key generate` subcommand places the origin key files, `<ORIGIN>-<TIMESTAMP>.sig.key` (the private key) and `<ORIGIN>-<TIMESTAMP>.pub` (the public key), in the `$HOME/.hab/cache/keys` directory.
+This command places the origin key files, `<ORIGIN>-<TIMESTAMP>.sig.key` (the private key) and `<ORIGIN>-<TIMESTAMP>.pub` (the public key), in your `$HOME/.hab/cache/keys` directory.
+
 If you're creating origin keys in the Studio container, or if you're running as root on a Linux machine, your keys are stored in `/hab/cache/keys`.
 On macOS, your keys are stored in `/opt/hab/cache/keys`.
 
-Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your artifact, then they must have your public key (.pub) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory (`/opt/hab/cache/keys` on macOS). If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
+Because the private key is used to sign your artifact, it shouldn't be shared freely; however, if anyone wants to download and use your Habitat artifact, they must have your public key (`.pub`) installed in their local `$HOME/.hab/cache/keys` or `/hab/cache/keys` directory (`/opt/hab/cache/keys` on macOS). If the origin's public key isn't present, Chef Habitat attempts to download it from the Builder endpoint specified by the `--url` argument (<https://bldr.habitat.sh> by default) to `hab pkg install`.
 
-## Pass origin keys into Habitat Studio
+### Pass origin keys into Habitat Studio
 
 The Habitat Studio is a self-contained, minimal environment, which means you'll need to share your private origin keys with the Studio to sign artifacts.
-You can do this in three ways:
 
-1. Set `HAB_ORIGIN` to the name of the origin you intend to use before entering the Studio:
+To share your private origin keys with Habitat Studio, do one of the following:
+
+- Before entering Habitat Studio, set `HAB_ORIGIN` to the name of the origin you intend to use:
 
     ```shell
     export HAB_ORIGIN=originname
@@ -51,7 +69,7 @@ You can do this in three ways:
 
     This approach overrides the `HAB_ORIGIN` environment variable and imports your public and private origin keys into the Studio environment. It also overrides any `pkg_origin` values in the packages that you build. This is useful because you can use it to build your own artifact, as well as to build your own artifacts from other packages' source code, for example, `originname/node` or `originname/glibc`.
 
-1. Set `HAB_ORIGIN_KEYS` to the names of your origins. If you're using more than one origin, separate them with commas:
+- Set `HAB_ORIGIN_KEYS` to the names of your origins. If you're using more than one origin, separate them with commas:
 
     ```shell
     export HAB_ORIGIN_KEYS=originname-internal,originname-test,originname
@@ -59,7 +77,7 @@ You can do this in three ways:
 
     This imports the private origin keys, which must exactly match the origin names for the plans you intend to build.
 
-1. Use the `-k` flag (short for "keys") which accepts one or more key names separated by commas with:
+- Use the `-k` flag (short for "keys") which accepts one or more key names separated by commas with:
 
     ```shell
     hab studio -k originname-internal,originname-test enter
@@ -69,7 +87,9 @@ You can do this in three ways:
 
 After you create or receive your private origin key, you can start up the Studio and build your artifact.
 
-## Run an interactive build
+## Build a package
+
+### Run an interactive build
 
 Any build that you perform from a Chef Habitat Studio is an interactive build.
 Habitat Studio interactive builds allow you to examine the build environment before, during, and after the build.
@@ -85,7 +105,7 @@ The directory where your plan is located is known as the plan context.
     hab studio enter
     ```
 
-    The directory you were in is now mounted as `/src` inside the Studio. By default, a Supervisor runs in the background for iterative testing. You can see the streaming output by running <code>sup-log</code>. Type <code>Ctrl-C</code> to exit the streaming output and <code>sup-term</code> to terminate the background Supervisor. If you terminate the background Supervisor, then running <code>sup-run</code> will restart it along with every service that was previously loaded. You have to explicitly run <code>hab svc unload origin/package</code> to remove a package from the "loaded" list.
+    The directory you were in is now mounted as `/src` inside the Studio. By default, a Supervisor runs in the background for iterative testing. You can see the streaming output by running `sup-log`. Type `Ctrl-C` to exit the streaming output and `sup-term` to terminate the background Supervisor. If you terminate the background Supervisor, then running `sup-run` will restart it along with every service that was previously loaded. You have to explicitly run `hab svc unload origin/package` to remove a package from the "loaded" list.
 
 1. Enter the following command to create the package.
 
@@ -95,13 +115,13 @@ The directory where your plan is located is known as the plan context.
 
 1. If the package builds successfully, it's placed into a `results` directory at the same level as your plan.
 
-### Manage the Habitat Studio type (Docker/Linux/Windows)
+#### Manage the Habitat Studio type (Docker/Linux/Windows)
 
 Depending on the platform of your host and your Docker configuration, the behavior of `hab studio enter` may vary. Here is the default behavior listed by host platform:
 
-* **Linux** - A local chrooted Linux Studio. You can force a Docker-based studio by adding the `-D` flag to the `hab studio enter` command.
-* **macOS** - A local macOS Studio using `sandbox-exec`. You can request a Docker container-based Linux Studio by passing the `-D` flag to the `hab studio enter` command.
-* **Windows** - A local Windows studio. You can force a Docker-based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you want to enter.
+- **Linux** - A local chrooted Linux Studio. You can force a Docker-based studio by adding the `-D` flag to the `hab studio enter` command.
+- **macOS** - A local macOS Studio using `sandbox-exec`. You can request a Docker container-based Linux Studio by passing the `-D` flag to the `hab studio enter` command.
+- **Windows** - A local Windows studio. You can force a Docker-based studio by adding the `-D` flag to the `hab studio enter` command. The platform of the spawned container depends on the mode your Docker service is running, which can be toggled between Linux Containers and Windows Containers. Make sure your Docker service is running in the correct mode for the kind of studio you want to enter.
 
 {{< note >}}
 
@@ -109,24 +129,30 @@ For more details related to Windows containers see [Running Chef Habitat Windows
 
 {{< /note >}}
 
-### Build dependent plans in the studio
+#### Build interdependent packages
 
-Writing plans for multiple packages that depend on each other can become cumbersome when you use multiple studios, as you need to update dependencies frequently.
-Alternatively, using a single studio lets you quickly test your changes with locally built packages.
-To do this, use a folder structure like this:
+If you're developing and building multiple packages where one package is dependent on one or more other packages,
+use a single Habitat Studio to build your packages instead of running multiple Habitat Studios.
+This lets you quickly test your changes and is less cumbersome than entering a separate Habitat Studio for each package.
 
-```shell
-tree projects
+To do this, follow these steps:
 
-projects/
-├── project-a
-└── project-b
-```
+1. Organize packages together in folder structure like this:
 
-Then you can run `hab studio enter` in `projects/`.
-If `project-b` depends on `project-a`, you can run `build project-a && build project-b`, for example.
+    ```text
+    projects/
+    ├── project-a
+    └── project-b
+    ```
 
-## Run a non-interactive build
+1. From the `projects/` directory, run `hab studio enter`.
+1. Build your packages in dependency order, for example:
+
+    ```shell
+    build project-a && build project-b
+    ```
+
+### Run a non-interactive build
 
 A non-interactive build is one in which Chef Habitat creates a Studio for you, builds the package inside it, and then destroys the Studio, leaving the resulting `.hart` on your computer.
 Use a non-interactive build when you're sure the build will succeed, or together with a continuous integration system.
@@ -135,10 +161,10 @@ Use a non-interactive build when you're sure the build will succeed, or together
 1. Build the artifact in an unattended fashion, passing the name of the origin key to the command.
 
     ```shell
-    hab pkg build yourpackage -k yourname
+    hab pkg build <PACKAGE_NAME> -k <HAB_ORIGIN_KEYS>
     ```
 
-    > Similar to the `hab studio enter` command above, the type of studio where the build runs is determined by your host platform and `hab pkg build` takes the same `-D` flag to force a Docker environment if desired.
+    Similar to the `hab studio enter` command above, the type of studio where the build runs is determined by your host platform and `hab pkg build` takes the same `-D` flag to force a Docker environment if desired.
 
 1. The resulting artifact is inside a directory called `results`, along with any build logs and a build report (`last_build.env`) that includes machine-parsable metadata about the build.
 
@@ -147,7 +173,7 @@ However, _if you're using the Linux version of `hab`_, you can reuse a previous 
 
 For information on the contents of an installed package, see [Package contents](../reference/package_contents.md).
 
-## Refresh channel
+## Build packages with core origin dependencies from a specific channel
 
 By default, when Habitat builds a plan, it pulls all `core` origin dependencies from the `base` channel. The `base` channel includes all lower level packages from the most recent package refresh. You can change the channel that Habitat pulls `core` origin dependencies from using either the `--refresh-channel` argument in the `hab pkg build` command or by using the `-f` option when entering an interactive studio.
 
@@ -157,66 +183,7 @@ The default channel for non-`core` origin dependencies is the `stable` channel. 
 
 {{< /note >}}
 
-## Additional setup for macOS
-
-{{< warning >}}
-
-The macOS native studio uses `sandbox-exec` for isolation but shares the `/opt/hab` filesystem with your host.
-Packages installed during a build persist on the host, and builds aren't guaranteed to be clean between sessions in the same way as Linux chroot-based studios.
-To avoid affecting your host Habitat environment, Progress Chef recommends running the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon).
-
-{{< /warning >}}
-
-### Download and enable Xcode
-
-The macOS studio uses the Clang compiler and linker toolkit provided by Xcode.
-To ensure these tools are found correctly during builds, you need to complete the following setup.
-
-{{< note >}}
-
-Xcode Command Line Tools alone aren't sufficient.
-The studio requires SDK headers and frameworks that the Command Line Tools package doesn't include, so you need the full Xcode application.
-Xcode 15 or later is required for macOS 14 (Sonoma) and later.
-
-{{< /note >}}
-
-1. Download the Xcode version appropriate for your macOS release.
-   See [Xcode Releases](https://xcodereleases.com/) for a list of Xcode versions and their supported macOS releases.
-
-1. Save Xcode to your `Applications` folder, then run the following commands:
-
-```shell
-# Default xcode-select -p may show /Library/Developer/CommandLineTools
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-
-# Accept the Xcode license
-sudo xcodebuild -license accept
-```
-
-### Install the latest Bash shell
-
-Habitat plan files use features available in Bash 5.0 and later.
-Most macOS systems ship with Bash 3.2 due to licensing constraints.
-You can install a compatible version using the `core/bash` Habitat package.
-
-Run the following commands in your normal terminal session, outside of the studio:
-
-```shell
-# Install core Bash
-hab pkg install core/bash --binlink --force
-
-# Make the latest Bash available for build scripts
-export PATH=/usr/local/bin:$PATH
-
-# Verify the version---it should show 5.2.x or later
-bash --version
-```
-
-To persist this `PATH` change across terminal sessions, add the following line to your shell profile (typically `~/.zshrc` on macOS):
-
-```shell
-export PATH=/usr/local/bin:$PATH
-```
+For information on supported package channels, see the [Habitat package refresh strategy documentation](https://docs.chef.io/habitat/supported_packages/package_refresh_strategy/).
 
 ## Troubleshooting builds
 

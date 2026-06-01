@@ -20,17 +20,16 @@ In order to explain why that is, so that there is a common starting point, my go
 
 {{< readfile file="content/reusable/md/habitat_studio_overview.md" >}}
 
-## Customizing Studio
+## Customize Habitat Studio
 
-When you enter Chef Habitat Studio, Chef Habitat attempts to locate `/src/.studiorc` on Linux and macOS, or `/src/studio_profile.ps1` on Windows, and source it.
-Think `~/.bashrc` or `$PROFILE`.
-Use this file to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
+You can customize Chef Habitat Studio's environment by defining [environment variables](/reference/environment_variables/) in a Habitat Studio profile file. This file is similar to `~/.bashrc` or `$PROFILE`.
+When you enter Habitat Studio, Habitat attempts to locate this file and source it.
 
-To use this feature, place a `.studiorc` (Linux) or `studio_profile.ps1` (Windows) in the current working directory where you run `hab studio enter`.
+To use this feature, place a `.studiorc` (Linux) or `studio_profile.ps1` (Windows) in the current working directory where you run `hab studio enter`, then define any [environment variables](/reference/environment_variables/) and any other shell customizations to help you develop your plans from within the Studio.
 
 {{< note >}}
 
-Chef Habitat will only source `.studiorc` or `studio_profile.ps1` when you run `hab studio enter`---it won't be sourced when calling `hab studio run`, `hab studio build`, or `hab pkg build`.
+Chef Habitat will only source `.studiorc` or `studio_profile.ps1` when you run `hab studio enter`---it isn't sourced when calling `hab studio run`, `hab studio build`, or `hab pkg build`.
 
 {{< /note >}}
 
@@ -48,7 +47,7 @@ One other purpose of the Studio on Windows is to provide a known and common Powe
 
 The purpose of Studio on macOS is fundamentally the same as on Linux. However, on macOS, we can't provide the filesystem isolation using `chroot` as the newer versions of macOS have a very basic `chroot` support that's insufficient. On macOS, Habitat uses a `sandbox-exec`-based mechanism to provide the isolation with the host.
 
-## What kinds of studios are there?
+## What kinds of Habitat Studios are there?
 
 The Habitat Studio, as an abstract concept, is an environment that provides the required guarantees for builds. The `hab studio` command is the interface that performs the required setup before handing control over to a studio implementation. `pkg build` uses the same setup, but instead of creating an interactive process, it invokes `build` directly in a non-interactive environment.
 
@@ -116,7 +115,7 @@ One question often asked is how to build Windows packages on non-Windows systems
 
 ### The "Mac Docker Studio"
 
-Habitat Docker Studio on macOS (invoked with `-D` CLI option) relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on Mac.
+Habitat Docker Studio on macOS (invoked with `-D` CLI option) relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on macOS.
 
 ### How the Studio is used
 

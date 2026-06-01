@@ -134,7 +134,7 @@ app_root/
 
 The build script uses the `plan.ps1` to build your package for Windows, and the `plan.sh` to build your package for Linux on x86-64 processors, Linux on ARM, and macOS. If your application requires different plans for macOS, Linux on ARM processors, or Linux on x86-64 processors---even without hooks and configuration templates---create platform-specific folders that target each platform.
 
-### Create a plan with platform-specific folders
+### Create platform-specific plans
 
 To create a build script that targets specific platforms, follow these steps:
 
