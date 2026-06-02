@@ -113,6 +113,12 @@ brew install hab
 
 1. Unzip the Chef Habitat binary to `/usr/local/bin` to add it to your system `PATH`.
 
+1. Remove the quarantine attribute that macOS sets on files downloaded through a browser:
+
+    ```shell
+    xattr -d com.apple.quarantine /usr/local/bin/hab
+    ```
+
 ### Additional setup to build Habitat packages
 
 If you plan to [build Habitat packages](/packages/pkg_build/) in [Chef Habitat Studio](/studio) on macOS, you must also install or configure the following dependencies.
