@@ -123,49 +123,14 @@ The macOS-native Habitat Studio uses `sandbox-exec` for isolation but shares the
 Packages installed during a build persist on the host, and builds aren't guaranteed to be clean between sessions in the same way as Linux chroot-based studios.
 To avoid affecting your host Habitat environment, run the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon).
 
-#### Download and enable Xcode
+#### Install Xcode Command Line Tools
 
-Habitat Studio on macOS uses the Clang compiler and linker toolkit provided by Xcode.
-The Xcode Command Line Tools package doesn't include the full SDK headers and frameworks that Habitat Studio requires, so you need the full Xcode application.
+Habitat Studio on macOS uses the Clang compiler and linker toolkit provided by the Xcode Command Line Tools.
 
-1. Download the Xcode version appropriate for your macOS release and save it to your `Applications` folder.
-
-    You need Xcode 15 or later for macOS 14 (Sonoma) and later.
-    See [Xcode Releases](https://xcodereleases.com/) for a list of Xcode versions and their supported macOS releases.
-
-1. Point macOS build tools to the full Xcode SDK and accept the license agreement:
+- To install the Xcode Command Line Tools, run the following command:
 
     ```shell
-    # Default xcode-select -p may show /Library/Developer/CommandLineTools
-    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-
-    # Accept the Xcode license
-    sudo xcodebuild -license accept
-    ```
-
-#### Install the latest Bash shell
-
-Habitat plan files use features available in Bash 5.0 and later.
-Most macOS systems ship with Bash 3.2 due to licensing constraints.
-You can install a compatible version using the `core/bash` Habitat package.
-
-1. Install and configure the `core/bash` Habitat package:
-
-    ```shell
-    # Install core Bash
-    hab pkg install core/bash --binlink --force
-
-    # Make the latest Bash available for build scripts
-    export PATH=/usr/local/bin:$PATH
-
-    # Verify the version---it should show 5.2.x or later
-    bash --version
-    ```
-
-1. To persist this `PATH` change across terminal sessions, add the following line to your shell profile (typically `~/.zshrc` on macOS):
-
-    ```shell
-    export PATH=/usr/local/bin:$PATH
+    xcode-select --install
     ```
 
 ## Install on Windows
