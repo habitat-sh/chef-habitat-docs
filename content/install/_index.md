@@ -44,17 +44,25 @@ Chef Habitat doesn't support alternative containerization platforms.
 
 Progress Chef recommends installing Chef Habitat on Linux with the install script.
 
-To install Chef Habitat with the install script, run the following command:
+To install Chef Habitat with the install script:
 
-```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
-```
+1. Export your Chef Habitat Builder auth token:
+
+    ```shell
+    export HAB_AUTH_TOKEN=<your-token>
+    ```
+
+1. Run the install script:
+
+    ```shell
+    curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
+    ```
 
 You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo bash -s -- -v 2.0.504
+    | sudo -E bash -s -- -v 2.0.504
 ```
 
 ### Install manually
@@ -85,17 +93,25 @@ The following list summarizes what's supported when running Chef Habitat on macO
 
 Progress Chef recommends installing Chef Habitat on macOS with the install script.
 
-To install Chef Habitat with the install script, run the following command:
+To install Chef Habitat with the install script:
 
-```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
-```
+1. Export your Chef Habitat Builder auth token:
+
+    ```shell
+    export HAB_AUTH_TOKEN=<your-token>
+    ```
+
+1. Run the install script:
+
+    ```shell
+    curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
+    ```
 
 You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
 
 ```shell
 curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo bash -s -- -v 2.0.504
+    | sudo -E bash -s -- -v 2.0.504
 ```
 
 ### Install with Homebrew
