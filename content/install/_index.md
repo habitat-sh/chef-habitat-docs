@@ -58,7 +58,7 @@ To install Chef Habitat with the install script:
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
     ```
 
-    To install a specific Chef Habitat version,  `-v <HABITAT_VERSION>`, for example:
+    To install a specific Chef Habitat version, use the `-v <HABITAT_VERSION>` flag, for example:
 
     ```shell
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
@@ -107,7 +107,7 @@ To install Chef Habitat with the install script, follow these steps:
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
     ```
 
-    To install a specific Habitat version pass the version number to the install script with `-v <HABITAT_VERSION>`, for example:
+    To install a specific Chef Habitat version, use the `-v <HABITAT_VERSION>` flag, for example:
 
     ```shell
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
