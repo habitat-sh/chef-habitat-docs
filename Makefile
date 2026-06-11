@@ -1,6 +1,6 @@
 
 bundle:
-	npm install
+	npm ci
 
 clean_all:
 	rm -rf node_modules
@@ -46,7 +46,7 @@ update_theme:
 	hugo mod tidy
 	hugo mod vendor
 	hugo mod npm pack
-	npm install
+	npm ci
 
 ## See:
 ## - https://cspell.org/docs/getting-started/
