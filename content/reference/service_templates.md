@@ -1,14 +1,14 @@
 +++
 title = "Service Template Data"
 
-date = 2026-04-16T21:03:56.651Z
+date = 2026-06-10T22:43:47.604Z
 draft = false
 
 [menu]
-  [menu.reference]
+  [menu.habitat]
     title = "Service Template Data"
-    identifier = "reference/service_templates Service Template Data"
-    parent = "reference"
+    identifier = "habitat/reference/service_templates Service Template Data"
+    parent = "habitat/reference"
 +++
 
 <!-- This is a generated file, do not edit it directly. See https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-template-reference.js -->
@@ -16,6 +16,7 @@ draft = false
 The following settings can be used during a Chef Habitat service's lifecycle. This means that you can use these settings in any of the plan hooks, such as `init`, or `run`, and also in any templatized configuration file for your application or service.
 
 These configuration settings are referenced using the [Handlebars.js](https://github.com/handlebars-lang/handlebars.js) version of [Mustache-style](https://mustache.github.io/mustache.5.html) tags.
+
 
 ## sys
 
@@ -109,8 +110,8 @@ A Habitat package identifier, split apart into its constituent components
 | -------- | ---- | ----------- |
 | origin | string | The origin of the Habitat package |
 | name | string | The name of the Habitat package |
-| version | string | The version of the Habitat package |
-| release | string | The release of the Habitat package |
+| version | null,string | The version of the Habitat package |
+| release | null,string | The release of the Habitat package |
 
 ## svc_member
 
