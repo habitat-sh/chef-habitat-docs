@@ -20,31 +20,34 @@ In order to explain why that is, so that there is a common starting point, my go
 
 {{< readfile file="content/reusable/md/habitat_studio_overview.md" >}}
 
-## Customizing Studio
+## Customize Habitat Studio
 
-When you enter Chef Habitat Studio, Chef Habitat will attempt to locate `/src/.studiorc` on Linux or `/src/studio_profile.ps1` on Windows and source it.
-Think `~/.bashrc` or `$PROFILE`.
-This file can be used to export any environment variables like the ones in `/reference/environment-variables`, as well as any other shell customizations to help you develop your plans from within the Studio.
+You can customize Chef Habitat Studio's environment by defining [environment variables](/reference/environment_variables/) in a Habitat Studio profile file. This file is similar to `~/.bashrc` or `$PROFILE`.
+When you enter Habitat Studio, Habitat attempts to locate this file and source it.
 
-To use this feature, place a `.studiorc` (Linux) or `studio_profile.ps1` (Windows) in the current working directory where you run `hab studio enter`.
+To use this feature, place a `.studiorc` (Linux) or `studio_profile.ps1` (Windows) in the current working directory where you run `hab studio enter`, then define any [environment variables](/reference/environment_variables/) and any other shell customizations to help you develop your plans from within the Studio.
 
 {{< note >}}
 
-Chef Habitat will only source `.studiorc` or `studio_profile.ps1` when you run `hab studio enter`---it won't be sourced when calling `hab studio run`, `hab studio build`, or `hab pkg build`.
+Chef Habitat will only source `.studiorc` or `studio_profile.ps1` when you run `hab studio enter`---it isn't sourced when calling `hab studio run`, `hab studio build`, or `hab pkg build`.
 
 {{< /note >}}
 
 ### Why do we need it (Linux)
 
-The primary purpose of the Studio on Linux is to provide environment and filesystem isolation from the build host during the build process. Many common environment variables can influence the build process, such as `PATH` putting user-installed tools ahead of the desired tool versions. Filesystem isolation is important because many tools use common system paths to autodiscover libraries, putting them ahead of the desired Habitat libraries. The result is a known, minimal environment that's portable and consistent across hosts (from laptop to build farm) and forces users to be explicit about how they build and package software.
+The primary purpose of the Studio on Linux is to provide environment and filesystem isolation from the build host during the build process. Many common environment variables can influence the build process, such as `PATH` putting user-installed tools ahead of the desired tool versions. Filesystem isolation is important because many tools use common system paths to autodiscover libraries, putting them ahead of the desired Habitat libraries. The result is a known, minimal environment that's portable and consistent across hosts (from laptop to build farm) and forces you to be explicit about how you build and package software.
 
 ### Why do we need it (Windows)
 
-The purpose of the Studio on Windows is fundamentally the same as on Linux. However, Windows can't achieve filesystem isolation with the "native" studio in the same way Linux can, but this is also less important on Windows. It does provide similar environment isolation, though there are unique constraints imposed by Windows that require certain system paths to be available. For instance, removing system32 libraries and tools would be unnatural at best and would completely break Windows at worst, but the Studio strips all other `PATH` entries (your ProgramFiles applications, for example) to provide a more isolated environment. Registry isolation is also a concern that's different from Linux, but the native studio doesn't provide this isolation. Note that the Docker Windows Studio mentioned below provides much more thorough isolation.
+The purpose of the Studio on Windows is fundamentally the same as on Linux. However, Windows can't achieve filesystem isolation with the "native" studio in the same way Linux can, but this is also less important on Windows. It does provide similar environment isolation, though Windows imposes unique constraints that require certain system paths to be available. For instance, removing system32 libraries and tools would be unnatural at best and would completely break Windows at worst, but the Studio strips all other `PATH` entries (your ProgramFiles applications, for example) to provide a more isolated environment. Registry isolation is also a concern that's different from Linux, but the native studio doesn't provide this isolation. Note that the Docker Windows Studio mentioned below provides much more thorough isolation.
 
-One other purpose of the Studio on Windows is to provide a known and common PowerShell environment that the Habitat build program is compatible with. The Windows Studio includes a packaged version of PowerShell that is different from the version that ships with the OS. Entering an interactive Windows Studio makes troubleshooting builds easier because you're placed in the same version of PowerShell that builds packages and the same version used by the Habitat Supervisor at runtime.
+One other purpose of the Studio on Windows is to provide a known and common PowerShell environment that the Habitat build program is compatible with. The Windows Studio includes a packaged version of PowerShell that's different from the version that ships with the OS. Entering an interactive Windows Studio makes troubleshooting builds easier because it puts you in the same version of PowerShell that builds packages and the same version used by the Habitat Supervisor at runtime.
 
-## What kinds of studios are there?
+### Why do we need it (macOS)
+
+The purpose of Studio on macOS is fundamentally the same as on Linux. However, on macOS, we can't provide the filesystem isolation using `chroot` as the newer versions of macOS have a very basic `chroot` support that's insufficient. On macOS, Habitat uses a `sandbox-exec`-based mechanism to provide the isolation with the host.
+
+## What kinds of Habitat Studios are there?
 
 The Habitat Studio, as an abstract concept, is an environment that provides the required guarantees for builds. The `hab studio` command is the interface that performs the required setup before handing control over to a studio implementation. `pkg build` uses the same setup, but instead of creating an interactive process, it invokes `build` directly in a non-interactive environment.
 
@@ -68,6 +71,20 @@ The Windows studio uses Junction mounts to provide a consistent filesystem view 
 
 The Windows Docker studio doesn't exist as a component like `core/hab-studio` or `rootless_studio` in the Habitat codebase. Instead, it's created in the release pipeline, using a minimal Windows container as the base and layering in the Windows implementation of `core/hab-studio` to build a Docker image. Like the rootless studio, it can be invoked using only the Docker CLI, with the same additional setup required to set the correct options.
 
+### macOS "native" - aka `core/hab-studio`
+
+The macOS studio uses `sandbox-exec` to provide isolation and fine-grained access control.
+However, since this isn't a full `chroot` environment, the Habitat filesystem path `/opt/hab` is shared with the host.
+Progress Chef recommends running the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon) to avoid affecting your host Habitat environment.
+
+{{< note >}}
+
+Apple deprecated `sandbox-exec` in recent macOS releases.
+Habitat's macOS studio currently depends on this mechanism.
+Progress Chef is tracking this deprecation and will address it in a future release.
+
+{{< /note >}}
+
 ## Studio platform support
 
 Habitat Studio is implemented in four environments and can be invoked from three different operating systems. This matrix shows which studios can be run on the various operating systems.
@@ -78,6 +95,7 @@ Habitat Studio is implemented in four environments and can be invoked from three
 | Linux Docker   | Yes   | Yes   | Yes     |
 | Windows Native | No    | No    | Yes     |
 | Windows Docker | No    | No    | Yes     |
+| macOS Native   | No    | Yes   | No      |
 
 ### Why do we need privileged containers to build (on Linux)?
 
@@ -95,9 +113,9 @@ Today, users can configure agents to run the Docker studio image directly, but t
 
 One question often asked is how to build Windows packages on non-Windows systems. This is often spurred by the ability to build Linux packages on Windows or macOS. However, this isn't a capability provided by the Studio, but by Docker. Docker runs a minimal Linux VM (using Hyper-V on Windows and Hyperkit on macOS) to provide the ability to run Linux containers.
 
-### The "Mac Studio"
+### The "Mac Docker Studio"
 
-Habitat Studio on macOS relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on Mac.
+Habitat Docker Studio on macOS (invoked with `-D` CLI option) relies on Docker Desktop creating and running a Docker host inside a headless virtual machine. This gives you the capability to develop and build Linux packages on macOS. macOS itself provides no OS virtualization primitives beyond chroot. Because `hab studio` manages setup and execution of the Docker CLI command, this can create the impression that Studio itself provides Linux package builds on macOS.
 
 ### How the Studio is used
 

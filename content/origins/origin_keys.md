@@ -21,7 +21,8 @@ Prerequisites:
 
 When you create an origin, Chef Habitat Builder automatically generates _origin keys_.
 Origin key cryptography is asymmetric: it has a public origin key that you can distribute freely, and a private origin key (also called a "signing key") that you should distribute only to users of the origin.
-All Chef Habitat Builder users with access to the origin can view the public origin key revisions in the origin key tab (Builder > Origin > Keys) and download the public origin key, but only users with the origin 'administrator' or 'owner' roles can view or download the private origin key, or change the origin key pair.
+If you have access to the origin in Chef Habitat Builder, you can view the public origin key revisions on the **Keys** tab (**Builder** > **Origins** > **Keys**) and download the public origin key.
+To view or download the private origin key or change the origin key pair, you need the 'administrator' or 'owner' role.
 
 | Keys Actions | Read-Only | Member | Maintainer | Administrator | Owner |
 |---------|-------|-------|-------|-------|-------|
@@ -37,14 +38,14 @@ Chef Habitat uses origin keys:
 
 Chef Habitat Builder origin key names follow the format:
 
-```hab
+```text
 <origin>-<datetime>.pub (public key)
 <origin>-<datetime>.sig.key (private key, also called a "signing key")
 ```
 
 For example, in:
 
-```hab
+```text
 testorigin-20190416223046.pub
 testorigin-20190416223046.sig.key
 ```
@@ -56,7 +57,8 @@ testorigin-20190416223046.sig.key
 
 ## The keys tab
 
-When you create an origin, Chef Habitat Builder automatically generates an origin key pair and saves both keys. To view your origin keys on Chef Habitat Builder, navigate to your origin and select the **Keys** tab. (Builder > Origins > Keys) You can always view and download public origin keys, but you can only see the private keys for origins in which you're an administrator or owner.
+When you create an origin, Chef Habitat Builder automatically generates an origin key pair and saves both keys. To view your origin keys on Chef Habitat Builder, go to your origin and select the **Keys** tab (**Builder** > **Origins** > **Keys**).
+You can always view and download public origin keys, but you can only see the private keys for origins in which you're an administrator or owner.
 
 ![Viewing your origin keys](/images/habitat/origin-keys.png)
 
@@ -72,7 +74,7 @@ You can upload origin keys that you generate on the command line to Chef Habitat
 
 ![Example form content for uploading an origin key in Builder](/images/habitat/builder-key-upload.png)
 
-## Managing origin keys with the CLI
+## Manage origin keys with the CLI
 
 Run Chef Habitat CLI commands from your local environment or from within the Chef Habitat Studio.
 
@@ -80,19 +82,19 @@ See the CLI documentation for more information on the [`hab origin key`](/refere
 
 ### Find your origin keys
 
-Chef Habitat stores your public and private origin keys at `~/.hab/cache/keys` on Linux systems, `C:\hab\cache\keys` on Windows, and at `/hab/cache/keys` inside of the Chef Habitat Studio environment.
+Chef Habitat stores your public and private origin keys at `~/.hab/cache/keys` on Linux, `C:\hab\cache\keys` on Windows, `/opt/hab/cache/keys/` on macOS and at `/hab/cache/keys` inside of the Chef Habitat Studio environment.
 
 #### Find origin keys in a local environment
 
 On Windows:
 
-```PowerShell
+```powershell
 Get-ChildItem C:\hab\cache\keys
 ```
 
-On Linux or macOS:
+On Linux and macOS:
 
-```bash
+```shell
 ls -la ~/.hab/cache/keys
 ```
 
@@ -104,10 +106,16 @@ On Windows:
 Get-ChildItem C:\hab\cache\keys
 ```
 
-On Linux or macOS:
+On Linux:
 
-```bash
+```shell
 ls -la /hab/cache/keys
+```
+
+On macOS:
+
+```shell
+ls -la /opt/hab/cache/keys
 ```
 
 ### Generate origin keys
@@ -121,7 +129,7 @@ The Chef Habitat CLI creates origin key pairs through two different commands, fo
 
 Create origin keys with the `hab` command:
 
-```hab
+```shell
 hab origin key generate <ORIGIN>
 ```
 
@@ -129,7 +137,7 @@ hab origin key generate <ORIGIN>
 
 To get your public origin key using the command line, use:
 
-```hab
+```shell
 hab origin key download <ORIGIN>
 ```
 
@@ -143,27 +151,27 @@ Creating an origin with the `hab origin create` command registers the origin on 
 
 Upload origin keys with the `hab` command:
 
-```hab
+```shell
 hab origin key upload <ORIGIN>
 ```
 
 Upload the private origin key:
 
-```hab
+```shell
 hab origin key upload --secret <ORIGIN>
 ```
 
 Upload both origin keys at the same time:
 
-```hab
-hab origin key upload  --secfile <PATH_TO_PRIVATE_KEY> --pubfile <PATH_TO_PUBLIC_KEY>
+```shell
+hab origin key upload --secfile <PATH_TO_PRIVATE_KEY> --pubfile <PATH_TO_PUBLIC_KEY>
 ```
 
 ### Import origin keys
 
 Use `hab origin key import` to read the key from a standard input stream into Chef Habitat Builder:
 
-```hab
+```shell
 hab origin key import <enter or paste key>
 hab origin key import <PATH_TO_KEY>
 cat <PATH_TO_KEY> | hab origin key import
@@ -171,18 +179,18 @@ cat <PATH_TO_KEY> | hab origin key import
 
 #### Troubleshoot origin key import
 
-On a macOS, you may encounter an upload failure.
+On macOS, you may encounter an upload failure.
 To remediate this failure:
 
 - Check that your `HAB_AUTH_TOKEN` environment variable is properly set and initialized
 - Add your `SSL_CERT_FILE` to the environment variables in your interactive shell configuration file, such as your `.bashrc`.
 
-```bash
-  export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
+```shell
+export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 ```
 
 Initialize the setting from the command line with:
 
-```bash
- source ~/.bashrc
+```shell
+source ~/.bashrc
 ```
