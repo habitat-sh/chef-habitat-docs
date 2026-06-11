@@ -19,7 +19,7 @@ The commands for the Chef Habitat CLI (`hab`) are listed below.
 
 | Applies to Version | Last Updated |
 | ------- | ------------ |
-| hab 2.0.504/20260416191833 (linux) | 16 Apr 2026 |
+| hab 2.1.23/20260610212059 (linux) | 10 Jun 2026 |
 
 ## hab
 
@@ -1460,9 +1460,9 @@ Exports the package to the specified format
     --launcher-pkg <HAB_LAUNCHER_PKG> Launcher package identifier (ex: chef/hab-launcher) or filepath to a Habitat artifact (ex: home/chef-hab-launcher-19633-20250610094807-x86_64-linux.hart) to install [default: chef/hab-launcher]
     --sup-pkg <HAB_SUP_PKG> Supervisor package identifier (ex: chef/hab-sup) or filepath to a Habitat artifact (ex: home/chef-hab-sup-2.0.134-20250610093735-x86_64-linux.hart) to install [default: chef/hab-sup]
 -u, --url <BLDR_URL> Install packages from Builder at the specified URL [default: https://bldr.habitat.sh]
--c, --channel <CHANNEL> Install packages from the specified release channel [default: stable]
+-c, --channel <CHANNEL> Install packages from the specified release channel [default: base]
     --base-pkgs-url <BASE_PKGS_BLDR_URL> Install base packages from Builder at the specified URL [default: https://bldr.habitat.sh]
-    --base-pkgs-channel <BASE_PKGS_CHANNEL> Install base packages from the specified release [default: stable]
+    --base-pkgs-channel <BASE_PKGS_CHANNEL> Install base packages from the specified release [default: base]
 -z, --auth <BLDR_AUTH_TOKEN> Provide a Builder auth token for private pkg export [env: HAB_AUTH_TOKEN]
     --tag-version-release Tag image with :"{{pkg_version}}-{{pkg_release}}"
     --no-tag-version-release Do not tag image with :"{{pkg_version}}-{{pkg_release}}"
@@ -1508,9 +1508,9 @@ Exports the package to the specified format
     --launcher-pkg <HAB_LAUNCHER_PKG> Launcher package identifier (ex: chef/hab-launcher) or filepath to a Habitat artifact (ex: home/chef-hab-launcher-19633-20250610094807-x86_64-linux.hart) to install [default: chef/hab-launcher]
     --sup-pkg <HAB_SUP_PKG> Supervisor package identifier (ex: chef/hab-sup) or filepath to a Habitat artifact (ex: home/chef-hab-sup-2.0.134-20250610093735-x86_64-linux.hart) to install [default: chef/hab-sup]
 -u, --url <BLDR_URL> Builder URL to Install packages from [default: https://bldr.habitat.sh]
--c, --channel <CHANNEL> Channel to install packages from [default: stable]
+-c, --channel <CHANNEL> Channel to install packages from [default: base]
     --base-pkgs-url <BASE_PKGS_BLDR_URL> URL to install base packages from [default: https://bldr.habitat.sh]
-    --base-pkgs-channel <BASE_PKGS_CHANNEL> Channel to install base packages from [default: stable]
+    --base-pkgs-channel <BASE_PKGS_CHANNEL> Channel to install base packages from [default: base]
 -z, --auth <BLDR_AUTH_TOKEN> Provide a Builder auth token for private pkg export [env: HAB_AUTH_TOKEN]
     --no-hab-bin Exclude the hab bin directory from the exported tar
     --no-hab-sup Exclude supervisor and launcher packages from the exported tar
