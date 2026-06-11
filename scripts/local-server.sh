@@ -8,7 +8,7 @@ set -eoux pipefail
 # Run 'netlify dev'
 ###
 
-npm install
+npm ci
 npm ls
 
 make bundle
