@@ -9,7 +9,8 @@ draft = false
     weight = 500
 +++
 
-The Habitat install script (`install.sh`) provides an automated way to download and install the Habitat CLI (`hab`) on Linux and macOS systems. This script handles platform detection, package verification, and system-specific configuration.
+The Habitat install script (`install.sh`) provides an automated way to download and install the Chef Habitat CLI (`hab`) on Linux and macOS systems.
+The script handles platform detection, package verification, and system-specific configuration.
 
 The install script performs these main tasks:
 
@@ -33,14 +34,13 @@ Linux requirements:
 
 macOS requirements:
 
-- `diskutil` for volume management
-- `security` command for keychain operations
-- `launchctl` for daemon management
+- `unzip` for archive extraction
+- `shasum` for checksum verification
 - Administrative privileges for system configuration
 
 ## Usage
 
-```bash
+```shell
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash [options]
 ```
 
@@ -57,10 +57,10 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 : Prints help information
 
 `-v VERSION`
-: Specifies a Habitat version, for example, `1.6.1245` or `1.6.1245/20250905140900`.
+: Specifies a Chef Habitat version, for example, `2.0.504` or `2.0.504/20260505101000`.
 
 `-t TARGET`
-: Specifies the target architecture of the 'hab' program to download.
+: Specifies the target architecture of the `hab` program to download.
 
   Possible values: `x86_64-linux`, `aarch64-linux`, `x86_64-darwin`, `aarch64-darwin`.
 
@@ -68,9 +68,6 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 `-u URL`
 : Specifies a custom Habitat Builder URL.
-
-`-b CHANNEL`
-: Specifies a Habitat Builder channel (for temporary use).
 
 `-o ORIGIN`
 : Specifies the origin.
@@ -81,7 +78,7 @@ curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/
 
 ### Install the latest stable version
 
-```bash
+```shell
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
 ```
 
@@ -89,7 +86,7 @@ The `curl -sSfL` command is equivalent to `curl --silent --show-error --fail --l
 
 Alternatively, download the file and run it locally, for example:
 
-```bash
+```shell
 curl -OL https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh
 chmod u+x install.sh
 ./install.sh [options]
@@ -97,19 +94,19 @@ chmod u+x install.sh
 
 ### Install a specific version
 
-```bash
-curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 1.6.1245
+```shell
+curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -v 2.0.504
 ```
 
 ### Install from the unstable channel
 
-```bash
+```shell
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -c unstable
 ```
 
 ### Install on Linux with AArch64 architecture
 
-```bash
+```shell
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash -s -- -t aarch64-linux
 ```
 
@@ -121,7 +118,7 @@ The script recognizes these environment variables:
 : Allows you to verify against a custom certificate, such as one generated from a corporate firewall.
 
 `DEBUG`
-: If set, prints shell commands as they execute for troubleshooting.
+: If set, the script prints shell commands as they execute for troubleshooting.
 
 `TMPDIR`
 : Specifies the temporary directory for downloads.
@@ -141,21 +138,22 @@ On Linux systems, the script:
 
 ### macOS
 
-macOS installation varies by architecture:
+On macOS, Chef Habitat uses `/opt/hab` as the filesystem root instead of `/hab` because newer versions of macOS don't permit creating directories on the root filesystem.
+
+Also, macOS installation varies by architecture:
 
 #### x86-64 (Intel Macs)
 
-- Downloads and installs the hab binary directly to `/usr/local/bin`
-- Uses ZIP archives instead of tar.gz
-- No special volume configuration required
+1. Downloads the hab binary as a `zip` archive
+1. Verifies the download using SHA256 checksums
+1. Installs the hab binary directly to `/usr/local/bin`
 
 #### AArch64 (Apple Silicon Macs)
 
-- Creates a dedicated APFS volume called "Habitat Store" mounted at `/hab`
-- Configures automatic mounting with the LaunchDaemon
-- Handles FileVault encryption if enabled
-- Updates system configuration files (`/etc/synthetic.conf`, `/etc/fstab`)
-- Uses the full Habitat package installation process
+1. Downloads the hab binary as a `zip` archive
+1. Uses SHA256 checksums for verification
+1. Extracts and temporarily uses the binary to install the full Habitat package
+1. Creates a binlink in `/usr/local/bin/hab` for system-wide access
 
 ## Security and verification
 
@@ -183,17 +181,11 @@ Permission errors:
 - Ensure you have appropriate privileges (sudo on Linux, admin on macOS)
 - Check that target directories are writable
 
-macOS volume creation failures:
-
-- Verify sufficient disk space for the new volume
-- Ensure the root disk has available space
-- Check that FileVault setup is complete if encryption is enabled
-
 ### Debug mode
 
 Enable debug output to troubleshoot installation issues:
 
-```bash
+```shell
 curl -ssfl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | DEBUG=1 sudo -E bash
 ```
 
@@ -205,7 +197,7 @@ If installation fails partway through, you can manually clean up:
 
 On Linux:
 
-```bash
+```shell
 ## Remove temporary files
 rm -rf /tmp/hab.*
 ## Remove incomplete installation
@@ -214,13 +206,11 @@ sudo rm -f /bin/hab
 
 On macOS:
 
-```bash
-## Remove LaunchDaemon
-sudo rm -f /Library/LaunchDaemons/sh.habitat.bldr.darwin-store.plist
-## Remove volume (if created)
-sudo diskutil apfs deleteVolume "Habitat Store"
-## Remove synthetic.conf entry
-sudo ex /etc/synthetic.conf # manually remove the 'hab' line
+```shell
+## Remove temporary files
+rm -rf /tmp/hab.*
+## Remove incomplete installation
+sudo rm -f /usr/local/bin/hab
 ```
 
 ## Next steps
@@ -228,13 +218,13 @@ sudo ex /etc/synthetic.conf # manually remove the 'hab' line
 After successful installation:
 
 1. Verify the installation: `hab --version`
-2. Set up your origin: `hab origin key generate YOUR_ORIGIN`
+2. Set up your origin: `hab origin key generate <ORIGIN_NAME>`
 3. Review the [CLI setup guide](../install/hab_setup.md) for initial configuration
 4. Take the [Chef Habitat tutorial](https://www.chef.io/training/tutorials) at [Chef Training](https://www.chef.io/training) to learn more about using Habitat.
 
 ## Support
 
-If you have issues with the install script:
+If you run into issues with the install script:
 
 - See the [troubleshooting guide](/troubleshooting/)
 - Visit the [Habitat community forum](https://discourse.chef.io/c/habitat)

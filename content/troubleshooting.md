@@ -33,12 +33,6 @@ Permission errors:
 - Ensure you have appropriate privileges (`sudo` on Linux, admin on macOS).
 - Check that target directories are writable.
 
-macOS volume creation failures:
-
-- Verify sufficient disk space for the new volume.
-- Ensure the root disk has available space.
-- Check that FileVault setup is complete if encryption is enabled.
-
 ### Permission errors on Linux or macOS
 
 #### Problem
@@ -176,6 +170,30 @@ $env:PATH += ";C:\habitat\hab-VERSION-x86_64-windows\"
 `hab studio enter` fails or hangs.
 
 #### Solution
+
+On macOS (native studio):
+
+1. Verify that Xcode is installed and configured correctly:
+
+   ```bash
+   xcode-select -p
+   ```
+
+   If the output shows `/Library/Developer/CommandLineTools`, run the following command to point to the full Xcode installation:
+
+   ```bash
+   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+   ```
+
+1. If the studio starts but you see sandbox permission errors during a build, run the following command in a separate terminal to identify which operations are being denied:
+
+   ```bash
+   log stream --predicate 'sender="Sandbox"'
+   ```
+
+   For details on how to resolve sandbox permission errors, see [Troubleshoot sandbox permission errors on macOS](../packages/pkg_build#troubleshoot-sandbox-permission-errors-on-macos).
+
+On all platforms (Docker studio):
 
 1. Verify that Docker is running.
 1. Check for conflicting containers:
