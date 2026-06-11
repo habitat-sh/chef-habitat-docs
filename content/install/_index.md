@@ -26,7 +26,7 @@ Before you install Chef Habitat, confirm that your system meets these requiremen
 
 ### Docker requirements
 
-You need Docker Desktop only if you want to use the Docker-based Habitat Studio, which you invoke with the `-D` flag.
+You need Docker Desktop only if you want to use the [Docker-based Chef Habitat Studio](/studio/), which you invoke with the `-D` flag.
 
 If you do need Docker Desktop, install it for your platform:
 
@@ -58,12 +58,12 @@ To install Chef Habitat with the install script:
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
     ```
 
-You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
+    To install a specific Chef Habitat version,  `-v <HABITAT_VERSION>`, for example:
 
-```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo -E bash -s -- -v 2.0.504
-```
+    ```shell
+    curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+        | sudo -E bash -s -- -v 2.0.504
+    ```
 
 ### Install manually
 
@@ -93,7 +93,7 @@ The following list summarizes what's supported when running Chef Habitat on macO
 
 Progress Chef recommends installing Chef Habitat on macOS with the install script.
 
-To install Chef Habitat with the install script:
+To install Chef Habitat with the install script, follow these steps:
 
 1. Export your Chef Habitat Builder auth token:
 
@@ -107,12 +107,12 @@ To install Chef Habitat with the install script:
     curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo -E bash
     ```
 
-You can install a specific Chef Habitat version with `-v <HABITAT_VERSION>`, for example:
+    To install a specific Habitat version pass the version number to the install script with `-v <HABITAT_VERSION>`, for example:
 
-```shell
-curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
-    | sudo -E bash -s -- -v 2.0.504
-```
+    ```shell
+    curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh \
+        | sudo -E bash -s -- -v 2.0.504
+    ```
 
 ### Install with Homebrew
 
@@ -135,19 +135,19 @@ brew install hab
     xattr -d com.apple.quarantine /usr/local/bin/hab
     ```
 
-### Additional setup to build Habitat packages
+### Additional setup to build Chef Habitat packages
 
-If you plan to [build Habitat packages](/packages/pkg_build/) in [Chef Habitat Studio](/studio) on macOS, you must also install or configure the following dependencies.
+If you plan to [build Chef Habitat packages](/packages/pkg_build/) in [Habitat Studio](/studio) on macOS, you must also install or configure the following dependencies.
 
 #### Virtual machine environment
 
-The macOS-native Habitat Studio uses `sandbox-exec` for isolation but shares the `/opt/hab` filesystem with your host.
+The macOS-native Chef Habitat Studio uses `sandbox-exec` for isolation but shares the `/opt/hab` filesystem with your host.
 Packages installed during a build persist on the host, and builds aren't guaranteed to be clean between sessions in the same way as Linux chroot-based studios.
-To avoid affecting your host Habitat environment, run the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon).
+To avoid affecting your host Chef Habitat environment, run the macOS native studio inside a virtual machine (for example, UTM or Parallels on Apple Silicon).
 
 #### Install Xcode Command Line Tools
 
-Habitat Studio on macOS uses the Clang compiler and linker toolkit provided by the Xcode Command Line Tools.
+Chef Habitat Studio on macOS uses the Clang compiler and linker toolkit provided by the Xcode Command Line Tools.
 
 - To install the Xcode Command Line Tools, run the following command:
 
