@@ -1,6 +1,6 @@
 
 bundle:
-	npm install
+	npm ci
 
 clean_all:
 	rm -rf node_modules
