@@ -5,10 +5,10 @@ date = 2026-06-10T22:43:47.604Z
 draft = false
 
 [menu]
-  [menu.habitat]
+  [menu.reference]
     title = "Service Template Data"
-    identifier = "habitat/reference/service_templates Service Template Data"
-    parent = "habitat/reference"
+    identifier = "reference/service_templates Service Template Data"
+    parent = "reference"
 +++
 
 <!-- This is a generated file, do not edit it directly. See https://github.com/habitat-sh/habitat/blob/main/.expeditor/scripts/release_habitat/generate-template-reference.js -->
