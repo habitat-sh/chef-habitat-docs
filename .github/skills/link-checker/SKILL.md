@@ -45,6 +45,10 @@ Install it before running this skill:
   pipx install linkchecker   # recommended
   pip install linkchecker    # alternative (use a virtual environment)
 
+After a pipx install, ensure the pipx bin directory is on PATH:
+  - Linux/macOS : $HOME/.local/bin  (add to ~/.bashrc or ~/.zshrc)
+  - Windows     : %USERPROFILE%\.local\bin  (or run: pipx ensurepath)
+
 See: https://linkchecker.github.io/linkchecker/install.html
 "@
 }
@@ -59,12 +63,12 @@ Replace `<target-url>` with the URL to check (for example, `https://docs.chef.io
 
 ```powershell
 $targetUrl = "<target-url>"
-# --no-robots   : ignore robots.txt (documentation sites may block crawlers)
-# --output=csv  : structured output for easy parsing
-# --check-extern: also check external links (not just internal)
-# --timeout=10  : per-link timeout in seconds
+# --no-robots        : ignore robots.txt (documentation sites may block crawlers)
+# --file-output=csv  : emit CSV to stdout (omitting a file path writes to stdout)
+# --check-extern     : also check external links (not just internal)
+# --timeout=10       : per-link timeout in seconds
 # Linkchecker exits with non-zero when errors are found — capture output regardless
-$lcOutput = & linkchecker --no-robots --output=csv --check-extern --timeout=10 $targetUrl 2>&1
+$lcOutput = & linkchecker --no-robots --file-output=csv --check-extern --timeout=10 $targetUrl 2>&1
 Write-Host "linkchecker exit code: $LASTEXITCODE"
 ```
 
@@ -87,11 +91,19 @@ Key fields:
 - `line` / `col` — position in the parent page source
 
 ```powershell
-# Skip comment lines (start with #) and blank lines
-$csvLines = $lcOutput | Where-Object { $_ -notmatch "^#" -and $_.Trim() -ne "" }
+# LinkChecker emits its CSV header as a comment line starting with "# urlname;..."
+# Extract and strip the leading "#" so ConvertFrom-Csv can use it as the header row,
+# then keep only non-comment, non-blank data lines.
+$headerLine = $lcOutput | Where-Object { $_ -match "^# urlname;" } | Select-Object -First 1
+$header     = $headerLine -replace "^#\s*", ""
+
+$dataLines  = $lcOutput | Where-Object { $_ -notmatch "^#" -and $_.Trim() -ne "" }
+
+# Prepend the extracted header so ConvertFrom-Csv maps columns correctly
+$csvContent = @($header) + $dataLines
 
 # Parse into objects (linkchecker CSV uses semicolons as delimiters)
-$results = $csvLines | ConvertFrom-Csv -Delimiter ";"
+$results = $csvContent | ConvertFrom-Csv -Delimiter ";"
 
 # Separate broken and redirected links
 $broken     = $results | Where-Object { $_.valid -eq "False" }
@@ -114,7 +126,7 @@ $broken | Format-Table urlname, result, parentname -AutoSize
 ## Notes for calling agents
 
 - linkchecker crawls recursively by default. For a scoped check (single page), use `--depth=1`.
-- The CSV output may include a header row as a comment line (starting with `#`). The parse step above handles this.
+- The CSV output includes the column header as a `#`-prefixed comment line. The parse step above extracts and strips that prefix so `ConvertFrom-Csv` receives a proper header row.
 - linkchecker may report false positives for URLs that block automated crawlers (for example, LinkedIn). Flag these as "unverifiable" rather than broken.
 - `--no-robots` is recommended for documentation site checks to avoid missing pages excluded by `robots.txt`.
 - Do not treat a non-zero exit code from linkchecker as a script failure — it means errors were found, which is expected. Check `$broken.Count` instead.

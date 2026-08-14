@@ -83,11 +83,13 @@ The default published site URL for Chef Habitat documentation is `https://docs.c
 
 ### Step 2 — Run the Link Checker skill (live site check)
 
+> **Skip this step** if the user chose "Markdown source files only" in Step 1 — proceed directly to Step 3.
+
 Invoke the **Link Checker** skill (`/.github/skills/link-checker/SKILL.md`) with the target URL.
 
 The skill will:
-- Install `linkchecker` if not already available
-- Run `linkchecker --no-robots --output=csv --check-extern --timeout=10 <url>`
+- Verify `linkchecker` is available (and surface a clear install error if not)
+- Run `linkchecker --no-robots --file-output=csv --check-extern --timeout=10 <url>`
 - Return structured lists of broken links (`$broken`) and redirected links (`$redirected`)
 
 Collect the results. Do not start generating the report yet.
@@ -146,6 +148,6 @@ Only after explicit human confirmation, edit Markdown source files to replace ap
 ## Additional constraints
 
 - Do not edit files before presenting the report and receiving explicit confirmation from a human.
-- If a URL fetch or linkchecker run fails, flag affected links as "unverifiable" and include them for manual review.
+- If a `linkchecker` run fails or a URL cannot be reached during crawling, flag affected links as "unverifiable" and include them for manual review.
 - Some URLs may return errors because they block automated crawlers (for example, LinkedIn). Flag these as "unverifiable" rather than broken.
 - Explicitly label recommendations as drafts that require human review.
