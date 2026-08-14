@@ -1,6 +1,6 @@
 ---
 name: Link Checker
-description: "Reusable skill that installs linkchecker (a Python CLI tool) and runs it against a live URL to produce a structured list of broken and redirected links. Use when an agent needs to verify URLs in a documentation site without fetching each link individually."
+description: "Reusable skill that runs linkchecker (a Python CLI tool) against a live URL to produce a structured list of broken and redirected links. Use when an agent needs to verify URLs in a documentation site without fetching each link individually. Requires linkchecker to be pre-installed — see Prerequisites."
 ---
 
 # Skill: Link Checker
@@ -15,25 +15,43 @@ Use this skill when an agent needs to:
 
 ## Prerequisites
 
-- Python 3.10 or later must be available in the environment
-- `pip` or `pipx` must be available for installation
+**linkchecker must be installed before using this skill.** The agent will not install it automatically.
 
-## Step 1 — Check whether linkchecker is installed
+Install once using [pipx](https://pipx.pypa.io/) (recommended, isolates the package in its own environment):
+
+```shell
+pipx install linkchecker
+```
+
+Or using pip into a virtual environment:
+
+```shell
+pip install linkchecker
+```
+
+Requires Python 3.10 or later. See the [linkchecker installation guide](https://linkchecker.github.io/linkchecker/install.html) for platform-specific instructions.
+
+**Why not auto-install?** Installing packages from PyPI at agent runtime — without explicit human awareness — is a supply chain security concern. The agent would be silently pulling in linkchecker and its dependencies (Requests, Beautiful Soup, dnspython) from the internet as a side effect of running a doc review. Requiring pre-installation means the human makes that decision deliberately.
+
+## Step 1 — Verify linkchecker is available
 
 ```powershell
 $lc = Get-Command linkchecker -ErrorAction SilentlyContinue
 if (-not $lc) {
-    Write-Host "linkchecker not found — installing with pipx..."
-    pipx install linkchecker
-    # After install, ensure pipx bin dir is on PATH for this session
-    $env:PATH = "$env:USERPROFILE\.local\bin;$env:PATH"
+    throw @"
+linkchecker is not installed or not on PATH.
+
+Install it before running this skill:
+  pipx install linkchecker   # recommended
+  pip install linkchecker    # alternative (use a virtual environment)
+
+See: https://linkchecker.github.io/linkchecker/install.html
+"@
 }
-$lc = Get-Command linkchecker -ErrorAction SilentlyContinue
-if (-not $lc) { throw "linkchecker installation failed. Ask the user to install it manually: pipx install linkchecker" }
-Write-Host "linkchecker available at: $($lc.Source)"
+Write-Host "linkchecker found at: $($lc.Source)"
 ```
 
-If installation fails, stop and ask the user to install linkchecker manually before continuing.
+Stop and surface the error message to the user if linkchecker is not found. Do not attempt to install it.
 
 ## Step 2 — Run linkchecker against the target URL
 
@@ -45,13 +63,13 @@ $targetUrl = "<target-url>"
 # --output=csv  : structured output for easy parsing
 # --check-extern: also check external links (not just internal)
 # --timeout=10  : per-link timeout in seconds
-# Linkchecker exits with code 0 (all OK) or non-zero (errors found) — capture output regardless
+# Linkchecker exits with non-zero when errors are found — capture output regardless
 $lcOutput = & linkchecker --no-robots --output=csv --check-extern --timeout=10 $targetUrl 2>&1
 Write-Host "linkchecker exit code: $LASTEXITCODE"
 ```
 
 **Note:** For large sites, linkchecker recurses through all pages by default. To limit scope to a single
-page (and its direct links only), add `--no-follow-url=<target-url>` or use `--depth=1`.
+page (and its direct links only), use `--depth=1`.
 
 ## Step 3 — Parse the CSV output
 
@@ -69,7 +87,7 @@ Key fields:
 - `line` / `col` — position in the parent page source
 
 ```powershell
-# Split output into lines; skip comment lines (start with #) and blank lines
+# Skip comment lines (start with #) and blank lines
 $csvLines = $lcOutput | Where-Object { $_ -notmatch "^#" -and $_.Trim() -ne "" }
 
 # Parse into objects (linkchecker CSV uses semicolons as delimiters)
