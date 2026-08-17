@@ -92,17 +92,17 @@ $lc = Get-Command linkchecker -ErrorAction SilentlyContinue
 if (-not $lc) { Write-Host "NOT_FOUND" } else { Write-Host "FOUND" }
 ```
 
-If `linkchecker` is **not found**, do not silently skip the live check. Instead:
+If `linkchecker` is **not found**, do not attempt to install it. Instead, tell the user:
 
-1. Inform the user that `linkchecker` is not installed.
-2. Ask: *"Would you like me to install it now using `pipx install linkchecker`? This will pull the package and its dependencies from PyPI."*
-3. Wait for explicit confirmation before running any install command.
-4. If the user confirms, run:
-   ```powershell
-   pipx install linkchecker
-   ```
-   Then verify the install succeeded before proceeding.
-5. If the user declines, skip the live site check, note it in the final report as "skipped — linkchecker not installed", and proceed to Step 3.
+> `linkchecker` isn't installed, so the live site check can't run. To enable it, install `linkchecker` in your terminal before starting this agent:
+>
+> ```shell
+> pipx install linkchecker
+> ```
+>
+> Once installed, re-run the agent to get the full report. To continue now with Markdown source checks only, say "skip live check".
+
+Then stop and wait for the user's response. If they say "skip live check", note the live site check as "skipped — linkchecker not installed" in the final report and proceed to Step 3. Otherwise, do not continue.
 
 Once `linkchecker` is confirmed available, invoke the **Link Checker** skill (`/.github/skills/link-checker/SKILL.md`) with the target URL.
 
