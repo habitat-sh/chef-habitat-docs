@@ -170,6 +170,37 @@ Only after explicit human confirmation, edit Markdown source files to replace ap
 - Some URLs may return errors because they block automated crawlers (for example, LinkedIn). Flag these as "unverifiable" rather than broken.
 - Explicitly label recommendations as drafts that require human review.
 
+## Git commits and DCO sign-off
+
+This repository requires a Developer Certificate of Origin (DCO) sign-off on every commit. The `Signed-off-by` trailer is a legal certification that a human is taking responsibility for the contribution — it must come from the human author, not from Copilot.
+
+Always include the human user's `Signed-off-by` trailer in every commit message:
+
+```
+Signed-off-by: Name <email>
+```
+
+Use `git config user.name` and `git config user.email` to confirm the correct identity before committing. The `Co-authored-by: Copilot` trailer is still appropriate but does not satisfy the DCO requirement on its own.
+
+If any commits on the branch are missing a human `Signed-off-by`, use an interactive rebase to add it before pushing:
+
+```powershell
+git rebase -i main
+# Mark each commit as 'reword', then add the Signed-off-by trailer
+```
+
+Or amend the most recent commit directly:
+
+```powershell
+git commit --amend --signoff
+```
+
+Force-push after a rebase:
+
+```powershell
+git push --force-with-lease
+```
+
 ## Pushing changes to GitHub
 
 The `habitat-sh` organization enforces SAML SSO. A `git push` may fail with a 403 error even after a successful `gh auth refresh`. If this happens:
