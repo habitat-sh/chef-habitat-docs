@@ -169,3 +169,16 @@ Only after explicit human confirmation, edit Markdown source files to replace ap
 - If a `linkchecker` run fails or a URL cannot be reached during crawling, flag affected links as "unverifiable" and include them for manual review.
 - Some URLs may return errors because they block automated crawlers (for example, LinkedIn). Flag these as "unverifiable" rather than broken.
 - Explicitly label recommendations as drafts that require human review.
+
+## Pushing changes to GitHub
+
+The `habitat-sh` organization enforces SAML SSO. A `git push` may fail with a 403 error even after a successful `gh auth refresh`. If this happens:
+
+1. Run `gh auth setup-git` to wire the refreshed token to the git credential helper.
+2. Retry `git push`.
+
+If the push still fails, ask the user to authorize the GitHub CLI for SAML SSO:
+
+1. Run `gh auth refresh --hostname github.com --scopes repo,read:org` and share the one-time code with the user.
+2. Ask the user to go to **https://github.com/login/device**, enter the code, and then select **Authorize** next to the `habitat-sh` organization in the SAML SSO section.
+3. After confirmation, run `gh auth setup-git` and retry `git push`.
