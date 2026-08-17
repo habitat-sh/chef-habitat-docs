@@ -85,10 +85,28 @@ The default published site URL for Chef Habitat documentation is `https://docs.c
 
 > **Skip this step** if the user chose "Markdown source files only" in Step 1 — proceed directly to Step 3.
 
-Invoke the **Link Checker** skill (`/.github/skills/link-checker/SKILL.md`) with the target URL.
+Before invoking the skill, verify that `linkchecker` is installed:
+
+```powershell
+$lc = Get-Command linkchecker -ErrorAction SilentlyContinue
+if (-not $lc) { Write-Host "NOT_FOUND" } else { Write-Host "FOUND" }
+```
+
+If `linkchecker` is **not found**, do not silently skip the live check. Instead:
+
+1. Inform the user that `linkchecker` is not installed.
+2. Ask: *"Would you like me to install it now using `pipx install linkchecker`? This will pull the package and its dependencies from PyPI."*
+3. Wait for explicit confirmation before running any install command.
+4. If the user confirms, run:
+   ```powershell
+   pipx install linkchecker
+   ```
+   Then verify the install succeeded before proceeding.
+5. If the user declines, skip the live site check, note it in the final report as "skipped — linkchecker not installed", and proceed to Step 3.
+
+Once `linkchecker` is confirmed available, invoke the **Link Checker** skill (`/.github/skills/link-checker/SKILL.md`) with the target URL.
 
 The skill will:
-- Verify `linkchecker` is available (and surface a clear install error if not)
 - Run `linkchecker --no-robots --file-output=csv --check-extern --timeout=10 <url>`
 - Return structured lists of broken links (`$broken`) and redirected links (`$redirected`)
 
