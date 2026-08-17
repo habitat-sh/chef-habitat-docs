@@ -126,17 +126,24 @@ Search for all `.md` files in the scope the user specifies. For each file, extra
 
 Do not fetch these URLs — flag them by pattern only.
 
-### Step 4 — Produce a report
+### Step 4 — Produce a report and CSV
 
-Combine results from Steps 2 and 3. Present findings in two sections:
+Combine results from Steps 2 and 3. Present findings in two sections in the chat, then always export a CSV file.
 
 **Section A: Live site results** (from linkchecker)
 
-Group by issue type (broken, redirected). For each finding:
+Group by issue type (broken, redirected). For each finding, research a suggested fix before presenting:
 
-| URL | Result | Found on page |
-|-----|--------|--------------|
-| https://example.com/old | 404 Not Found | https://docs.chef.io/habitat/page/ |
+- For internal 404s: check whether the page exists at a corrected path (for example, a versioned URL or a restructured section) by running a targeted `curl` check against the likely corrected URL.
+- For external 404s: check whether a known redirect or replacement URL exists (for example, updated Kubernetes docs paths, retired projects).
+- For 403s and other non-404 errors: classify as "unverifiable — verify manually" rather than broken.
+- For placeholder `mailto:` addresses in code examples: classify as "placeholder — no action needed".
+
+Present findings in the chat:
+
+| Link name | URL | Result | Found on page | Category | Suggested fix |
+|-----------|-----|--------|---------------|----------|---------------|
+| Example link | https://example.com/old | 404 Not Found | https://docs.chef.io/habitat/page/ | External — page moved | Update to https://example.com/new (confirmed 200 OK) |
 
 **Section B: Markdown source pattern issues**
 
@@ -150,9 +157,28 @@ After both sections, provide a summary:
 
 > Found X broken links, Y redirects (live site), and Z pattern issues in Markdown source across N files.
 
-### Step 5 — Ask for confirmation
+**Always export a CSV file** after presenting the in-chat summary. Ask the user where to save it, or default to the Desktop if they don't specify. The CSV must include the following columns:
 
-Ask whether to apply all fixes, select specific fixes, or apply none.
+| Column | Description |
+|--------|-------------|
+| Link name | The link text as it appears on the published page (from the `name` field in linkchecker output, or the Markdown link text for source pattern issues) |
+| Broken URL | The URL that failed |
+| HTTP result | The HTTP status code or error message |
+| Found on page | The full URL of the page on docs.chef.io where the broken link appears |
+| Category | A plain-English classification of the issue type |
+| Suggested fix | A specific verified replacement URL, or a clear recommendation (for example, "Remove — project retired" or "Verify manually in browser") — never leave this blank |
+| Approved? (Y/N) | Blank — for the human reviewer to complete |
+| Fixed? (Y/N) | Blank — for tracking progress |
+
+The **Link name** must come from the `name` field in the linkchecker CSV output for live site findings. This reflects the actual visible link text on the rendered page, which makes it easy for reviewers to locate the link on the site.
+
+### Step 5 — Ask the user to review the CSV
+
+After exporting the CSV, tell the user:
+
+> The CSV has been saved to [path]. Please review the **Suggested fix** column and mark each row **Y** in the **Approved?** column for fixes you'd like applied. Share the reviewed CSV back when you're ready, or let me know which fixes to apply.
+
+Do not proceed to Step 6 until the user explicitly confirms which fixes to apply.
 
 ### Step 6 — Apply fixes
 
