@@ -28,7 +28,3 @@ This algorithm is known as [Bully](https://en.wikipedia.org/wiki/Bully_algorithm
 Each peer that receives this rumor performs a lexicographic comparison of its GUID with the GUID in the rumor. The peer with the higher GUID wins. The peer then adds a vote for the winning GUID and shares the rumor with others, including the total votes from peers that already voted for that winner.
 
 An election ends when candidate peer X receives a rumor from the ring stating that X is the winner with votes from all members. At that point, X sends a rumor declaring itself the winner, and the election cycle ends.
-
-## Related reading
-
-- For more information about the bully algorithm, see [Elections in a Distributed Computing System](https://dl.acm.org/doi/10.1109/TC.1982.1675885) by Héctor García-Molina.
