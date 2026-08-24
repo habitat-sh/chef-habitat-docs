@@ -24,7 +24,7 @@ The install script performs these main tasks:
 Requirements on all platforms:
 
 - `curl` or `wget` with SSL support
-- Internet connectivity to `packages.chef.io`
+- Internet connectivity to `chefdownload-community.chef.io` (or if you are a commercial user, `chefdownload-commercial.chef.io`)
 
 Linux requirements:
 
@@ -173,7 +173,7 @@ The script includes multiple verification steps:
 Download failures:
 
 - Verify internet connectivity
-- Check if a corporate firewall blocks `packages.chef.io`
+- Check if a corporate firewall blocks `chefdownload-community.chef.io` (or if you are a commercial user, `chefdownload-commercial.chef.io`).
 - Set `SSL_CERT_FILE` if using custom certificates
 
 Permission errors:
