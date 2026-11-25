@@ -101,4 +101,4 @@ To upgrade a Supervisor from Habitat 1.6 to 2:
   iex "& { $(irm https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/migrate.ps1) } --auth <HAB_AUTH_TOKEN>"
   ```
 
-- Chef Habitat Supervisor isn't supported on macOS
+- For platform support details, see [Running Chef Habitat Supervisors](/sup/sup_run#platform-support).

@@ -152,6 +152,7 @@ To create a build script that targets specific platforms, follow these steps:
     - `aarch64-linux`
     - `aarch64-darwin`
     - `x86_64-windows`
+    - `aarch64-windows`
 
 1. In each platform folder, add the plan file, hooks, and configuration templates for each platform.
 

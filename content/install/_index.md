@@ -21,7 +21,8 @@ Before you install Chef Habitat, confirm that your system meets these requiremen
 
 - Modern Linux kernels on a 64-bit x86_64 processor (Intel or AMD)
 - Modern Linux kernels on a 64-bit ARM processor
-- Windows Server 2012 or later, or Windows 8 or later on a 64-bit processor
+- Windows Server 2012 or later, or Windows 8 or later on a 64-bit x86_64 processor
+- Windows 11 on a 64-bit ARM processor (`aarch64-windows`). Use the [standard Windows installation instructions](#install-on-windows); see [platform support](/sup/sup_run#platform-support) for Supervisor and service availability.
 - macOS 14 or later on a 64-bit Apple Silicon or Intel processor
 
 ### Docker requirements

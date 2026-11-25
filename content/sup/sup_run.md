@@ -13,9 +13,12 @@ description = "Running Chef Habitat packages"
 
 Use Chef Habitat packages to start services under the Chef Habitat Supervisor. At runtime, you can join services together in a service group running the same topology, send configuration updates to that group, and more. You can also export the Supervisor together with the package to an external immutable format, such as a Docker container or a virtual machine.
 
-{{< note >}}
+## Platform support
 
+{{< note >}}
 Linux-based packages can run on Linux distributions running kernel 2.6.32 or later. Windows-based packages can run on Windows Server 2012 or later and Windows 8 64-bit or later.
+
+Chef Habitat Supervisor and services aren't supported on macOS, including `aarch64-darwin`. The Supervisor and Launcher aren't available for the `aarch64-windows` target, so you can't run services on Windows ARM64.
 
 {{< /note >}}
 
