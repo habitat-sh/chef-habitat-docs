@@ -39,6 +39,28 @@ If you have already uploaded your package to a channel and wish to promote it to
 hab pkg promote -z <TOKEN> <ORIGIN>/<PACKAGE>/<VERSION>/<RELEASE> stable
 ```
 
+### Promoting an entire channel
+
+Use `hab bldr channel promote` to promote all packages in one origin channel to another:
+
+```bash
+hab bldr channel promote -o <ORIGIN> -z <TOKEN> <SOURCE_CHANNEL> <TARGET_CHANNEL>
+```
+
+Add `--check` to ask Builder to check the combined target and source package dependencies for incompatible versions before promotion. A conflict stops the promotion and exits non-zero. The output names each conflicting package and target platform, its full package identifiers, and the source or target packages that introduced each version. Add `--json` to print Builder's full conflict response as JSON.
+
+```bash
+hab bldr channel promote --check -o <ORIGIN> -z <TOKEN> dev stable
+```
+
+Add `--snapshot` to create a channel containing the target channel's packages after promotion. On success, the command prints the snapshot channel name and a package list that includes transitive dependencies. `--check --snapshot` checks first; if the check finds a conflict, Builder creates no snapshot. With `--json`, the snapshot response is printed as JSON.
+
+```bash
+hab bldr channel promote --check --snapshot -o <ORIGIN> -z <TOKEN> dev stable
+```
+
+These flags require a recent Builder. Older Builders may ignore them and still promote packages. An empty success response is normal for a successful `--check`, so it cannot confirm whether an older Builder ran the check. With `--snapshot`, an empty success response means no snapshot was confirmed, and the CLI reports that.
+
 ### Combining an update strategy with channels
 
 By using both channels and either the `at-once` or `rolling` [update strategies](#combining-an-update-strategy-with-channels), you can automatically update packages in a given channel as shown below:
@@ -61,6 +83,28 @@ hab svc load <ORIGIN>/<PACKAGE> --strategy rolling --channel test
 ```
 
 While that service is running, update your package, rebuild it, and then promote it to the same channel that the previous release of that service is currently running in, for example, `test`. Those running instances should now update according to their update strategy.
+
+### Listing and filtering channels
+
+Use `hab bldr channel list` to list the channels of an origin, one name per line. Add `--sandbox` to include sandbox channels. Use `--filter <STRING>` to list only channels whose names contain the string. The match is case-sensitive, and an empty or whitespace-only value is rejected.
+
+```bash
+hab bldr channel list <ORIGIN> --filter test
+```
+
+If no channels match, the command prints `No channels found matching '<STRING>'` and exits with status 0.
+
+### Listing packages in a channel
+
+Use `hab bldr channel list-packages` to see every package promoted to a channel:
+
+```bash
+hab bldr channel list-packages core stable
+```
+
+The command prints one fully qualified `<ORIGIN>/<PACKAGE>/<VERSION>/<RELEASE>` identifier per line and retrieves all pages from Builder. Use `--limit N` to show at most N packages, or `--json` to print a JSON array of identifiers. An empty channel prints a message; with `--json`, it prints `[]`.
+
+For a private origin, pass `--auth <AUTH_TOKEN>` (or `-z`), set `HAB_AUTH_TOKEN`, or configure an auth token in `cli.toml`. Use `--url <BLDR_URL>` to select a different Builder endpoint. `HAB_BLDR_URL` and `cli.toml` are also supported.
 
 ### Demoting a package from a channel
 
